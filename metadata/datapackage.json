@@ -1,0 +1,673 @@
+{
+  "profile": "data-package",
+  "name": "biblioteche-fantasma",
+  "title": "Biblioteche Fantasma - dataset processed",
+  "description": "Dataset tabellari derivati da ICCU e ISTAT POSAS, geografia canonica 2025. Generato a partire dal checkpoint canonico delle Fasi 1-2.",
+  "licenses": [
+    {
+      "name": "CC-BY-4.0",
+      "path": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "Creative Commons Attribution 4.0 International"
+    }
+  ],
+  "resources": [
+    {
+      "name": "analysis_municipality",
+      "path": "data/processed/csv/analysis_municipality.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "bytes": 1791311,
+      "hash": "sha256:ab8135430785048ebb0d79eb55b1a69f4107fbc03c918faa3ee7f374bca9e7ac",
+      "schema": {
+        "fields": [
+          {
+            "name": "istat_code",
+            "type": "string"
+          },
+          {
+            "name": "municipality_name",
+            "type": "string"
+          },
+          {
+            "name": "province",
+            "type": "string"
+          },
+          {
+            "name": "region",
+            "type": "string"
+          },
+          {
+            "name": "province_istat_code",
+            "type": "string"
+          },
+          {
+            "name": "population_2019",
+            "type": "number"
+          },
+          {
+            "name": "population_2025",
+            "type": "number"
+          },
+          {
+            "name": "population_change_absolute",
+            "type": "number"
+          },
+          {
+            "name": "population_change_percent",
+            "type": "number"
+          },
+          {
+            "name": "population_0_14_2019",
+            "type": "number"
+          },
+          {
+            "name": "population_15_64_2019",
+            "type": "number"
+          },
+          {
+            "name": "population_65_plus_2019",
+            "type": "number"
+          },
+          {
+            "name": "share_65_plus_2019",
+            "type": "number"
+          },
+          {
+            "name": "population_0_14_2025",
+            "type": "number"
+          },
+          {
+            "name": "population_15_64_2025",
+            "type": "number"
+          },
+          {
+            "name": "population_65_plus_2025",
+            "type": "number"
+          },
+          {
+            "name": "share_65_plus_2025",
+            "type": "number"
+          },
+          {
+            "name": "population_comparability",
+            "type": "string"
+          },
+          {
+            "name": "total_registry_records",
+            "type": "number"
+          },
+          {
+            "name": "total_libraries",
+            "type": "number"
+          },
+          {
+            "name": "ceased_libraries",
+            "type": "number"
+          },
+          {
+            "name": "temporarily_closed_libraries",
+            "type": "number"
+          },
+          {
+            "name": "inaccessible_libraries",
+            "type": "number"
+          },
+          {
+            "name": "earthquake_suspended_libraries",
+            "type": "number"
+          },
+          {
+            "name": "partial_reopening_libraries",
+            "type": "number"
+          },
+          {
+            "name": "merged_libraries",
+            "type": "number"
+          },
+          {
+            "name": "no_service_point_libraries",
+            "type": "number"
+          },
+          {
+            "name": "main_problematic_libraries",
+            "type": "number"
+          },
+          {
+            "name": "not_censused_libraries",
+            "type": "number"
+          },
+          {
+            "name": "setup_libraries",
+            "type": "number"
+          },
+          {
+            "name": "problematic_share",
+            "type": "number"
+          },
+          {
+            "name": "libraries_per_100k",
+            "type": "number"
+          },
+          {
+            "name": "problematic_libraries_per_100k",
+            "type": "number"
+          }
+        ]
+      }
+    },
+    {
+      "name": "library",
+      "path": "data/processed/csv/library.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "bytes": 7728215,
+      "hash": "sha256:201472af8b1cd0f74e465177106d5d744662af9e2a0af67a6d1e680bbdc621d9",
+      "schema": {
+        "fields": [
+          {
+            "name": "isil",
+            "type": "string"
+          },
+          {
+            "name": "sbn_code",
+            "type": "string"
+          },
+          {
+            "name": "acnp_code",
+            "type": "string"
+          },
+          {
+            "name": "cei_code",
+            "type": "string"
+          },
+          {
+            "name": "cmbs_code",
+            "type": "string"
+          },
+          {
+            "name": "rism_code",
+            "type": "string"
+          },
+          {
+            "name": "census_year",
+            "type": "string"
+          },
+          {
+            "name": "updated_date",
+            "type": "date"
+          },
+          {
+            "name": "name_original",
+            "type": "string"
+          },
+          {
+            "name": "name_normalized",
+            "type": "string"
+          },
+          {
+            "name": "address_original",
+            "type": "string"
+          },
+          {
+            "name": "address_normalized",
+            "type": "string"
+          },
+          {
+            "name": "hamlet",
+            "type": "string"
+          },
+          {
+            "name": "postal_code",
+            "type": "string"
+          },
+          {
+            "name": "municipality_name",
+            "type": "string"
+          },
+          {
+            "name": "istat_code",
+            "type": "string"
+          },
+          {
+            "name": "province_name",
+            "type": "string"
+          },
+          {
+            "name": "province_istat_code",
+            "type": "string"
+          },
+          {
+            "name": "province_abbrev",
+            "type": "string"
+          },
+          {
+            "name": "region",
+            "type": "string"
+          },
+          {
+            "name": "latitude_original",
+            "type": "string"
+          },
+          {
+            "name": "longitude_original",
+            "type": "string"
+          },
+          {
+            "name": "restricted_access",
+            "type": "boolean"
+          },
+          {
+            "name": "disabled_access",
+            "type": "string"
+          },
+          {
+            "name": "administrative_type",
+            "type": "string"
+          },
+          {
+            "name": "functional_type",
+            "type": "string"
+          },
+          {
+            "name": "owning_entity",
+            "type": "string"
+          },
+          {
+            "name": "source_status",
+            "type": "string"
+          },
+          {
+            "name": "latitude",
+            "type": "number"
+          },
+          {
+            "name": "longitude",
+            "type": "number"
+          },
+          {
+            "name": "coordinate_quality_flag",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "library_contact",
+      "path": "data/processed/csv/library_contact.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "bytes": 3829921,
+      "hash": "sha256:dbebd0779d4b77926be8adf384356b763a76829ccd27d98b95a916d050dab86a",
+      "schema": {
+        "fields": [
+          {
+            "name": "isil",
+            "type": "string"
+          },
+          {
+            "name": "contact_index",
+            "type": "string"
+          },
+          {
+            "name": "contact_type",
+            "type": "string"
+          },
+          {
+            "name": "contact_value",
+            "type": "string"
+          },
+          {
+            "name": "source",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "library_holdings",
+      "path": "data/processed/csv/library_holdings.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "bytes": 9701287,
+      "hash": "sha256:9fb4cb508c628e1488547e31307c98e8f60f05d3efa7291e9aed21a06e362320",
+      "schema": {
+        "fields": [
+          {
+            "name": "isil",
+            "type": "string"
+          },
+          {
+            "name": "material_index",
+            "type": "string"
+          },
+          {
+            "name": "library_name_source",
+            "type": "string"
+          },
+          {
+            "name": "category",
+            "type": "string"
+          },
+          {
+            "name": "material",
+            "type": "string"
+          },
+          {
+            "name": "quantity_original",
+            "type": "string"
+          },
+          {
+            "name": "quantity",
+            "type": "number"
+          }
+        ]
+      }
+    },
+    {
+      "name": "library_mergers",
+      "path": "data/processed/csv/library_mergers.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "bytes": 112447,
+      "hash": "sha256:1a34e43067851af150be203a2675fe0a2504b0eb59632651eaf02a6f6f0d2028",
+      "schema": {
+        "fields": [
+          {
+            "name": "source_isil",
+            "type": "string"
+          },
+          {
+            "name": "target_isil",
+            "type": "string"
+          },
+          {
+            "name": "source_status",
+            "type": "string"
+          },
+          {
+            "name": "parse_success",
+            "type": "boolean"
+          },
+          {
+            "name": "target_exists_in_snapshot",
+            "type": "boolean"
+          },
+          {
+            "name": "self_loop",
+            "type": "boolean"
+          },
+          {
+            "name": "in_cycle",
+            "type": "boolean"
+          }
+        ]
+      }
+    },
+    {
+      "name": "library_previous_name",
+      "path": "data/processed/csv/library_previous_name.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "bytes": 1076942,
+      "hash": "sha256:726fcf4cf59248fc70cd3e5fac5af17f5131848a432a32f7055b50641ba2fd6c",
+      "schema": {
+        "fields": [
+          {
+            "name": "isil",
+            "type": "string"
+          },
+          {
+            "name": "previous_name_original",
+            "type": "string"
+          },
+          {
+            "name": "previous_name_normalized",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "library_status",
+      "path": "data/processed/csv/library_status.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "bytes": 3913604,
+      "hash": "sha256:f5c61f143f7e6a938129bbb2eaab5e1ee54ab27f6b6ac400831fd656a7678a2e",
+      "schema": {
+        "fields": [
+          {
+            "name": "isil",
+            "type": "string"
+          },
+          {
+            "name": "source_status",
+            "type": "string"
+          },
+          {
+            "name": "normalized_status",
+            "type": "string"
+          },
+          {
+            "name": "analytical_group",
+            "type": "string"
+          },
+          {
+            "name": "include_in_main_analysis",
+            "type": "boolean"
+          },
+          {
+            "name": "target_isil",
+            "type": "string"
+          },
+          {
+            "name": "rationale",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "library_type",
+      "path": "data/processed/csv/library_type.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "bytes": 1839722,
+      "hash": "sha256:91e908d6189d8646ed2ba040725a8e420034e1aa8f88ea86b40c73489de326c9",
+      "schema": {
+        "fields": [
+          {
+            "name": "isil",
+            "type": "string"
+          },
+          {
+            "name": "library_name_source",
+            "type": "string"
+          },
+          {
+            "name": "functional_type",
+            "type": "string"
+          },
+          {
+            "name": "owning_entity",
+            "type": "string"
+          },
+          {
+            "name": "administrative_type",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "municipality_population",
+      "path": "data/processed/csv/municipality_population.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "bytes": 1215200,
+      "hash": "sha256:eb37a0011f6343756ef81d145d9418d25460f068f24d8efa1145be60203c077d",
+      "schema": {
+        "fields": [
+          {
+            "name": "istat_code",
+            "type": "string"
+          },
+          {
+            "name": "municipality_name",
+            "type": "string"
+          },
+          {
+            "name": "population_2025",
+            "type": "number"
+          },
+          {
+            "name": "population_0_14_2025",
+            "type": "number"
+          },
+          {
+            "name": "population_15_64_2025",
+            "type": "number"
+          },
+          {
+            "name": "population_65_plus_2025",
+            "type": "number"
+          },
+          {
+            "name": "population_2019",
+            "type": "number"
+          },
+          {
+            "name": "population_0_14_2019",
+            "type": "number"
+          },
+          {
+            "name": "population_15_64_2019",
+            "type": "number"
+          },
+          {
+            "name": "population_65_plus_2019",
+            "type": "number"
+          },
+          {
+            "name": "population_change_absolute",
+            "type": "number"
+          },
+          {
+            "name": "population_change_percent",
+            "type": "number"
+          },
+          {
+            "name": "share_65_plus_2019",
+            "type": "number"
+          },
+          {
+            "name": "share_65_plus_2025",
+            "type": "number"
+          },
+          {
+            "name": "population_comparability",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "special_collection",
+      "path": "data/processed/csv/special_collection.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "bytes": 2044818,
+      "hash": "sha256:d84c7fec5c3d99c41ef7ceccb05aa2327188c19e3b30d967366b280d18366dcc",
+      "schema": {
+        "fields": [
+          {
+            "name": "isil",
+            "type": "string"
+          },
+          {
+            "name": "collection_index",
+            "type": "string"
+          },
+          {
+            "name": "library_name_source",
+            "type": "string"
+          },
+          {
+            "name": "codice",
+            "type": "string"
+          },
+          {
+            "name": "denominazione",
+            "type": "string"
+          },
+          {
+            "name": "fondo_depositato",
+            "type": "string"
+          },
+          {
+            "name": "catalogazione_inventario",
+            "type": "string"
+          },
+          {
+            "name": "tipologia_fondo",
+            "type": "string"
+          },
+          {
+            "name": "dewey",
+            "type": "string"
+          },
+          {
+            "name": "descrizione",
+            "type": "string"
+          },
+          {
+            "name": "url_o_citazione_bibliografica",
+            "type": "string"
+          },
+          {
+            "name": "consistenza",
+            "type": "string"
+          },
+          {
+            "name": "datazione",
+            "type": "string"
+          },
+          {
+            "name": "modalita_acquisizione",
+            "type": "string"
+          },
+          {
+            "name": "tipologia_documentaria",
+            "type": "string"
+          },
+          {
+            "name": "provenienza",
+            "type": "string"
+          },
+          {
+            "name": "soggetto_produttore",
+            "type": "string"
+          },
+          {
+            "name": "bibliografia",
+            "type": "string"
+          },
+          {
+            "name": "fondi_collegati",
+            "type": "string"
+          }
+        ]
+      }
+    }
+  ]
+}

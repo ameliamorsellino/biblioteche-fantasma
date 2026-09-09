@@ -1,0 +1,12 @@
+PREFIX cis: <http://dati.beniculturali.it/cis/>
+PREFIX bf: <https://biblioteche-fantasma.invalid/ontology/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+# CQ3: municipality of a library; replace the ISIL in VALUES.
+SELECT ?library ?isil ?libraryName ?municipality ?municipalityName ?istatCode ?region
+WHERE {
+  VALUES ?isil { "IT-RM0267" }
+  ?library a cis:Library ; cis:ISILIdentifier ?isil ; rdfs:label ?libraryName ; cis:hasSite ?site .
+  ?site cis:hasGeographicalLocation ?municipality .
+  ?municipality a bf:Municipality ; cis:hasISTATCode ?istatCode ; rdfs:label ?municipalityName ; bf:regionName ?region .
+}

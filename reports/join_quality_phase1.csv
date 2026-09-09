@@ -1,0 +1,8 @@
+join,master_records,matched_master_records,unmatched_master_records,duplicate_relation_rows,coverage_percent,key,notes
+library→library_type,19611,13715,5896,0,69.93524042629137,isil,1:1 sulla copertura presente
+library→library_holdings,19611,13715,5896,79797,69.93524042629137,isil,1:N preservata
+library→special_collection,19611,2449,17162,7288,12.487889449798582,isil,1:N preservata
+library→library_contact,19611,13630,5981,49174,69.50181020855642,isil,1:N preservata
+library→library_previous_name,19611,6584,13027,2923,33.5729947478456,isil,1:N preservata
+ICCU library→ISTAT 2025 comune,19611,19611,0,0,100.0,istat_code,join su codice ufficiale; no fuzzy matching
+ISTAT 2025 comuni→crosswalk 2019/2025,7896,7896,0,59,100.0,current_istat_code,righe multiple per predecessori in fusioni/incorporazioni

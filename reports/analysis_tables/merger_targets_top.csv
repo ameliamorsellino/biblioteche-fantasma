@@ -1,0 +1,101 @@
+target_isil,in_degree,name_original,municipality_name,province_name,region
+IT-CT0337,39,Biblioteca delle Scienze Mediche dell'Università degli studi di Catania,Catania,Catania,SICILIA
+IT-SS0166,34,Biblioteca di Medicina e Chirurgia dell'Università degli studi di Sassari,Sassari,Sassari,SARDEGNA
+IT-CA0298,33,Biblioteca del Distretto biomedico scientifico - Sezione Beniamino Orrù - Università degli studi di Cagliari,Monserrato,Cagliari,SARDEGNA
+IT-PV0265,33,Biblioteca di Area medica A. Ferrata dell'Università di Pavia,Pavia,Pavia,LOMBARDIA
+IT-FI0215,32,Biblioteca Biomedica - Università degli studi di Firenze,Firenze,Firenze,TOSCANA
+IT-NA0588,30,Ufficio di Biblioteca dei Dipartimenti di Area Medica,Napoli,Napoli,CAMPANIA
+IT-ME0055,28,Biblioteca del Polo Policlinico,Messina,Messina,SICILIA
+IT-FE0162,25,Biblioteca di Medicina dell'Università degli studi di Ferrara,Ferrara,Ferrara,EMILIA-ROMAGNA
+IT-FE0107,20,Biblioteca centralizzata chimico-biologica S. Maria delle Grazie dell'Università degli studi di Ferrara,Ferrara,Ferrara,EMILIA-ROMAGNA
+IT-PR0032,20,Biblioteca di Medicina e Chirurgia,Parma,Parma,EMILIA-ROMAGNA
+IT-SS0167,16,"Biblioteca di Chimica, Farmacia e Medicina veterinaria dell'Università di Sassari",Sassari,Sassari,SARDEGNA
+IT-MI0164,15,Biblioteca campus Leonardo del Politecnico di Milano,Milano,Milano,LOMBARDIA
+IT-NA0112,15,Biblioteca centrale di Ateneo dell'Università degli studi di Napoli Parthenope,Napoli,Napoli,CAMPANIA
+IT-PU0157,14,Biblioteca Scientifica dell'Università degli Studi di Urbino Carlo Bo,Urbino,Pesaro e Urbino,MARCHE
+IT-GE0257,13,Biblioteca della Scuola politecnica. Sede di Ingegneria - Opera Pia. Università degli studi di Genova,Genova,Genova,LIGURIA
+IT-ME0069,13,Biblioteca del Polo Centrale. Area delle Scienze Economiche,Messina,Messina,SICILIA
+IT-PA0343,13,"Biblioteca di scienze economiche, aziendali e statistiche. Università degli studi di Palermo",Palermo,Palermo,SICILIA
+IT-PI0233,12,Biblioteca di Agraria dell'Università di Pisa,Pisa,Pisa,TOSCANA
+IT-PR0076,12,Biblioteca centrale di Giurisprudenza dell'Università degli studi di Parma,Parma,Parma,EMILIA-ROMAGNA
+IT-TO0531,12,Biblioteca di Scienze Agrarie e Veterinarie,Grugliasco,Torino,PIEMONTE
+IT-TS0141,12,Biblioteca centrale di medicina dell'Università degli studi di Trieste,Trieste,Trieste,FRIULI-VENEZIA GIULIA
+IT-BO0508,11,"Biblioteca di Veterinaria  ""Giovanni Battista Ercolani""",Ozzano dell'Emilia,Bologna,EMILIA-ROMAGNA
+IT-FI0233,11,Biblioteca di scienze tecnologiche - Agraria - Università degli studi di Firenze,Firenze,Firenze,TOSCANA
+IT-FI0597,11,Biblioteca di scienze sociali dell'Università degli studi di Firenze,Firenze,Firenze,TOSCANA
+IT-MO0208,11,Biblioteca scientifica interdipartimentale dell'Università degli studi di Modena e Reggio Emilia,Modena,Modena,EMILIA-ROMAGNA
+IT-PG0277,11,Biblioteca Biomedica - Università degli Studi di Perugia,Perugia,Perugia,UMBRIA
+IT-PU0206,11,Biblioteca Umanistica dell'Università degli Studi di Urbino Carlo Bo,Urbino,Pesaro e Urbino,MARCHE
+IT-SA0119,11,"Biblioteca umanistica ""E. R. Caianiello"" dell'Università degli studi di Salerno",Fisciano,Salerno,CAMPANIA
+IT-SS0142,11,Biblioteca di Agraria dell'Università degli studi di Sassari,Sassari,Sassari,SARDEGNA
+IT-BO0012,10,"Biblioteca di Ingegneria e Architettura. Sezione di Ingegneria ""Gian Paolo Dore""",Bologna,Bologna,EMILIA-ROMAGNA
+IT-GE0040,10,Biblioteca della Scuola di scienze sociali. Sede di Giurisprudenza. Università degli studi di Genova,Genova,Genova,LIGURIA
+IT-ME0057,10,"Biblioteca del Polo Papardo. Area delle scienze Matematiche, Fisiche e Naturali",Messina,Messina,SICILIA
+IT-MI0275,10,Biblioteca di Scienze agrarie e alimentari dell'Università degli studi di Milano,Milano,Milano,LOMBARDIA
+IT-CS0138,9,Biblioteca di Area tecnico-scientifica. BATS dell'Università degli studi della Calabria,Rende,Cosenza,CALABRIA
+IT-MC0276,9,Biblioteca di Scienze dell'Università degli studi di Camerino,Camerino,Macerata,MARCHE
+IT-ME0333,9,Biblioteca del Polo Annunziata. Sezione Biomedica,Messina,Messina,SICILIA
+IT-CA0011,8,Biblioteca del Distretto tecnologico - Sezione ingegneria - Università degli studi di Cagliari ,Cagliari,Cagliari,SARDEGNA
+IT-PI0182,8,Biblioteca di Giurisprudenza e Scienze Politiche dell'Università di Pisa,Pisa,Pisa,TOSCANA
+IT-PI0318,8,"Biblioteca di Antichistica, Linguistica, Germanistica, Slavistica (Ex-Salesiani) dell'Università di Pisa",Pisa,Pisa,TOSCANA
+IT-PR0139,8,Biblioteca di Medicina Veterinaria,Parma,Parma,EMILIA-ROMAGNA
+IT-SS0209,8,Biblioteca di Lettere e Lingue dell'Università degli studi di Sassari,Sassari,Sassari,SARDEGNA
+IT-VE0308,8,Biblioteca di Area Umanistica,Venezia,Venezia,VENETO
+IT-BO0540,7,"Biblioteca di Ingegneria e Architettura. Sezione di Ingegneria civile ""Giovanni Michelucci"" ",Bologna,Bologna,EMILIA-ROMAGNA
+IT-PA0155,7,Biblioteca interdipartimentale di discipline umanistiche Sezione I. Linguistica filosofia e storia moderna. Università degli studi di Palermo,Palermo,Palermo,SICILIA
+IT-SA0186,7,Centro Bibliotecario di Ateneo Università degli studi di Salerno,Fisciano,Salerno,CAMPANIA
+IT-TS0216,7,"Biblioteca di filosofia, lingue e letterature - Università degli studi di Trieste",Trieste,Trieste,FRIULI-VENEZIA GIULIA
+IT-BO0421,6,"Biblioteca di Agraria ""Gabriele Goidanich"" dell'Università degli studi di Bologna",Bologna,Bologna,EMILIA-ROMAGNA
+IT-CA0300,6,Biblioteca del Distretto delle scienze umane - Sezione Giordano Bruno - Università degli studi di Cagliari,Cagliari,Cagliari,SARDEGNA
+IT-MI1281,6,Biblioteca Bovisa La Masa del Politecnico di Milano,Milano,Milano,LOMBARDIA
+IT-CT0214,6,Biblioteca delle Scienze Agrarie dell'Università degli studi di Catania. Punto di servizio Scienze agrarie - Via Valdisavoia,Catania,Catania,SICILIA
+IT-CT0213,6,Biblioteca di Ingegneria ed Architettura dell'Università degli studi di Catania. Punto di servizio Dipartimento di Ingegneria Civile e Architettura (DICAR),Catania,Catania,SICILIA
+IT-FI0211,6,Biblioteca Umanistica - Lettere  - Università degli studi di Firenze,Firenze,Firenze,TOSCANA
+IT-FI0598,6,Biblioteca di scienze - Polo scientifico di Sesto Fiorentino - Università degli studi di Firenze ,Sesto Fiorentino,Firenze,TOSCANA
+IT-FI0230,6,Biblioteca di scienze tecnologiche - Ingegneria - Università degli studi di Firenze,Firenze,Firenze,TOSCANA
+IT-GE0066,6,"Biblioteca della Scuola di scienze matematiche, fisiche e naturali. Sede di Biologia, Scienze delle terra e del mare",Genova,Genova,LIGURIA
+IT-GE0390,6,Biblioteca della Scuola di Scienze Umanistiche - Sede di Lingue,Genova,Genova,LIGURIA
+IT-MC0183,6,Biblioteca giuridica dell'Università degli studi di Macerata,Macerata,Macerata,MARCHE
+IT-ME0049,6,Biblioteca del Polo Centrale. Area delle Scienze Cognitive,Messina,Messina,SICILIA
+IT-MI1975,6,Biblioteca Biomedica di Città Studi,Milano,Milano,LOMBARDIA
+IT-PA0065,6,Biblioteca policentrica di medicina e chirurgia. Centrale. Università degli studi di Palermo,Palermo,Palermo,SICILIA
+IT-PI0416,6,Biblioteca di Scienze naturali e ambientali dell'Università di Pisa,Pisa,Pisa,TOSCANA
+IT-PR0240,6,Biblioteca Umanistica dei Paolotti,Parma,Parma,EMILIA-ROMAGNA
+IT-PR0141,6,Biblioteca centrale di Scienze e Tecnologie dell'Università degli studi di Parma,Parma,Parma,EMILIA-ROMAGNA
+IT-RM1338,6,Biblioteca del Dipartimento di Biologia e biotecnologie Charles Darwin - Sapienza Università di Roma,Roma,Roma,LAZIO
+IT-TS0269,6,Biblioteca di Studi Umanistici,Trieste,Trieste,FRIULI-VENEZIA GIULIA
+IT-TS0276,6,Biblioteca Europa. Scienze giuridiche. Università degli studi di Trieste,Trieste,Trieste,FRIULI-VENEZIA GIULIA
+IT-VE0195,6,Biblioteca IUAV ,Venezia,Venezia,VENETO
+IT-VE0190,6,Biblioteca di Area economica Gino Luzzatto dell'Università Ca' Foscari Venezia,Venezia,Venezia,VENETO
+IT-FM0049,5,Biblioteca Centrale dei Frati Cappuccini delle Marche,Fermo,Fermo,MARCHE
+IT-BA0282,5,Biblioteca PoliLibrary,Bari,Bari,PUGLIA
+IT-BN0095,5,Biblioteca Centralizzata di Ateneo,Benevento,Benevento,CAMPANIA
+IT-BO0422,5,Biblioteca del Navile. Sezione di Chimica Industriale. Università degli studi di Bologna,Bologna,Bologna,EMILIA-ROMAGNA
+IT-FI0231,5,Biblioteca di scienze tecnologiche - Architettura - Università degli studi di Firenze,Firenze,Firenze,TOSCANA
+IT-ME0352,5,Biblioteca del Polo Centrale. Area delle Scienze Politiche,Messina,Messina,SICILIA
+IT-MI1298,5,"Biblioteca del Dipartimento di Architettura, Ingegneria delle Costruzioni e Ambiente Costruito (DABC) del Politecnico di Milano",Milano,Milano,LOMBARDIA
+IT-PG0430,5,"Biblioteca di Studi Storici, Politici e Sociali",Perugia,Perugia,UMBRIA
+IT-PI0320,5,Biblioteca di italianistica e romanistica dell'Università di Pisa,Pisa,Pisa,TOSCANA
+IT-TN0153,5,Biblioteca della Provincia,Trento,Trento,TRENTINO-ALTO ADIGE/SÜDTIROL
+IT-MI0657,4,"Biblioteca di biologia, informatica, chimica e fisica dell'Università degli studi di Milano",Milano,Milano,LOMBARDIA
+IT-GE0232,4,Biblioteca della Scuola di scienze umanistiche. Umanistica Balbiquattro. Università degli studi di Genova,Genova,Genova,LIGURIA
+IT-GE0278,4,Biblioteca della Scuola di scienze sociali. Sezione DISPI. Università degli studi di Genova,Genova,Genova,LIGURIA
+IT-GE0648,4,Biblioteca della Fondazione Ansaldo,Genova,Genova,LIGURIA
+IT-LE0242,4,Biblioteca dipartimentale di Scienze Umane e Sociali,Lecce,Lecce,PUGLIA
+IT-PA0318,4,Biblioteca di Scienze agro-forestali. Università degli studi di Palermo,Palermo,Palermo,SICILIA
+IT-PA0140,4,Biblioteca interdipartimentale di discipline umanistiche Sezione II. Antropologia sociologia e storia medievale. Università degli studi di Palermo,Palermo,Palermo,SICILIA
+IT-PG0431,4,"Biblioteca di scienze economiche, statistiche e aziendali",Perugia,Perugia,UMBRIA
+IT-PI0201,4,Biblioteca di medicina e farmacia dell'Università di Pisa,Pisa,Pisa,TOSCANA
+IT-PR0031,4,"Biblioteca civica ""Mario Colombi Guidotti""",Parma,Parma,EMILIA-ROMAGNA
+IT-PR0169,4,Biblioteca Socio-pedagogica,Parma,Parma,EMILIA-ROMAGNA
+IT-RM0917,4,Biblioteca interdipartimentale V. Del Vecchio - G. Giacomello - Sapienza Università di Roma,Roma,Roma,LAZIO
+IT-RM1022,4,Biblioteca del Dipartimento di Scienze mediche e cardiovascolari - Sapienza Università di Roma,Roma,Roma,LAZIO
+IT-RM1514,4,Biblioteca di Diritto ed economia dell’impresa - Sapienza Università di Roma,Roma,Roma,LAZIO
+IT-RM1611,4,"Biblioteca di area umanistica ""Giorgio Petrocchi"". Sede centrale - Università Roma Tre",Roma,Roma,LAZIO
+IT-TO1203,4,Biblioteca Norberto Bobbio dell'Università degli Studi di Torino,Torino,Torino,PIEMONTE
+IT-TS0150,4,Biblioteca di Economia dell'Università degli studi di Trieste,Trieste,Trieste,FRIULI-VENEZIA GIULIA
+IT-VT0125,4,Biblioteca diocesana,Viterbo,Viterbo,LAZIO
+IT-VT0214,4,Biblioteca del Polo Umanistico - Sociale dell'Università degli studi della Tuscia,Viterbo,Viterbo,LAZIO
+IT-BA0354,3,Biblioteca diocesana sezione di Bari,Bari,Bari,PUGLIA
+IT-BO0429,3,"Biblioteca di Scienze Biologiche, Geologiche e Ambientali. Sezione di Biologia",Bologna,Bologna,EMILIA-ROMAGNA
+IT-BO0518,3,"Biblioteca di Scienze Biologiche, Geologiche e Ambientali. Sezione di Geologia",Bologna,Bologna,EMILIA-ROMAGNA

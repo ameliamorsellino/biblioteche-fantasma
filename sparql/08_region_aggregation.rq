@@ -1,0 +1,17 @@
+PREFIX cis: <http://dati.beniculturali.it/cis/>
+PREFIX bf: <https://biblioteche-fantasma.invalid/ontology/>
+
+# CQ8 and preparation for RQ1–RQ5: regional library/problem-status aggregation.
+SELECT ?region
+       (COUNT(DISTINCT ?library) AS ?libraries)
+       (SUM(IF(?isProblematic = true, 1, 0)) AS ?problematicLibraries)
+       ((100.0 * SUM(IF(?isProblematic = true, 1, 0))) / COUNT(DISTINCT ?library) AS ?problematicPercent)
+WHERE {
+  ?library a cis:Library ;
+           cis:hasSite/cis:hasGeographicalLocation ?municipality ;
+           bf:hasStatusObservation ?observation .
+  ?municipality bf:regionName ?region .
+  ?observation bf:includedInMainAnalysis ?isProblematic .
+}
+GROUP BY ?region
+ORDER BY DESC(?problematicPercent) ?region

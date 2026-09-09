@@ -1,0 +1,3 @@
+entity_type,total,exact_matches,ambiguous,unmatched,invalid,coverage_percent,linking_method,external_dataset
+Library,19611,19611,0,0,0,100.0000,"Exact ISIL lookup; rdfs:seeAlso because external target is the ICCU Anagrafe HTML record/search page, not an RDF entity",ICCU Anagrafe delle Biblioteche Italiane
+Municipality,7896,7893,0,3,0,99.9620,Exact six-digit ISTAT code embedded in Linked ISPRA municipality URI; owl:sameAs; three 2025 municipalities suppressed during 2026 excluded,Linked ISPRA place dataset

@@ -1,0 +1,16 @@
+PREFIX cis: <http://dati.beniculturali.it/cis/>
+PREFIX bf: <https://biblioteche-fantasma.invalid/ontology/>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+# CQ1: set VALUES to one or more target regions as needed.
+SELECT DISTINCT ?region ?library ?isil ?libraryName ?municipalityName
+WHERE {
+  VALUES ?region { "Lazio"@it }
+  ?library a cis:Library ; cis:ISILIdentifier ?isil ; rdfs:label ?libraryName ;
+           cis:hasSite/cis:hasGeographicalLocation ?municipality ;
+           bf:hasStatusObservation/bf:hasStatus ?status .
+  ?municipality bf:regionName ?region ; rdfs:label ?municipalityName .
+  ?status dct:identifier "TEMPORANEAMENTE_CHIUSA" .
+}
+ORDER BY ?municipalityName ?libraryName

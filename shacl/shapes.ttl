@@ -1,0 +1,100 @@
+@prefix bf: <https://biblioteche-fantasma.invalid/ontology/> .
+@prefix cis: <http://dati.beniculturali.it/cis/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://biblioteche-fantasma.invalid/shapes/LibraryShape>
+    a sh:NodeShape ;
+    sh:targetClass cis:Library ;
+    sh:property [
+        sh:path cis:ISILIdentifier ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:pattern "^IT-[A-Z]{2}[0-9]{4}$"
+    ] ;
+    sh:property [
+        sh:path cis:hasSite ;
+        sh:minCount 1 ;
+        sh:nodeKind sh:IRI
+    ] ;
+    sh:property [
+        sh:path bf:hasStatusObservation ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:nodeKind sh:IRI
+    ] .
+
+<https://biblioteche-fantasma.invalid/shapes/ISILShape>
+    a sh:NodeShape ;
+    sh:targetSubjectsOf cis:ISILIdentifier ;
+    sh:property [
+        sh:path cis:ISILIdentifier ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:pattern "^IT-[A-Z]{2}[0-9]{4}$"
+    ] .
+
+<https://biblioteche-fantasma.invalid/shapes/MunicipalityShape>
+    a sh:NodeShape ;
+    sh:targetClass bf:Municipality ;
+    sh:property [
+        sh:path cis:hasISTATCode ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:pattern "^[0-9]{6}$"
+    ] ;
+    sh:property [
+        sh:path bf:regionName ;
+        sh:minCount 1
+    ] .
+
+<https://biblioteche-fantasma.invalid/shapes/LibraryStatusObservationShape>
+    a sh:NodeShape ;
+    sh:targetClass bf:LibraryStatusObservation ;
+    sh:property [
+        sh:path bf:observedLibrary ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:nodeKind sh:IRI
+    ] ;
+    sh:property [
+        sh:path bf:hasStatus ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:nodeKind sh:IRI ;
+        sh:class skos:Concept
+    ] ;
+    sh:property [
+        sh:path bf:observationDate ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:datatype xsd:date
+    ] ;
+    sh:property [
+        sh:path prov:wasDerivedFrom ;
+        sh:minCount 1 ;
+        sh:nodeKind sh:IRI
+    ] .
+
+<https://biblioteche-fantasma.invalid/shapes/DemographicObservationShape>
+    a sh:NodeShape ;
+    sh:targetClass bf:DemographicObservation ;
+    sh:property [
+        sh:path bf:observedMunicipality ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:nodeKind sh:IRI
+    ] ;
+    sh:property [
+        sh:path bf:referenceDate ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:datatype xsd:date
+    ] ;
+    sh:property [
+        sh:path bf:population ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:datatype xsd:integer ;
+        sh:minInclusive 0
+    ] ;
+    sh:property [
+        sh:path prov:wasDerivedFrom ;
+        sh:minCount 1 ;
+        sh:nodeKind sh:IRI
+    ] .

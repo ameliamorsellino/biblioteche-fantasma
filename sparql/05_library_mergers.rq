@@ -1,0 +1,16 @@
+PREFIX cis: <http://dati.beniculturali.it/cis/>
+PREFIX bf: <https://biblioteche-fantasma.invalid/ontology/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+# CQ4: target library of each deterministic merger relation.
+SELECT DISTINCT ?source ?sourceISIL ?sourceName ?target ?targetISIL ?targetName ?selfLoop
+WHERE {
+  ?source a cis:Library ;
+          cis:ISILIdentifier ?sourceISIL ;
+          bf:mergedInto ?target .
+  ?target a cis:Library ; cis:ISILIdentifier ?targetISIL .
+  OPTIONAL { ?source rdfs:label ?sourceName . }
+  OPTIONAL { ?target rdfs:label ?targetName . }
+  BIND(?source = ?target AS ?selfLoop)
+}
+ORDER BY ?sourceISIL ?targetISIL

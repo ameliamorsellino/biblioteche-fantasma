@@ -1,0 +1,17 @@
+PREFIX cis: <http://dati.beniculturali.it/cis/>
+PREFIX bf: <https://biblioteche-fantasma.invalid/ontology/>
+PREFIX dct: <http://purl.org/dc/terms/>
+
+# CQ1/CQ8: regional distribution of statuses; filter statusCode to TEMPORANEAMENTE_CHIUSA for CQ1.
+SELECT ?region ?statusCode (COUNT(DISTINCT ?library) AS ?libraries)
+WHERE {
+  ?library a cis:Library ;
+           cis:hasSite ?site ;
+           bf:hasStatusObservation ?observation .
+  ?site cis:hasGeographicalLocation ?municipality .
+  ?municipality a bf:Municipality ; bf:regionName ?region .
+  ?observation bf:hasStatus ?status .
+  ?status dct:identifier ?statusCode .
+}
+GROUP BY ?region ?statusCode
+ORDER BY ?region DESC(?libraries) ?statusCode

@@ -1,0 +1,32 @@
+PREFIX cis: <http://dati.beniculturali.it/cis/>
+PREFIX bf: <https://biblioteche-fantasma.invalid/ontology/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+# CQ9: municipalities losing at least 10% population, ranked by problematic-library share.
+SELECT ?municipality ?municipalityName ?region ?changePercent ?libraries ?problematicLibraries
+       ((100.0 * ?problematicLibraries) / ?libraries AS ?problematicPercent)
+WHERE {
+  ?municipality a bf:Municipality ;
+                rdfs:label ?municipalityName ;
+                bf:regionName ?region ;
+                bf:populationChangePercent2019_2025 ?changePercent .
+  FILTER(?changePercent <= -10)
+  {
+    SELECT ?municipality (COUNT(DISTINCT ?library) AS ?libraries)
+    WHERE {
+      ?library a cis:Library ; cis:hasSite/cis:hasGeographicalLocation ?municipality .
+    }
+    GROUP BY ?municipality
+  }
+  {
+    SELECT ?municipality (COUNT(DISTINCT ?problemLibrary) AS ?problematicLibraries)
+    WHERE {
+      ?problemLibrary a cis:Library ;
+                      cis:hasSite/cis:hasGeographicalLocation ?municipality ;
+                      bf:hasStatusObservation ?obs .
+      ?obs bf:includedInMainAnalysis true .
+    }
+    GROUP BY ?municipality
+  }
+}
+ORDER BY DESC(?problematicPercent) ?changePercent DESC(?problematicLibraries) ?municipalityName

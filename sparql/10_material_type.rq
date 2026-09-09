@@ -1,0 +1,16 @@
+PREFIX cis: <http://dati.beniculturali.it/cis/>
+PREFIX bf: <https://biblioteche-fantasma.invalid/ontology/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+# CQ6: libraries possessing a chosen material type; replace the value in VALUES.
+SELECT DISTINCT ?library ?isil ?libraryName ?materialLabel ?quantity
+WHERE {
+  VALUES ?materialLabel { "manoscritti"@it }
+  ?library a cis:Library ; cis:ISILIdentifier ?isil ; rdfs:label ?libraryName ;
+           bf:hasHoldingObservation ?holding .
+  ?holding bf:materialType ?material .
+  ?material skos:prefLabel ?materialLabel .
+  OPTIONAL { ?holding bf:quantity ?quantity . }
+}
+ORDER BY ?libraryName ?isil

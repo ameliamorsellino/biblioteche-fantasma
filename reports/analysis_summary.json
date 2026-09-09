@@ -1,0 +1,15 @@
+{
+  "registry_records": 19611,
+  "libraries_excluding_other_iccu_institutions": 18956,
+  "main_problematic_libraries": 2497,
+  "problematic_share_of_libraries_percent": 13.172610255328129,
+  "problematic_share_of_registry_records_percent": 12.732650043343021,
+  "municipalities_2025": 7896,
+  "municipalities_with_libraries": 6660,
+  "population_2025_total": 58943464,
+  "problematic_libraries_per_100k_national": 4.236262734745281,
+  "coordinates_complete_clean": 19524,
+  "functional_type_coverage_libraries": 13715,
+  "holding_rows": 93512,
+  "special_collection_records": 9737
+}

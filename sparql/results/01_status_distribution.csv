@@ -1,0 +1,12 @@
+statusCode,statusLabel,libraries
+NESSUNO_STATO_SPECIALE_REGISTRATO,Nessuno Stato Speciale Registrato,13200
+BIBLIOTECA_NON_PIU_ESISTENTE,Biblioteca Non Piu Esistente,1827
+BIBLIOTECA_NON_CENSITA,Biblioteca Non Censita,1723
+BIBLIOTECA_CONFLUITA,Biblioteca Confluita,1502
+ALTRO_ISTITUTO_COLLEGATO_ICCU,Altro Istituto Collegato Iccu,655
+TEMPORANEAMENTE_CHIUSA,Temporaneamente Chiusa,619
+BIBLIOTECA_IN_VIA_DI_ALLESTIMENTO,Biblioteca In Via Di Allestimento,34
+DEPOSITO_SENZA_PUNTO_DI_SERVIZIO,Deposito Senza Punto Di Servizio,33
+SERVIZI_SOSPESI_CAUSA_SISMA,Servizi Sospesi Causa Sisma,12
+INAGIBILE,Inagibile,4
+RIAPERTURA_AGIBILITA_PARZIALE,Riapertura Agibilita Parziale,2

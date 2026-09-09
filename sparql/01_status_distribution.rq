@@ -1,0 +1,17 @@
+PREFIX cis: <http://dati.beniculturali.it/cis/>
+PREFIX bf: <https://biblioteche-fantasma.invalid/ontology/>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+# CQ8 (national component): distribution of observed library statuses.
+SELECT ?statusCode ?statusLabel (COUNT(DISTINCT ?library) AS ?libraries)
+WHERE {
+  ?library a cis:Library ;
+           bf:hasStatusObservation ?observation .
+  ?observation bf:hasStatus ?status .
+  ?status dct:identifier ?statusCode ;
+          skos:prefLabel ?statusLabel .
+  FILTER(LANG(?statusLabel) = "it")
+}
+GROUP BY ?statusCode ?statusLabel
+ORDER BY DESC(?libraries) ?statusCode

@@ -1,0 +1,29 @@
+PREFIX cis: <http://dati.beniculturali.it/cis/>
+PREFIX bf: <https://biblioteche-fantasma.invalid/ontology/>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+# CQ5: interruption-of-service libraries in municipalities with population decline 2019–2025.
+SELECT DISTINCT ?library ?isil ?libraryName ?municipality ?municipalityName ?region
+                ?statusCode ?population2019 ?population2025 ?changePercent
+WHERE {
+  ?library a cis:Library ;
+           cis:ISILIdentifier ?isil ;
+           rdfs:label ?libraryName ;
+           cis:hasSite ?site ;
+           bf:hasStatusObservation ?statusObs .
+  ?site cis:hasGeographicalLocation ?municipality .
+  ?municipality a bf:Municipality ;
+                rdfs:label ?municipalityName ;
+                bf:regionName ?region ;
+                bf:populationChangePercent2019_2025 ?changePercent ;
+                bf:hasDemographicObservation ?demo2019, ?demo2025 .
+  FILTER(?changePercent < 0)
+  ?statusObs bf:hasStatus ?status .
+  ?status dct:identifier ?statusCode .
+  FILTER(?statusCode IN ("TEMPORANEAMENTE_CHIUSA", "SERVIZI_SOSPESI_CAUSA_SISMA", "INAGIBILE"))
+  ?demo2019 bf:referenceDate "2019-01-01"^^xsd:date ; bf:population ?population2019 .
+  ?demo2025 bf:referenceDate "2025-01-01"^^xsd:date ; bf:population ?population2025 .
+}
+ORDER BY ?changePercent ?region ?municipalityName ?isil

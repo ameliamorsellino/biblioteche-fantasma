@@ -1,0 +1,264 @@
+@prefix bf: <https://biblioteche-fantasma.invalid/ontology/> .
+@prefix cis: <http://dati.beniculturali.it/cis/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://biblioteche-fantasma.invalid/ontology>
+    a owl:Ontology ;
+    rdfs:label "Ontologia Biblioteche Fantasma"@it ;
+    rdfs:comment "Vocabolario locale minimo per modellare osservazioni di stato, demografia, patrimonio e confluenze, riusando Cultural-ON per biblioteche, sedi, indirizzi, aree amministrative e collezioni."@it ;
+    dct:source <http://dati.beniculturali.it/cis/> ;
+    dct:source <https://dati.cultura.gov.it/cultural-ON/ITA.html> ;
+    owl:versionInfo "0.2.0 — checkpoint 2" .
+
+# Classes created only where Cultural-ON does not provide a semantically adequate term.
+
+bf:Municipality
+    a owl:Class ;
+    rdfs:subClassOf cis:GovernamentalAdministrativeArea ;
+    rdfs:label "Comune"@it, "Municipality"@en ;
+    rdfs:comment "Comune italiano identificato dal codice ISTAT. Cultural-ON offre la classe amministrativa generica, ma non una classe Municipality distinta."@it .
+
+bf:LibraryStatusObservation
+    a owl:Class ;
+    rdfs:subClassOf prov:Entity ;
+    rdfs:label "Osservazione dello stato di una biblioteca"@it ;
+    rdfs:comment "Osservazione dello stato registrato per una biblioteca in uno specifico snapshot; non implica una data di inizio o fine dello stato."@it .
+
+bf:DemographicObservation
+    a owl:Class ;
+    rdfs:subClassOf prov:Entity ;
+    rdfs:label "Osservazione demografica"@it ;
+    rdfs:comment "Osservazione della popolazione comunale a una data di riferimento."@it .
+
+bf:HoldingObservation
+    a owl:Class ;
+    rdfs:subClassOf prov:Entity ;
+    rdfs:label "Osservazione di consistenza patrimoniale"@it ;
+    rdfs:comment "Riga del patrimonio ICCU che associa a una biblioteca una tipologia di materiale ed eventualmente una quantità nello snapshot."@it .
+
+bf:SpecialCollection
+    a owl:Class ;
+    rdfs:subClassOf cis:Collection ;
+    rdfs:label "Fondo speciale"@it, "Special collection"@en ;
+    rdfs:comment "Specializzazione locale di cis:Collection per i fondi speciali ICCU."@it .
+
+# Object properties
+
+bf:hasStatusObservation
+    a owl:ObjectProperty ;
+    rdfs:domain cis:Library ;
+    rdfs:range bf:LibraryStatusObservation ;
+    rdfs:label "ha osservazione di stato"@it ;
+    rdfs:comment "Collega una biblioteca a un'osservazione di stato contestualizzata temporalmente."@it .
+
+bf:observedLibrary
+    a owl:ObjectProperty ;
+    rdfs:domain prov:Entity ;
+    rdfs:range cis:Library ;
+    rdfs:label "biblioteca osservata"@it .
+
+bf:hasStatus
+    a owl:ObjectProperty ;
+    rdfs:domain bf:LibraryStatusObservation ;
+    rdfs:range skos:Concept ;
+    rdfs:label "ha stato"@it ;
+    rdfs:comment "Punta a un concetto SKOS del vocabolario controllato degli stati ICCU normalizzati."@it .
+
+bf:hasDemographicObservation
+    a owl:ObjectProperty ;
+    rdfs:domain bf:Municipality ;
+    rdfs:range bf:DemographicObservation ;
+    rdfs:label "ha osservazione demografica"@it .
+
+bf:observedMunicipality
+    a owl:ObjectProperty ;
+    rdfs:domain bf:DemographicObservation ;
+    rdfs:range bf:Municipality ;
+    rdfs:label "comune osservato"@it .
+
+bf:mergedInto
+    a owl:ObjectProperty ;
+    rdfs:domain cis:Library ;
+    rdfs:range cis:Library ;
+    rdfs:label "confluita in"@it ;
+    rdfs:comment "Relazione tra biblioteca sorgente e biblioteca target, asserita solo quando il target ISIL è stato estratto deterministicamente ed esiste nello snapshot ICCU."@it .
+
+bf:hasHoldingObservation
+    a owl:ObjectProperty ;
+    rdfs:domain cis:Library ;
+    rdfs:range bf:HoldingObservation ;
+    rdfs:label "ha osservazione patrimoniale"@it .
+
+bf:materialType
+    a owl:ObjectProperty ;
+    rdfs:domain bf:HoldingObservation ;
+    rdfs:range skos:Concept ;
+    rdfs:label "tipologia di materiale"@it .
+
+bf:holdingCategory
+    a owl:ObjectProperty ;
+    rdfs:domain bf:HoldingObservation ;
+    rdfs:range skos:Concept ;
+    rdfs:label "categoria patrimoniale"@it .
+
+bf:functionalType
+    a owl:ObjectProperty ;
+    rdfs:domain cis:Library ;
+    rdfs:range skos:Concept ;
+    rdfs:label "tipologia funzionale"@it .
+
+bf:administrativeType
+    a owl:ObjectProperty ;
+    rdfs:domain cis:Library ;
+    rdfs:range skos:Concept ;
+    rdfs:label "tipologia amministrativa"@it .
+
+bf:collectionType
+    a owl:ObjectProperty ;
+    rdfs:domain bf:SpecialCollection ;
+    rdfs:range skos:Concept ;
+    rdfs:label "tipologia del fondo"@it .
+
+# Datatype properties
+
+bf:observationDate
+    a owl:DatatypeProperty ;
+    rdfs:domain prov:Entity ;
+    rdfs:range xsd:date ;
+    rdfs:label "data di osservazione"@it ;
+    rdfs:comment "Data dello snapshot/osservazione; non è una data di inizio dello stato."@it .
+
+bf:referenceDate
+    a owl:DatatypeProperty ;
+    rdfs:domain bf:DemographicObservation ;
+    rdfs:range xsd:date ;
+    rdfs:label "data di riferimento"@it .
+
+bf:includedInMainAnalysis
+    a owl:DatatypeProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "incluso nell'analisi principale"@it .
+
+bf:sourceStatusText
+    a owl:DatatypeProperty ;
+    rdfs:domain bf:LibraryStatusObservation ;
+    rdfs:range rdfs:Literal ;
+    rdfs:label "testo di stato nella sorgente"@it .
+
+bf:population
+    a owl:DatatypeProperty ;
+    rdfs:domain bf:DemographicObservation ;
+    rdfs:range xsd:integer ;
+    rdfs:label "popolazione"@it .
+
+bf:population0_14
+    a owl:DatatypeProperty ;
+    rdfs:domain bf:DemographicObservation ;
+    rdfs:range xsd:integer ;
+    rdfs:label "popolazione 0-14"@it .
+
+bf:population15_64
+    a owl:DatatypeProperty ;
+    rdfs:domain bf:DemographicObservation ;
+    rdfs:range xsd:integer ;
+    rdfs:label "popolazione 15-64"@it .
+
+bf:population65Plus
+    a owl:DatatypeProperty ;
+    rdfs:domain bf:DemographicObservation ;
+    rdfs:range xsd:integer ;
+    rdfs:label "popolazione 65+"@it .
+
+bf:share65Plus
+    a owl:DatatypeProperty ;
+    rdfs:domain bf:DemographicObservation ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "quota popolazione 65+"@it .
+
+bf:populationChangePercent2019_2025
+    a owl:DatatypeProperty ;
+    rdfs:domain bf:Municipality ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "variazione percentuale della popolazione 2019-2025"@it .
+
+bf:populationComparability
+    a owl:DatatypeProperty ;
+    rdfs:domain bf:Municipality ;
+    rdfs:range xsd:string ;
+    rdfs:label "comparabilità demografica"@it .
+
+bf:regionName
+    a owl:DatatypeProperty ;
+    rdfs:domain bf:Municipality ;
+    rdfs:range rdfs:Literal ;
+    rdfs:label "nome regione"@it .
+
+bf:provinceName
+    a owl:DatatypeProperty ;
+    rdfs:domain bf:Municipality ;
+    rdfs:range rdfs:Literal ;
+    rdfs:label "nome provincia"@it .
+
+bf:provinceISTATCode
+    a owl:DatatypeProperty ;
+    rdfs:domain bf:Municipality ;
+    rdfs:range xsd:string ;
+    rdfs:label "codice ISTAT della provincia"@it .
+
+bf:quantity
+    a owl:DatatypeProperty ;
+    rdfs:domain bf:HoldingObservation ;
+    rdfs:range xsd:integer ;
+    rdfs:label "quantità"@it .
+
+bf:collectionCode
+    a owl:DatatypeProperty ;
+    rdfs:domain bf:SpecialCollection ;
+    rdfs:range xsd:string ;
+    rdfs:label "codice del fondo"@it .
+
+bf:depositedCollection
+    a owl:DatatypeProperty ;
+    rdfs:domain bf:SpecialCollection ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "fondo depositato"@it .
+
+bf:collectionExtentText
+    a owl:DatatypeProperty ;
+    rdfs:domain bf:SpecialCollection ;
+    rdfs:range rdfs:Literal ;
+    rdfs:label "consistenza testuale del fondo"@it .
+
+bf:collectionDatingText
+    a owl:DatatypeProperty ;
+    rdfs:domain bf:SpecialCollection ;
+    rdfs:range rdfs:Literal ;
+    rdfs:label "datazione testuale del fondo"@it .
+
+bf:collectionProvenanceText
+    a owl:DatatypeProperty ;
+    rdfs:domain bf:SpecialCollection ;
+    rdfs:range rdfs:Literal ;
+    rdfs:label "provenienza testuale del fondo"@it .
+
+bf:producerText
+    a owl:DatatypeProperty ;
+    rdfs:domain bf:SpecialCollection ;
+    rdfs:range rdfs:Literal ;
+    rdfs:label "soggetto produttore (testo)"@it .
+
+bf:sbnCode a owl:DatatypeProperty ; rdfs:domain cis:Library ; rdfs:range xsd:string ; rdfs:label "codice SBN"@it .
+bf:acnpCode a owl:DatatypeProperty ; rdfs:domain cis:Library ; rdfs:range xsd:string ; rdfs:label "codice ACNP"@it .
+bf:ceiCode a owl:DatatypeProperty ; rdfs:domain cis:Library ; rdfs:range xsd:string ; rdfs:label "codice CEI"@it .
+bf:rismCode a owl:DatatypeProperty ; rdfs:domain cis:Library ; rdfs:range xsd:string ; rdfs:label "codice RISM"@it .
+bf:restrictedAccess a owl:DatatypeProperty ; rdfs:domain cis:Library ; rdfs:range xsd:boolean ; rdfs:label "accesso riservato"@it .
+bf:accessibilityNote a owl:DatatypeProperty ; rdfs:domain cis:Library ; rdfs:range rdfs:Literal ; rdfs:label "nota di accessibilità"@it .
+bf:owningEntityName a owl:DatatypeProperty ; rdfs:domain cis:Library ; rdfs:range rdfs:Literal ; rdfs:label "ente titolare"@it .
+bf:postalCode a owl:DatatypeProperty ; rdfs:range xsd:string ; rdfs:label "CAP"@it .

@@ -1,0 +1,24 @@
+{
+  "canonical_critical_files_checked": 34,
+  "canonical_critical_files_unchanged": true,
+  "canonical_critical_mismatches": [],
+  "processed_csv_count": 10,
+  "processed_csv_nonempty": true,
+  "analysis_table_count": 24,
+  "visualizations": {
+    "age65_scatter.png": 242375,
+    "demography_scatter.png": 236787,
+    "library_map.html": 2844488,
+    "map_static.png": 294391,
+    "mergers_network.png": 380679,
+    "problematic_holdings.png": 177398,
+    "special_collections.png": 131522,
+    "status_by_region.png": 259900,
+    "status_distribution.png": 218148
+  },
+  "report_pdf_bytes": 1508930,
+  "report_tex_bytes": 33966,
+  "bibliography_bytes": 4058,
+  "parquet_materialized": false,
+  "raw_archives_packaged": false
+}

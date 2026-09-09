@@ -1,0 +1,24 @@
+PREFIX cis: <http://dati.beniculturali.it/cis/>
+PREFIX bf: <https://biblioteche-fantasma.invalid/ontology/>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+# CQ2: inaccessible libraries with special collections.
+SELECT DISTINCT ?library ?isil ?libraryName ?collection ?collectionName ?collectionTypeLabel
+WHERE {
+  ?library a cis:Library ;
+           cis:ISILIdentifier ?isil ;
+           rdfs:label ?libraryName ;
+           bf:hasStatusObservation ?observation ;
+           cis:hasCollection ?collection .
+  ?observation bf:hasStatus ?status .
+  ?status dct:identifier "INAGIBILE" .
+  ?collection a bf:SpecialCollection .
+  OPTIONAL { ?collection rdfs:label ?collectionName . }
+  OPTIONAL {
+    ?collection bf:collectionType ?collectionType .
+    ?collectionType skos:prefLabel ?collectionTypeLabel .
+  }
+}
+ORDER BY ?isil ?collection

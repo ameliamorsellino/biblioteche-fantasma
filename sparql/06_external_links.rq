@@ -1,0 +1,21 @@
+PREFIX cis: <http://dati.beniculturali.it/cis/>
+PREFIX bf: <https://biblioteche-fantasma.invalid/ontology/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+
+# CQ7 / RQ6: local entities linked to verified external resources.
+SELECT DISTINCT ?entityType ?localEntity ?identifier ?externalResource ?predicate
+WHERE {
+  {
+    ?localEntity a cis:Library ; cis:ISILIdentifier ?identifier ; rdfs:seeAlso ?externalResource .
+    BIND("Library" AS ?entityType)
+    BIND(rdfs:seeAlso AS ?predicate)
+  }
+  UNION
+  {
+    ?localEntity a bf:Municipality ; cis:hasISTATCode ?identifier ; owl:sameAs ?externalResource .
+    BIND("Municipality" AS ?entityType)
+    BIND(owl:sameAs AS ?predicate)
+  }
+}
+ORDER BY ?entityType ?identifier

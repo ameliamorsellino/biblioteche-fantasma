@@ -1,0 +1,50 @@
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://biblioteche-fantasma.invalid/resource/dataset/biblioteche-fantasma-phase2> a dcat:Dataset ;
+    dct:description "Knowledge graph derivato dai processed data del checkpoint 1: biblioteche ICCU, stati osservati, patrimonio, fondi speciali e demografia comunale ISTAT 2019/2025."@it ;
+    dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dct:modified "2026-09-08"^^xsd:date ;
+    dct:title "Biblioteche Fantasma — knowledge graph"@it ;
+    dcat:distribution <https://biblioteche-fantasma.invalid/resource/distribution/data.ttl>,
+        <https://biblioteche-fantasma.invalid/resource/distribution/links.ttl>,
+        <https://biblioteche-fantasma.invalid/resource/distribution/metadata.ttl> ;
+    prov:wasDerivedFrom <https://biblioteche-fantasma.invalid/resource/source/iccu-open-data-2026-09-08>,
+        <https://biblioteche-fantasma.invalid/resource/source/istat-posas-2019>,
+        <https://biblioteche-fantasma.invalid/resource/source/istat-posas-2025> .
+
+<https://biblioteche-fantasma.invalid/resource/distribution/data.ttl> a dcat:Distribution ;
+    dct:title "RDF data"@en ;
+    dcat:downloadURL <https://biblioteche-fantasma.invalid/distribution/data.ttl> ;
+    dcat:mediaType "text/turtle" .
+
+<https://biblioteche-fantasma.invalid/resource/distribution/links.ttl> a dcat:Distribution ;
+    dct:title "External links"@en ;
+    dcat:downloadURL <https://biblioteche-fantasma.invalid/distribution/links.ttl> ;
+    dcat:mediaType "text/turtle" .
+
+<https://biblioteche-fantasma.invalid/resource/distribution/metadata.ttl> a dcat:Distribution ;
+    dct:title "RDF metadata"@en ;
+    dcat:downloadURL <https://biblioteche-fantasma.invalid/distribution/metadata.ttl> ;
+    dcat:mediaType "text/turtle" .
+
+<https://biblioteche-fantasma.invalid/resource/source/iccu-open-data-2026-09-08> a prov:Entity ;
+    dct:source <https://anagrafe.iccu.sbn.it/it/open-data/> ;
+    dct:title "Snapshot ICCU Open Data"@it ;
+    dct:type "ICCU Open Data" ;
+    prov:generatedAtTime "2026-09-08T14:11:15"^^xsd:dateTime .
+
+<https://biblioteche-fantasma.invalid/resource/source/istat-posas-2019> a prov:Entity ;
+    dct:source <https://demo.istat.it/> ;
+    dct:temporal "2019-01-01"^^xsd:date ;
+    dct:title "ISTAT POSAS 2019"@it ;
+    dct:type "ISTAT POSAS" .
+
+<https://biblioteche-fantasma.invalid/resource/source/istat-posas-2025> a prov:Entity ;
+    dct:source <https://demo.istat.it/> ;
+    dct:temporal "2025-01-01"^^xsd:date ;
+    dct:title "ISTAT POSAS 2025"@it ;
+    dct:type "ISTAT POSAS" .
+

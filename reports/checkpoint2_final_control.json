@@ -1,0 +1,162 @@
+{
+  "data_triples": 1616865,
+  "links_triples": 27504,
+  "metadata_triples": 38,
+  "ontology_triples": 195,
+  "ontology_owl_triples": 195,
+  "shapes_triples": 80,
+  "total_triples": 1644602,
+  "predicates": 79,
+  "instance_types": {
+    "https://biblioteche-fantasma.invalid/ontology/HoldingObservation": 93512,
+    "http://dati.beniculturali.it/cis/Library": 19611,
+    "http://dati.beniculturali.it/cis/Site": 19611,
+    "https://biblioteche-fantasma.invalid/ontology/LibraryStatusObservation": 19611,
+    "http://www.opengis.net/ont/geosparql#Feature": 19524,
+    "http://www.opengis.net/ont/geosparql#Geometry": 19524,
+    "http://dati.beniculturali.it/cis/Address": 18660,
+    "http://www.w3.org/ns/locn#Address": 18660,
+    "https://biblioteche-fantasma.invalid/ontology/DemographicObservation": 15790,
+    "https://biblioteche-fantasma.invalid/ontology/SpecialCollection": 9737,
+    "https://biblioteche-fantasma.invalid/ontology/Municipality": 7896,
+    "http://www.w3.org/2004/02/skos/core#Concept": 358,
+    "http://www.w3.org/2004/02/skos/core#ConceptScheme": 7
+  },
+  "query_count": 11,
+  "query_parse_pass": 11,
+  "queries": [
+    {
+      "file": "01_status_distribution.rq",
+      "parse": true,
+      "bytes": 657,
+      "error": ""
+    },
+    {
+      "file": "02_status_by_region.rq",
+      "parse": true,
+      "bytes": 698,
+      "error": ""
+    },
+    {
+      "file": "03_inaccessible_special_collections.rq",
+      "parse": true,
+      "bytes": 934,
+      "error": ""
+    },
+    {
+      "file": "04_demography_and_status.rq",
+      "parse": true,
+      "bytes": 1436,
+      "error": ""
+    },
+    {
+      "file": "05_library_mergers.rq",
+      "parse": true,
+      "bytes": 653,
+      "error": ""
+    },
+    {
+      "file": "06_external_links.rq",
+      "parse": true,
+      "bytes": 768,
+      "error": ""
+    },
+    {
+      "file": "07_demographic_filter.rq",
+      "parse": true,
+      "bytes": 1311,
+      "error": ""
+    },
+    {
+      "file": "08_region_aggregation.rq",
+      "parse": true,
+      "bytes": 743,
+      "error": ""
+    },
+    {
+      "file": "09_temporary_closed_by_region.rq",
+      "parse": true,
+      "bytes": 741,
+      "error": ""
+    },
+    {
+      "file": "10_material_type.rq",
+      "parse": true,
+      "bytes": 705,
+      "error": ""
+    },
+    {
+      "file": "11_library_municipality.rq",
+      "parse": true,
+      "bytes": 624,
+      "error": ""
+    }
+  ],
+  "library_links_rows": 19611,
+  "library_link_status": {
+    "exact_identifier_lookup": 19611
+  },
+  "municipality_links_rows": 7896,
+  "municipality_link_status": {
+    "exact_identifier_match": 7893,
+    "unmatched_temporal_scope": 3
+  },
+  "municipality_nonmatches": [
+    {
+      "istat_code": "024027",
+      "municipality_name": "Castegnero",
+      "verification": "Castegnero: soppresso nella fusione Castegnero Nanto il 2026-02-21"
+    },
+    {
+      "istat_code": "018082",
+      "municipality_name": "Lirio",
+      "verification": "Lirio: incorporato in Montalto Pavese il 2026-01-31"
+    },
+    {
+      "istat_code": "024071",
+      "municipality_name": "Nanto",
+      "verification": "Nanto: soppresso nella fusione Castegnero Nanto il 2026-02-21"
+    }
+  ],
+  "required_core_ok": true,
+  "required_core": {
+    "ontology/ontology.ttl": true,
+    "ontology/ontology.owl": true,
+    "ontology/competency_questions.md": true,
+    "ontology/vocabulary_reuse.csv": true,
+    "metadata/uri_policy.md": true,
+    "rdf/data.ttl": true,
+    "rdf/metadata.ttl": true,
+    "rdf/links.ttl": true,
+    "shacl/shapes.ttl": true,
+    "reports/rdf_validation.md": true,
+    "reports/shacl_validation.md": true,
+    "reports/interlinking_report.csv": true,
+    "reports/five_star_assessment.md": true,
+    "reports/decisions_log.md": true,
+    "reports/sparql_test_report.md": true,
+    "graphdb/README.md": true,
+    "requirements.txt": true
+  },
+  "required_processed_ok": true,
+  "required_processed": {
+    "analysis_municipality.csv": true,
+    "library.csv": true,
+    "library_status.csv": true,
+    "library_type.csv": true,
+    "library_holdings.csv": true,
+    "special_collection.csv": true,
+    "library_mergers.csv": true,
+    "municipality_population.csv": true
+  },
+  "all_files_now": 62,
+  "empty_files": [],
+  "bad_uri_count": 0,
+  "local_namespace_anomalies": [],
+  "result01_rows": 11,
+  "result01_header": [
+    "statusCode",
+    "statusLabel",
+    "libraries"
+  ]
+}

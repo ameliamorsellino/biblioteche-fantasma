@@ -1,0 +1,449 @@
+{
+  "RQ1": {
+    "problematic_libraries": 2497,
+    "problematic_share_libraries_percent": 13.172610255328129,
+    "top_regions_by_share": [
+      {
+        "region": "MOLISE",
+        "total_libraries": 183,
+        "problematic": 80,
+        "problematic_share": 0.4371584699453552,
+        "problematic_share_percent": 43.71584699453552,
+        "problematic_per_100k_population": 27.79572918621054
+      },
+      {
+        "region": "LIGURIA",
+        "total_libraries": 657,
+        "problematic": 209,
+        "problematic_share": 0.3181126331811263,
+        "problematic_share_percent": 31.81126331811263,
+        "problematic_per_100k_population": 13.839748950927165
+      },
+      {
+        "region": "ABRUZZO",
+        "total_libraries": 419,
+        "problematic": 93,
+        "problematic_share": 0.22195704057279236,
+        "problematic_share_percent": 22.195704057279237,
+        "problematic_per_100k_population": 7.327923802199638
+      },
+      {
+        "region": "UMBRIA",
+        "total_libraries": 407,
+        "problematic": 73,
+        "problematic_share": 0.17936117936117937,
+        "problematic_share_percent": 17.936117936117938,
+        "problematic_per_100k_population": 8.573378134127564
+      },
+      {
+        "region": "EMILIA-ROMAGNA",
+        "total_libraries": 1468,
+        "problematic": 221,
+        "problematic_share": 0.1505449591280654,
+        "problematic_share_percent": 15.054495912806539,
+        "problematic_per_100k_population": 4.952938123235375
+      }
+    ]
+  },
+  "RQ2": {
+    "status_distribution": [
+      {
+        "normalized_status": "NESSUNO_STATO_SPECIALE_REGISTRATO",
+        "analytical_group": "NESSUNO_STATO_SPECIALE_REGISTRATO",
+        "include_main": false,
+        "count": 13200,
+        "share_registry_percent": 67.30916322472082
+      },
+      {
+        "normalized_status": "BIBLIOTECA_NON_PIU_ESISTENTE",
+        "analytical_group": "CESSAZIONE",
+        "include_main": true,
+        "count": 1827,
+        "share_registry_percent": 9.316200091785221
+      },
+      {
+        "normalized_status": "BIBLIOTECA_NON_CENSITA",
+        "analytical_group": "INCOMPLETEZZA_STATO_ANAGRAFICO",
+        "include_main": false,
+        "count": 1723,
+        "share_registry_percent": 8.785885472438936
+      },
+      {
+        "normalized_status": "BIBLIOTECA_CONFLUITA",
+        "analytical_group": "TRASFORMAZIONE_ORGANIZZATIVA",
+        "include_main": false,
+        "count": 1502,
+        "share_registry_percent": 7.658966906328081
+      },
+      {
+        "normalized_status": "ALTRO_ISTITUTO_COLLEGATO_ICCU",
+        "analytical_group": "ALTRO",
+        "include_main": false,
+        "count": 655,
+        "share_registry_percent": 3.339962266075162
+      },
+      {
+        "normalized_status": "TEMPORANEAMENTE_CHIUSA",
+        "analytical_group": "INTERRUZIONE_DEL_SERVIZIO",
+        "include_main": true,
+        "count": 619,
+        "share_registry_percent": 3.1563918209168325
+      },
+      {
+        "normalized_status": "BIBLIOTECA_IN_VIA_DI_ALLESTIMENTO",
+        "analytical_group": "AVVIO",
+        "include_main": false,
+        "count": 34,
+        "share_registry_percent": 0.17337208709397786
+      },
+      {
+        "normalized_status": "DEPOSITO_SENZA_PUNTO_DI_SERVIZIO",
+        "analytical_group": "ASSENZA_PUNTO_DI_SERVIZIO",
+        "include_main": true,
+        "count": 33,
+        "share_registry_percent": 0.16827290806180206
+      },
+      {
+        "normalized_status": "SERVIZI_SOSPESI_CAUSA_SISMA",
+        "analytical_group": "INTERRUZIONE_DEL_SERVIZIO",
+        "include_main": true,
+        "count": 12,
+        "share_registry_percent": 0.06119014838610984
+      },
+      {
+        "normalized_status": "INAGIBILE",
+        "analytical_group": "INTERRUZIONE_DEL_SERVIZIO",
+        "include_main": true,
+        "count": 4,
+        "share_registry_percent": 0.02039671612870328
+      },
+      {
+        "normalized_status": "RIAPERTURA_AGIBILITA_PARZIALE",
+        "analytical_group": "OPERATIVITA_PARZIALE",
+        "include_main": true,
+        "count": 2,
+        "share_registry_percent": 0.01019835806435164
+      }
+    ],
+    "top_regions_by_problematic_absolute": [
+      {
+        "region": "LOMBARDIA",
+        "total_libraries": 2820,
+        "problematic": 366,
+        "problematic_share": 0.12978723404255318,
+        "problematic_share_percent": 12.978723404255318,
+        "problematic_per_100k_population": 3.647627975432927
+      },
+      {
+        "region": "EMILIA-ROMAGNA",
+        "total_libraries": 1468,
+        "problematic": 221,
+        "problematic_share": 0.1505449591280654,
+        "problematic_share_percent": 15.054495912806539,
+        "problematic_per_100k_population": 4.952938123235375
+      },
+      {
+        "region": "LIGURIA",
+        "total_libraries": 657,
+        "problematic": 209,
+        "problematic_share": 0.3181126331811263,
+        "problematic_share_percent": 31.81126331811263,
+        "problematic_per_100k_population": 13.839748950927165
+      },
+      {
+        "region": "CAMPANIA",
+        "total_libraries": 1472,
+        "problematic": 209,
+        "problematic_share": 0.14198369565217392,
+        "problematic_share_percent": 14.198369565217392,
+        "problematic_per_100k_population": 3.7439516818852034
+      },
+      {
+        "region": "TOSCANA",
+        "total_libraries": 1299,
+        "problematic": 184,
+        "problematic_share": 0.14164742109314857,
+        "problematic_share_percent": 14.164742109314856,
+        "problematic_per_100k_population": 5.030461632341057
+      }
+    ]
+  },
+  "RQ3": {
+    "functional_association": {
+      "dimension": "functional_type",
+      "N": 13715,
+      "rows": 8,
+      "columns": 2,
+      "chi_square": 66.54482614908015,
+      "dof": 7,
+      "p_value": 7.352913143064227e-12,
+      "cramers_v_bias_corrected": 0.06589281827297129,
+      "min_expected": 0.09143273787823551,
+      "cells_expected_lt5": 3
+    },
+    "administrative_association": {
+      "dimension": "administrative_type",
+      "N": 13715,
+      "rows": 32,
+      "columns": 2,
+      "chi_square": 78.76587356642119,
+      "dof": 31,
+      "p_value": 4.940045589904297e-06,
+      "cramers_v_bias_corrected": 0.059015557550568754,
+      "min_expected": 0.045716368939117756,
+      "cells_expected_lt5": 28
+    },
+    "functional_type_problematic": [
+      {
+        "functional_type": "Pubblica",
+        "total": 7269,
+        "problematic": 384,
+        "problematic_share": 0.052827073875361126
+      },
+      {
+        "functional_type": "Specializzata",
+        "total": 3343,
+        "problematic": 157,
+        "problematic_share": 0.04696380496559976
+      },
+      {
+        "functional_type": "Di conservazione",
+        "total": 497,
+        "problematic": 38,
+        "problematic_share": 0.07645875251509054
+      },
+      {
+        "functional_type": "Istituto di insegnamento superiore",
+        "total": 1224,
+        "problematic": 29,
+        "problematic_share": 0.02369281045751634
+      },
+      {
+        "functional_type": "Scolastica",
+        "total": 1143,
+        "problematic": 19,
+        "problematic_share": 0.016622922134733157
+      },
+      {
+        "functional_type": "Importante non specializzata",
+        "total": 231,
+        "problematic": 0,
+        "problematic_share": 0.0
+      },
+      {
+        "functional_type": "Itinerante",
+        "total": 6,
+        "problematic": 0,
+        "problematic_share": 0.0
+      },
+      {
+        "functional_type": "Nazionale",
+        "total": 2,
+        "problematic": 0,
+        "problematic_share": 0.0
+      }
+    ]
+  },
+  "RQ4": {
+    "primary": {
+      "analysis": "primary_all_eligible",
+      "N": 6659,
+      "pearson_r": -0.10644865061493274,
+      "pearson_p": 3.0489151198925425e-18,
+      "spearman_rho": -0.06701953252827562,
+      "spearman_p": 4.3973354876997604e-08,
+      "pop_change_iqr_low": -14.548659156683051,
+      "pop_change_iqr_high": 9.283253711261013,
+      "outlier_count": 115
+    },
+    "sensitivity": {
+      "analysis": "sensitivity_excluding_population_change_IQR_outliers",
+      "N": 6544,
+      "pearson_r": -0.09556827219978523,
+      "pearson_p": 9.390028330613462e-15,
+      "spearman_rho": -0.05838118543375669,
+      "spearman_p": 2.291272817903895e-06,
+      "pop_change_iqr_low": -14.548659156683051,
+      "pop_change_iqr_high": 9.283253711261013,
+      "outlier_count": 0
+    },
+    "decline_vs_growth": [
+      {
+        "population_group": "decline",
+        "N": 4790,
+        "mean_problematic_share": 0.12416683433119553,
+        "median_problematic_share": 0.0,
+        "municipalities_with_any_problematic": 874,
+        "share_municipalities_with_any_problematic": 0.18246346555323592,
+        "mean_population_change_percent": -4.781324982410917,
+        "mannwhitney_u": 4678575.5,
+        "mannwhitney_p": 1.1699551680732858e-05
+      },
+      {
+        "population_group": "stable_or_growth",
+        "N": 1869,
+        "mean_problematic_share": 0.08480319168618002,
+        "median_problematic_share": 0.0,
+        "municipalities_with_any_problematic": 262,
+        "share_municipalities_with_any_problematic": 0.14018191546281433,
+        "mean_population_change_percent": 2.6009295254405815,
+        "mannwhitney_u": NaN,
+        "mannwhitney_p": NaN
+      }
+    ]
+  },
+  "RQ5": {
+    "holdings": {
+      "problematic_libraries_total": 2497.0,
+      "problematic_libraries_with_holding_rows": 627.0,
+      "holding_rows_problematic": 2828.0,
+      "holding_rows_quantity_missing": 461.0,
+      "holding_rows_quantity_zero": 0.0,
+      "holding_rows_quantity_positive": 2367.0,
+      "known_positive_quantity_sum": 7500259.0
+    },
+    "special_collections": {
+      "problematic_libraries_total": 2497,
+      "problematic_libraries_with_special_collections": 0,
+      "special_collection_records_problematic": 0,
+      "consistenza_documented_records": 0,
+      "descrizione_documented_records": 0,
+      "datazione_documented_records": 0,
+      "tipologia_fondo_documented_records": 0,
+      "catalogazione_inventario_documented_records": 0,
+      "tipologia_documentaria_documented_records": 0,
+      "provenienza_documented_records": 0,
+      "soggetto_produttore_documented_records": 0
+    }
+  },
+  "RQ6": {
+    "interlinking_report": [
+      {
+        "entity_type": "Library",
+        "total": 19611,
+        "exact_matches": 19611,
+        "ambiguous": 0,
+        "unmatched": 0,
+        "invalid": 0,
+        "coverage_percent": 100.0,
+        "linking_method": "Exact ISIL lookup; rdfs:seeAlso because external target is the ICCU Anagrafe HTML record/search page, not an RDF entity",
+        "external_dataset": "ICCU Anagrafe delle Biblioteche Italiane"
+      },
+      {
+        "entity_type": "Municipality",
+        "total": 7896,
+        "exact_matches": 7893,
+        "ambiguous": 0,
+        "unmatched": 3,
+        "invalid": 0,
+        "coverage_percent": 99.962,
+        "linking_method": "Exact six-digit ISTAT code embedded in Linked ISPRA municipality URI; owl:sameAs; three 2025 municipalities suppressed during 2026 excluded",
+        "external_dataset": "Linked ISPRA place dataset"
+      }
+    ]
+  },
+  "RQ7": {
+    "network": {
+      "merger_records_total": 1502,
+      "valid_edges": 1412,
+      "nodes": 1821,
+      "weak_components": 410,
+      "largest_component_nodes": 40,
+      "strong_components": 1821,
+      "cycles": 1,
+      "self_loops": 1,
+      "unparsed_or_unvalidated_records": 90
+    },
+    "top_targets": [
+      {
+        "target_isil": "IT-CT0337",
+        "in_degree": 39,
+        "name_original": "Biblioteca delle Scienze Mediche dell'Università degli studi di Catania",
+        "municipality_name": "Catania",
+        "province_name": "Catania",
+        "region": "SICILIA"
+      },
+      {
+        "target_isil": "IT-SS0166",
+        "in_degree": 34,
+        "name_original": "Biblioteca di Medicina e Chirurgia dell'Università degli studi di Sassari",
+        "municipality_name": "Sassari",
+        "province_name": "Sassari",
+        "region": "SARDEGNA"
+      },
+      {
+        "target_isil": "IT-CA0298",
+        "in_degree": 33,
+        "name_original": "Biblioteca del Distretto biomedico scientifico - Sezione Beniamino Orrù - Università degli studi di Cagliari",
+        "municipality_name": "Monserrato",
+        "province_name": "Cagliari",
+        "region": "SARDEGNA"
+      },
+      {
+        "target_isil": "IT-PV0265",
+        "in_degree": 33,
+        "name_original": "Biblioteca di Area medica A. Ferrata dell'Università di Pavia",
+        "municipality_name": "Pavia",
+        "province_name": "Pavia",
+        "region": "LOMBARDIA"
+      },
+      {
+        "target_isil": "IT-FI0215",
+        "in_degree": 32,
+        "name_original": "Biblioteca Biomedica - Università degli studi di Firenze",
+        "municipality_name": "Firenze",
+        "province_name": "Firenze",
+        "region": "TOSCANA"
+      },
+      {
+        "target_isil": "IT-NA0588",
+        "in_degree": 30,
+        "name_original": "Ufficio di Biblioteca dei Dipartimenti di Area Medica",
+        "municipality_name": "Napoli",
+        "province_name": "Napoli",
+        "region": "CAMPANIA"
+      },
+      {
+        "target_isil": "IT-ME0055",
+        "in_degree": 28,
+        "name_original": "Biblioteca del Polo Policlinico",
+        "municipality_name": "Messina",
+        "province_name": "Messina",
+        "region": "SICILIA"
+      },
+      {
+        "target_isil": "IT-FE0162",
+        "in_degree": 25,
+        "name_original": "Biblioteca di Medicina dell'Università degli studi di Ferrara",
+        "municipality_name": "Ferrara",
+        "province_name": "Ferrara",
+        "region": "EMILIA-ROMAGNA"
+      },
+      {
+        "target_isil": "IT-FE0107",
+        "in_degree": 20,
+        "name_original": "Biblioteca centralizzata chimico-biologica S. Maria delle Grazie dell'Università degli studi di Ferrara",
+        "municipality_name": "Ferrara",
+        "province_name": "Ferrara",
+        "region": "EMILIA-ROMAGNA"
+      },
+      {
+        "target_isil": "IT-PR0032",
+        "in_degree": 20,
+        "name_original": "Biblioteca di Medicina e Chirurgia",
+        "municipality_name": "Parma",
+        "province_name": "Parma",
+        "region": "EMILIA-ROMAGNA"
+      }
+    ]
+  },
+  "RQ8": {
+    "age65": {
+      "N": 6659,
+      "pearson_r": 0.14539109831336583,
+      "pearson_p": 8.7165346139331e-33,
+      "spearman_rho": 0.10537080109988607,
+      "spearman_p": 6.640956535919319e-18
+    }
+  }
+}
