@@ -98,7 +98,7 @@
     <rdfs:comment xml:lang="it">Vocabolario locale minimo per modellare osservazioni di stato, demografia, patrimonio e confluenze, riusando Cultural-ON per biblioteche, sedi, indirizzi, aree amministrative e collezioni.</rdfs:comment>
     <dct:source rdf:resource="http://dati.beniculturali.it/cis/"/>
     <dct:source rdf:resource="https://dati.cultura.gov.it/cultural-ON/ITA.html"/>
-    <owl:versionInfo>0.2.0 — checkpoint 2</owl:versionInfo>
+    <owl:versionInfo>1.0.0</owl:versionInfo>
   </rdf:Description>
   <rdf:Description rdf:about="https://biblioteche-fantasma.invalid/ontology/population">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>

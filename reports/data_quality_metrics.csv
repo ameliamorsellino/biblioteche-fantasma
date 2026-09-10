@@ -1,0 +1,13 @@
+dataset,dimension,field,value,unit,interpretation
+library,COMPLETENESS,isil,100.0,percent,nessun ISIL mancante
+library,UNIQUENESS,isil,100.0,percent,19.611/19.611 ISIL unici
+library,VALIDITY,isil_pattern,100.0,percent,tutti gli ISIL rispettano ^IT-[A-Z]{2}\d{4}$
+library,COMPLETENESS,coordinates_clean,99.5563714242007,percent,coordinate pulite complete
+library,COMPLETENESS,istat_code,100.0,percent,codice comune presente
+library_type,JOINABILITY,isil_coverage,69.93524042629137,percent,biblioteche del master coperte
+library_holdings,JOINABILITY,isil_coverage,69.93524042629137,percent,biblioteche del master coperte
+special_collection,JOINABILITY,isil_coverage,12.487889449798582,percent,biblioteche del master coperte
+library_contact,JOINABILITY,isil_coverage,69.50181020855642,percent,biblioteche del master coperte
+municipality_population,UNIQUENESS,istat_code,100.0,percent,un codice per comune 2025
+ICCU→ISTAT,JOINABILITY,istat_code,100.0,percent,record ICCU agganciati a comune ISTAT 2025
+municipality_population,CONSISTENCY,population_comparability,99.97467071935156,percent,Trapani e Misiliscemi esclusi dal confronto 2019

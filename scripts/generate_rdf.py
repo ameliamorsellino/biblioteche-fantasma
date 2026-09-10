@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Generate the RDF dataset for Biblioteche Fantasma phase 2.
+"""Generate the RDF knowledge graph for Biblioteche Fantasma.
 
-Inputs are the processed CSV files produced by checkpoint 1.  The script does
-not use the raw ICCU/POSAS archives and does not reinterpret checkpoint-1
-cleaning decisions.
+Inputs are the processed CSV files produced from the original ICCU and ISTAT
+raw archives. The script preserves the cleaning and integration decisions
+already encoded in the processed datasets.
 """
 from __future__ import annotations
 
@@ -31,6 +31,7 @@ DCAT = Namespace("http://www.w3.org/ns/dcat#")
 
 ICCU_SNAPSHOT_DATE = "2026-09-08"
 ICCU_SNAPSHOT_DATETIME = "2026-09-08T14:11:15"
+PROJECT_RELEASE_DATE = "2026-09-10"
 POSAS_2019_DATE = "2019-01-01"
 POSAS_2025_DATE = "2025-01-01"
 
@@ -401,12 +402,18 @@ def generate(data_dir: Path, out_dir: Path):
             g.add((src, ONTO.mergedInto, tgt))
 
     # --- Metadata graph ------------------------------------------------------
-    dataset = RES["dataset/biblioteche-fantasma-phase2"]
+    dataset = RES["dataset/biblioteche-fantasma"]
     mg.add((dataset, RDF.type, DCAT.Dataset))
-    mg.add((dataset, DCTERMS.title, Literal("Biblioteche Fantasma — knowledge graph", lang="it")))
-    mg.add((dataset, DCTERMS.description, Literal("Knowledge graph derivato dai processed data del checkpoint 1: biblioteche ICCU, stati osservati, patrimonio, fondi speciali e demografia comunale ISTAT 2019/2025.", lang="it")))
+    mg.add((dataset, DCTERMS.title, Literal("Biblioteche Fantasma - knowledge graph", lang="it")))
+    mg.add((dataset, DCTERMS.description, Literal("Knowledge graph derivato dai dataset processati ICCU e ISTAT: biblioteche, stati osservati, patrimonio, fondi speciali e demografia comunale 2019/2025.", lang="it")))
     mg.add((dataset, DCTERMS.license, URIRef("https://creativecommons.org/licenses/by/4.0/")))
-    mg.add((dataset, DCTERMS.modified, Literal(ICCU_SNAPSHOT_DATE, datatype=XSD.date)))
+    mg.add(
+        (
+            dataset,
+            DCTERMS.modified,
+            Literal(PROJECT_RELEASE_DATE, datatype=XSD.date),
+        )
+    )
     mg.add((dataset, PROV.wasDerivedFrom, src_iccu)); mg.add((dataset, PROV.wasDerivedFrom, src_posas_2019)); mg.add((dataset, PROV.wasDerivedFrom, src_posas_2025))
     for src, typ, label, date in [
         (src_iccu, "ICCU Open Data", "Snapshot ICCU Open Data", ICCU_SNAPSHOT_DATETIME),

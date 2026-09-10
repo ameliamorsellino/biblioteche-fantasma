@@ -1,5 +1,22 @@
-# Dataset tabellare 3-star
+# Dataset strutturato in formato aperto
 
-I dataset processed sono distribuiti in CSV aperto e machine-readable (`data/processed/csv/`), con schema Frictionless in `metadata/datapackage.json`, metadati DCAT in `metadata/dcat-ap_it.ttl` e licenza derivata CC BY 4.0. Questo soddisfa il livello 3-star del modello di Tim Berners-Lee: licenza aperta, dati strutturati e formato non proprietario.
+Gli output analitici sono distribuiti in **CSV UTF-8**, formato strutturato,
+machine-readable e non proprietario.
 
-La Fase 2 aggiunge RDF con URI e link esterni, ma la pubblicazione Web 4/5-star non è operativa perché il namespace usa `.invalid` e non è dereferenziabile; vedere `reports/five_star_assessment.md`.
+I RAW originali sono conservati separatamente in `data/raw/` e non vengono
+modificati dalla pipeline.
+
+La catena implementata è:
+
+RAW → cleaning → harmonization → integration → CSV processed
+
+I dataset processati canonici sono disponibili direttamente in
+`data/processed/`.
+
+Dal punto di vista tecnico i dataset soddisfano i requisiti di struttura
+e formato aperto associati al livello 3-star. La classificazione completa
+del modello 5-star richiede tuttavia anche la pubblicazione sul Web, che
+viene valutata separatamente nel progetto.
+
+L'esportazione Parquet è opzionale e non è necessaria per la pipeline
+principale.

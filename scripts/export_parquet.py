@@ -4,7 +4,9 @@ import argparse
 import pandas as pd
 
 def main(root:Path):
-    src=root/'data'/'processed'/'csv'; dst=root/'data'/'processed'/'parquet'; dst.mkdir(parents=True,exist_ok=True)
+    src = root / 'data' / 'processed'
+    dst = src / 'parquet'
+    dst.mkdir(parents=True, exist_ok=True)
     try: import pyarrow  # noqa
     except ImportError as e: raise SystemExit('pyarrow non disponibile: pip install pyarrow') from e
     for p in sorted(src.glob('*.csv')):

@@ -1,0 +1,5 @@
+coordinate_quality_flag,count,percent
+valid_world_range,19521,99.54107388710418
+zero_pair_treated_as_missing,63,0.32124827902707664
+missing,24,0.12238029677221968
+outside_italy_bbox_review,3,0.01529753709652746

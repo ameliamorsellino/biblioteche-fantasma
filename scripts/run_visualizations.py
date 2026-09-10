@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate final static visualizations and interactive map from checkpoint processed data."""
+"""Generate final static visualizations and the interactive map from processed project data."""
 from pathlib import Path
 import argparse
 import pandas as pd
@@ -26,7 +26,7 @@ LABELS={
  'RIAPERTURA_AGIBILITA_PARZIALE':'Riapertura/agibilità parziale',
  'DEPOSITO_SENZA_PUNTO_DI_SERVIZIO':'Deposito senza punto di servizio',
 }
-SOURCE='Fonte: elaborazione su snapshot ICCU 08/09/2026 e ISTAT POSAS 2019–2025; processed data del checkpoint 2.'
+SOURCE='Fonte: elaborazione su snapshot ICCU 08/09/2026 e ISTAT POSAS 2019–2025.'
 
 def savefig(fig,path):
     fig.savefig(path,dpi=220,bbox_inches='tight',facecolor='white')
@@ -45,7 +45,7 @@ def main(root:Path):
     hsum=pd.read_csv(root/'reports'/'analysis_tables'/'problematic_holdings_summary.csv').iloc[0]
     scsum=pd.read_csv(root/'reports'/'analysis_tables'/'problematic_special_collections_summary.csv').iloc[0]
 
-    # 1 map static: main-problematic only. Coordinates already quality-cleaned in phase 1.
+    # 1 map static: main-problematic only. Coordinates are already quality-cleaned in the processed dataset.
     m=lib.merge(st[['isil','normalized_status','include_in_main_analysis']],on='isil',how='left')
     main=m[m.include_in_main_analysis.astype(str).str.lower().eq('true')].copy()
     main['latitude']=pd.to_numeric(main.latitude,errors='coerce'); main['longitude']=pd.to_numeric(main.longitude,errors='coerce')

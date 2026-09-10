@@ -1,37 +1,62 @@
-# 5-Star Open Data Assessment — Biblioteche Fantasma
+# Valutazione 5-Star Open Data - Biblioteche Fantasma
 
-## Scope
+## Perimetro della valutazione
 
-This assessment distinguishes the technical characteristics of the checkpoint from an actual Web publication. The evidence is taken from `HANDOFF_1.md`, `metadata/licenses_phase1.md`, the processed CSV files, and the Phase-2 RDF/interlinking artifacts.
+La valutazione distingue le caratteristiche tecniche degli artefatti prodotti dalla loro effettiva pubblicazione sul Web.
 
-| Level | Requirement | Concrete project evidence | Satisfied | Limitation |
-|---|---|---|---|---|
-| 1 STAR | Data available on the Web under an open licence | Phase 1 verifies ICCU Open Data as CC0 1.0 and ISTAT POSAS 2019/2025 as CC BY 4.0; the derived dataset is documented as CC BY 4.0 in `metadata/licenses_phase1.md` and `rdf/metadata.ttl`. | **Partially** | The licensing condition is satisfied, but this checkpoint is a local artifact and is not itself published at a public Web URL. |
-| 2 STAR | Structured, machine-readable data | The checkpoint contains structured processed CSVs plus RDF serializations (`rdf/data.ttl`, `rdf/links.ttl`, `rdf/metadata.ttl`). | **Yes, technically** | This is a property of the released files, not proof of public Web availability. |
-| 3 STAR | Non-proprietary open format | The processed datasets are CSV; ontology/data/links/metadata are Turtle/N-Triples-compatible RDF; SPARQL queries are plain text. | **Yes, technically** | Public hosting remains absent. |
-| 4 STAR | Use RDF standards and URI identifiers | The graph uses RDF/OWL/SKOS/DCAT/PROV/GeoSPARQL/LOCN and deterministic HTTP(S)-shaped identifiers under `https://biblioteche-fantasma.invalid/`. | **Partially** | The `.invalid` authority is deliberately non-resolvable. Local URI identifiers are not public, dereferenceable Web URIs. |
-| 5 STAR | Link local entities to external data | `rdf/links.ttl` contains real identifier-based links: libraries to official ICCU Anagrafe result pages via `rdfs:seeAlso`; municipalities to Linked ISPRA municipality resources via `owl:sameAs` where the six-digit ISTAT code identifies the same municipality. | **Partially** | External links exist, but the local side of the graph is not yet published/dereferenceable, so this is not an operational 5-star Linked Open Data publication. |
+Le evidenze utilizzate sono:
 
-## Licensing evidence inherited from Phase 1
+* `metadata/licenses.md`;
+* `metadata/source_manifest.csv`;
+* i dataset processati in CSV;
+* `ontology/ontology.ttl`;
+* `rdf/data.ttl`;
+* `rdf/links.ttl`;
+* `rdf/metadata.ttl`;
+* i risultati di validazione RDF e SHACL;
+* il report di interlinking;
+* le query SPARQL e i relativi risultati.
 
-- **ICCU Anagrafe Open Data:** CC0 1.0 / public domain dedication.
-- **ISTAT POSAS 2019 and 2025:** CC BY 4.0.
-- **Cultural-ON ontology file:** CC BY 3.0 IT; included separately from the derived tabular data.
-- **Derived tabular/RDF dataset:** project licensing decision is CC BY 4.0, with ISTAT attribution and ICCU source citation.
+| Livello | Requisito                                        | Evidenza nel progetto                                                                                                                 | Valutazione                                                                                                                |
+| ------- | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| 1 STAR  | Dati disponibili sul Web con licenza aperta      | Le fonti ICCU e ISTAT sono Open Data; il dataset derivato è documentato con licenza CC BY 4.0.                                        | **Parziale**: la condizione giuridica è soddisfatta, ma il dataset derivato non è ancora pubblicato a un URL Web pubblico. |
+| 2 STAR  | Dati strutturati e machine-readable              | I dataset processati sono distribuiti in CSV strutturati.                                                                             | **Tecnicamente soddisfatto**, ferma restando l'assenza della pubblicazione Web.                                            |
+| 3 STAR  | Formato aperto e non proprietario                | CSV per i dati tabellari; RDF/Turtle per il knowledge graph; query SPARQL in file testuali.                                           | **Tecnicamente soddisfatto**, ferma restando l'assenza della pubblicazione Web.                                            |
+| 4 STAR  | Uso di RDF e URI per identificare le risorse     | Il progetto usa RDF, OWL, SKOS, DCAT, PROV-O, GeoSPARQL e URI deterministiche.                                                        | **Parziale**: le URI locali utilizzano `https://biblioteche-fantasma.invalid/` e non sono dereferenziabili.                |
+| 5 STAR  | Collegamento delle risorse locali a dati esterni | Le biblioteche sono collegate a ICCU tramite `rdfs:seeAlso`; i comuni compatibili sono collegati a Linked ISPRA tramite `owl:sameAs`. | **Parziale**: l'interlinking esiste ed è riproducibile, ma le URI locali non sono ancora pubblicate sul Web.               |
 
-## What is missing for an operational 5-star publication
+## Licenze
 
-A real publication still requires all of the following operational steps:
+* **ICCU Anagrafe Open Data:** CC0 1.0.
+* **ISTAT POSAS 2019 e 2025:** CC BY 4.0.
+* **Cultural-ON:** CC BY 3.0 IT.
+* **Dataset derivato del progetto:** CC BY 4.0, con attribuzione a ISTAT e citazione di ICCU tra le fonti.
 
-1. acquisition/control of a real domain;
-2. minting of stable public HTTP(S) URIs under that domain;
-3. dereferencing of entity URIs, ideally with content negotiation between human-readable HTML and RDF representations;
-4. Web exposure of the RDF distributions and dataset metadata at working `dcat:accessURL`/`dcat:downloadURL` locations;
-5. stable publication and maintenance of the external links;
-6. optionally, a public SPARQL endpoint or another public RDF access mechanism. A SPARQL endpoint is useful but is not by itself the defining requirement of the 5-star model.
+## Interlinking
 
-## Final assessment
+La pipeline genera collegamenti basati su identificatori ufficiali e non su fuzzy matching:
 
-**The project is an interlinked RDF dataset technically prepared for a 5-star publication, but it is not yet published as a dereferenceable 5-star Linked Open Dataset on the Web.**
+* biblioteche verso ICCU: **19.611/19.611 = 100%** di collegamenti generati;
+* comuni verso Linked ISPRA: **7.893/7.896 = 99,9620%** di collegamenti generati.
 
-The limiting factor is not the absence of RDF or external links; it is the absence of a real Web publication layer for the project's own URI space.
+I tre comuni senza `owl:sameAs` sono mantenuti come non-match temporalmente motivati invece di forzare collegamenti semanticamente scorretti.
+
+Le URI Linked ISPRA sono costruite deterministicamente dal codice ISTAT secondo la URI policy documentata. Lo schema delle URI è stato verificato su risorse esterne reali, ma la pipeline offline non dereferenzia individualmente tutti i 7.893 target; la percentuale va quindi interpretata come copertura di generazione dei collegamenti, non come tasso di risposta HTTP verificato singolarmente.
+
+## Passaggi necessari per una pubblicazione 5-star operativa
+
+Per completare una vera pubblicazione Linked Open Data sul Web occorrerebbe:
+
+1. utilizzare un namespace HTTP(S) reale, stabile e controllato;
+2. pubblicare URI dereferenziabili per le risorse locali;
+3. esporre sul Web dataset, RDF e metadati tramite URL funzionanti;
+4. aggiornare `dcat:accessURL` e `dcat:downloadURL` con URL HTTP(S) pubblici;
+5. mantenere nel tempo i collegamenti alle risorse esterne.
+
+Un endpoint SPARQL pubblico sarebbe utile, ma non è di per sé un requisito necessario del modello 5-star.
+
+## Valutazione finale
+
+Il progetto implementa tecnicamente dati strutturati in formato aperto, modellazione RDF, URI e interlinking verso Linked Open Data esterni.
+
+Non viene tuttavia dichiarato come pubblicazione 5-star operativa, perché il namespace locale `.invalid` non è pubblico né dereferenziabile.

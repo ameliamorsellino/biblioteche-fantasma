@@ -14,7 +14,7 @@
     rdfs:comment "Vocabolario locale minimo per modellare osservazioni di stato, demografia, patrimonio e confluenze, riusando Cultural-ON per biblioteche, sedi, indirizzi, aree amministrative e collezioni."@it ;
     dct:source <http://dati.beniculturali.it/cis/> ;
     dct:source <https://dati.cultura.gov.it/cultural-ON/ITA.html> ;
-    owl:versionInfo "0.2.0 — checkpoint 2" .
+    owl:versionInfo "1.0.0" .
 
 # Classes created only where Cultural-ON does not provide a semantically adequate term.
 

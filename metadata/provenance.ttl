@@ -1,4 +1,4 @@
-@prefix bf: <urn:biblioteche-fantasma:checkpoint1:> .
+@prefix bf: <urn:biblioteche-fantasma:provenance:> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -11,4 +11,4 @@ bf:harmonization a prov:Activity ; prov:used bf:src-istat-2019, bf:src-istat-202
 bf:integration a prov:Activity ; prov:used bf:cleaned-iccu, bf:harmonized-population ; dct:description "Integrazione ICCU→ISTAT via codice comune"@it .
 bf:cleaned-iccu a prov:Entity ; prov:wasGeneratedBy bf:cleaning ; prov:wasDerivedFrom bf:src-iccu .
 bf:harmonized-population a prov:Entity ; prov:wasGeneratedBy bf:harmonization ; prov:wasDerivedFrom bf:src-istat-2019, bf:src-istat-2025 .
-bf:derived-dataset a prov:Entity ; prov:wasGeneratedBy bf:integration ; prov:wasDerivedFrom bf:src-iccu, bf:src-istat-2019, bf:src-istat-2025 ; dct:issued "2026-09-08"^^xsd:date .
+bf:derived-dataset a prov:Entity ; prov:wasGeneratedBy bf:integration ; prov:wasDerivedFrom bf:src-iccu, bf:src-istat-2019, bf:src-istat-2025 ; dct:issued "2026-09-11"^^xsd:date .

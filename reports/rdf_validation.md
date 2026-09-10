@@ -56,4 +56,3 @@
 ## Validation scope
 
 The validator checks parsing, URI syntax, selected XML Schema lexical forms, local ontology term declarations, link-subject existence, dangling project resources and exact duplicate serializations. SHACL constraints are reported separately in `reports/shacl_validation.md`.
-\n\n## SHACL execution status\n\nSHACL is documented separately from structural RDF parsing:\n\n- `pyshacl` was **not available** in the runtime;\n- `shacl/shapes.ttl` was created and parsed successfully;\n- the actual shapes were executed with `scripts/validate_shacl.py`, the project-local validator for the SHACL Core subset used by this project;\n- **82,519 focus nodes** were checked;\n- **0 constraint violations** were found in the executed subset;\n- this result **does not equal** a complete validation with pySHACL or GraphDB's SHACL engine.\n

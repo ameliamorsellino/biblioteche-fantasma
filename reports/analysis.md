@@ -22,7 +22,7 @@ Analisi primaria: **N=6.659** comuni comparabili con almeno una biblioteca. Pear
 
 ## RQ6 - interlinking
 
-Senza rieseguire i match, il checkpoint 2 registra: biblioteche verso ICCU **19.611/19.611 = 100%** (`rdfs:seeAlso`); comuni verso Linked ISPRA **7.893/7.896 = 99,9620%** (`owl:sameAs`). I tre non-match sono Lirio, Castegnero e Nanto, motivati da cambi amministrativi del 2026.
+La pipeline genera collegamenti per **19.611/19.611 biblioteche = 100%** verso ICCU tramite `rdfs:seeAlso` e per **7.893/7.896 comuni = 99,9620%** verso Linked ISPRA tramite `owl:sameAs`. I collegamenti sono costruiti deterministicamente a partire da identificatori ufficiali, senza fuzzy matching. I tre casi senza collegamento sono Lirio, Castegnero e Nanto, mantenuti intenzionalmente non collegati a causa delle variazioni amministrative intervenute nel 2026. La pipeline non dereferenzia individualmente tutte le URI esterne durante il rebuild offline, quindi la percentuale esprime la copertura di generazione dei collegamenti secondo la URI policy documentata.
 
 ## RQ7 - confluenze
 

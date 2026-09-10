@@ -1,0 +1,414 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nyt/global//global/global/global}
+    \entry{five_star}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=d469e0df304c98f67b55d087ea6187a1}{%
+           family={Berners-Lee},
+           familyi={B\bibinithyphendelim L\bibinitperiod},
+           given={Tim},
+           giveni={T\bibinitperiod}}}%
+      }
+      \strng{namehash}{d469e0df304c98f67b55d087ea6187a1}
+      \strng{fullhash}{d469e0df304c98f67b55d087ea6187a1}
+      \strng{fullhashraw}{d469e0df304c98f67b55d087ea6187a1}
+      \strng{bibnamehash}{d469e0df304c98f67b55d087ea6187a1}
+      \strng{authorbibnamehash}{d469e0df304c98f67b55d087ea6187a1}
+      \strng{authornamehash}{d469e0df304c98f67b55d087ea6187a1}
+      \strng{authorfullhash}{d469e0df304c98f67b55d087ea6187a1}
+      \strng{authorfullhashraw}{d469e0df304c98f67b55d087ea6187a1}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{5 Star Open Data}
+      \field{year}{2010}
+      \verb{urlraw}
+      \verb https://5stardata.info/
+      \endverb
+      \verb{url}
+      \verb https://5stardata.info/
+      \endverb
+    \endentry
+    \entry{dcatap}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=cf94babf06452a822cd640e0263c30f0}{%
+           family={{European Commission - SEMIC}},
+           familyi={E\bibinitperiod}}}%
+      }
+      \strng{namehash}{cf94babf06452a822cd640e0263c30f0}
+      \strng{fullhash}{cf94babf06452a822cd640e0263c30f0}
+      \strng{fullhashraw}{cf94babf06452a822cd640e0263c30f0}
+      \strng{bibnamehash}{cf94babf06452a822cd640e0263c30f0}
+      \strng{authorbibnamehash}{cf94babf06452a822cd640e0263c30f0}
+      \strng{authornamehash}{cf94babf06452a822cd640e0263c30f0}
+      \strng{authorfullhash}{cf94babf06452a822cd640e0263c30f0}
+      \strng{authorfullhashraw}{cf94babf06452a822cd640e0263c30f0}
+      \field{sortinit}{E}
+      \field{sortinithash}{8da8a182d344d5b9047633dfc0cc9131}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{DCAT Application Profile for Data Portals in Europe (DCAT-AP)}
+      \field{year}{2026}
+      \verb{urlraw}
+      \verb https://semiceu.github.io/DCAT-AP/
+      \endverb
+      \verb{url}
+      \verb https://semiceu.github.io/DCAT-AP/
+      \endverb
+    \endentry
+    \entry{heathbizer}{book}{}{}
+      \name{author}{2}{}{%
+        {{hash=c040f12898283360a9825ed80f52e777}{%
+           family={Heath},
+           familyi={H\bibinitperiod},
+           given={Tom},
+           giveni={T\bibinitperiod}}}%
+        {{hash=c0ab52e226557a243a4a5277aec8acdc}{%
+           family={Bizer},
+           familyi={B\bibinitperiod},
+           given={Christian},
+           giveni={C\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Morgan \& Claypool}%
+      }
+      \strng{namehash}{17ae26f2157cfb8702683fb417996e21}
+      \strng{fullhash}{17ae26f2157cfb8702683fb417996e21}
+      \strng{fullhashraw}{17ae26f2157cfb8702683fb417996e21}
+      \strng{bibnamehash}{17ae26f2157cfb8702683fb417996e21}
+      \strng{authorbibnamehash}{17ae26f2157cfb8702683fb417996e21}
+      \strng{authornamehash}{17ae26f2157cfb8702683fb417996e21}
+      \strng{authorfullhash}{17ae26f2157cfb8702683fb417996e21}
+      \strng{authorfullhashraw}{17ae26f2157cfb8702683fb417996e21}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Linked Data: Evolving the Web into a Global Data Space}
+      \field{year}{2011}
+      \verb{urlraw}
+      \verb http://linkeddatabook.com/editions/1.0/
+      \endverb
+      \verb{url}
+      \verb http://linkeddatabook.com/editions/1.0/
+      \endverb
+    \endentry
+    \entry{iccu_opendata}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=52eeed623d27a93b1fa317d1557ad385}{%
+           family={{ICCU - Istituto Centrale per il Catalogo Unico}},
+           familyi={I\bibinitperiod}}}%
+      }
+      \strng{namehash}{52eeed623d27a93b1fa317d1557ad385}
+      \strng{fullhash}{52eeed623d27a93b1fa317d1557ad385}
+      \strng{fullhashraw}{52eeed623d27a93b1fa317d1557ad385}
+      \strng{bibnamehash}{52eeed623d27a93b1fa317d1557ad385}
+      \strng{authorbibnamehash}{52eeed623d27a93b1fa317d1557ad385}
+      \strng{authornamehash}{52eeed623d27a93b1fa317d1557ad385}
+      \strng{authorfullhash}{52eeed623d27a93b1fa317d1557ad385}
+      \strng{authorfullhashraw}{52eeed623d27a93b1fa317d1557ad385}
+      \field{extraname}{1}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Snapshot utilizzato: 8 settembre 2026}
+      \field{title}{Anagrafe delle Biblioteche Italiane - Open Data}
+      \field{year}{2026}
+      \verb{urlraw}
+      \verb https://anagrafe.iccu.sbn.it/it/open-data/
+      \endverb
+      \verb{url}
+      \verb https://anagrafe.iccu.sbn.it/it/open-data/
+      \endverb
+    \endentry
+    \entry{iccu_format}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=52eeed623d27a93b1fa317d1557ad385}{%
+           family={{ICCU - Istituto Centrale per il Catalogo Unico}},
+           familyi={I\bibinitperiod}}}%
+      }
+      \strng{namehash}{52eeed623d27a93b1fa317d1557ad385}
+      \strng{fullhash}{52eeed623d27a93b1fa317d1557ad385}
+      \strng{fullhashraw}{52eeed623d27a93b1fa317d1557ad385}
+      \strng{bibnamehash}{52eeed623d27a93b1fa317d1557ad385}
+      \strng{authorbibnamehash}{52eeed623d27a93b1fa317d1557ad385}
+      \strng{authornamehash}{52eeed623d27a93b1fa317d1557ad385}
+      \strng{authorfullhash}{52eeed623d27a93b1fa317d1557ad385}
+      \strng{authorfullhashraw}{52eeed623d27a93b1fa317d1557ad385}
+      \field{extraname}{2}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Formato di scambio dell'Anagrafe delle Biblioteche Italiane, versione 1.6}
+      \field{year}{2026}
+      \verb{urlraw}
+      \verb https://anagrafe.iccu.sbn.it/it/informazioni/formato-di-scambio/
+      \endverb
+      \verb{url}
+      \verb https://anagrafe.iccu.sbn.it/it/informazioni/formato-di-scambio/
+      \endverb
+    \endentry
+    \entry{iccu_license}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=52eeed623d27a93b1fa317d1557ad385}{%
+           family={{ICCU - Istituto Centrale per il Catalogo Unico}},
+           familyi={I\bibinitperiod}}}%
+      }
+      \strng{namehash}{52eeed623d27a93b1fa317d1557ad385}
+      \strng{fullhash}{52eeed623d27a93b1fa317d1557ad385}
+      \strng{fullhashraw}{52eeed623d27a93b1fa317d1557ad385}
+      \strng{bibnamehash}{52eeed623d27a93b1fa317d1557ad385}
+      \strng{authorbibnamehash}{52eeed623d27a93b1fa317d1557ad385}
+      \strng{authornamehash}{52eeed623d27a93b1fa317d1557ad385}
+      \strng{authorfullhash}{52eeed623d27a93b1fa317d1557ad385}
+      \strng{authorfullhashraw}{52eeed623d27a93b1fa317d1557ad385}
+      \field{extraname}{3}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Norme di utilizzo dei dati dell'Anagrafe delle Biblioteche Italiane}
+      \field{year}{2026}
+      \verb{urlraw}
+      \verb https://anagrafe.iccu.sbn.it/it/footer/norme-di-utilizzo-dei-dati/
+      \endverb
+      \verb{url}
+      \verb https://anagrafe.iccu.sbn.it/it/footer/norme-di-utilizzo-dei-dati/
+      \endverb
+    \endentry
+    \entry{istat_open}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=c67a423ad799a94629a40ea25cf5bd30}{%
+           family={{Istat - Istituto nazionale di statistica}},
+           familyi={I\bibinitperiod}}}%
+      }
+      \strng{namehash}{c67a423ad799a94629a40ea25cf5bd30}
+      \strng{fullhash}{c67a423ad799a94629a40ea25cf5bd30}
+      \strng{fullhashraw}{c67a423ad799a94629a40ea25cf5bd30}
+      \strng{bibnamehash}{c67a423ad799a94629a40ea25cf5bd30}
+      \strng{authorbibnamehash}{c67a423ad799a94629a40ea25cf5bd30}
+      \strng{authornamehash}{c67a423ad799a94629a40ea25cf5bd30}
+      \strng{authorfullhash}{c67a423ad799a94629a40ea25cf5bd30}
+      \strng{authorfullhashraw}{c67a423ad799a94629a40ea25cf5bd30}
+      \field{extraname}{1}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Open Data e condizioni di riutilizzo}
+      \field{year}{2026}
+      \verb{urlraw}
+      \verb https://www.istat.it/dati/open-data/
+      \endverb
+      \verb{url}
+      \verb https://www.istat.it/dati/open-data/
+      \endverb
+    \endentry
+    \entry{istat_posas}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=c67a423ad799a94629a40ea25cf5bd30}{%
+           family={{Istat - Istituto nazionale di statistica}},
+           familyi={I\bibinitperiod}}}%
+      }
+      \strng{namehash}{c67a423ad799a94629a40ea25cf5bd30}
+      \strng{fullhash}{c67a423ad799a94629a40ea25cf5bd30}
+      \strng{fullhashraw}{c67a423ad799a94629a40ea25cf5bd30}
+      \strng{bibnamehash}{c67a423ad799a94629a40ea25cf5bd30}
+      \strng{authorbibnamehash}{c67a423ad799a94629a40ea25cf5bd30}
+      \strng{authornamehash}{c67a423ad799a94629a40ea25cf5bd30}
+      \strng{authorfullhash}{c67a423ad799a94629a40ea25cf5bd30}
+      \strng{authorfullhashraw}{c67a423ad799a94629a40ea25cf5bd30}
+      \field{extraname}{2}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Popolazione residente per eta, sesso e stato civile al 1 gennaio (POSAS)}
+      \field{year}{2026}
+      \verb{urlraw}
+      \verb https://demo.istat.it/app/?i=POS
+      \endverb
+      \verb{url}
+      \verb https://demo.istat.it/app/?i=POS
+      \endverb
+    \endentry
+    \entry{culturalon}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=0e576dc76594ffef238abd026fd46d74}{%
+           family={{Ministero per i beni e le attivita culturali e CNR-ISTC STLab}},
+           familyi={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{0e576dc76594ffef238abd026fd46d74}
+      \strng{fullhash}{0e576dc76594ffef238abd026fd46d74}
+      \strng{fullhashraw}{0e576dc76594ffef238abd026fd46d74}
+      \strng{bibnamehash}{0e576dc76594ffef238abd026fd46d74}
+      \strng{authorbibnamehash}{0e576dc76594ffef238abd026fd46d74}
+      \strng{authornamehash}{0e576dc76594ffef238abd026fd46d74}
+      \strng{authorfullhash}{0e576dc76594ffef238abd026fd46d74}
+      \strng{authorfullhashraw}{0e576dc76594ffef238abd026fd46d74}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Cultural-ON: Cultural ONtology, versione 2.0}
+      \field{year}{2016}
+      \verb{urlraw}
+      \verb https://dati.beniculturali.it/cultural-ON/ITA.html
+      \endverb
+      \verb{url}
+      \verb https://dati.beniculturali.it/cultural-ON/ITA.html
+      \endverb
+    \endentry
+    \entry{provo}{report}{}{}
+      \name{author}{1}{}{%
+        {{hash=bdea812935506778c291249971f80655}{%
+           family={{World Wide Web Consortium}},
+           familyi={W\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {W3C}%
+      }
+      \strng{namehash}{bdea812935506778c291249971f80655}
+      \strng{fullhash}{bdea812935506778c291249971f80655}
+      \strng{fullhashraw}{bdea812935506778c291249971f80655}
+      \strng{bibnamehash}{bdea812935506778c291249971f80655}
+      \strng{authorbibnamehash}{bdea812935506778c291249971f80655}
+      \strng{authornamehash}{bdea812935506778c291249971f80655}
+      \strng{authorfullhash}{bdea812935506778c291249971f80655}
+      \strng{authorfullhashraw}{bdea812935506778c291249971f80655}
+      \field{extraname}{1}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{PROV-O: The PROV Ontology}
+      \field{type}{techreport}
+      \field{year}{2013}
+      \verb{urlraw}
+      \verb https://www.w3.org/TR/prov-o/
+      \endverb
+      \verb{url}
+      \verb https://www.w3.org/TR/prov-o/
+      \endverb
+    \endentry
+    \entry{rdf11}{report}{}{}
+      \name{author}{1}{}{%
+        {{hash=bdea812935506778c291249971f80655}{%
+           family={{World Wide Web Consortium}},
+           familyi={W\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {W3C}%
+      }
+      \strng{namehash}{bdea812935506778c291249971f80655}
+      \strng{fullhash}{bdea812935506778c291249971f80655}
+      \strng{fullhashraw}{bdea812935506778c291249971f80655}
+      \strng{bibnamehash}{bdea812935506778c291249971f80655}
+      \strng{authorbibnamehash}{bdea812935506778c291249971f80655}
+      \strng{authornamehash}{bdea812935506778c291249971f80655}
+      \strng{authorfullhash}{bdea812935506778c291249971f80655}
+      \strng{authorfullhashraw}{bdea812935506778c291249971f80655}
+      \field{extraname}{2}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{RDF 1.1 Concepts and Abstract Syntax}
+      \field{type}{techreport}
+      \field{year}{2014}
+      \verb{urlraw}
+      \verb https://www.w3.org/TR/rdf11-concepts/
+      \endverb
+      \verb{url}
+      \verb https://www.w3.org/TR/rdf11-concepts/
+      \endverb
+    \endentry
+    \entry{shacl}{report}{}{}
+      \name{author}{1}{}{%
+        {{hash=bdea812935506778c291249971f80655}{%
+           family={{World Wide Web Consortium}},
+           familyi={W\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {W3C}%
+      }
+      \strng{namehash}{bdea812935506778c291249971f80655}
+      \strng{fullhash}{bdea812935506778c291249971f80655}
+      \strng{fullhashraw}{bdea812935506778c291249971f80655}
+      \strng{bibnamehash}{bdea812935506778c291249971f80655}
+      \strng{authorbibnamehash}{bdea812935506778c291249971f80655}
+      \strng{authornamehash}{bdea812935506778c291249971f80655}
+      \strng{authorfullhash}{bdea812935506778c291249971f80655}
+      \strng{authorfullhashraw}{bdea812935506778c291249971f80655}
+      \field{extraname}{3}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Shapes Constraint Language (SHACL)}
+      \field{type}{techreport}
+      \field{year}{2017}
+      \verb{urlraw}
+      \verb https://www.w3.org/TR/shacl/
+      \endverb
+      \verb{url}
+      \verb https://www.w3.org/TR/shacl/
+      \endverb
+    \endentry
+    \entry{dcat3}{report}{}{}
+      \name{author}{1}{}{%
+        {{hash=bdea812935506778c291249971f80655}{%
+           family={{World Wide Web Consortium}},
+           familyi={W\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {W3C}%
+      }
+      \strng{namehash}{bdea812935506778c291249971f80655}
+      \strng{fullhash}{bdea812935506778c291249971f80655}
+      \strng{fullhashraw}{bdea812935506778c291249971f80655}
+      \strng{bibnamehash}{bdea812935506778c291249971f80655}
+      \strng{authorbibnamehash}{bdea812935506778c291249971f80655}
+      \strng{authornamehash}{bdea812935506778c291249971f80655}
+      \strng{authorfullhash}{bdea812935506778c291249971f80655}
+      \strng{authorfullhashraw}{bdea812935506778c291249971f80655}
+      \field{extraname}{4}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Data Catalog Vocabulary (DCAT) - Version 3}
+      \field{type}{techreport}
+      \field{year}{2024}
+      \verb{urlraw}
+      \verb https://www.w3.org/TR/vocab-dcat-3/
+      \endverb
+      \verb{url}
+      \verb https://www.w3.org/TR/vocab-dcat-3/
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

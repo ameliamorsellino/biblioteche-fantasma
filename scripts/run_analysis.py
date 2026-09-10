@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Final quantitative analysis for Biblioteche Fantasma.
 
-Uses only processed/checkpoint artifacts. It does not rebuild RAW data, ontology,
-RDF, or interlinking. RQ6 reads the already-computed interlinking report.
+The analysis uses the processed datasets and the interlinking report generated
+by the reproducible project pipeline.
 """
+
 from __future__ import annotations
 import argparse, json, math
 from pathlib import Path
@@ -58,7 +59,7 @@ def main(root: Path):
     mun = pd.read_csv(d/'analysis_municipality.csv', low_memory=False)
     ilink = pd.read_csv(root/'reports'/'interlinking_report.csv')
 
-    st['include_main'] = boolish(st['include_in_main_analysis'])
+    st.loc[:, 'include_main'] = boolish(st['include_in_main_analysis'])
     libst = lib.merge(st[['isil','normalized_status','analytical_group','include_main']], on='isil', how='left')
     n_registry = len(lib)
     n_libraries = int(num(mun['total_libraries']).sum())
@@ -67,26 +68,44 @@ def main(root: Path):
     # RQ1/RQ2 status and territory
     status = (st.groupby(['normalized_status','analytical_group','include_main'], dropna=False)
               .size().rename('count').reset_index())
-    status['share_registry_percent'] = status['count']/n_registry*100
+    status.loc[:, 'share_registry_percent'] = (
+    status['count'] / n_registry * 100
+)
     status = status.sort_values('count', ascending=False)
     save(status, out/'status_distribution.csv')
 
     region = mun.assign(total_libraries=num(mun.total_libraries), problematic=num(mun.main_problematic_libraries)) \
                 .groupby('region', dropna=False)[['total_libraries','problematic']].sum().reset_index()
-    region['problematic_share'] = np.where(region.total_libraries>0, region.problematic/region.total_libraries, np.nan)
-    region['problematic_share_percent'] = region['problematic_share']*100
-    region['problematic_per_100k_population'] = mun.assign(pop=num(mun.population_2025),prob=num(mun.main_problematic_libraries)).groupby('region').apply(
+    region.loc[:, 'problematic_share'] = np.where(
+        region['total_libraries'] > 0,
+        region['problematic'] / region['total_libraries'],
+        np.nan
+    )
+    region.loc[:, 'problematic_share_percent'] = (
+        region['problematic_share'] * 100
+    )
+    region.loc[:, 'problematic_per_100k_population'] = mun.assign(pop=num(mun.population_2025),prob=num(mun.main_problematic_libraries)).groupby('region').apply(
         lambda g: g['prob'].sum()/g['pop'].sum()*100000 if g['pop'].sum()>0 else np.nan, include_groups=False).values
     region = region.sort_values('problematic_share', ascending=False)
     save(region, out/'region_problematic_summary.csv')
 
     prov = mun.assign(total_libraries=num(mun.total_libraries), problematic=num(mun.main_problematic_libraries)) \
               .groupby(['region','province','province_istat_code'], dropna=False)[['total_libraries','problematic']].sum().reset_index()
-    prov['problematic_share'] = np.where(prov.total_libraries>0, prov.problematic/prov.total_libraries, np.nan)
+    prov.loc[:, 'problematic_share'] = np.where(prov.total_libraries>0, prov.problematic/prov.total_libraries, np.nan)
     save(prov.sort_values(['problematic_share','problematic'], ascending=[False,False]), out/'province_problematic_summary.csv')
 
     top_mun = mun[['istat_code','municipality_name','province','region','population_2025','total_libraries','main_problematic_libraries','problematic_share','problematic_libraries_per_100k']].copy()
-    top_mun['population_2025']=num(top_mun.population_2025); top_mun['total_libraries']=num(top_mun.total_libraries); top_mun['main_problematic_libraries']=num(top_mun.main_problematic_libraries); top_mun['problematic_share']=num(top_mun.problematic_share); top_mun['problematic_libraries_per_100k']=num(top_mun.problematic_libraries_per_100k)
+    top_mun.loc[:, 'population_2025'] = num(top_mun['population_2025'])
+    top_mun.loc[:, 'total_libraries'] = num(top_mun['total_libraries'])
+    top_mun.loc[:, 'main_problematic_libraries'] = num(
+        top_mun['main_problematic_libraries']
+    )
+    top_mun.loc[:, 'problematic_share'] = num(
+        top_mun['problematic_share']
+    )
+    top_mun.loc[:, 'problematic_libraries_per_100k'] = num(
+        top_mun['problematic_libraries_per_100k']
+    )
     save(top_mun.sort_values(['main_problematic_libraries','problematic_share'],ascending=[False,False]).head(100), out/'municipalities_top_problematic_absolute.csv')
 
     # RQ3 types x status: descriptive + association
@@ -108,18 +127,20 @@ def main(root: Path):
     ])
     save(assoc, out/'type_status_association_tests.csv')
     type_main = (ts.groupby('functional_type').agg(total=('isil','size'),problematic=('include_main','sum')).reset_index())
-    type_main['problematic_share']=type_main.problematic/type_main.total
+    type_main.loc[:, 'problematic_share'] = (
+        type_main['problematic'] / type_main['total']
+    )
     save(type_main.sort_values(['problematic_share','total'],ascending=[False,False]), out/'functional_type_problematic_summary.csv')
 
     # RQ4 demography. Municipality unit, at least one library, comparable only.
     dm = mun.copy()
     for c in ['population_change_percent','problematic_share','total_libraries','main_problematic_libraries','population_2025','share_65_plus_2025']:
-        dm[c]=num(dm[c])
+        dm.loc[:,c]=num(dm[c])
     eligible = dm[(dm.population_comparability=='comparable_on_2025_geography') & (dm.total_libraries>0) & dm.population_change_percent.notna() & dm.problematic_share.notna()].copy()
     x=eligible.population_change_percent; y=eligible.problematic_share
     pear=stats.pearsonr(x,y); spear=stats.spearmanr(x,y)
     q1,q3=x.quantile([.25,.75]); iqr=q3-q1; lo=q1-1.5*iqr; hi=q3+1.5*iqr
-    eligible['pop_change_outlier_iqr']=(x<lo)|(x>hi)
+    eligible.loc[:, 'pop_change_outlier_iqr'] = (x < lo) | (x > hi)
     sens=eligible[~eligible.pop_change_outlier_iqr]
     pear_s=stats.pearsonr(sens.population_change_percent,sens.problematic_share); spear_s=stats.spearmanr(sens.population_change_percent,sens.problematic_share)
     corr = pd.DataFrame([
@@ -146,8 +167,20 @@ def main(root: Path):
 
     # RQ5 holdings. Distinguish missing quantity, explicit zero, positive.
     prob_isil=set(st.loc[st.include_main,'isil'])
-    ph=hold[hold.isil.isin(prob_isil)].copy(); ph['quantity_num']=num(ph.quantity)
-    ph['quantity_state']=np.select([ph.quantity_num.isna(), ph.quantity_num.eq(0), ph.quantity_num.gt(0)], ['missing','explicit_zero','positive'], default='other_numeric')
+    ph=hold[hold.isil.isin(prob_isil)].copy(); ph.loc[:, 'quantity_num'] = num(ph['quantity'])
+    ph.loc[:, 'quantity_state'] = np.select(
+        [
+            ph['quantity_num'].isna(),
+            ph['quantity_num'].eq(0),
+            ph['quantity_num'].gt(0)
+        ],
+        [
+            'missing',
+            'explicit_zero',
+            'positive'
+        ],
+        default='other_numeric'
+    )
     h_summary=pd.DataFrame([{
         'problematic_libraries_total':n_problematic,
         'problematic_libraries_with_holding_rows':ph.isil.nunique(),
@@ -175,9 +208,9 @@ def main(root: Path):
     save(sample,out/'problematic_special_collections_documented_sample.csv')
 
     # RQ6: use existing interlinking results only; do NOT rerun matching.
-    save(ilink, out/'interlinking_coverage_checkpoint2.csv')
+    save(ilink, out/'interlinking_coverage.csv')
 
-    # RQ7 merger network from already parsed checkpoint table.
+    # RQ7 merger network from the processed merger table.
     valid=mer[boolish(mer.parse_success)&boolish(mer.target_exists_in_snapshot)&mer.target_isil.notna()].copy()
     G=nx.DiGraph(); G.add_edges_from(valid[['source_isil','target_isil']].itertuples(index=False,name=None))
     comps=sorted(nx.weakly_connected_components(G), key=len, reverse=True)

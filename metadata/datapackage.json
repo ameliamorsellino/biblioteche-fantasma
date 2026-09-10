@@ -1,8 +1,17 @@
 {
   "profile": "data-package",
   "name": "biblioteche-fantasma",
-  "title": "Biblioteche Fantasma - dataset processed",
-  "description": "Dataset tabellari derivati da ICCU e ISTAT POSAS, geografia canonica 2025. Generato a partire dal checkpoint canonico delle Fasi 1-2.",
+  "title": "BIBLIOTECHE FANTASMA",
+  "description": "Dataset puliti e integrati ICCU + ISTAT 2019/2025 per lo studio delle biblioteche italiane non pienamente operative.",
+  "version": "2026-09-11",
+  "keywords": [
+    "biblioteche",
+    "ICCU",
+    "ISTAT",
+    "open data",
+    "Italia",
+    "demografia"
+  ],
   "licenses": [
     {
       "name": "CC-BY-4.0",
@@ -10,661 +19,819 @@
       "title": "Creative Commons Attribution 4.0 International"
     }
   ],
+  "sources": [
+    {
+      "title": "ICCU Anagrafe delle Biblioteche Italiane",
+      "path": "https://anagrafe.iccu.sbn.it/it/open-data/"
+    },
+    {
+      "title": "ISTAT POSAS 2019",
+      "path": "https://demo.istat.it/app/?i=POS"
+    },
+    {
+      "title": "ISTAT POSAS 2025",
+      "path": "https://demo.istat.it/app/?i=POS"
+    }
+  ],
+  "geographic_coverage": "Italia",
+  "temporal_coverage": "2019-01-01; 2025-01-01; ICCU snapshot 2026-09-08T14:11:15",
   "resources": [
     {
       "name": "analysis_municipality",
-      "path": "data/processed/csv/analysis_municipality.csv",
+      "path": "data/processed/analysis_municipality.csv",
       "format": "csv",
       "mediatype": "text/csv",
       "encoding": "utf-8",
-      "bytes": 1791311,
-      "hash": "sha256:ab8135430785048ebb0d79eb55b1a69f4107fbc03c918faa3ee7f374bca9e7ac",
+      "bytes": 1980815,
+      "hash": "sha256:264bb332c87ffae5288aec756eed69472f19d4f81b97eeae9325c9a1c818f0a9",
+      "description": "Dataset analitico comunale integrato ICCU+ISTAT.",
       "schema": {
         "fields": [
           {
             "name": "istat_code",
-            "type": "string"
+            "type": "string",
+            "description": "istat code"
           },
           {
             "name": "municipality_name",
-            "type": "string"
+            "type": "string",
+            "description": "municipality name"
           },
           {
             "name": "province",
-            "type": "string"
+            "type": "string",
+            "description": "province"
           },
           {
             "name": "region",
-            "type": "string"
+            "type": "string",
+            "description": "region"
           },
           {
             "name": "province_istat_code",
-            "type": "string"
+            "type": "string",
+            "description": "province istat code"
           },
           {
             "name": "population_2019",
-            "type": "number"
+            "type": "number",
+            "description": "population 2019"
           },
           {
             "name": "population_2025",
-            "type": "number"
+            "type": "number",
+            "description": "population 2025"
           },
           {
             "name": "population_change_absolute",
-            "type": "number"
+            "type": "number",
+            "description": "population change absolute"
           },
           {
             "name": "population_change_percent",
-            "type": "number"
+            "type": "number",
+            "description": "population change percent"
           },
           {
             "name": "population_0_14_2019",
-            "type": "number"
+            "type": "number",
+            "description": "population 0 14 2019"
           },
           {
             "name": "population_15_64_2019",
-            "type": "number"
+            "type": "number",
+            "description": "population 15 64 2019"
           },
           {
             "name": "population_65_plus_2019",
-            "type": "number"
+            "type": "number",
+            "description": "population 65 plus 2019"
           },
           {
             "name": "share_65_plus_2019",
-            "type": "number"
+            "type": "number",
+            "description": "share 65 plus 2019"
           },
           {
             "name": "population_0_14_2025",
-            "type": "number"
+            "type": "number",
+            "description": "population 0 14 2025"
           },
           {
             "name": "population_15_64_2025",
-            "type": "number"
+            "type": "number",
+            "description": "population 15 64 2025"
           },
           {
             "name": "population_65_plus_2025",
-            "type": "number"
+            "type": "number",
+            "description": "population 65 plus 2025"
           },
           {
             "name": "share_65_plus_2025",
-            "type": "number"
+            "type": "number",
+            "description": "share 65 plus 2025"
           },
           {
             "name": "population_comparability",
-            "type": "string"
+            "type": "string",
+            "description": "population comparability"
           },
           {
             "name": "total_registry_records",
-            "type": "number"
+            "type": "number",
+            "description": "total registry records"
           },
           {
             "name": "total_libraries",
-            "type": "number"
+            "type": "number",
+            "description": "total libraries"
           },
           {
             "name": "ceased_libraries",
-            "type": "number"
+            "type": "number",
+            "description": "ceased libraries"
           },
           {
             "name": "temporarily_closed_libraries",
-            "type": "number"
+            "type": "number",
+            "description": "temporarily closed libraries"
           },
           {
             "name": "inaccessible_libraries",
-            "type": "number"
+            "type": "number",
+            "description": "inaccessible libraries"
           },
           {
             "name": "earthquake_suspended_libraries",
-            "type": "number"
+            "type": "number",
+            "description": "earthquake suspended libraries"
           },
           {
             "name": "partial_reopening_libraries",
-            "type": "number"
+            "type": "number",
+            "description": "partial reopening libraries"
           },
           {
             "name": "merged_libraries",
-            "type": "number"
+            "type": "number",
+            "description": "merged libraries"
           },
           {
             "name": "no_service_point_libraries",
-            "type": "number"
+            "type": "number",
+            "description": "no service point libraries"
           },
           {
             "name": "main_problematic_libraries",
-            "type": "number"
+            "type": "number",
+            "description": "main problematic libraries"
           },
           {
             "name": "not_censused_libraries",
-            "type": "number"
+            "type": "number",
+            "description": "not censused libraries"
           },
           {
             "name": "setup_libraries",
-            "type": "number"
+            "type": "number",
+            "description": "setup libraries"
           },
           {
             "name": "problematic_share",
-            "type": "number"
+            "type": "number",
+            "description": "problematic share"
           },
           {
             "name": "libraries_per_100k",
-            "type": "number"
+            "type": "number",
+            "description": "libraries per 100k"
           },
           {
             "name": "problematic_libraries_per_100k",
-            "type": "number"
+            "type": "number",
+            "description": "problematic libraries per 100k"
           }
         ]
       }
     },
     {
       "name": "library",
-      "path": "data/processed/csv/library.csv",
+      "path": "data/processed/library.csv",
       "format": "csv",
       "mediatype": "text/csv",
       "encoding": "utf-8",
       "bytes": 7728215,
       "hash": "sha256:201472af8b1cd0f74e465177106d5d744662af9e2a0af67a6d1e680bbdc621d9",
+      "description": "Master ICCU pulito a granularità biblioteca.",
       "schema": {
         "fields": [
           {
             "name": "isil",
-            "type": "string"
+            "type": "string",
+            "description": "isil"
           },
           {
             "name": "sbn_code",
-            "type": "string"
+            "type": "string",
+            "description": "sbn code"
           },
           {
             "name": "acnp_code",
-            "type": "string"
+            "type": "string",
+            "description": "acnp code"
           },
           {
             "name": "cei_code",
-            "type": "string"
+            "type": "string",
+            "description": "cei code"
           },
           {
             "name": "cmbs_code",
-            "type": "string"
+            "type": "string",
+            "description": "cmbs code"
           },
           {
             "name": "rism_code",
-            "type": "string"
+            "type": "string",
+            "description": "rism code"
           },
           {
             "name": "census_year",
-            "type": "string"
+            "type": "string",
+            "description": "census year"
           },
           {
             "name": "updated_date",
-            "type": "date"
+            "type": "string",
+            "description": "updated date"
           },
           {
             "name": "name_original",
-            "type": "string"
+            "type": "string",
+            "description": "name original"
           },
           {
             "name": "name_normalized",
-            "type": "string"
+            "type": "string",
+            "description": "name normalized"
           },
           {
             "name": "address_original",
-            "type": "string"
+            "type": "string",
+            "description": "address original"
           },
           {
             "name": "address_normalized",
-            "type": "string"
+            "type": "string",
+            "description": "address normalized"
           },
           {
             "name": "hamlet",
-            "type": "string"
+            "type": "string",
+            "description": "hamlet"
           },
           {
             "name": "postal_code",
-            "type": "string"
+            "type": "string",
+            "description": "postal code"
           },
           {
             "name": "municipality_name",
-            "type": "string"
+            "type": "string",
+            "description": "municipality name"
           },
           {
             "name": "istat_code",
-            "type": "string"
+            "type": "string",
+            "description": "istat code"
           },
           {
             "name": "province_name",
-            "type": "string"
+            "type": "string",
+            "description": "province name"
           },
           {
             "name": "province_istat_code",
-            "type": "string"
+            "type": "string",
+            "description": "province istat code"
           },
           {
             "name": "province_abbrev",
-            "type": "string"
+            "type": "string",
+            "description": "province abbrev"
           },
           {
             "name": "region",
-            "type": "string"
+            "type": "string",
+            "description": "region"
           },
           {
             "name": "latitude_original",
-            "type": "string"
+            "type": "number",
+            "description": "latitude original"
           },
           {
             "name": "longitude_original",
-            "type": "string"
+            "type": "number",
+            "description": "longitude original"
           },
           {
             "name": "restricted_access",
-            "type": "boolean"
+            "type": "string",
+            "description": "restricted access"
           },
           {
             "name": "disabled_access",
-            "type": "string"
+            "type": "string",
+            "description": "disabled access"
           },
           {
             "name": "administrative_type",
-            "type": "string"
+            "type": "string",
+            "description": "administrative type"
           },
           {
             "name": "functional_type",
-            "type": "string"
+            "type": "string",
+            "description": "functional type"
           },
           {
             "name": "owning_entity",
-            "type": "string"
+            "type": "string",
+            "description": "owning entity"
           },
           {
             "name": "source_status",
-            "type": "string"
+            "type": "string",
+            "description": "source status"
           },
           {
             "name": "latitude",
-            "type": "number"
+            "type": "number",
+            "description": "latitude"
           },
           {
             "name": "longitude",
-            "type": "number"
+            "type": "number",
+            "description": "longitude"
           },
           {
             "name": "coordinate_quality_flag",
-            "type": "string"
+            "type": "string",
+            "description": "coordinate quality flag"
           }
         ]
       }
     },
     {
       "name": "library_contact",
-      "path": "data/processed/csv/library_contact.csv",
+      "path": "data/processed/library_contact.csv",
       "format": "csv",
       "mediatype": "text/csv",
       "encoding": "utf-8",
       "bytes": 3829921,
       "hash": "sha256:dbebd0779d4b77926be8adf384356b763a76829ccd27d98b95a916d050dab86a",
+      "description": "Contatti ICCU, relazione 1:N.",
       "schema": {
         "fields": [
           {
             "name": "isil",
-            "type": "string"
+            "type": "string",
+            "description": "isil"
           },
           {
             "name": "contact_index",
-            "type": "string"
+            "type": "number",
+            "description": "contact index"
           },
           {
             "name": "contact_type",
-            "type": "string"
+            "type": "string",
+            "description": "contact type"
           },
           {
             "name": "contact_value",
-            "type": "string"
+            "type": "string",
+            "description": "contact value"
           },
           {
             "name": "source",
-            "type": "string"
+            "type": "string",
+            "description": "source"
           }
         ]
       }
     },
     {
       "name": "library_holdings",
-      "path": "data/processed/csv/library_holdings.csv",
+      "path": "data/processed/library_holdings.csv",
       "format": "csv",
       "mediatype": "text/csv",
       "encoding": "utf-8",
       "bytes": 9701287,
       "hash": "sha256:9fb4cb508c628e1488547e31307c98e8f60f05d3efa7291e9aed21a06e362320",
+      "description": "Patrimonio ICCU, relazione 1:N biblioteca-materiale.",
       "schema": {
         "fields": [
           {
             "name": "isil",
-            "type": "string"
+            "type": "string",
+            "description": "isil"
           },
           {
             "name": "material_index",
-            "type": "string"
+            "type": "number",
+            "description": "material index"
           },
           {
             "name": "library_name_source",
-            "type": "string"
+            "type": "string",
+            "description": "library name source"
           },
           {
             "name": "category",
-            "type": "string"
+            "type": "string",
+            "description": "category"
           },
           {
             "name": "material",
-            "type": "string"
+            "type": "string",
+            "description": "material"
           },
           {
             "name": "quantity_original",
-            "type": "string"
+            "type": "number",
+            "description": "quantity original"
           },
           {
             "name": "quantity",
-            "type": "number"
+            "type": "number",
+            "description": "quantity"
           }
         ]
       }
     },
     {
       "name": "library_mergers",
-      "path": "data/processed/csv/library_mergers.csv",
+      "path": "data/processed/library_mergers.csv",
       "format": "csv",
       "mediatype": "text/csv",
       "encoding": "utf-8",
       "bytes": 112447,
       "hash": "sha256:1a34e43067851af150be203a2675fe0a2504b0eb59632651eaf02a6f6f0d2028",
+      "description": "Confluenze organizzative parseate e validate.",
       "schema": {
         "fields": [
           {
             "name": "source_isil",
-            "type": "string"
+            "type": "string",
+            "description": "source isil"
           },
           {
             "name": "target_isil",
-            "type": "string"
+            "type": "string",
+            "description": "target isil"
           },
           {
             "name": "source_status",
-            "type": "string"
+            "type": "string",
+            "description": "source status"
           },
           {
             "name": "parse_success",
-            "type": "boolean"
+            "type": "boolean",
+            "description": "parse success"
           },
           {
             "name": "target_exists_in_snapshot",
-            "type": "boolean"
+            "type": "boolean",
+            "description": "target exists in snapshot"
           },
           {
             "name": "self_loop",
-            "type": "boolean"
+            "type": "boolean",
+            "description": "self loop"
           },
           {
             "name": "in_cycle",
-            "type": "boolean"
+            "type": "boolean",
+            "description": "in cycle"
           }
         ]
       }
     },
     {
       "name": "library_previous_name",
-      "path": "data/processed/csv/library_previous_name.csv",
+      "path": "data/processed/library_previous_name.csv",
       "format": "csv",
       "mediatype": "text/csv",
       "encoding": "utf-8",
       "bytes": 1076942,
       "hash": "sha256:726fcf4cf59248fc70cd3e5fac5af17f5131848a432a32f7055b50641ba2fd6c",
+      "description": "Denominazioni precedenti, relazione 1:N.",
       "schema": {
         "fields": [
           {
             "name": "isil",
-            "type": "string"
+            "type": "string",
+            "description": "isil"
           },
           {
             "name": "previous_name_original",
-            "type": "string"
+            "type": "string",
+            "description": "previous name original"
           },
           {
             "name": "previous_name_normalized",
-            "type": "string"
+            "type": "string",
+            "description": "previous name normalized"
           }
         ]
       }
     },
     {
       "name": "library_status",
-      "path": "data/processed/csv/library_status.csv",
+      "path": "data/processed/library_status.csv",
       "format": "csv",
       "mediatype": "text/csv",
       "encoding": "utf-8",
       "bytes": 3913604,
       "hash": "sha256:f5c61f143f7e6a938129bbb2eaab5e1ee54ab27f6b6ac400831fd656a7678a2e",
+      "description": "Stato ICCU normalizzato per biblioteca.",
       "schema": {
         "fields": [
           {
             "name": "isil",
-            "type": "string"
+            "type": "string",
+            "description": "isil"
           },
           {
             "name": "source_status",
-            "type": "string"
+            "type": "string",
+            "description": "source status"
           },
           {
             "name": "normalized_status",
-            "type": "string"
+            "type": "string",
+            "description": "normalized status"
           },
           {
             "name": "analytical_group",
-            "type": "string"
+            "type": "string",
+            "description": "analytical group"
           },
           {
             "name": "include_in_main_analysis",
-            "type": "boolean"
+            "type": "boolean",
+            "description": "include in main analysis"
           },
           {
             "name": "target_isil",
-            "type": "string"
+            "type": "string",
+            "description": "target isil"
           },
           {
             "name": "rationale",
-            "type": "string"
+            "type": "string",
+            "description": "rationale"
           }
         ]
       }
     },
     {
       "name": "library_type",
-      "path": "data/processed/csv/library_type.csv",
+      "path": "data/processed/library_type.csv",
       "format": "csv",
       "mediatype": "text/csv",
       "encoding": "utf-8",
       "bytes": 1839722,
       "hash": "sha256:91e908d6189d8646ed2ba040725a8e420034e1aa8f88ea86b40c73489de326c9",
+      "description": "Tipologie ICCU per biblioteca sulla copertura disponibile.",
       "schema": {
         "fields": [
           {
             "name": "isil",
-            "type": "string"
+            "type": "string",
+            "description": "isil"
           },
           {
             "name": "library_name_source",
-            "type": "string"
+            "type": "string",
+            "description": "library name source"
           },
           {
             "name": "functional_type",
-            "type": "string"
+            "type": "string",
+            "description": "functional type"
           },
           {
             "name": "owning_entity",
-            "type": "string"
+            "type": "string",
+            "description": "owning entity"
           },
           {
             "name": "administrative_type",
-            "type": "string"
+            "type": "string",
+            "description": "administrative type"
           }
         ]
       }
     },
     {
       "name": "municipality_population",
-      "path": "data/processed/csv/municipality_population.csv",
+      "path": "data/processed/municipality_population.csv",
       "format": "csv",
       "mediatype": "text/csv",
       "encoding": "utf-8",
       "bytes": 1215200,
       "hash": "sha256:eb37a0011f6343756ef81d145d9418d25460f068f24d8efa1145be60203c077d",
+      "description": "Popolazione comunale armonizzata 2019/2025 sulla geografia 2025.",
       "schema": {
         "fields": [
           {
             "name": "istat_code",
-            "type": "string"
+            "type": "string",
+            "description": "istat code"
           },
           {
             "name": "municipality_name",
-            "type": "string"
+            "type": "string",
+            "description": "municipality name"
           },
           {
             "name": "population_2025",
-            "type": "number"
+            "type": "number",
+            "description": "population 2025"
           },
           {
             "name": "population_0_14_2025",
-            "type": "number"
+            "type": "number",
+            "description": "population 0 14 2025"
           },
           {
             "name": "population_15_64_2025",
-            "type": "number"
+            "type": "number",
+            "description": "population 15 64 2025"
           },
           {
             "name": "population_65_plus_2025",
-            "type": "number"
+            "type": "number",
+            "description": "population 65 plus 2025"
           },
           {
             "name": "population_2019",
-            "type": "number"
+            "type": "number",
+            "description": "population 2019"
           },
           {
             "name": "population_0_14_2019",
-            "type": "number"
+            "type": "number",
+            "description": "population 0 14 2019"
           },
           {
             "name": "population_15_64_2019",
-            "type": "number"
+            "type": "number",
+            "description": "population 15 64 2019"
           },
           {
             "name": "population_65_plus_2019",
-            "type": "number"
+            "type": "number",
+            "description": "population 65 plus 2019"
           },
           {
             "name": "population_change_absolute",
-            "type": "number"
+            "type": "number",
+            "description": "population change absolute"
           },
           {
             "name": "population_change_percent",
-            "type": "number"
+            "type": "number",
+            "description": "population change percent"
           },
           {
             "name": "share_65_plus_2019",
-            "type": "number"
+            "type": "number",
+            "description": "share 65 plus 2019"
           },
           {
             "name": "share_65_plus_2025",
-            "type": "number"
+            "type": "number",
+            "description": "share 65 plus 2025"
           },
           {
             "name": "population_comparability",
-            "type": "string"
+            "type": "string",
+            "description": "population comparability"
           }
         ]
       }
     },
     {
       "name": "special_collection",
-      "path": "data/processed/csv/special_collection.csv",
+      "path": "data/processed/special_collection.csv",
       "format": "csv",
       "mediatype": "text/csv",
       "encoding": "utf-8",
       "bytes": 2044818,
       "hash": "sha256:d84c7fec5c3d99c41ef7ceccb05aa2327188c19e3b30d967366b280d18366dcc",
+      "description": "Fondi speciali ICCU, relazione 1:N.",
       "schema": {
         "fields": [
           {
             "name": "isil",
-            "type": "string"
+            "type": "string",
+            "description": "isil"
           },
           {
             "name": "collection_index",
-            "type": "string"
+            "type": "number",
+            "description": "collection index"
           },
           {
             "name": "library_name_source",
-            "type": "string"
+            "type": "string",
+            "description": "library name source"
           },
           {
             "name": "codice",
-            "type": "string"
+            "type": "string",
+            "description": "codice"
           },
           {
             "name": "denominazione",
-            "type": "string"
+            "type": "string",
+            "description": "denominazione"
           },
           {
             "name": "fondo_depositato",
-            "type": "string"
+            "type": "string",
+            "description": "fondo depositato"
           },
           {
             "name": "catalogazione_inventario",
-            "type": "string"
+            "type": "string",
+            "description": "catalogazione inventario"
           },
           {
             "name": "tipologia_fondo",
-            "type": "string"
+            "type": "string",
+            "description": "tipologia fondo"
           },
           {
             "name": "dewey",
-            "type": "string"
+            "type": "string",
+            "description": "dewey"
           },
           {
             "name": "descrizione",
-            "type": "string"
+            "type": "string",
+            "description": "descrizione"
           },
           {
             "name": "url_o_citazione_bibliografica",
-            "type": "string"
+            "type": "string",
+            "description": "url o citazione bibliografica"
           },
           {
             "name": "consistenza",
-            "type": "string"
+            "type": "string",
+            "description": "consistenza"
           },
           {
             "name": "datazione",
-            "type": "string"
+            "type": "string",
+            "description": "datazione"
           },
           {
             "name": "modalita_acquisizione",
-            "type": "string"
+            "type": "string",
+            "description": "modalita acquisizione"
           },
           {
             "name": "tipologia_documentaria",
-            "type": "string"
+            "type": "string",
+            "description": "tipologia documentaria"
           },
           {
             "name": "provenienza",
-            "type": "string"
+            "type": "string",
+            "description": "provenienza"
           },
           {
             "name": "soggetto_produttore",
-            "type": "string"
+            "type": "string",
+            "description": "soggetto produttore"
           },
           {
             "name": "bibliografia",
-            "type": "string"
+            "type": "string",
+            "description": "bibliografia"
           },
           {
             "name": "fondi_collegati",
-            "type": "string"
+            "type": "string",
+            "description": "fondi collegati"
           }
         ]
       }

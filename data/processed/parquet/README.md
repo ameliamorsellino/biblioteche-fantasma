@@ -1,10 +1,11 @@
-# Parquet non materializzato nell'ambiente di build
+# Esportazione Parquet opzionale
 
-I CSV processed canonici sono presenti in `../csv/`. La conversione Parquet non è stata materializzata perché nell'ambiente di esecuzione non erano disponibili `pyarrow`, `fastparquet` o DuckDB e l'installazione di `pyarrow` non è stata possibile senza accesso di rete. Non sono stati creati file `.parquet` fittizi.
+I dataset processati canonici sono disponibili in formato CSV direttamente in `data/processed/`.
 
-Per produrli in un ambiente con `pyarrow`:
+La serializzazione Parquet è opzionale e non è necessaria per eseguire la pipeline principale, le analisi, la generazione RDF o le visualizzazioni.
+
+Per produrre anche le versioni Parquet è necessario installare `pyarrow`:
 
 ```bash
 pip install pyarrow
 python scripts/export_parquet.py --root .
-```

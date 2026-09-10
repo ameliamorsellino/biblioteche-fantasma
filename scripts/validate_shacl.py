@@ -1,95 +1,192 @@
 #!/usr/bin/env python3
-"""Execute the SHACL Core subset used by shacl/shapes.ttl.
+"""Validate the project knowledge graph with pySHACL.
 
-pySHACL is not installed in the execution environment. This validator reads the
-actual SHACL shapes and applies the SHACL Core constraints used in this project:
-targetClass, targetSubjectsOf, property/path, minCount, maxCount, datatype,
-pattern, nodeKind IRI, class and minInclusive. It is intentionally not claimed
-as a general SHACL implementation.
+The validator reuses the same persistent PyOxigraph store used by
+scripts/run_sparql.py.  This avoids loading the complete knowledge graph into
+an in-memory RDFLib graph and removes the need for GraphDB.
+
+Validation characteristics:
+- SHACL engine: pySHACL
+- data backend: PyOxigraph
+- shapes: shacl/shapes.ttl
+- inference: none
+- Meta-SHACL: enabled
+- all validation results are collected
 """
 from __future__ import annotations
-import argparse, re
-from collections import defaultdict
-from decimal import Decimal
+
+import argparse
+from importlib.metadata import version
 from pathlib import Path
-from rdflib import Graph, RDF, URIRef, Literal
-from rdflib.namespace import SH, XSD
-from rdflib.plugins.parsers.ntriples import W3CNTriplesParser
 
-class Sink:
-    def __init__(self, relevant_preds):
-        self.relevant = relevant_preds | {RDF.type}
-        self.values = defaultdict(lambda: defaultdict(list))
-        self.types = defaultdict(set)
-        self.subjects_by_pred = defaultdict(set)
-    def triple(self, s,p,o):
-        if p == RDF.type:
-            self.types[s].add(o)
-        if p in self.relevant:
-            self.values[s][p].append(o)
-            self.subjects_by_pred[p].add(s)
+from pyshacl import validate
+from rdflib import RDF
+from rdflib.namespace import SH
 
-def main():
-    ap=argparse.ArgumentParser(); ap.add_argument('--root',type=Path,default=Path(__file__).resolve().parents[1]); args=ap.parse_args()
-    root=args.root
-    sg=Graph(); sg.parse(root/'shacl/shapes.ttl',format='turtle')
-    prop_nodes=set(sg.objects(None, SH.property))
-    paths={pn: sg.value(pn,SH.path) for pn in prop_nodes}
-    relevant={p for p in paths.values() if isinstance(p,URIRef)}
-    sink=Sink(relevant)
-    with (root/'rdf/data.ttl').open('r',encoding='utf-8') as f:
-        W3CNTriplesParser(sink=sink).parse(f)
-    results=[]; checked=0
-    for shape in sg.subjects(RDF.type,SH.NodeShape):
-        targets=set()
-        for tc in sg.objects(shape,SH.targetClass):
-            targets |= {s for s,ts in sink.types.items() if tc in ts}
-        for pred in sg.objects(shape,SH.targetSubjectsOf):
-            targets |= sink.subjects_by_pred.get(pred,set())
-        for focus in targets:
-            checked += 1
-            for pn in sg.objects(shape,SH.property):
-                path=sg.value(pn,SH.path); vals=sink.values[focus].get(path,[])
-                mn=sg.value(pn,SH.minCount); mx=sg.value(pn,SH.maxCount)
-                if mn is not None and len(vals) < int(mn): results.append((shape,focus,path,'minCount',f'{len(vals)} < {int(mn)}'))
-                if mx is not None and len(vals) > int(mx): results.append((shape,focus,path,'maxCount',f'{len(vals)} > {int(mx)}'))
-                dt=sg.value(pn,SH.datatype)
-                if dt is not None:
-                    for v in vals:
-                        if not isinstance(v,Literal) or v.datatype != dt:
-                            results.append((shape,focus,path,'datatype',f'{v.n3()} datatype != {dt}'))
-                pat=sg.value(pn,SH.pattern)
-                if pat is not None:
-                    rx=re.compile(str(pat))
-                    for v in vals:
-                        if not rx.search(str(v)): results.append((shape,focus,path,'pattern',str(v)))
-                nk=sg.value(pn,SH.nodeKind)
-                if nk == SH.IRI:
-                    for v in vals:
-                        if not isinstance(v,URIRef): results.append((shape,focus,path,'nodeKind','not IRI'))
-                cls=sg.value(pn,SH['class'])
-                if cls is not None:
-                    for v in vals:
-                        if cls not in sink.types.get(v,set()): results.append((shape,focus,path,'class',f'{v} lacks rdf:type {cls}'))
-                mi=sg.value(pn,SH.minInclusive)
-                if mi is not None:
-                    threshold=Decimal(str(mi))
-                    for v in vals:
-                        try:
-                            if Decimal(str(v)) < threshold: results.append((shape,focus,path,'minInclusive',str(v)))
-                        except Exception: results.append((shape,focus,path,'minInclusive','non-numeric'))
-    report=root/'reports/shacl_validation.md'
-    with report.open('w',encoding='utf-8') as f:
-        f.write('# SHACL validation\n\n')
-        f.write('## Execution engine\n\n')
-        f.write('`pyshacl` was not available in the runtime. The project therefore executed the actual `shacl/shapes.ttl` with `scripts/validate_shacl.py`, a project-local executor for the SHACL Core features used by these shapes (`targetClass`, `targetSubjectsOf`, `sh:property`, `sh:path`, `minCount`, `maxCount`, `datatype`, `pattern`, `nodeKind`, `class`, `minInclusive`). It is **not** a complete SHACL engine and this limitation must be retained when publishing the project.\n\n')
-        f.write(f'- focus nodes checked: **{checked:,}**\n')
-        f.write(f'- constraint violations: **{len(results):,}**\n')
-        f.write(f'- conforms for the executed subset: **{"YES" if not results else "NO"}**\n\n')
-        if results:
-            f.write('## First violations\n\n')
-            for r in results[:100]: f.write(f'- shape `{r[0]}` focus `{r[1]}` path `{r[2]}` constraint `{r[3]}`: {r[4]}\n')
-    print(f'focus nodes checked: {checked:,}; violations: {len(results):,}; conforms={not results}')
-    if results: raise SystemExit(1)
+from run_sparql import EXPECTED_EXPLICIT_TRIPLES, open_or_build_store
 
-if __name__=='__main__': main()
+
+def main() -> None:
+    parser = argparse.ArgumentParser(
+        description="Validate Biblioteche Fantasma RDF with pySHACL."
+    )
+    parser.add_argument(
+        "--root",
+        type=Path,
+        default=Path(__file__).resolve().parents[1],
+        help="Repository root.",
+    )
+    parser.add_argument(
+        "--rebuild-store",
+        action="store_true",
+        help="Force reconstruction of the local Oxigraph store before validation.",
+    )
+    parser.add_argument(
+        "--debug",
+        action="store_true",
+        help="Enable verbose pySHACL diagnostic output.",
+    )
+    args = parser.parse_args()
+
+    root = args.root.resolve()
+
+    shapes_path = root / "shacl" / "shapes.ttl"
+    if not shapes_path.exists():
+        raise SystemExit(f"SHACL shapes not found: {shapes_path}")
+
+    # Reuse the exact same local persistent RDF store used for SPARQL.
+    store, triple_count, rebuilt = open_or_build_store(
+        root,
+        rebuild=args.rebuild_store,
+    )
+
+    status = "rebuilt" if rebuilt else "reused"
+
+    print(f"pySHACL version: {version('pyshacl')}")
+    print(f"Local Oxigraph store {status}: {triple_count:,} explicit triples")
+    print(f"Shapes graph: {shapes_path.relative_to(root)}")
+    print("Meta-SHACL: enabled")
+    print("Inference: none")
+    print("Running SHACL validation...")
+
+    if triple_count != EXPECTED_EXPLICIT_TRIPLES:
+        print(
+            f"WARNING: expected {EXPECTED_EXPLICIT_TRIPLES:,} explicit triples, "
+            f"found {triple_count:,}."
+        )
+
+    conforms, results_graph, results_text = validate(
+        store,
+        shacl_graph=str(shapes_path),
+        inference="none",
+        abort_on_first=False,
+        allow_infos=False,
+        allow_warnings=False,
+        meta_shacl=True,
+        advanced=False,
+        js=False,
+        debug=args.debug,
+    )
+
+    validation_results = set(
+        results_graph.subjects(RDF.type, SH.ValidationResult)
+    )
+
+    violations = 0
+    warnings = 0
+    infos = 0
+
+    for result in validation_results:
+        severity = results_graph.value(result, SH.resultSeverity)
+
+        if severity == SH.Violation:
+            violations += 1
+        elif severity == SH.Warning:
+            warnings += 1
+        elif severity == SH.Info:
+            infos += 1
+
+    reports_dir = root / "reports"
+    reports_dir.mkdir(parents=True, exist_ok=True)
+
+    ttl_report = reports_dir / "shacl_validation.ttl"
+    text_report = reports_dir / "shacl_validation.txt"
+    md_report = reports_dir / "shacl_validation.md"
+
+    # Machine-readable standard SHACL ValidationReport.
+    results_graph.serialize(
+        destination=str(ttl_report),
+        format="turtle",
+    )
+
+    # Human-readable report produced directly by pySHACL.
+    text_report.write_text(
+        results_text + ("\n" if not results_text.endswith("\n") else ""),
+        encoding="utf-8",
+    )
+
+    md_lines = [
+        "# SHACL validation",
+        "",
+        "## Execution",
+        "",
+        f"- engine: **pySHACL {version('pyshacl')}**",
+        "- RDF backend: **PyOxigraph persistent store**",
+        "- shapes graph: `shacl/shapes.ttl`",
+        f"- explicit triples validated: **{triple_count:,}**",
+        "- inference: **none**",
+        "- Meta-SHACL validation of the shapes graph: **enabled**",
+        "- abort on first violation: **no**",
+        "",
+        "## Result",
+        "",
+        f"- conforms: **{'YES' if conforms else 'NO'}**",
+        f"- validation results: **{len(validation_results):,}**",
+        f"- violations: **{violations:,}**",
+        f"- warnings: **{warnings:,}**",
+        f"- infos: **{infos:,}**",
+        "",
+        "## Generated reports",
+        "",
+        "- `reports/shacl_validation.md` - validation summary",
+        "- `reports/shacl_validation.txt` - pySHACL human-readable report",
+        "- `reports/shacl_validation.ttl` - standard RDF SHACL ValidationReport",
+        "",
+        "## Reproduction",
+        "",
+        "```bash",
+        "python -m pip install -r requirements.txt",
+        "python scripts/validate_shacl.py --root .",
+        "```",
+        "",
+        "The validator reuses the persistent `.cache/oxigraph/` store also used "
+        "by the local SPARQL runner. GraphDB is not required.",
+    ]
+
+    md_report.write_text(
+        "\n".join(md_lines) + "\n",
+        encoding="utf-8",
+    )
+
+    print()
+    print(f"Conforms: {'YES' if conforms else 'NO'}")
+    print(f"Validation results: {len(validation_results):,}")
+    print(f"Violations: {violations:,}")
+    print(f"Warnings: {warnings:,}")
+    print(f"Infos: {infos:,}")
+    print(f"Markdown report: {md_report}")
+    print(f"RDF report: {ttl_report}")
+    print(f"Text report: {text_report}")
+
+    if not conforms:
+        print()
+        print("SHACL validation FAILED.")
+        print("See reports/shacl_validation.txt for details.")
+        raise SystemExit(1)
+
+    print()
+    print("SHACL validation PASS.")
+
+
+if __name__ == "__main__":
+    main()

@@ -1,9 +1,15 @@
-pandas==2.2.3
+pandas==2.3.3
 numpy>=2.0
+lxml==6.1.1
 scipy>=1.13
 networkx>=3.2
 matplotlib>=3.8
 folium>=0.17
-rdflib==7.5.0
+rdflib==7.6.0
+pyoxigraph==0.5.11
+pyshacl==0.40.1
 # Optional, only for Parquet export:
 # pyarrow>=16
+# Optional for interactive execution of the notebooks:
+jupyterlab>=4.2
+ipykernel>=6.29

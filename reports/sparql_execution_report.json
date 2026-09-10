@@ -1,0 +1,74 @@
+{
+  "engine": "PyOxigraph",
+  "reasoning": false,
+  "explicit_triples": 1644602,
+  "store_rebuilt": true,
+  "queries": [
+    {
+      "query": "01_status_distribution.rq",
+      "rows": 11,
+      "seconds": 0.272334,
+      "result": "01_status_distribution.csv"
+    },
+    {
+      "query": "02_status_by_region.rq",
+      "rows": 154,
+      "seconds": 0.407442,
+      "result": "02_status_by_region.csv"
+    },
+    {
+      "query": "03_inaccessible_special_collections.rq",
+      "rows": 0,
+      "seconds": 0.279526,
+      "result": "03_inaccessible_special_collections.csv"
+    },
+    {
+      "query": "04_demography_and_status.rq",
+      "rows": 538,
+      "seconds": 0.911266,
+      "result": "04_demography_and_status.csv"
+    },
+    {
+      "query": "05_library_mergers.rq",
+      "rows": 1412,
+      "seconds": 0.150372,
+      "result": "05_library_mergers.csv"
+    },
+    {
+      "query": "06_external_links.rq",
+      "rows": 27504,
+      "seconds": 0.468906,
+      "result": "06_external_links.csv"
+    },
+    {
+      "query": "07_demographic_filter.rq",
+      "rows": 98,
+      "seconds": 0.443063,
+      "result": "07_demographic_filter.csv"
+    },
+    {
+      "query": "08_region_aggregation.rq",
+      "rows": 20,
+      "seconds": 0.323728,
+      "result": "08_region_aggregation.csv"
+    },
+    {
+      "query": "09_temporary_closed_by_region.rq",
+      "rows": 44,
+      "seconds": 0.407621,
+      "result": "09_temporary_closed_by_region.csv"
+    },
+    {
+      "query": "10_material_type.rq",
+      "rows": 2420,
+      "seconds": 0.112755,
+      "result": "10_material_type.csv"
+    },
+    {
+      "query": "11_library_municipality.rq",
+      "rows": 1,
+      "seconds": 0.000375,
+      "result": "11_library_municipality.csv"
+    }
+  ]
+}

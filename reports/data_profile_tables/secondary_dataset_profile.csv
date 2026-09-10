@@ -1,0 +1,6 @@
+dataset,records,distinct_libraries,master_libraries,coverage_percent,duplicate_relation_rows
+library_type,13715,13715,19611,69.93524042629137,0
+library_holdings,93512,13715,19611,69.93524042629137,79797
+special_collection,9737,2449,19611,12.487889449798582,7288
+library_contact,62804,13630,19611,69.50181020855642,49174
+library_previous_name,9507,6584,19611,33.5729947478456,2923

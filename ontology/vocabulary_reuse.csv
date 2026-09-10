@@ -23,5 +23,5 @@ Holding observation,,CREATE,"Le righe di patrimonio sono osservazioni quantitati
 Merger relation,,CREATE,"bf:mergedInto esprime la confluenza organizzativa tra biblioteche; nessun termine Cultural-ON verificato rappresenta questa relazione."
 Previous name,https://schema.org/alternateName,REUSE,"Schema.org fornisce una proprietà generica adatta quando non è nota la temporalità del nome precedente."
 Library class (Schema.org),https://schema.org/Library,DO_NOT_USE_AS_PRIMARY,"Esiste ma Cultural-ON è più specifico per il dominio culturale italiano e include ISIL, sedi e collezioni."
-Dataset metadata,http://www.w3.org/ns/dcat#Dataset / Distribution,REUSE,"DCAT descrive dataset e serializzazioni; coerente con i metadati del checkpoint 1."
+Dataset metadata,http://www.w3.org/ns/dcat#Dataset / Distribution,REUSE,"DCAT descrive dataset e serializzazioni ed è coerente con i metadati del progetto."
 Provenance,http://www.w3.org/ns/prov#Entity / wasDerivedFrom / generatedAtTime,REUSE,"PROV-O riusato per collegare osservazioni e grafo alle fonti ICCU/ISTAT."

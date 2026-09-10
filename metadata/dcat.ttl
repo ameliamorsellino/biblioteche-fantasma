@@ -1,0 +1,126 @@
+@prefix bf: <https://biblioteche-fantasma.invalid/metadata/> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+bf:project-author a foaf:Person ; foaf:name "Amelia Morsellino" .
+
+bf:dataset a dcat:Dataset ; 
+dct:identifier "biblioteche-fantasma" ;
+    dct:title "Biblioteche Fantasma"@it ;
+    dct:description "Dataset puliti e integrati ICCU + ISTAT 2019/2025 per lo studio delle biblioteche italiane non pienamente operative."@it ;
+    dct:publisher bf:project-author ;
+    dct:creator bf:project-author ;
+    dct:rightsHolder bf:project-author ;
+    dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dct:issued "2026-09-11"^^xsd:date ;
+    dct:modified "2026-09-11"^^xsd:date ;
+    dct:language <http://publications.europa.eu/resource/authority/language/ITA> ;
+    dct:spatial <http://publications.europa.eu/resource/authority/country/ITA> ;
+    dct:temporal [ a dct:PeriodOfTime ; schema:startDate "2019-01-01"^^xsd:date ; schema:endDate "2026-09-08"^^xsd:date ] ;
+    dct:accrualPeriodicity <http://publications.europa.eu/resource/authority/frequency/IRREG> ;
+    dcat:theme <http://publications.europa.eu/resource/authority/data-theme/EDUC> ;
+    dcat:keyword "biblioteche"@it, "ICCU"@it, "ISTAT"@it, "demografia"@it, "open data"@it ;
+    dct:source <https://anagrafe.iccu.sbn.it/it/open-data/>, <https://demo.istat.it/app/?i=POS> ;
+    dcat:distribution bf:dist-analysis-municipality,
+        bf:dist-library,
+        bf:dist-library-contact,
+        bf:dist-library-holdings,
+        bf:dist-library-mergers,
+        bf:dist-library-previous-name,
+        bf:dist-library-status,
+        bf:dist-library-type,
+        bf:dist-municipality-population,
+        bf:dist-special-collection .
+
+bf:dist-analysis-municipality a dcat:Distribution ;
+    dct:title "analysis_municipality"@it ;
+    dct:description "Dataset analitico comunale integrato ICCU+ISTAT."@it ;
+    dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;
+    dcat:mediaType "text/csv" ;
+    dcat:accessURL <file:./data/processed/analysis_municipality.csv> ;
+    dcat:downloadURL <file:./data/processed/analysis_municipality.csv> .
+
+bf:dist-library a dcat:Distribution ;
+    dct:title "library"@it ;
+    dct:description "Master ICCU pulito a granularità biblioteca."@it ;
+    dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;
+    dcat:mediaType "text/csv" ;
+    dcat:accessURL <file:./data/processed/library.csv> ;
+    dcat:downloadURL <file:./data/processed/library.csv> .
+
+bf:dist-library-contact a dcat:Distribution ;
+    dct:title "library_contact"@it ;
+    dct:description "Contatti ICCU, relazione 1:N."@it ;
+    dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;
+    dcat:mediaType "text/csv" ;
+    dcat:accessURL <file:./data/processed/library_contact.csv> ;
+    dcat:downloadURL <file:./data/processed/library_contact.csv> .
+
+bf:dist-library-holdings a dcat:Distribution ;
+    dct:title "library_holdings"@it ;
+    dct:description "Patrimonio ICCU, relazione 1:N biblioteca-materiale."@it ;
+    dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;
+    dcat:mediaType "text/csv" ;
+    dcat:accessURL <file:./data/processed/library_holdings.csv> ;
+    dcat:downloadURL <file:./data/processed/library_holdings.csv> .
+
+bf:dist-library-mergers a dcat:Distribution ;
+    dct:title "library_mergers"@it ;
+    dct:description "Confluenze organizzative parseate e validate."@it ;
+    dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;
+    dcat:mediaType "text/csv" ;
+    dcat:accessURL <file:./data/processed/library_mergers.csv> ;
+    dcat:downloadURL <file:./data/processed/library_mergers.csv> .
+
+bf:dist-library-previous-name a dcat:Distribution ;
+    dct:title "library_previous_name"@it ;
+    dct:description "Denominazioni precedenti, relazione 1:N."@it ;
+    dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;
+    dcat:mediaType "text/csv" ;
+    dcat:accessURL <file:./data/processed/library_previous_name.csv> ;
+    dcat:downloadURL <file:./data/processed/library_previous_name.csv> .
+
+bf:dist-library-status a dcat:Distribution ;
+    dct:title "library_status"@it ;
+    dct:description "Stato ICCU normalizzato per biblioteca."@it ;
+    dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;
+    dcat:mediaType "text/csv" ;
+    dcat:accessURL <file:./data/processed/library_status.csv> ;
+    dcat:downloadURL <file:./data/processed/library_status.csv> .
+
+bf:dist-library-type a dcat:Distribution ;
+    dct:title "library_type"@it ;
+    dct:description "Tipologie ICCU per biblioteca sulla copertura disponibile."@it ;
+    dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;
+    dcat:mediaType "text/csv" ;
+    dcat:accessURL <file:./data/processed/library_type.csv> ;
+    dcat:downloadURL <file:./data/processed/library_type.csv> .
+
+bf:dist-municipality-population a dcat:Distribution ;
+    dct:title "municipality_population"@it ;
+    dct:description "Popolazione comunale armonizzata 2019/2025 sulla geografia 2025."@it ;
+    dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;
+    dcat:mediaType "text/csv" ;
+    dcat:accessURL <file:./data/processed/municipality_population.csv> ;
+    dcat:downloadURL <file:./data/processed/municipality_population.csv> .
+
+bf:dist-special-collection a dcat:Distribution ;
+    dct:title "special_collection"@it ;
+    dct:description "Fondi speciali ICCU, relazione 1:N."@it ;
+    dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;
+    dcat:mediaType "text/csv" ;
+    dcat:accessURL <file:./data/processed/special_collection.csv> ;
+    dcat:downloadURL <file:./data/processed/special_collection.csv> .

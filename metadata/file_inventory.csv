@@ -1,0 +1,22 @@
+source_archive,local_file,format,encoding,bytes,records_or_elements,xml_root,sha256,role
+data/raw/iccu/opendata.zip,territorio.csv,CSV,utf-8-sig,3743695,13715,,58e41cc13ff7d55bc7a5d943f046dc6924683d1779d63465fd02359e1a59b617,ICCU source member
+data/raw/iccu/opendata.zip,contatti.xml,XML,utf-8,6219618,62804,biblioteche,9c556a88f84a9cc0232c5e5b731bd1884e46d3c3511ef8b1aeb410d538ebeec8,ICCU source member
+data/raw/iccu/opendata.zip,patrimonio.xml,XML,utf-8,10194521,93512,biblioteche,c17e1aa170f2a041604eb10fe94408693833c1339aa1ae3cc220fe02497fda8f,ICCU source member
+data/raw/iccu/opendata.zip,fondi-speciali.xml,XML,utf-8,4548826,9737,biblioteche,3bde3ca6bf075d0c1e565a13532193a74d437dcb30a415d25c14b3f0fb03791a,ICCU source member
+data/raw/iccu/opendata.zip,tipologie.csv,CSV,utf-8-sig,1966776,13715,,5e77d33e2ac2a9a6b86990164b3f4eeeab81e16093c8cbcc27e220827d9a4de1,ICCU source member
+data/raw/iccu/opendata.zip,biblioteche.json,JSON,utf-8,32178351,19611,,389c1fe10217f5341e49e6f84fa20b6ff933a014a59b29bb42c0aab0c3c4529d,ICCU source member
+data/raw/istat/POSAS_2019_it_Tutti_i_file.zip,POSAS_2019_it_Comuni.csv,CSV,utf-8-sig,47081887,811308,,94cc3a4db636bb62dfcd8816cc2a526809d4c8347a8937ce550bd4359477aaf0,ISTAT POSAS 2019 aggregate source member
+data/raw/istat/POSAS_2019_it_Tutti_i_file.zip,POSAS_2019_it_Province.csv,CSV,utf-8-sig,806816,10914,,9a5187dd95cde3ffdfdaa2b9c69ab60c791b7ac7112629c7f46327a9e86ed7b9,ISTAT POSAS 2019 aggregate source member
+data/raw/istat/POSAS_2019_it_Tutti_i_file.zip,POSAS_2019_it_Regioni.csv,CSV,utf-8-sig,167056,2040,,c27589d27d4be752d6563cd15b4271284766a30980dd1278d59c5f7396c0329b,ISTAT POSAS 2019 aggregate source member
+data/raw/istat/POSAS_2019_it_Tutti_i_file.zip,POSAS_2019_it_Ripartizioni.csv,CSV,utf-8-sig,43475,510,,71909b1e291a743aaab9799c6e30e2a19ae518ce233ac378a45575537a29a6d2,ISTAT POSAS 2019 aggregate source member
+data/raw/istat/POSAS_2019_it_Tutti_i_file.zip,[archive total members],ZIP,binary,17403426,111,,b5cf8df245fbf82fefbf2ac3b74f43cfe5c89e45df19cea172ae7233fd00d7d3,ISTAT POSAS 2019 archive inventory
+data/raw/istat/POSAS_2025_it_Tutti_i_file.zip,POSAS_2025_it_Comuni.csv,CSV,utf-8-sig,46797475,805392,,faec2a0019e831454a05564adcbcc90a653ee9674c37970545db9e0afbd6953f,ISTAT POSAS 2025 aggregate source member
+data/raw/istat/POSAS_2025_it_Tutti_i_file.zip,POSAS_2025_it_Province.csv,CSV,utf-8-sig,808817,10914,,1451352fda2ff2ffdff6aadf8a0000ae090ddc736b3e9c50ad2368c11f8b03f1,ISTAT POSAS 2025 aggregate source member
+data/raw/istat/POSAS_2025_it_Tutti_i_file.zip,POSAS_2025_it_Regioni.csv,CSV,utf-8-sig,167949,2040,,ef70a2c7f5fd6ae244e39ad8346d4711006d06583dd22612ff0f092f1fa7ad14,ISTAT POSAS 2025 aggregate source member
+data/raw/istat/POSAS_2025_it_Tutti_i_file.zip,POSAS_2025_it_Ripartizioni.csv,CSV,utf-8-sig,43870,510,,7e327a41d2bc84d3838aa78e40f63637d50fe314830738c39444466f738388db,ISTAT POSAS 2025 aggregate source member
+data/raw/istat/POSAS_2025_it_Tutti_i_file.zip,[archive total members],ZIP,binary,17388543,111,,4008c4ead71b00af99ea2fa39fde79bf49e2be0a8cba204bc8b1eb68640a3b9b,ISTAT POSAS 2025 archive inventory
+,data/external/cultural-ON.owl,OWL/RDFXML,utf-8,308241,,rdf:RDF,b81643ef5438e69fda1ce1c7bc5927d7a2c01491c7c0ddc752f8cb34b0297454,External ontology reused for semantic modelling
+,note-di-rilascio-1.6 (pagina 1).png,PNG,binary,156319,,,c3324ecf7ce4173c7665c044b329f7fec844be593703e7f27bc701d313f6ea9b,ICCU release-note documentation image
+,note-di-rilascio-1.6 (pagina 2).png,PNG,binary,106243,,,f6d0d2089134049cf904447fd7d0547f52f18fcba1b284fda0bac07bb81b4b6a,ICCU release-note documentation image
+,note-di-rilascio-1.6 (pagina 3).png,PNG,binary,144638,,,a92c8ff78b6ae12db0938f4e16bc32819bedfabf7651c612ce2cb205345b44d2,ICCU release-note documentation image
+,note-di-rilascio-1.6 (pagina 4).png,PNG,binary,159434,,,5168bf2a3e84e5300a1dc6e8321c14fc5420518ceacfe9bb96b90b731373ac23,ICCU release-note documentation image

@@ -3,11 +3,11 @@
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<https://biblioteche-fantasma.invalid/resource/dataset/biblioteche-fantasma-phase2> a dcat:Dataset ;
-    dct:description "Knowledge graph derivato dai processed data del checkpoint 1: biblioteche ICCU, stati osservati, patrimonio, fondi speciali e demografia comunale ISTAT 2019/2025."@it ;
+<https://biblioteche-fantasma.invalid/resource/dataset/biblioteche-fantasma> a dcat:Dataset ;
+    dct:description "Knowledge graph derivato dai dataset processati ICCU e ISTAT: biblioteche, stati osservati, patrimonio, fondi speciali e demografia comunale 2019/2025."@it ;
     dct:license <https://creativecommons.org/licenses/by/4.0/> ;
-    dct:modified "2026-09-08"^^xsd:date ;
-    dct:title "Biblioteche Fantasma — knowledge graph"@it ;
+    dct:modified "2026-09-10"^^xsd:date ;
+    dct:title "Biblioteche Fantasma - knowledge graph"@it ;
     dcat:distribution <https://biblioteche-fantasma.invalid/resource/distribution/data.ttl>,
         <https://biblioteche-fantasma.invalid/resource/distribution/links.ttl>,
         <https://biblioteche-fantasma.invalid/resource/distribution/metadata.ttl> ;

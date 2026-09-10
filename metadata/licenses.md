@@ -1,4 +1,4 @@
-# Licenze e compatibilità — Checkpoint 1
+# Licenze e compatibilità
 
 Verifica effettuata il 2026-09-08.
 
@@ -31,4 +31,4 @@ Verifica effettuata il 2026-09-08.
 - Share-alike: nessuno.
 
 ## Dataset tabellare derivato
-La pipeline integra valori ICCU in CC0 con dati demografici Istat in CC BY 4.0. Per il **dataset tabellare derivato** la scelta documentata è **CC BY 4.0**, con attribuzione a Istat e citazione di ICCU come fonte. Questa scelta non relicenzia automaticamente la documentazione editoriale ICCU né l’ontologia Cultural-ON inclusa separatamente nel checkpoint.
+La pipeline integra valori ICCU in CC0 con dati demografici Istat in CC BY 4.0. Per il **dataset tabellare derivato** la scelta documentata è **CC BY 4.0**, con attribuzione a Istat e citazione di ICCU come fonte. Questa scelta non relicenzia automaticamente la documentazione editoriale ICCU né l’ontologia Cultural-ON inclusa separatamente nel repository.

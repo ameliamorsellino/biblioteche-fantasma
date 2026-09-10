@@ -1,4 +1,4 @@
-# Data Quality — Checkpoint 1
+# Data Quality
 
 ## Completeness
 - ISIL: 100%.

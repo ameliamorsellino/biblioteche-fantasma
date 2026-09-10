@@ -1,3 +1,15 @@
-# Notebook status
+# Notebook
 
-Il checkpoint 2 fornito non includeva i notebook 01-06 della Fase 1 e non sono stati ricostruiti artificialmente nella Fase 3. I notebook 07 e 08 sono wrapper riproducibili degli script finali `run_analysis.py` e `run_visualizations.py`. Le procedure delle Fasi 1-2 sono documentate in `HANDOFF_1.md`, `HANDOFF_2.md` e negli script/artefatti presenti.
+I notebook documentano le principali fasi della pipeline di Open Data Management.
+
+1. `01_inventory_and_profiling.ipynb` - inventory, manifest e profiling.
+2. `02_iccu_cleaning.ipynb` - cleaning ICCU e normalizzazione degli stati.
+3. `03_iccu_integration.ipynb` - integrazione delle relazioni ICCU.
+4. `04_istat_processing.ipynb` - elaborazione POSAS 2019/2025.
+5. `05_municipality_harmonization.ipynb` - armonizzazione amministrativa.
+6. `06_enrichment.ipynb` - integrazione ICCU–ISTAT.
+7. `07_analysis.ipynb` - analisi quantitativa.
+8. `08_visualization.ipynb` - visualizzazioni.
+
+La pipeline completa può essere rigenerata dagli archivi RAW presenti in
+`data/raw/` tramite gli script della directory `scripts/`.

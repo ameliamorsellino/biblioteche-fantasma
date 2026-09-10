@@ -29,12 +29,12 @@
 \newcommand{\pct}[1]{\num[round-mode=places,round-precision=2]{#1}\%}
 \title{\textbf{BIBLIOTECHE FANTASMA}\\[0.3em]\large Analisi, integrazione e modellazione semantica delle biblioteche italiane non pienamente operative}
 \author{Progetto universitario di Open Data Management}
-\date{Anno accademico 2025/2026 -- versione finale 8 settembre 2026}
+\date{Anno accademico 2025/2026 -- versione finale 10 settembre 2026}
 
 \begin{document}
 \maketitle
 \begin{abstract}
-Il progetto sviluppa una pipeline completa di Open Data Management a partire da dati reali dell'Anagrafe delle Biblioteche Italiane (ICCU) e della popolazione residente ISTAT POSAS 2019/2025. Le prime due fasi hanno prodotto dati puliti e integrati, metadati, un'ontologia che riusa Cultural-ON, RDF, SHACL, interlinking e query SPARQL. La terza fase, oggetto principale di questa relazione, realizza l'analisi statistica, la data visualization, l'interpretazione delle Research Questions e la chiusura riproducibile del repository. Il master ICCU contiene 19.611 record; il perimetro analitico delle biblioteche problematiche comprende 2.497 casi su 18.956 biblioteche, pari al 13,17\%. La relazione tra variazione demografica comunale 2019--2025 e quota di biblioteche problematiche è debole (Pearson $r=-0{,}106$, Spearman $\rho=-0{,}067$, $N=6.659$). La rete delle confluenze comprende 1.412 archi validati. L'interlinking raggiunge il 100\% verso ICCU per le biblioteche e il 99,9620\% verso Linked ISPRA per i comuni. I risultati vengono interpretati in modo conservativo: i missing non sono trattati come zeri, la correlazione non è causalità e ``Biblioteche Fantasma'' è un'etichetta narrativa, non una categoria ufficiale ICCU.
+Il progetto sviluppa una pipeline completa di Open Data Management a partire da dati reali dell'Anagrafe delle Biblioteche Italiane (ICCU) e della popolazione residente ISTAT POSAS 2019/2025. La pipeline comprende selezione e verifica delle fonti, cleaning, armonizzazione territoriale, integrazione, metadati, modellazione ontologica con riuso di Cultural-ON, generazione RDF, validazione SHACL, interlinking, interrogazione SPARQL, analisi statistica e data visualization. Il master ICCU contiene 19.611 record; il perimetro analitico delle biblioteche problematiche comprende 2.497 casi su 18.956 biblioteche, pari al 13,17\%. La relazione tra variazione demografica comunale 2019--2025 e quota di biblioteche problematiche è debole (Pearson $r=-0{,}106$, Spearman $\rho=-0{,}067$, $N=6.659$). La rete delle confluenze comprende 1.412 archi validati. La pipeline genera collegamenti verso ICCU per 19.611 biblioteche e verso Linked ISPRA per 7.893 dei 7.896 comuni della geografia analitica. I risultati vengono interpretati in modo conservativo: i missing non sono trattati come zeri, la correlazione non è causalità, la copertura dei collegamenti esterni è distinta dalla loro dereferenziazione individuale e ``Biblioteche Fantasma'' è un'etichetta narrativa, non una categoria ufficiale ICCU.
 \end{abstract}
 \tableofcontents
 \clearpage
@@ -64,14 +64,14 @@ Gli obiettivi sono: (i) documentare una pipeline riproducibile di selezione, cle
 \end{enumerate}
 
 \subsection{Workflow}
-Il workflow complessivo segue la sequenza: selezione e verifica giuridica; profiling; cleaning; integrazione ICCU; elaborazione POSAS; armonizzazione amministrativa; dataset 3-star; metadati; ontologia; URI policy; RDF; SHACL; interlinking; SPARQL; analisi quantitativa; visualizzazione; interpretazione e riproducibilità. La Fase 3 non ricostruisce i RAW e non rigenera ontologia/RDF/interlinking: usa il checkpoint 2 canonico e ricalcola soltanto le analisi dai processed data.
+Il workflow complessivo segue la sequenza: selezione e verifica giuridica delle fonti; profiling; cleaning; integrazione ICCU; elaborazione POSAS; armonizzazione amministrativa; produzione dei dataset strutturati; metadati; ontologia; URI policy; RDF; SHACL; interlinking; SPARQL; analisi quantitativa; visualizzazione; interpretazione e verifica della riproducibilità. La pipeline è implementata mediante script eseguibili a partire dagli archivi RAW conservati nel repository.
 
 \section{Selezione dei dataset}
 \subsection{ICCU}
 La fonte primaria è l'Anagrafe delle Biblioteche Italiane dell'ICCU \cite{iccu_opendata}. Lo snapshot usato dal progetto è datato 8 settembre 2026 alle 14:11:15 e contiene 19.611 record nel master. Gli ISIL sono completi e unici. Il pacchetto originale comprendeva dati di territorio, tipologie, patrimonio, fondi speciali e contatti; il formato di scambio è documentato da ICCU \cite{iccu_format}.
 
 \subsection{ISTAT 2019}
-POSAS 2019 fornisce la popolazione residente al 1 gennaio 2019 articolata per età, sesso e stato civile \cite{istat_posas}. Nella Fase 1 sono stati verificati 7.954 comuni. Il valore di età 999 è stato usato come totale solo dopo un controllo empirico di coerenza con la somma delle età 0--100.
+POSAS 2019 fornisce la popolazione residente al 1 gennaio 2019 articolata per età, sesso e stato civile \cite{istat_posas}. Il dataset utilizzato comprende 7.954 comuni. Il valore di età 999 è stato usato come totale solo dopo un controllo empirico di coerenza con la somma delle età 0--100.
 
 \subsection{ISTAT 2025}
 POSAS 2025 è la geografia canonica dell'analisi e contiene 7.896 comuni. Le popolazioni 2025 permettono inoltre di calcolare indicatori per 100.000 abitanti e le quote 65+.
@@ -80,7 +80,7 @@ POSAS 2025 è la geografia canonica dell'analisi e contiene 7.896 comuni. Le pop
 Cultural-ON, versione 2.0, è riutilizzato per classi e proprietà del dominio culturale \cite{culturalon}. Sono stati verificati direttamente nel file locale, tra gli altri, \texttt{cis:Library}, \texttt{cis:Site}, \texttt{cis:Collection}, \texttt{cis:hasSite}, \texttt{cis:hasCollection} e \texttt{cis:hasISTATCode}.
 
 \subsection{Verifica delle fonti}
-Le fonti sono registrate in \texttt{metadata/source\_manifest.csv}, con URL ufficiali, date, hash e ruolo. Il repository finale non include i RAW: questa scelta deriva dal checkpoint 2, che conserva gli hash delle sorgenti ma non gli archivi originali. La Fase 3 non ha riscaricato dati per evitare di mescolare snapshot differenti.
+Le fonti sono registrate in \texttt{metadata/source\_manifest.csv}, con URL ufficiali, data di acquisizione, licenza, ruolo nel progetto, percorso locale e hash SHA-256. Gli archivi RAW originali ICCU e ISTAT sono conservati in \texttt{data/raw/}, permettendo di verificare l'integrità delle sorgenti e di riprodurre la pipeline senza riscaricare snapshot differenti.
 
 \subsection{Licenze}
 Gli Open Data ICCU sono dichiarati CC0 1.0 \cite{iccu_license}; i dati ISTAT sono riutilizzati secondo CC BY 4.0 \cite{istat_open}; Cultural-ON è CC BY 3.0 IT. Il dataset tabellare derivato è distribuito CC BY 4.0, con attribuzione a ISTAT e citazione ICCU.
@@ -90,7 +90,7 @@ CC0 e CC BY sono compatibili con una distribuzione derivata CC BY 4.0, fermo res
 
 \section{Analisi preliminare}
 \subsection{Data inventory}
-La Tabella~\ref{tab:inventory} riassume le principali tabelle processed disponibili nel checkpoint.
+La Tabella~\ref{tab:inventory} riassume le principali tabelle processate prodotte dalla pipeline.
 \begin{table}[H]
 \centering
 \small
@@ -147,7 +147,7 @@ I principali problemi sono la copertura non uniforme dei dataset secondari, coor
 
 \section{Elaborazione}
 \subsection{Cleaning}
-Il cleaning ha conservato le stringhe originali e creato colonne normalizzate; ha trattato (0,0) come coordinata mancante nelle colonne pulite; ha convertito le date in ISO quando possibile; ha preservato gli outlier con flag e non ha effettuato geocoding. Il file \texttt{reports/cleaning\_log.csv} ricostruisce, dal checkpoint, le decisioni di cleaning verificabili.
+Il cleaning ha conservato le stringhe originali e creato colonne normalizzate; ha trattato (0,0) come coordinata mancante nelle colonne pulite; ha convertito le date in ISO quando possibile; ha preservato gli outlier con flag e non ha effettuato geocoding. Il file \texttt{reports/cleaning\_log.csv} documenta le principali decisioni di cleaning e le relative evidenze verificabili.
 
 \subsection{Missing values}
 La regola generale è \emph{missing $\neq$ zero}. Questa distinzione è centrale per patrimonio, fondi speciali e stati. In particolare, una quantità mancante non viene sommata come zero e l'assenza di un record di fondo speciale non è trasformata in un'asserzione di assenza del fondo.
@@ -185,8 +185,8 @@ q_i = \frac{B^{problematiche}_i}{B^{totali}_i},
 \]
 definita solo quando $B^{totali}_i>0$. Gli indicatori per 100.000 abitanti usano la popolazione 2025.
 
-\subsection{Dataset 3 stelle}
-I 10 dataset processed sono disponibili in CSV, formato aperto e strutturato, con licenza e metadati: il livello tabellare soddisfa quindi il requisito 3-star. È presente un Data Package Frictionless in \texttt{metadata/datapackage.json}.
+\subsection{Dataset strutturato in formato aperto}
+I 10 dataset processati sono disponibili in CSV UTF-8, formato strutturato, machine-readable e non proprietario, con licenza e metadati. Dal punto di vista tecnico soddisfano quindi i requisiti di struttura e formato aperto associati al livello 3-star. La classificazione completa del modello a cinque stelle richiede tuttavia anche la pubblicazione sul Web, trattata separatamente nella valutazione del progetto. È presente un Data Package Frictionless in \texttt{metadata/datapackage.json}.
 
 \subsection{Qualità dei join}
 Il master biblioteca--comune raggiunge il 100\%. I due comuni non comparabili sono esclusi dalle correlazioni temporali primarie. Nessun fuzzy matching è usato come metodo principale di integrazione.
@@ -195,8 +195,8 @@ Il master biblioteca--comune raggiunge il 100\%. I due comuni non comparabili so
 \subsection{Frictionless}
 \texttt{metadata/datapackage.json} descrive le 10 risorse CSV, i campi, i formati e gli hash SHA-256 delle distribuzioni finali.
 
-\subsection{DCAT-AP\_IT}
-DCAT definisce Dataset e Distribution per l'interoperabilità dei cataloghi \cite{dcat3}; DCAT-AP ne specifica il profilo europeo \cite{dcatap}. Il progetto include \texttt{metadata/dcat-ap\_it.ttl}. Le URL di download sono locali e devono diventare HTTPS in una pubblicazione reale, coerentemente con le note di validazione.
+\subsection{DCAT}
+DCAT definisce Dataset e Distribution per l'interoperabilità dei cataloghi \cite{dcat3}; DCAT-AP ne specifica il profilo europeo \cite{dcatap}. Il progetto include \texttt{metadata/dcat.ttl}, una descrizione RDF/DCAT locale del dataset e delle relative distribuzioni. Il repository non dichiara una conformità operativa completa a DCAT-AP\_IT: le URL di accesso e download sono URI locali \texttt{file:} e il namespace di progetto utilizza il dominio di sviluppo \texttt{.invalid}. Una pubblicazione reale richiederebbe URI HTTP(S) pubbliche e una validazione rispetto al profilo applicabile.
 
 \subsection{Provenance}
 La provenance è modellata in PROV-O \cite{provo} e documenta la derivazione dalle fonti ICCU/ISTAT e le attività principali della pipeline.
@@ -237,19 +237,18 @@ Il namespace di sviluppo è \texttt{https://biblioteche-fantasma.invalid/}. I pa
 Il mapping RDF usa library, status, municipality analysis, type, previous names, holdings, special collections e mergers. Le relazioni 1:N sono preservate attraverso risorse dedicate.
 
 \subsection{RDFLib}
-La generazione è implementata in Python/RDFLib. Nella Fase 3 non è stata rieseguita perché il checkpoint 2 è il riferimento canonico e non sono emerse discrepanze che richiedessero una rigenerazione.
-
+La generazione è implementata in Python/RDFLib mediante \texttt{scripts/generate\_rdf.py} ed è riproducibile a partire dai dataset processati prodotti dalla pipeline. L'interlinking è generato separatamente da \texttt{scripts/generate\_links.py}.
 \subsection{Turtle}
 \texttt{rdf/data.ttl} e \texttt{rdf/links.ttl} sono serializzati in N-Triples rigoroso, sottoinsieme valido di Turtle, coerente con RDF 1.1 \cite{rdf11}.
 
 \subsection{JSON-LD}
-Il checkpoint canonico non contiene una materializzazione \texttt{data.jsonld}; la relazione non dichiara quindi questo output come prodotto. RDF è comunque disponibile in Turtle/N-Triples.
+Il progetto non produce una materializzazione \texttt{data.jsonld}; RDF è disponibile nelle serializzazioni utilizzate dalla pipeline, principalmente Turtle/N-Triples.
 
 \subsection{Validazione}
-La validazione strutturale del checkpoint è PASS, con zero URI malformate, zero predicati/classi locali non definiti, zero dangling local resources e zero duplicati serializzati.
+La validazione strutturale del knowledge graph è PASS, con zero URI malformate, zero predicati o classi locali non definiti, zero risorse locali dangling e zero duplicati serializzati.
 
 \subsection{SHACL}
-Le shapes reali sono in \texttt{shacl/shapes.ttl} e fanno riferimento a SHACL \cite{shacl}. In assenza di \texttt{pyshacl}, è stato usato un validatore locale per il sottoinsieme Core effettivamente impiegato: 82.519 focus node, 0 violazioni. Il risultato non equivale a un'esecuzione completa pySHACL o GraphDB.
+Le shapes SHACL sono definite in \texttt{shacl/shapes.ttl} e fanno riferimento allo standard SHACL \cite{shacl}. La validazione è eseguita con \texttt{pySHACL 0.40.1} sull'intero knowledge graph caricato nello store locale PyOxigraph. L'esecuzione ha restituito \texttt{Conforms: YES}, con 0 violazioni, 0 warning e 0 risultati informativi.
 
 \subsection{Statistiche del grafo}
 \begin{table}[H]
@@ -266,7 +265,7 @@ ontology/ontology.ttl & 195 \\
 Totale esplicito importabile & 1.644.602 \\
 \bottomrule
 \end{tabular}
-\caption{Conteggio delle triple del checkpoint 2.}
+\caption{Conteggio delle triple del knowledge graph.}
 \end{table}
 
 \section{Linked Open Data}
@@ -274,10 +273,10 @@ Totale esplicito importabile & 1.644.602 \\
 L'interlinking evita fuzzy matching quando sono disponibili identificatori ufficiali. La forza semantica del predicato dipende dalla natura della risorsa target.
 
 \subsection{Biblioteche}
-Le 19.611 biblioteche sono collegate all'Anagrafe ICCU tramite lookup esatto ISIL. Il predicato è \texttt{rdfs:seeAlso}, perché il target è una pagina HTML di consultazione e non è stata dimostrata identità ontologica con una risorsa RDF.
+La pipeline genera per tutte le 19.611 biblioteche un collegamento all'Anagrafe ICCU mediante lookup esatto dell'ISIL.
 
 \subsection{Comuni}
-I comuni sono collegati al dataset Linked ISPRA tramite il codice ISTAT a sei cifre. I match sono 7.893 su 7.896 e usano \texttt{owl:sameAs} quando l'unità amministrativa coincide.
+Per i comuni la pipeline genera URI verso il dataset Linked ISPRA utilizzando il codice ISTAT a sei cifre. Sono prodotti 7.893 collegamenti su 7.896 comuni; i tre casi esclusi corrispondono a unità amministrative soppresse nel 2026 rispetto alla geografia analitica 2025. La relazione utilizzata è \texttt{owl:sameAs} quando l'identificatore rappresenta la stessa unità amministrativa.
 
 \subsection{sameAs e collegamenti informativi}
 La distinzione tra \texttt{owl:sameAs} e \texttt{rdfs:seeAlso} è metodologica: la prima afferma identità, la seconda un collegamento informativo. Evitare un \texttt{sameAs} eccessivo riduce errori semantici.
@@ -287,28 +286,38 @@ La distinzione tra \texttt{owl:sameAs} e \texttt{rdfs:seeAlso} è metodologica: 
 \centering
 \begin{tabular}{lrrr}
 \toprule
-Entità & Totale & Match & Coverage \\
+Entità & Totale & Collegamenti & Coverage \\
 \midrule
 Biblioteche verso ICCU & 19.611 & 19.611 & 100,0000\% \\
 Comuni verso Linked ISPRA & 7.896 & 7.893 & 99,9620\% \\
 \bottomrule
 \end{tabular}
-\caption{RQ6: copertura dell'interlinking già calcolata nel checkpoint 2.}
+\caption{RQ6: copertura di generazione dei collegamenti verso le risorse esterne.}
 \end{table}
 I tre non-match comunali sono Lirio, Castegnero e Nanto, coerenti con variazioni amministrative intervenute nel 2026 rispetto alla geografia analitica 2025.
+La percentuale misura la copertura di generazione dei collegamenti secondo la URI policy documentata. Lo schema delle URI Linked ISPRA è stato verificato su risorse reali, ma la pipeline offline non dereferenzia individualmente tutti i 7.893 target esterni.
 
 \subsection{5-star assessment}
 Il progetto contiene RDF con URI e link esterni, ma non è pubblicato con URI dereferenziabili: per questo è corretto descriverlo come \emph{tecnicamente predisposto} al 5-star e non come una pubblicazione 5-star operativa sul Web.
 
-\section{GraphDB e SPARQL}
+\section{SPARQL e triplestore embedded}
 \subsection{Triplestore}
-Il repository è import-ready per GraphDB; l'ambiente di sviluppo non ha eseguito un'istanza GraphDB, quindi non vengono inventati risultati di import. Il baseline suggerito è l'import senza reasoning, per mantenere il conteggio esplicito di 1.644.602 triple.
-
+Per l'esecuzione delle competency questions è stato utilizzato PyOxigraph,
+uno store RDF embedded richiamato direttamente da Python e persistito
+localmente su disco. Questa soluzione consente di interrogare il knowledge
+graph con SPARQL senza dipendere da un triplestore server esterno e rende
+l'esecuzione riproducibile direttamente dall'ambiente del repository.
+Sono state caricate 1.644.602 triple esplicite, corrispondenti alla somma
+di ontologia, dati, interlinking e metadati RDF.
 \subsection{Query}
-Le 11 query SPARQL sono sintatticamente valide secondo RDFLib e coprono le principali competency questions. SPARQL è un linguaggio di query per grafi RDF \cite{sparql11}.
+Le 11 query SPARQL sono state prima validate sintatticamente con RDFLib
+e successivamente eseguite sullo store PyOxigraph. Tutte le query hanno
+completato correttamente l'esecuzione; i risultati sono conservati in
+\path{sparql/results/} e il relativo report automatico in
+\path{reports/sparql_execution_report.md}.
 
 \subsection{Risultati}
-La query 01 sulla distribuzione degli stati è stata eseguita e restituisce 11 righe. La query 02 è stata tentata ma non completata nel budget operativo RDFLib; le altre sono parser-validated. Questa distinzione evita di confondere validità sintattica ed esecuzione effettiva.
+Tutte le 11 query SPARQL sono state eseguite con successo sullo store PyOxigraph e i relativi risultati sono stati salvati in formato CSV. Un risultato con zero righe non viene considerato un errore: la query 03, relativa alle biblioteche inagibili con fondi speciali documentati, restituisce legittimamente un insieme vuoto nello snapshot analizzato. Il report \path{reports/sparql_execution_report.md} conserva l'esito e il numero di righe restituito da ciascuna query.
 
 \section{Analisi}
 \subsection{Statistiche descrittive}
@@ -394,7 +403,9 @@ La versione interattiva della mappa è \texttt{visualizations/library\_map.html}
 \section{Problemi e decisioni progettuali}
 Il \texttt{decisions\_log.md} registra le decisioni nel formato problema--evidenza--alternative--decisione--motivazione--conseguenza. Tra le scelte più rilevanti: preservare relazioni 1:N; distinguere stati ICCU; usare una geografia 2025; non imputare missing; riusare coordinate ICCU senza geocoding; separare analisi tabellare da SPARQL; usare URI \texttt{.invalid} finché non esiste un dominio; visualizzare solo la componente maggiore della rete.
 
-Durante la Fase 3 non sono emerse discrepanze che richiedessero la rigenerazione di ontologia, RDF o interlinking. È emerso invece un limite dell'ambiente: nessun motore Parquet installato e impossibilità di installare \texttt{pyarrow} senza rete. Invece di creare file falsi, il repository conserva i CSV e fornisce \texttt{scripts/export\_parquet.py} come operazione riproducibile residua.
+Gli output tabellari del progetto sono distribuiti in CSV UTF-8, formato strutturato, machine-readable e non proprietario. La pipeline mantiene separati i RAW originali e i dataset processati e consente di rigenerare gli artefatti derivati mediante gli script documentati nel repository. La disponibilità di una serializzazione Parquet è opzionale e non costituisce un requisito per la riproducibilità del progetto.
+
+I notebook \texttt{01}--\texttt{08} documentano le principali componenti della pipeline, dall'inventory e profiling delle sorgenti fino all'analisi quantitativa e alla visualizzazione. Le trasformazioni deterministiche sono implementate negli script della directory \texttt{scripts/}; i notebook consentono di ispezionare dati, controlli intermedi e risultati senza sostituire gli script utilizzati per la riproduzione automatica.
 
 \section{Limiti}
 \begin{enumerate}
@@ -413,10 +424,9 @@ Durante la Fase 3 non sono emerse discrepanze che richiedessero la rigenerazione
 \item La quota problematica comunale è discreta e fortemente influenzata dai comuni con poche biblioteche: una singola osservazione può produrre quote pari a 0 o 100\%.
 \item La somma delle quantità patrimoniali note può includere livelli di aggregazione non omogenei (materiali specifici e ``totale posseduto'') e non è un inventario additivo complessivo.
 \item La rete delle confluenze deriva dallo stato osservato nello snapshot e non contiene necessariamente tutte le trasformazioni storiche.
-\item GraphDB non è stato eseguito; SHACL è validato nel sottoinsieme Core implementato; l'esecuzione SPARQL è parziale.
+\item I collegamenti verso Linked ISPRA sono generati deterministicamente a partire dai codici ISTAT secondo la URI policy documentata; la pipeline offline non dereferenzia individualmente tutti i target esterni.
 \item Le URI locali non sono dereferenziabili e impediscono una dichiarazione operativa di 5-star Linked Open Data.
-\item Gli archivi RAW non sono contenuti nel checkpoint finale; sono conservati hash e provenance, ma una riproduzione end-to-end della Fase 1 richiede le sorgenti esterne originali.
-\item I Parquet non sono stati materializzati nell'ambiente di build per assenza di un engine disponibile offline.
+\item Gli archivi RAW ICCU e ISTAT sono conservati nel repository e verificabili mediante gli hash SHA-256 registrati nel source manifest; la riproducibilità resta comunque dipendente dalla disponibilità di un ambiente Python compatibile con le dipendenze dichiarate.
 \end{enumerate}
 
 \section{Conclusioni}
@@ -424,7 +434,7 @@ Il progetto dimostra l'intero percorso logico dagli Open Data tabellari a un kno
 
 RQ4 non supporta una narrazione forte secondo cui lo spopolamento ``spiega'' le biblioteche problematiche: la relazione è negativa ma debole. Questo risultato è metodologicamente utile proprio perché impedisce una data story causale non supportata. RQ5 evidenzia un altro aspetto centrale: la copertura dei dati secondari. È possibile descrivere il patrimonio documentato per 627 biblioteche problematiche, ma l'assenza di fondi speciali nel sottoinsieme è una mancanza di record, non una prova di assenza reale.
 
-La rete delle confluenze mostra una struttura frammentata con numerosi piccoli componenti e alcuni hub di destinazione. Sul versante Linked Data, l'interlinking è molto elevato grazie a identificatori ufficiali: 100\% per le biblioteche e 99,9620\% per i comuni. Resta tuttavia un confine netto tra un grafo \emph{predisposto} al Web of Data e una pubblicazione 5-star effettiva: senza dominio pubblico e URI dereferenziabili, il livello massimo non può essere dichiarato operativo.
+La rete delle confluenze mostra una struttura frammentata con numerosi piccoli componenti e alcuni hub di destinazione. Sul versante Linked Data, la copertura di generazione dei collegamenti è elevata grazie all'uso di identificatori ufficiali: 100\% per le biblioteche e 99,9620\% per i comuni. Queste percentuali descrivono i collegamenti prodotti dalla URI policy e non una verifica HTTP individuale di tutti i target esterni. Resta tuttavia un confine netto tra un grafo \emph{predisposto} al Web of Data e una pubblicazione 5-star effettiva: senza dominio pubblico e URI dereferenziabili, il livello massimo non può essere dichiarato operativo.
 
 In termini didattici, il valore del progetto non è la dimensione del grafo ma la tracciabilità tra Research Question, dato, metodo, risultato, visualizzazione, interpretazione e limite. Le scelte conservative sui missing, sugli stati, sulle equivalenze esterne e sulla causalità sono parte integrante della qualità del risultato.
 

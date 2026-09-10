@@ -1,4 +1,4 @@
-# URI Policy — Biblioteche Fantasma
+# URI Policy - Biblioteche Fantasma
 
 ## Stato della policy
 

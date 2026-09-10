@@ -5,40 +5,40 @@
     "top_regions_by_share": [
       {
         "region": "MOLISE",
-        "total_libraries": 183,
-        "problematic": 80,
+        "total_libraries": 183.0,
+        "problematic": 80.0,
         "problematic_share": 0.4371584699453552,
         "problematic_share_percent": 43.71584699453552,
         "problematic_per_100k_population": 27.79572918621054
       },
       {
         "region": "LIGURIA",
-        "total_libraries": 657,
-        "problematic": 209,
+        "total_libraries": 657.0,
+        "problematic": 209.0,
         "problematic_share": 0.3181126331811263,
         "problematic_share_percent": 31.81126331811263,
         "problematic_per_100k_population": 13.839748950927165
       },
       {
         "region": "ABRUZZO",
-        "total_libraries": 419,
-        "problematic": 93,
+        "total_libraries": 419.0,
+        "problematic": 93.0,
         "problematic_share": 0.22195704057279236,
         "problematic_share_percent": 22.195704057279237,
         "problematic_per_100k_population": 7.327923802199638
       },
       {
         "region": "UMBRIA",
-        "total_libraries": 407,
-        "problematic": 73,
+        "total_libraries": 407.0,
+        "problematic": 73.0,
         "problematic_share": 0.17936117936117937,
         "problematic_share_percent": 17.936117936117938,
         "problematic_per_100k_population": 8.573378134127564
       },
       {
         "region": "EMILIA-ROMAGNA",
-        "total_libraries": 1468,
-        "problematic": 221,
+        "total_libraries": 1468.0,
+        "problematic": 221.0,
         "problematic_share": 0.1505449591280654,
         "problematic_share_percent": 15.054495912806539,
         "problematic_per_100k_population": 4.952938123235375
@@ -128,40 +128,40 @@
     "top_regions_by_problematic_absolute": [
       {
         "region": "LOMBARDIA",
-        "total_libraries": 2820,
-        "problematic": 366,
+        "total_libraries": 2820.0,
+        "problematic": 366.0,
         "problematic_share": 0.12978723404255318,
         "problematic_share_percent": 12.978723404255318,
         "problematic_per_100k_population": 3.647627975432927
       },
       {
         "region": "EMILIA-ROMAGNA",
-        "total_libraries": 1468,
-        "problematic": 221,
+        "total_libraries": 1468.0,
+        "problematic": 221.0,
         "problematic_share": 0.1505449591280654,
         "problematic_share_percent": 15.054495912806539,
         "problematic_per_100k_population": 4.952938123235375
       },
       {
         "region": "LIGURIA",
-        "total_libraries": 657,
-        "problematic": 209,
+        "total_libraries": 657.0,
+        "problematic": 209.0,
         "problematic_share": 0.3181126331811263,
         "problematic_share_percent": 31.81126331811263,
         "problematic_per_100k_population": 13.839748950927165
       },
       {
         "region": "CAMPANIA",
-        "total_libraries": 1472,
-        "problematic": 209,
+        "total_libraries": 1472.0,
+        "problematic": 209.0,
         "problematic_share": 0.14198369565217392,
         "problematic_share_percent": 14.198369565217392,
         "problematic_per_100k_population": 3.7439516818852034
       },
       {
         "region": "TOSCANA",
-        "total_libraries": 1299,
-        "problematic": 184,
+        "total_libraries": 1299.0,
+        "problematic": 184.0,
         "problematic_share": 0.14164742109314857,
         "problematic_share_percent": 14.164742109314856,
         "problematic_per_100k_population": 5.030461632341057
@@ -248,7 +248,7 @@
     "primary": {
       "analysis": "primary_all_eligible",
       "N": 6659,
-      "pearson_r": -0.10644865061493274,
+      "pearson_r": -0.10644865061493272,
       "pearson_p": 3.0489151198925425e-18,
       "spearman_rho": -0.06701953252827562,
       "spearman_p": 4.3973354876997604e-08,
@@ -259,7 +259,7 @@
     "sensitivity": {
       "analysis": "sensitivity_excluding_population_change_IQR_outliers",
       "N": 6544,
-      "pearson_r": -0.09556827219978523,
+      "pearson_r": -0.0955682721997852,
       "pearson_p": 9.390028330613462e-15,
       "spearman_rho": -0.05838118543375669,
       "spearman_p": 2.291272817903895e-06,
@@ -321,23 +321,23 @@
       {
         "entity_type": "Library",
         "total": 19611,
-        "exact_matches": 19611,
+        "generated_links": 19611,
         "ambiguous": 0,
         "unmatched": 0,
         "invalid": 0,
         "coverage_percent": 100.0,
-        "linking_method": "Exact ISIL lookup; rdfs:seeAlso because external target is the ICCU Anagrafe HTML record/search page, not an RDF entity",
+        "linking_method": "Exact ISIL lookup; rdfs:seeAlso because the external target is the ICCU Anagrafe HTML record/search page, not an RDF entity",
         "external_dataset": "ICCU Anagrafe delle Biblioteche Italiane"
       },
       {
         "entity_type": "Municipality",
         "total": 7896,
-        "exact_matches": 7893,
+        "generated_links": 7893,
         "ambiguous": 0,
         "unmatched": 3,
         "invalid": 0,
         "coverage_percent": 99.962,
-        "linking_method": "Exact six-digit ISTAT code embedded in Linked ISPRA municipality URI; owl:sameAs; three 2025 municipalities suppressed during 2026 excluded",
+        "linking_method": "Link generated from the exact six-digit ISTAT code embedded in the Linked ISPRA municipality URI; owl:sameAs",
         "external_dataset": "Linked ISPRA place dataset"
       }
     ]
@@ -440,8 +440,8 @@
   "RQ8": {
     "age65": {
       "N": 6659,
-      "pearson_r": 0.14539109831336583,
-      "pearson_p": 8.7165346139331e-33,
+      "pearson_r": 0.1453910983133658,
+      "pearson_p": 8.716534613935029e-33,
       "spearman_rho": 0.10537080109988607,
       "spearman_p": 6.640956535919319e-18
     }
