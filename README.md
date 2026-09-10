@@ -18,14 +18,14 @@ Il progetto adotta inoltre un approccio conservativo nella gestione delle anomal
 
 ## Research Questions
 
-* **RQ1** — Dove sono distribuite le biblioteche caratterizzate da stati di non piena operatività?
-* **RQ2** — Quali stati di registrazione sono più frequenti e come variano territorialmente?
-* **RQ3** — Quali tipologie funzionali/amministrative risultano associate ai diversi stati?
-* **RQ4** — Esiste un'associazione tra variazione demografica comunale 2019–2025 e quota di biblioteche problematiche?
-* **RQ5** — Quale patrimonio e quali fondi speciali risultano documentati presso biblioteche problematiche?
-* **RQ6** — Quale copertura raggiunge la generazione dei collegamenti verso risorse esterne?
-* **RQ7** — Quale struttura presenta la rete delle confluenze?
-* **RQ8** — Quale relazione descrittiva emerge tra quota di popolazione 65+ e biblioteche problematiche?
+* **RQ1** - Dove sono distribuite le biblioteche caratterizzate da stati di non piena operatività?
+* **RQ2** - Quali stati di registrazione sono più frequenti e come variano territorialmente?
+* **RQ3** - Quali tipologie funzionali/amministrative risultano associate ai diversi stati?
+* **RQ4** - Esiste un'associazione tra variazione demografica comunale 2019–2025 e quota di biblioteche problematiche?
+* **RQ5** - Quale patrimonio e quali fondi speciali risultano documentati presso biblioteche problematiche?
+* **RQ6** - Quale copertura raggiunge la generazione dei collegamenti verso risorse esterne?
+* **RQ7** - Quale struttura presenta la rete delle confluenze?
+* **RQ8** - Quale relazione descrittiva emerge tra quota di popolazione 65+ e biblioteche problematiche?
 
 ---
 
@@ -33,10 +33,10 @@ Il progetto adotta inoltre un approccio conservativo nella gestione delle anomal
 
 Le sorgenti principali sono:
 
-* **ICCU — Anagrafe delle Biblioteche Italiane**, snapshot del 2026-09-08;
-* **ISTAT POSAS 2019** — popolazione residente per sesso, età e stato civile;
-* **ISTAT POSAS 2025** — popolazione residente per sesso, età e stato civile;
-* **Cultural-ON 2.0** — ontologia utilizzata per il riuso semantico nel dominio culturale.
+* **ICCU - Anagrafe delle Biblioteche Italiane**, snapshot del 2026-09-08;
+* **ISTAT POSAS 2019** - popolazione residente per sesso, età e stato civile;
+* **ISTAT POSAS 2025** - popolazione residente per sesso, età e stato civile;
+* **Cultural-ON 2.0** - ontologia utilizzata per il riuso semantico nel dominio culturale.
 
 Gli archivi RAW originali sono conservati separatamente in:
 
@@ -530,15 +530,15 @@ visualizations/
 
 Tra le principali:
 
-* `library_map.html` — mappa interattiva clusterizzata;
-* `map_static.png` — distribuzione geografica delle biblioteche problematiche;
-* `status_by_region.png` — quote regionali;
-* `status_distribution.png` — distribuzione nazionale degli stati;
-* `demography_scatter.png` — variazione demografica vs quota problematica;
-* `special_collections.png` — copertura documentaria di patrimonio e fondi speciali;
-* `problematic_holdings.png` — materiali documentati presso le biblioteche problematiche;
-* `mergers_network.png` — componente maggiore della rete delle confluenze;
-* `age65_scatter.png` — quota 65+ vs quota di biblioteche problematiche.
+* `library_map.html` - mappa interattiva clusterizzata;
+* `map_static.png` - distribuzione geografica delle biblioteche problematiche;
+* `status_by_region.png` - quote regionali;
+* `status_distribution.png` - distribuzione nazionale degli stati;
+* `demography_scatter.png` - variazione demografica vs quota problematica;
+* `special_collections.png` - copertura documentaria di patrimonio e fondi speciali;
+* `problematic_holdings.png` - materiali documentati presso le biblioteche problematiche;
+* `mergers_network.png` - componente maggiore della rete delle confluenze;
+* `age65_scatter.png` - quota 65+ vs quota di biblioteche problematiche.
 
 Le visualizzazioni sono progettate per rispondere alle Research Questions e non come dashboard esplorativa priva di una domanda analitica.
 
@@ -988,7 +988,7 @@ Citare il progetto indicando:
 
 * **Biblioteche Fantasma**;
 * anno 2026;
-* ICCU — Anagrafe delle Biblioteche Italiane;
+* ICCU - Anagrafe delle Biblioteche Italiane;
 * ISTAT POSAS 2019 e 2025.
 
 Per i dati ISTAT deve essere mantenuta l'attribuzione richiesta dalla licenza CC BY 4.0.
