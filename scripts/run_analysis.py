@@ -108,29 +108,164 @@ def main(root: Path):
     )
     save(top_mun.sort_values(['main_problematic_libraries','problematic_share'],ascending=[False,False]).head(100), out/'municipalities_top_problematic_absolute.csv')
 
-    # RQ3 types x status: descriptive + association
-    ts = typ.merge(st[['isil','normalized_status','include_main']], on='isil', how='inner')
-    ftab = pd.crosstab(ts['functional_type'].fillna('MISSING'), ts['normalized_status'])
-    save(ftab.reset_index(), out/'functional_type_by_status_counts.csv')
+    # RQ3 types x status: descriptive + association.
+    # Use functional/administrative types from the ICCU master library.csv.
+    # library_type.csv has selective coverage strongly associated with status, therefore it must not define the analytical sample.
+    ts = lib[
+        ['isil', 'functional_type', 'administrative_type']
+    ].merge(
+        st[
+            [
+                'isil',
+                'normalized_status',
+                'analytical_group',
+                'include_main',
+            ]
+        ],
+        on='isil',
+        how='inner',
+    )
+
+    # Exclude "Altro istituto collegato ICCU" to keep the same analytical
+    # denominator used elsewhere in the project (18,956 libraries).
+    ts = ts[ts['analytical_group'] != 'ALTRO'].copy()
+
+    # Descriptive cross-tabulations by detailed status.
+    ftab = pd.crosstab(
+        ts['functional_type'].fillna('MISSING'),
+        ts['normalized_status'],
+    )
+    save(
+        ftab.reset_index(),
+        out/'functional_type_by_status_counts.csv',
+    )
+
     fshare = ftab.div(ftab.sum(axis=1), axis=0)
-    save((fshare*100).reset_index(), out/'functional_type_by_status_row_percent.csv')
-    atab = pd.crosstab(ts['administrative_type'].fillna('MISSING'), ts['normalized_status'])
-    save(atab.reset_index(), out/'administrative_type_by_status_counts.csv')
-    # association main problematic vs not main is more interpretable, and less sparse.
-    f2 = pd.crosstab(ts['functional_type'].fillna('MISSING'), ts['include_main'])
-    a2 = pd.crosstab(ts['administrative_type'].fillna('MISSING'), ts['include_main'])
+    save(
+        (fshare * 100).reset_index(),
+        out/'functional_type_by_status_row_percent.csv',
+    )
+
+    atab = pd.crosstab(
+        ts['administrative_type'].fillna('MISSING'),
+        ts['normalized_status'],
+    )
+    save(
+        atab.reset_index(),
+        out/'administrative_type_by_status_counts.csv',
+    )
+
+    ashare = atab.div(atab.sum(axis=1), axis=0)
+    save(
+        (ashare * 100).reset_index(),
+        out/'administrative_type_by_status_row_percent.csv',
+    )
+
+    # Association between type and membership in the main problematic
+    # perimeter. This binary outcome is less sparse and easier to interpret.
+    f2 = pd.crosstab(
+        ts['functional_type'].fillna('MISSING'),
+        ts['include_main'],
+    )
+    a2 = pd.crosstab(
+        ts['administrative_type'].fillna('MISSING'),
+        ts['include_main'],
+    )
+
     fchi, fp, fdof, fv, fexp = cramers_v(f2)
     achi, ap, adof, av, aexp = cramers_v(a2)
+
     assoc = pd.DataFrame([
-        {'dimension':'functional_type','N':int(f2.to_numpy().sum()),'rows':f2.shape[0],'columns':f2.shape[1],'chi_square':fchi,'dof':fdof,'p_value':fp,'cramers_v_bias_corrected':fv,'min_expected':float(fexp.min()),'cells_expected_lt5':int((fexp<5).sum())},
-        {'dimension':'administrative_type','N':int(a2.to_numpy().sum()),'rows':a2.shape[0],'columns':a2.shape[1],'chi_square':achi,'dof':adof,'p_value':ap,'cramers_v_bias_corrected':av,'min_expected':float(aexp.min()),'cells_expected_lt5':int((aexp<5).sum())},
+        {
+            'dimension': 'functional_type',
+            'analysis': 'all_master_types',
+            'N': int(f2.to_numpy().sum()),
+            'rows': f2.shape[0],
+            'columns': f2.shape[1],
+            'chi_square': fchi,
+            'dof': fdof,
+            'p_value': fp,
+            'cramers_v_bias_corrected': fv,
+            'min_expected': float(fexp.min()),
+            'cells_expected_lt5': int((fexp < 5).sum()),
+        },
+        {
+            'dimension': 'administrative_type',
+            'analysis': 'all_master_types',
+            'N': int(a2.to_numpy().sum()),
+            'rows': a2.shape[0],
+            'columns': a2.shape[1],
+            'chi_square': achi,
+            'dof': adof,
+            'p_value': ap,
+            'cramers_v_bias_corrected': av,
+            'min_expected': float(aexp.min()),
+            'cells_expected_lt5': int((aexp < 5).sum()),
+        },
     ])
-    save(assoc, out/'type_status_association_tests.csv')
-    type_main = (ts.groupby('functional_type').agg(total=('isil','size'),problematic=('include_main','sum')).reset_index())
+    save(
+        assoc,
+        out/'type_status_association_tests.csv',
+    )
+
+    # Sensitivity analysis: "NON SPECIFICATA" is not an informative
+    # functional/administrative type and is strongly associated with status.
+    assoc_sensitivity_rows = []
+
+    for dimension in ['functional_type', 'administrative_type']:
+        specified = ts[
+            ts[dimension].notna()
+            & ts[dimension].ne('NON SPECIFICATA')
+        ].copy()
+
+        table = pd.crosstab(
+            specified[dimension],
+            specified['include_main'],
+        )
+
+        chi, pval, dof, v, expected = cramers_v(table)
+
+        assoc_sensitivity_rows.append({
+            'dimension': dimension,
+            'analysis': 'excluding_NON_SPECIFICATA',
+            'N': int(table.to_numpy().sum()),
+            'rows': table.shape[0],
+            'columns': table.shape[1],
+            'chi_square': chi,
+            'dof': dof,
+            'p_value': pval,
+            'cramers_v_bias_corrected': v,
+            'min_expected': float(expected.min()),
+            'cells_expected_lt5': int((expected < 5).sum()),
+        })
+
+    assoc_sensitivity = pd.DataFrame(assoc_sensitivity_rows)
+
+    save(
+        assoc_sensitivity,
+        out/'type_status_association_sensitivity.csv',
+    )
+
+    type_main = (
+        ts.groupby('functional_type')
+        .agg(
+            total=('isil', 'size'),
+            problematic=('include_main', 'sum'),
+        )
+        .reset_index()
+    )
+
     type_main.loc[:, 'problematic_share'] = (
         type_main['problematic'] / type_main['total']
     )
-    save(type_main.sort_values(['problematic_share','total'],ascending=[False,False]), out/'functional_type_problematic_summary.csv')
+
+    save(
+        type_main.sort_values(
+            ['problematic_share', 'total'],
+            ascending=[False, False],
+        ),
+        out/'functional_type_problematic_summary.csv',
+    )
 
     # RQ4 demography. Municipality unit, at least one library, comparable only.
     dm = mun.copy()
@@ -148,6 +283,42 @@ def main(root: Path):
         {'analysis':'sensitivity_excluding_population_change_IQR_outliers','N':len(sens),'pearson_r':pear_s.statistic,'pearson_p':pear_s.pvalue,'spearman_rho':spear_s.statistic,'spearman_p':spear_s.pvalue,'pop_change_iqr_low':lo,'pop_change_iqr_high':hi,'outlier_count':0},
     ])
     save(corr, out/'demography_correlations.csv')
+    # Sensitivity analysis for the denominator of problematic_share.
+    # In municipalities with very few libraries, the share is highly discrete (for one library it can only be 0 or 1).
+    denominator_sensitivity_rows = []
+
+    for min_libraries in [1, 2, 3, 5, 10]:
+        subset = eligible[
+            eligible['total_libraries'] >= min_libraries
+        ].copy()
+
+        pear_den = stats.pearsonr(
+            subset['population_change_percent'],
+            subset['problematic_share'],
+        )
+
+        spear_den = stats.spearmanr(
+            subset['population_change_percent'],
+            subset['problematic_share'],
+        )
+
+        denominator_sensitivity_rows.append({
+            'min_libraries': min_libraries,
+            'N': len(subset),
+            'pearson_r': pear_den.statistic,
+            'pearson_p': pear_den.pvalue,
+            'spearman_rho': spear_den.statistic,
+            'spearman_p': spear_den.pvalue,
+        })
+
+    denominator_sensitivity = pd.DataFrame(
+        denominator_sensitivity_rows
+    )
+
+    save(
+        denominator_sensitivity,
+        out/'demography_denominator_sensitivity.csv',
+    )
     save(eligible.sort_values('population_change_percent'), out/'demography_analysis_dataset.csv')
     groups=[]
     for name,g in eligible.assign(population_group=np.where(eligible.population_change_percent<0,'decline','stable_or_growth')).groupby('population_group'):
@@ -164,6 +335,68 @@ def main(root: Path):
     age = eligible[eligible.share_65_plus_2025.notna()].copy()
     agep=stats.pearsonr(age.share_65_plus_2025, age.problematic_share); ages=stats.spearmanr(age.share_65_plus_2025, age.problematic_share)
     save(pd.DataFrame([{'N':len(age),'pearson_r':agep.statistic,'pearson_p':agep.pvalue,'spearman_rho':ages.statistic,'spearman_p':ages.pvalue}]), out/'age65_problematic_correlation.csv')
+
+
+    # Coverage of ICCU secondary datasets by library status.
+    # This allows us to distinguish absence of documentation from
+    # actual absence of holdings/special collections/types.
+    coverage = st[
+        [
+            'isil',
+            'normalized_status',
+            'analytical_group',
+        ]
+    ].copy()
+
+    coverage['has_type_detail'] = coverage['isil'].isin(
+        set(typ['isil'])
+    )
+
+    coverage['has_holdings'] = coverage['isil'].isin(
+        set(hold['isil'])
+    )
+
+    coverage['has_special_collection'] = coverage['isil'].isin(
+        set(sc['isil'])
+    )
+
+    coverage_by_status = (
+        coverage
+        .groupby(
+            ['normalized_status', 'analytical_group'],
+            dropna=False,
+        )
+        .agg(
+            libraries=('isil', 'size'),
+            with_type_detail=('has_type_detail', 'sum'),
+            with_holdings=('has_holdings', 'sum'),
+            with_special_collection=('has_special_collection', 'sum'),
+        )
+        .reset_index()
+    )
+
+    coverage_by_status['type_detail_coverage_percent'] = (
+        coverage_by_status['with_type_detail']
+        / coverage_by_status['libraries']
+        * 100
+    )
+
+    coverage_by_status['holdings_coverage_percent'] = (
+        coverage_by_status['with_holdings']
+        / coverage_by_status['libraries']
+        * 100
+    )
+
+    coverage_by_status['special_collection_coverage_percent'] = (
+        coverage_by_status['with_special_collection']
+        / coverage_by_status['libraries']
+        * 100
+    )
+
+    save(
+        coverage_by_status,
+        out/'secondary_data_coverage_by_status.csv',
+    )
 
     # RQ5 holdings. Distinguish missing quantity, explicit zero, positive.
     prob_isil=set(st.loc[st.include_main,'isil'])
@@ -242,7 +475,10 @@ def main(root: Path):
         'population_2025_total':int(num(mun.population_2025).sum()),
         'problematic_libraries_per_100k_national':n_problematic/num(mun.population_2025).sum()*100000,
         'coordinates_complete_clean':int(lib.latitude.notna().sum() & lib.longitude.notna().sum()) if False else int((lib.latitude.notna() & lib.longitude.notna()).sum()),
-        'functional_type_coverage_libraries':typ.isil.nunique(),
+        'functional_type_master_coverage_libraries': int(
+            lib['functional_type'].notna().sum()
+        ),
+        'functional_type_secondary_dataset_coverage_libraries': typ.isil.nunique(),
         'holding_rows':len(hold),
         'special_collection_records':len(sc),
     }
@@ -252,9 +488,26 @@ def main(root: Path):
     rq={
       'RQ1': {'problematic_libraries':n_problematic,'problematic_share_libraries_percent':summary['problematic_share_of_libraries_percent'],'top_regions_by_share':region.head(5).to_dict('records')},
       'RQ2': {'status_distribution':status.to_dict('records'),'top_regions_by_problematic_absolute':region.sort_values('problematic',ascending=False).head(5).to_dict('records')},
-      'RQ3': {'functional_association':assoc.iloc[0].to_dict(),'administrative_association':assoc.iloc[1].to_dict(),'functional_type_problematic':type_main.sort_values('problematic',ascending=False).head(10).to_dict('records')},
-      'RQ4': {'primary':corr.iloc[0].to_dict(),'sensitivity':corr.iloc[1].to_dict(),'decline_vs_growth':gdf.to_dict('records')},
-      'RQ5': {'holdings':h_summary.iloc[0].to_dict(),'special_collections':sc_summary},
+      'RQ3': {'functional_association': assoc.iloc[0].to_dict(),'administrative_association': assoc.iloc[1].to_dict(),'association_sensitivity': assoc_sensitivity.to_dict('records'),'functional_type_problematic': (
+              type_main
+              .sort_values('problematic', ascending=False)
+              .head(10)
+              .to_dict('records')
+          ),
+      },
+      'RQ4': {
+          'primary': corr.iloc[0].to_dict(),
+          'outlier_sensitivity': corr.iloc[1].to_dict(),
+          'denominator_sensitivity': denominator_sensitivity.to_dict('records'),
+          'decline_vs_growth': gdf.to_dict('records'),
+      },
+      'RQ5': {
+          'holdings': h_summary.iloc[0].to_dict(),
+          'special_collections': sc_summary,
+          'secondary_dataset_coverage_by_status': (
+              coverage_by_status.to_dict('records')
+          ),
+      },
       'RQ6': {'interlinking_report':ilink.to_dict('records')},
       'RQ7': {'network':net_summary.iloc[0].to_dict(),'top_targets':hubs.head(10).to_dict('records')},
       'RQ8': {'age65': {'N':len(age),'pearson_r':agep.statistic,'pearson_p':agep.pvalue,'spearman_rho':ages.statistic,'spearman_p':ages.pvalue}},

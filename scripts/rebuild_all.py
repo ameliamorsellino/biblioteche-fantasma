@@ -33,6 +33,7 @@ def main() -> None:
         "--posas2019", "data/raw/istat/POSAS_2019_it_Tutti_i_file.zip",
         "--posas2025", "data/raw/istat/POSAS_2025_it_Tutti_i_file.zip",
         "--cultural-on", "data/external/cultural-ON.owl",
+        "--release-note", "data/raw/note-di-rilascio-1.6.pdf",
     )
 
     run(PYTHON, "scripts/validate_outputs.py", "--root", ".")

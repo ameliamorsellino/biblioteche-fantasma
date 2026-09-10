@@ -11,14 +11,13 @@ from __future__ import annotations
 
 import csv
 from pathlib import Path
-from urllib.parse import urlencode
 
 import pandas as pd
 from rdflib import URIRef
 from rdflib.namespace import OWL, RDFS
 
 DEV = "https://biblioteche-fantasma.invalid/resource/"
-ICCU_RESULTS = "https://anagrafe.iccu.sbn.it/it/ricerca/risultati.html"
+ICCU_PERMALINK = "https://anagrafe.iccu.sbn.it/isil/{}"
 ISPRA_MUNI = "https://w3id.org/italia/env/ld/place/municipality/00201_{}"
 RETIRED_2026 = {
     "018082": "Lirio: incorporato in Montalto Pavese il 2026-01-31",
@@ -62,9 +61,7 @@ def main() -> None:
         for _, row in libraries.iterrows():
             isil = row["isil"]
             local = DEV + "library/" + isil
-            external = ICCU_RESULTS + "?" + urlencode(
-                {"codice_isil": isil, "start": "0"}
-            )
+            external = ICCU_PERMALINK.format(isil)
 
             ttl.write(f"{n3(local)} {RDFS.seeAlso.n3()} {n3(external)} .\n")
             triple_count += 1
@@ -75,11 +72,14 @@ def main() -> None:
                     "local_uri": local,
                     "external_uri": external,
                     "relation": str(RDFS.seeAlso),
-                    "match_status": "exact_identifier_lookup",
-                    "linking_method": "ISIL exact query; no fuzzy matching",
+                    "match_status": "generated_from_identifier",
+                    "linking_method": (
+                        "Official ICCU permalink generated directly "
+                        "from the exact ISIL; no fuzzy matching"
+                    ),
                     "verification": (
-                        "ICCU result-page pattern verified on official Anagrafe; "
-                        "target is an HTML record/search document, not an RDF entity"
+                        "Official ICCU Anagrafe permalink pattern "
+                        "/isil/{ISIL}; target is an HTML resource"
                     ),
                 }
             )
@@ -159,8 +159,8 @@ def main() -> None:
                 "invalid": 0,
                 "coverage_percent": 100.0,
                 "linking_method": (
-                    "Exact ISIL lookup; rdfs:seeAlso because the external target "
-                    "is the ICCU Anagrafe HTML record/search page, not an RDF entity"
+                    "Official ICCU permalink generated from the exact ISIL; "
+                    "rdfs:seeAlso because the target is an external HTML resource"
                 ),
                 "external_dataset": "ICCU Anagrafe delle Biblioteche Italiane",
             },

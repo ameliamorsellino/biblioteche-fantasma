@@ -5,9 +5,12 @@ from pathlib import Path
 from textwrap import dedent
 import pandas as pd
 from lxml import etree
+from project_config import (
+    PROJECT_RELEASE_DATE,
+    SOURCE_DOWNLOAD_DATE,
+)
 
-SOURCE_DOWNLOAD_DATE = "2026-09-08"
-PROJECT_RELEASE_DATE = "2026-09-11"
+
 ICCU_URL='https://anagrafe.iccu.sbn.it/it/open-data/'
 ICCU_LICENSE_URL='https://anagrafe.iccu.sbn.it/it/footer/norme-di-utilizzo-dei-dati/'
 ICCU_FORMAT_URL='https://anagrafe.iccu.sbn.it/it/informazioni/formato-di-scambio/'
@@ -109,8 +112,22 @@ def main():
             role='External ontology reused for semantic modelling'
         )
     )
-    for p in sorted(ext.glob('note-di-rilascio-1.6*.png')):
-        inv.append(dict(source_archive='',local_file=p.name,format='PNG',encoding='binary',bytes=p.stat().st_size,records_or_elements='',xml_root='',sha256=sha256(p),role='ICCU release-note documentation image'))
+    for p in sorted(ext.glob('note-di-rilascio-1.6*')):
+        fmt = p.suffix.lstrip('.').upper()
+
+        inv.append(
+            dict(
+                source_archive='',
+                local_file=f'data/external/{p.name}',
+                format=fmt,
+                encoding='binary',
+                bytes=p.stat().st_size,
+                records_or_elements='',
+                xml_root='',
+                sha256=sha256(p),
+                role='ICCU release-note documentation',
+            )
+        )
     wcsv(pd.DataFrame(inv),meta/'file_inventory.csv')
 
     manifest = [
@@ -186,8 +203,43 @@ def main():
             notes='Utilizzata per il riuso e l’allineamento dei concetti dell’ontologia di progetto.'
         ),
     ]
-    for i,p in enumerate(sorted(ext.glob('note-di-rilascio-1.6*.png')),1):
-        manifest.append(dict(source_id=f'ICCU_RELEASE_NOTES_1_6_P{i}',publisher='ICCU',dataset_name='Anagrafe delle biblioteche italiane – Note di rilascio formato di scambio 1.6',source_url=ICCU_FORMAT_URL,local_file=f'data/external/{p.name}',format='PNG',encoding='binary',license='CC BY-NC-SA 3.0 IT (licenza predefinita dei contenuti editoriali del sito ICCU, salvo diversa indicazione)',download_date=SOURCE_DOWNLOAD_DATE,temporal_coverage='versione formato 1.6',spatial_coverage='',update_frequency='',role_in_project='documentazione struttura/formato e contesto evolutivo',sha256=sha256(p),notes='Riproduzione immagine della documentazione ufficiale fornita dall’utente.'))
+    for i, p in enumerate(
+        sorted(ext.glob('note-di-rilascio-1.6*')),
+        1,
+    ):
+        manifest.append(
+            dict(
+                source_id=f'ICCU_RELEASE_NOTES_1_6_{i}',
+                publisher='ICCU',
+                dataset_name=(
+                    'Anagrafe delle biblioteche italiane – '
+                    'Note di rilascio formato di scambio 1.6'
+                ),
+                source_url=ICCU_FORMAT_URL,
+                local_file=f'data/external/{p.name}',
+                format=p.suffix.lstrip('.').upper(),
+                encoding='binary',
+                license=(
+                    'CC BY-NC-SA 3.0 IT '
+                    '(licenza predefinita dei contenuti editoriali '
+                    'del sito ICCU, salvo diversa indicazione)'
+                ),
+                download_date=SOURCE_DOWNLOAD_DATE,
+                temporal_coverage='versione formato 1.6',
+                spatial_coverage='',
+                update_frequency='',
+                role_in_project=(
+                    'documentazione struttura/formato '
+                    'e contesto evolutivo'
+                ),
+                sha256=sha256(p),
+                notes=(
+                    'Documentazione ufficiale ICCU conservata '
+                    'localmente a fini di provenance.'
+                ),
+            )
+        )
+
     wcsv(pd.DataFrame(manifest),meta/'source_manifest.csv')
 
     # License report.
@@ -353,6 +405,8 @@ Il file OWL locale `data/external/cultural-ON.owl` è conservato nel repository 
 
             if c == "population_comparability":
                 typ = "string"
+            elif c == "updated_date":
+                typ = "date"
             elif c in {
                 "latitude",
                 "longitude",
@@ -389,7 +443,110 @@ Il file OWL locale `data/external/cultural-ON.owl` è conservato nel repository 
             }:
                 typ = "boolean"
             fields.append({'name':c,'type':typ,'description':c.replace('_',' ')})
-        resources.append({'name':p.stem,'path':f'data/processed/{p.name}','format':'csv','mediatype':'text/csv','encoding':'utf-8','bytes':p.stat().st_size,'hash':f'sha256:{sha256(p)}','description':descriptions[p.name],'schema':{'fields':fields}})
+        schema = {
+            'fields': fields,
+        }
+
+        # Primary keys and foreign keys.
+        if p.name == 'library.csv':
+            schema['primaryKey'] = 'isil'
+
+        elif p.name == 'library_status.csv':
+            schema['primaryKey'] = 'isil'
+            schema['foreignKeys'] = [{
+                'fields': 'isil',
+                'reference': {
+                    'resource': 'library',
+                    'fields': 'isil',
+                },
+            }]
+
+        elif p.name == 'library_type.csv':
+            schema['primaryKey'] = 'isil'
+            schema['foreignKeys'] = [{
+                'fields': 'isil',
+                'reference': {
+                    'resource': 'library',
+                    'fields': 'isil',
+                },
+            }]
+
+        elif p.name == 'library_holdings.csv':
+            schema['primaryKey'] = [
+                'isil',
+                'material_index',
+            ]
+            schema['foreignKeys'] = [{
+                'fields': 'isil',
+                'reference': {
+                    'resource': 'library',
+                    'fields': 'isil',
+                },
+            }]
+
+        elif p.name == 'special_collection.csv':
+            schema['primaryKey'] = [
+                'isil',
+                'collection_index',
+            ]
+            schema['foreignKeys'] = [{
+                'fields': 'isil',
+                'reference': {
+                    'resource': 'library',
+                    'fields': 'isil',
+                },
+            }]
+
+        elif p.name == 'library_contact.csv':
+            schema['primaryKey'] = [
+                'isil',
+                'contact_index',
+            ]
+            schema['foreignKeys'] = [{
+                'fields': 'isil',
+                'reference': {
+                    'resource': 'library',
+                    'fields': 'isil',
+                },
+            }]
+
+        elif p.name == 'library_previous_name.csv':
+            # No primaryKey: the source contains duplicate
+            # (isil, previous_name_original) pairs.
+            schema['foreignKeys'] = [{
+                'fields': 'isil',
+                'reference': {
+                    'resource': 'library',
+                    'fields': 'isil',
+                },
+            }]
+
+        elif p.name == 'library_mergers.csv':
+            schema['primaryKey'] = 'source_isil'
+            schema['foreignKeys'] = [{
+                'fields': 'source_isil',
+                'reference': {
+                    'resource': 'library',
+                    'fields': 'isil',
+                },
+            }]
+
+        elif p.name == 'municipality_population.csv':
+            schema['primaryKey'] = 'istat_code'
+
+        elif p.name == 'analysis_municipality.csv':
+            schema['primaryKey'] = 'istat_code'
+        resources.append({
+            'name': p.stem,
+            'path': f'data/processed/{p.name}',
+            'format': 'csv',
+            'mediatype': 'text/csv',
+            'encoding': 'utf-8',
+            'bytes': p.stat().st_size,
+            'hash': f'sha256:{sha256(p)}',
+            'description': descriptions[p.name],
+            'schema': schema,
+        })
     datapackage={'profile':'data-package','name':'biblioteche-fantasma','title':'BIBLIOTECHE FANTASMA','description':'Dataset puliti e integrati ICCU + ISTAT 2019/2025 per lo studio delle biblioteche italiane non pienamente operative.','version':PROJECT_RELEASE_DATE,'keywords':['biblioteche','ICCU','ISTAT','open data','Italia','demografia'],'licenses':[{'name':'CC-BY-4.0','path':'https://creativecommons.org/licenses/by/4.0/','title':'Creative Commons Attribution 4.0 International'}],'sources':[{'title':'ICCU Anagrafe delle Biblioteche Italiane','path':ICCU_URL},{'title':'ISTAT POSAS 2019','path':ISTAT_URL},{'title':'ISTAT POSAS 2025','path':ISTAT_URL}],'geographic_coverage':'Italia','temporal_coverage':'2019-01-01; 2025-01-01; ICCU snapshot 2026-09-08T14:11:15','resources':resources}
     (meta/'datapackage.json').write_text(json.dumps(datapackage,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
 
@@ -401,7 +558,7 @@ Il file OWL locale `data/external/cultural-ON.owl` è conservato nel repository 
         ident=p.stem.replace('_','-')
         dists.append(f'''bf:dist-{ident} a dcat:Distribution ;\n    dct:title "{p.stem}"@it ;\n    dct:description "{descriptions[p.name]}"@it ;\n    dct:license <https://creativecommons.org/licenses/by/4.0/> ;\n    dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;\n    dcat:mediaType "text/csv" ;\n    dcat:accessURL <file:./data/processed/{p.name}> ;\n    dcat:downloadURL <file:./data/processed/{p.name}> .''')
     distrefs=',\n        '.join('bf:dist-'+p.stem.replace('_','-') for p in sorted(proc.glob('*.csv')))
-    ttl=f'''@prefix bf: <https://biblioteche-fantasma.invalid/metadata/> .\n@prefix dcat: <http://www.w3.org/ns/dcat#> .\n@prefix dct: <http://purl.org/dc/terms/> .\n@prefix foaf: <http://xmlns.com/foaf/0.1/> .\n@prefix schema: <https://schema.org/> .\n@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n\nbf:project-author a foaf:Person ; foaf:name "Amelia Morsellino" .\n\nbf:dataset a dcat:Dataset ; \ndct:identifier "biblioteche-fantasma" ;\n    dct:title "Biblioteche Fantasma"@it ;\n    dct:description "Dataset puliti e integrati ICCU + ISTAT 2019/2025 per lo studio delle biblioteche italiane non pienamente operative."@it ;\n    dct:publisher bf:project-author ;\n    dct:creator bf:project-author ;\n    dct:rightsHolder bf:project-author ;\n    dct:license <https://creativecommons.org/licenses/by/4.0/> ;\n    dct:issued "{PROJECT_RELEASE_DATE}"^^xsd:date ;\n    dct:modified "{PROJECT_RELEASE_DATE}"^^xsd:date ;\n    dct:language <http://publications.europa.eu/resource/authority/language/ITA> ;\n    dct:spatial <http://publications.europa.eu/resource/authority/country/ITA> ;\n    dct:temporal [ a dct:PeriodOfTime ; schema:startDate "2019-01-01"^^xsd:date ; schema:endDate "2026-09-08"^^xsd:date ] ;\n    dct:accrualPeriodicity <http://publications.europa.eu/resource/authority/frequency/IRREG> ;\n    dcat:theme <http://publications.europa.eu/resource/authority/data-theme/EDUC> ;\n    dcat:keyword "biblioteche"@it, "ICCU"@it, "ISTAT"@it, "demografia"@it, "open data"@it ;\n    dct:source <{ICCU_URL}>, <{ISTAT_URL}> ;\n    dcat:distribution {distrefs} .\n\n'''+'\n\n'.join(dists)+'\n'
+    ttl=f'''@prefix bf: <https://biblioteche-fantasma.invalid/metadata/> .\n@prefix dcat: <http://www.w3.org/ns/dcat#> .\n@prefix dct: <http://purl.org/dc/terms/> .\n@prefix foaf: <http://xmlns.com/foaf/0.1/> .\n@prefix schema: <https://schema.org/> .\n@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n\nbf:project-author a foaf:Person ; foaf:name "Amelia Morsellino" .\n\nbf:dataset a dcat:Dataset ; \ndct:identifier "biblioteche-fantasma" ;\n    dct:title "Biblioteche Fantasma"@it ;\n    dct:description "Dataset puliti e integrati ICCU + ISTAT 2019/2025 per lo studio delle biblioteche italiane non pienamente operative."@it ;\n    dct:publisher bf:project-author ;\n    dct:creator bf:project-author ;\n    dct:license <https://creativecommons.org/licenses/by/4.0/> ;\n    dct:issued "{PROJECT_RELEASE_DATE}"^^xsd:date ;\n    dct:modified "{PROJECT_RELEASE_DATE}"^^xsd:date ;\n    dct:language <http://publications.europa.eu/resource/authority/language/ITA> ;\n    dct:spatial <http://publications.europa.eu/resource/authority/country/ITA> ;\n    dct:temporal [ a dct:PeriodOfTime ; schema:startDate "2019-01-01"^^xsd:date ; schema:endDate "2026-09-08"^^xsd:date ] ;\n    dct:accrualPeriodicity <http://publications.europa.eu/resource/authority/frequency/IRREG> ;\n    dcat:theme <http://publications.europa.eu/resource/authority/data-theme/EDUC> ;\n    dcat:keyword "biblioteche"@it, "ICCU"@it, "ISTAT"@it, "demografia"@it, "open data"@it ;\n    dct:source <{ICCU_URL}>, <{ISTAT_URL}> ;\n    dcat:distribution {distrefs} .\n\n'''+'\n\n'.join(dists)+'\n'
     (meta/'dcat.ttl').write_text(ttl,encoding='utf-8')
     (meta / "dcat_validation_notes.md").write_text(
         dedent(

@@ -1,0 +1,3 @@
+dimension,analysis,N,rows,columns,chi_square,dof,p_value,cramers_v_bias_corrected,min_expected,cells_expected_lt5
+functional_type,excluding_NON_SPECIFICATA,17723,8,2,111.26616667417505,7,5.0143367789398345e-21,0.07670338239793031,0.23077357106584664,3
+administrative_type,excluding_NON_SPECIFICATA,17844,34,2,194.10463912401391,33,1.020291924187353e-24,0.09502056168910092,0.117182246133154,21

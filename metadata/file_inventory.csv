@@ -16,7 +16,8 @@ data/raw/istat/POSAS_2025_it_Tutti_i_file.zip,POSAS_2025_it_Regioni.csv,CSV,utf-
 data/raw/istat/POSAS_2025_it_Tutti_i_file.zip,POSAS_2025_it_Ripartizioni.csv,CSV,utf-8-sig,43870,510,,7e327a41d2bc84d3838aa78e40f63637d50fe314830738c39444466f738388db,ISTAT POSAS 2025 aggregate source member
 data/raw/istat/POSAS_2025_it_Tutti_i_file.zip,[archive total members],ZIP,binary,17388543,111,,4008c4ead71b00af99ea2fa39fde79bf49e2be0a8cba204bc8b1eb68640a3b9b,ISTAT POSAS 2025 archive inventory
 ,data/external/cultural-ON.owl,OWL/RDFXML,utf-8,308241,,rdf:RDF,b81643ef5438e69fda1ce1c7bc5927d7a2c01491c7c0ddc752f8cb34b0297454,External ontology reused for semantic modelling
-,note-di-rilascio-1.6 (pagina 1).png,PNG,binary,156319,,,c3324ecf7ce4173c7665c044b329f7fec844be593703e7f27bc701d313f6ea9b,ICCU release-note documentation image
-,note-di-rilascio-1.6 (pagina 2).png,PNG,binary,106243,,,f6d0d2089134049cf904447fd7d0547f52f18fcba1b284fda0bac07bb81b4b6a,ICCU release-note documentation image
-,note-di-rilascio-1.6 (pagina 3).png,PNG,binary,144638,,,a92c8ff78b6ae12db0938f4e16bc32819bedfabf7651c612ce2cb205345b44d2,ICCU release-note documentation image
-,note-di-rilascio-1.6 (pagina 4).png,PNG,binary,159434,,,5168bf2a3e84e5300a1dc6e8321c14fc5420518ceacfe9bb96b90b731373ac23,ICCU release-note documentation image
+,data/external/note-di-rilascio-1.6 (pagina 1).png,PNG,binary,156319,,,c3324ecf7ce4173c7665c044b329f7fec844be593703e7f27bc701d313f6ea9b,ICCU release-note documentation
+,data/external/note-di-rilascio-1.6 (pagina 2).png,PNG,binary,106243,,,f6d0d2089134049cf904447fd7d0547f52f18fcba1b284fda0bac07bb81b4b6a,ICCU release-note documentation
+,data/external/note-di-rilascio-1.6 (pagina 3).png,PNG,binary,144638,,,a92c8ff78b6ae12db0938f4e16bc32819bedfabf7651c612ce2cb205345b44d2,ICCU release-note documentation
+,data/external/note-di-rilascio-1.6 (pagina 4).png,PNG,binary,159434,,,5168bf2a3e84e5300a1dc6e8321c14fc5420518ceacfe9bb96b90b731373ac23,ICCU release-note documentation
+,data/external/note-di-rilascio-1.6.pdf,PDF,binary,88500,,,4473b0271c275d7bb909522d24577b25c5a01c36b5ebc49a7a504c1fc976f227,ICCU release-note documentation

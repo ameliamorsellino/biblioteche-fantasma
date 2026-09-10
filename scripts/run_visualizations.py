@@ -160,7 +160,7 @@ def main(root:Path):
     fig,ax=plt.subplots(figsize=(9,7)); ax.scatter(age.share_65_plus_2025,age.problematic_share*100,s=12,alpha=.25,edgecolors='none')
     x=np.linspace(age.share_65_plus_2025.min(),age.share_65_plus_2025.max(),200); coef=np.polyfit(age.share_65_plus_2025,age.problematic_share*100,1); ax.plot(x,coef[0]*x+coef[1],linewidth=1.5)
     ax.set_xlabel('Quota popolazione 65+ nel 2025 (%)'); ax.set_ylabel('Quota biblioteche problematiche (%)'); ax.set_ylim(-2,102)
-    ax.set_title('La quota over 65 mostra un’associazione positiva ma debole con la quota di biblioteche problematiche',loc='left',fontsize=13,pad=14)
+    ax.set_title('La quota over 65 mostra un’associazione positiva ma debole con la quota di record bibliotecari con stato ICCU incluso nel perimetro problematico',loc='left',fontsize=13,pad=14)
     ax.text(0,1.01,f"N={int(ac.N):,}; Pearson r={ac.pearson_r:.3f}; Spearman ρ={ac.spearman_rho:.3f}. Analisi secondaria, non causale.",transform=ax.transAxes,fontsize=9)
     ax.grid(alpha=.18); fig.text(.01,.01,SOURCE,fontsize=7)
     savefig(fig,v/'age65_scatter.png')

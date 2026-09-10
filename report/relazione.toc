@@ -1,0 +1,84 @@
+\babel@toc {italian}{}\relax 
+\babel@toc {italian}{}\relax 
+\contentsline {section}{\numberline {1}Introduzione}{4}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Contesto}{4}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Motivazione}{4}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Obiettivi}{4}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Research Questions}{4}{subsection.1.4}%
+\contentsline {subsection}{\numberline {1.5}Workflow}{5}{subsection.1.5}%
+\contentsline {section}{\numberline {2}Selezione dei dataset}{5}{section.2}%
+\contentsline {subsection}{\numberline {2.1}ICCU}{5}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}ISTAT 2019}{5}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}ISTAT 2025}{5}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Cultural-ON}{5}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Verifica delle fonti}{5}{subsection.2.5}%
+\contentsline {subsection}{\numberline {2.6}Licenze}{5}{subsection.2.6}%
+\contentsline {subsection}{\numberline {2.7}Compatibilità}{6}{subsection.2.7}%
+\contentsline {section}{\numberline {3}Analisi preliminare}{6}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Data inventory}{6}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Data profiling}{6}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Stati ICCU}{6}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Problemi qualitativi}{7}{subsection.3.4}%
+\contentsline {section}{\numberline {4}Elaborazione}{7}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Cleaning}{7}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Missing values}{7}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Normalizzazione}{7}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Coordinate}{7}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Parsing confluenze}{7}{subsection.4.5}%
+\contentsline {subsection}{\numberline {4.6}XML e relazioni 1:N}{7}{subsection.4.6}%
+\contentsline {section}{\numberline {5}Integrazione e arricchimento}{8}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Join ICCU}{8}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}ISTAT}{8}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Variazioni amministrative}{8}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Indicatori demografici}{8}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.5}Dataset strutturato in formato aperto}{8}{subsection.5.5}%
+\contentsline {subsection}{\numberline {5.6}Qualità dei join}{8}{subsection.5.6}%
+\contentsline {section}{\numberline {6}Metadati}{9}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Frictionless}{9}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}DCAT}{9}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Provenance}{9}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}Licenza derivata}{9}{subsection.6.4}%
+\contentsline {section}{\numberline {7}Modellazione semantica}{9}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Competency Questions}{9}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Vocabolari}{9}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Cultural-ON}{9}{subsection.7.3}%
+\contentsline {subsection}{\numberline {7.4}Classi}{10}{subsection.7.4}%
+\contentsline {subsection}{\numberline {7.5}Object Properties}{10}{subsection.7.5}%
+\contentsline {subsection}{\numberline {7.6}Datatype Properties}{10}{subsection.7.6}%
+\contentsline {subsection}{\numberline {7.7}Stati e SKOS}{10}{subsection.7.7}%
+\contentsline {subsection}{\numberline {7.8}Modellazione temporale}{10}{subsection.7.8}%
+\contentsline {section}{\numberline {8}URI Policy}{10}{section.8}%
+\contentsline {section}{\numberline {9}RDF}{10}{section.9}%
+\contentsline {subsection}{\numberline {9.1}Mapping}{10}{subsection.9.1}%
+\contentsline {subsection}{\numberline {9.2}RDFLib}{10}{subsection.9.2}%
+\contentsline {subsection}{\numberline {9.3}Turtle}{11}{subsection.9.3}%
+\contentsline {subsection}{\numberline {9.4}JSON-LD}{11}{subsection.9.4}%
+\contentsline {subsection}{\numberline {9.5}Validazione}{11}{subsection.9.5}%
+\contentsline {subsection}{\numberline {9.6}SHACL}{11}{subsection.9.6}%
+\contentsline {subsection}{\numberline {9.7}Statistiche del grafo}{11}{subsection.9.7}%
+\contentsline {section}{\numberline {10}Linked Open Data}{11}{section.10}%
+\contentsline {subsection}{\numberline {10.1}Strategia}{11}{subsection.10.1}%
+\contentsline {subsection}{\numberline {10.2}Biblioteche}{11}{subsection.10.2}%
+\contentsline {subsection}{\numberline {10.3}Comuni}{12}{subsection.10.3}%
+\contentsline {subsection}{\numberline {10.4}sameAs e collegamenti informativi}{12}{subsection.10.4}%
+\contentsline {subsection}{\numberline {10.5}Coverage}{12}{subsection.10.5}%
+\contentsline {subsection}{\numberline {10.6}5-star assessment}{12}{subsection.10.6}%
+\contentsline {section}{\numberline {11}SPARQL e triplestore embedded}{12}{section.11}%
+\contentsline {subsection}{\numberline {11.1}Triplestore}{12}{subsection.11.1}%
+\contentsline {subsection}{\numberline {11.2}Query}{12}{subsection.11.2}%
+\contentsline {subsection}{\numberline {11.3}Risultati}{13}{subsection.11.3}%
+\contentsline {section}{\numberline {12}Analisi}{13}{section.12}%
+\contentsline {subsection}{\numberline {12.1}Statistiche descrittive}{13}{subsection.12.1}%
+\contentsline {subsection}{\numberline {12.2}Territorio -- RQ1}{13}{subsection.12.2}%
+\contentsline {subsection}{\numberline {12.3}Stati -- RQ2}{13}{subsection.12.3}%
+\contentsline {subsection}{\numberline {12.4}Tipologie -- RQ3}{13}{subsection.12.4}%
+\contentsline {subsection}{\numberline {12.5}Demografia -- RQ4}{14}{subsection.12.5}%
+\contentsline {subsection}{\numberline {12.6}Patrimonio -- RQ5}{14}{subsection.12.6}%
+\contentsline {subsection}{\numberline {12.7}Fondi speciali -- RQ5}{15}{subsection.12.7}%
+\contentsline {subsection}{\numberline {12.8}Confluenze -- RQ7}{15}{subsection.12.8}%
+\contentsline {subsection}{\numberline {12.9}Quota 65+ -- RQ8}{15}{subsection.12.9}%
+\contentsline {section}{\numberline {13}Data Visualization}{15}{section.13}%
+\contentsline {section}{\numberline {14}Problemi e decisioni progettuali}{18}{section.14}%
+\contentsline {section}{\numberline {15}Limiti}{19}{section.15}%
+\contentsline {section}{\numberline {16}Conclusioni}{20}{section.16}%
+\contentsline {section}{\numberline {17}Fonti e riferimenti}{20}{section.17}%

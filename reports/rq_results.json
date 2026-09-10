@@ -171,64 +171,100 @@
   "RQ3": {
     "functional_association": {
       "dimension": "functional_type",
-      "N": 13715,
-      "rows": 8,
+      "analysis": "all_master_types",
+      "N": 18956,
+      "rows": 9,
       "columns": 2,
-      "chi_square": 66.54482614908015,
-      "dof": 7,
-      "p_value": 7.352913143064227e-12,
-      "cramers_v_bias_corrected": 0.06589281827297129,
-      "min_expected": 0.09143273787823551,
+      "chi_square": 735.3031372047357,
+      "dof": 8,
+      "p_value": 1.7892008878950387e-153,
+      "cramers_v_bias_corrected": 0.19588253269355924,
+      "min_expected": 0.2634522051065626,
       "cells_expected_lt5": 3
     },
     "administrative_association": {
       "dimension": "administrative_type",
-      "N": 13715,
-      "rows": 32,
+      "analysis": "all_master_types",
+      "N": 18956,
+      "rows": 35,
       "columns": 2,
-      "chi_square": 78.76587356642119,
-      "dof": 31,
-      "p_value": 4.940045589904297e-06,
-      "cramers_v_bias_corrected": 0.059015557550568754,
-      "min_expected": 0.045716368939117756,
-      "cells_expected_lt5": 28
+      "chi_square": 738.1205363858265,
+      "dof": 34,
+      "p_value": 3.0995037075867304e-133,
+      "cramers_v_bias_corrected": 0.19273520877853767,
+      "min_expected": 0.1317261025532813,
+      "cells_expected_lt5": 21
     },
+    "association_sensitivity": [
+      {
+        "dimension": "functional_type",
+        "analysis": "excluding_NON_SPECIFICATA",
+        "N": 17723,
+        "rows": 8,
+        "columns": 2,
+        "chi_square": 111.26616667417505,
+        "dof": 7,
+        "p_value": 5.0143367789398345e-21,
+        "cramers_v_bias_corrected": 0.07670338239793031,
+        "min_expected": 0.23077357106584664,
+        "cells_expected_lt5": 3
+      },
+      {
+        "dimension": "administrative_type",
+        "analysis": "excluding_NON_SPECIFICATA",
+        "N": 17844,
+        "rows": 34,
+        "columns": 2,
+        "chi_square": 194.10463912401391,
+        "dof": 33,
+        "p_value": 1.020291924187353e-24,
+        "cramers_v_bias_corrected": 0.09502056168910092,
+        "min_expected": 0.117182246133154,
+        "cells_expected_lt5": 21
+      }
+    ],
     "functional_type_problematic": [
       {
         "functional_type": "Pubblica",
-        "total": 7269,
-        "problematic": 384,
-        "problematic_share": 0.052827073875361126
+        "total": 8162,
+        "problematic": 903,
+        "problematic_share": 0.11063464837049743
       },
       {
         "functional_type": "Specializzata",
-        "total": 3343,
-        "problematic": 157,
-        "problematic_share": 0.04696380496559976
+        "total": 4694,
+        "problematic": 630,
+        "problematic_share": 0.1342138900724329
       },
       {
-        "functional_type": "Di conservazione",
-        "total": 497,
-        "problematic": 38,
-        "problematic_share": 0.07645875251509054
+        "functional_type": "NON SPECIFICATA",
+        "total": 1233,
+        "problematic": 452,
+        "problematic_share": 0.36658556366585565
       },
       {
         "functional_type": "Istituto di insegnamento superiore",
-        "total": 1224,
-        "problematic": 29,
-        "problematic_share": 0.02369281045751634
+        "total": 2774,
+        "problematic": 367,
+        "problematic_share": 0.13229992790194664
+      },
+      {
+        "functional_type": "Di conservazione",
+        "total": 554,
+        "problematic": 78,
+        "problematic_share": 0.1407942238267148
       },
       {
         "functional_type": "Scolastica",
-        "total": 1143,
-        "problematic": 19,
-        "problematic_share": 0.016622922134733157
+        "total": 1275,
+        "problematic": 65,
+        "problematic_share": 0.050980392156862744
       },
       {
         "functional_type": "Importante non specializzata",
-        "total": 231,
-        "problematic": 0,
-        "problematic_share": 0.0
+        "total": 256,
+        "problematic": 2,
+        "problematic_share": 0.0078125
       },
       {
         "functional_type": "Itinerante",
@@ -256,7 +292,7 @@
       "pop_change_iqr_high": 9.283253711261013,
       "outlier_count": 115
     },
-    "sensitivity": {
+    "outlier_sensitivity": {
       "analysis": "sensitivity_excluding_population_change_IQR_outliers",
       "N": 6544,
       "pearson_r": -0.0955682721997852,
@@ -267,6 +303,48 @@
       "pop_change_iqr_high": 9.283253711261013,
       "outlier_count": 0
     },
+    "denominator_sensitivity": [
+      {
+        "min_libraries": 1,
+        "N": 6659,
+        "pearson_r": -0.10644865061493272,
+        "pearson_p": 3.0489151198925425e-18,
+        "spearman_rho": -0.06701953252827562,
+        "spearman_p": 4.3973354876997604e-08
+      },
+      {
+        "min_libraries": 2,
+        "N": 1712,
+        "pearson_r": -0.03181188728599471,
+        "pearson_p": 0.18829809996092742,
+        "spearman_rho": 0.009374238750251831,
+        "spearman_p": 0.6983144828810163
+      },
+      {
+        "min_libraries": 3,
+        "N": 771,
+        "pearson_r": -0.028154650489060493,
+        "pearson_p": 0.43500640804001445,
+        "spearman_rho": 0.03307060889253993,
+        "spearman_p": 0.3591275398220365
+      },
+      {
+        "min_libraries": 5,
+        "N": 345,
+        "pearson_r": 0.08322396261723991,
+        "pearson_p": 0.12285892106412834,
+        "spearman_rho": 0.10615097167616029,
+        "spearman_p": 0.04882913811175865
+      },
+      {
+        "min_libraries": 10,
+        "N": 155,
+        "pearson_r": 0.02848383551057922,
+        "pearson_p": 0.724971921406663,
+        "spearman_rho": 0.014520801261454622,
+        "spearman_p": 0.8576796847615075
+      }
+    ],
     "decline_vs_growth": [
       {
         "population_group": "decline",
@@ -314,7 +392,130 @@
       "tipologia_documentaria_documented_records": 0,
       "provenienza_documented_records": 0,
       "soggetto_produttore_documented_records": 0
-    }
+    },
+    "secondary_dataset_coverage_by_status": [
+      {
+        "normalized_status": "ALTRO_ISTITUTO_COLLEGATO_ICCU",
+        "analytical_group": "ALTRO",
+        "libraries": 655,
+        "with_type_detail": 0,
+        "with_holdings": 0,
+        "with_special_collection": 0,
+        "type_detail_coverage_percent": 0.0,
+        "holdings_coverage_percent": 0.0,
+        "special_collection_coverage_percent": 0.0
+      },
+      {
+        "normalized_status": "BIBLIOTECA_CONFLUITA",
+        "analytical_group": "TRASFORMAZIONE_ORGANIZZATIVA",
+        "libraries": 1502,
+        "with_type_detail": 0,
+        "with_holdings": 0,
+        "with_special_collection": 0,
+        "type_detail_coverage_percent": 0.0,
+        "holdings_coverage_percent": 0.0,
+        "special_collection_coverage_percent": 0.0
+      },
+      {
+        "normalized_status": "BIBLIOTECA_IN_VIA_DI_ALLESTIMENTO",
+        "analytical_group": "AVVIO",
+        "libraries": 34,
+        "with_type_detail": 22,
+        "with_holdings": 22,
+        "with_special_collection": 0,
+        "type_detail_coverage_percent": 64.70588235294117,
+        "holdings_coverage_percent": 64.70588235294117,
+        "special_collection_coverage_percent": 0.0
+      },
+      {
+        "normalized_status": "BIBLIOTECA_NON_CENSITA",
+        "analytical_group": "INCOMPLETEZZA_STATO_ANAGRAFICO",
+        "libraries": 1723,
+        "with_type_detail": 0,
+        "with_holdings": 0,
+        "with_special_collection": 0,
+        "type_detail_coverage_percent": 0.0,
+        "holdings_coverage_percent": 0.0,
+        "special_collection_coverage_percent": 0.0
+      },
+      {
+        "normalized_status": "BIBLIOTECA_NON_PIU_ESISTENTE",
+        "analytical_group": "CESSAZIONE",
+        "libraries": 1827,
+        "with_type_detail": 0,
+        "with_holdings": 0,
+        "with_special_collection": 0,
+        "type_detail_coverage_percent": 0.0,
+        "holdings_coverage_percent": 0.0,
+        "special_collection_coverage_percent": 0.0
+      },
+      {
+        "normalized_status": "DEPOSITO_SENZA_PUNTO_DI_SERVIZIO",
+        "analytical_group": "ASSENZA_PUNTO_DI_SERVIZIO",
+        "libraries": 33,
+        "with_type_detail": 0,
+        "with_holdings": 0,
+        "with_special_collection": 0,
+        "type_detail_coverage_percent": 0.0,
+        "holdings_coverage_percent": 0.0,
+        "special_collection_coverage_percent": 0.0
+      },
+      {
+        "normalized_status": "INAGIBILE",
+        "analytical_group": "INTERRUZIONE_DEL_SERVIZIO",
+        "libraries": 4,
+        "with_type_detail": 4,
+        "with_holdings": 4,
+        "with_special_collection": 0,
+        "type_detail_coverage_percent": 100.0,
+        "holdings_coverage_percent": 100.0,
+        "special_collection_coverage_percent": 0.0
+      },
+      {
+        "normalized_status": "NESSUNO_STATO_SPECIALE_REGISTRATO",
+        "analytical_group": "NESSUNO_STATO_SPECIALE_REGISTRATO",
+        "libraries": 13200,
+        "with_type_detail": 13066,
+        "with_holdings": 13066,
+        "with_special_collection": 2449,
+        "type_detail_coverage_percent": 98.98484848484848,
+        "holdings_coverage_percent": 98.98484848484848,
+        "special_collection_coverage_percent": 18.5530303030303
+      },
+      {
+        "normalized_status": "RIAPERTURA_AGIBILITA_PARZIALE",
+        "analytical_group": "OPERATIVITA_PARZIALE",
+        "libraries": 2,
+        "with_type_detail": 2,
+        "with_holdings": 2,
+        "with_special_collection": 0,
+        "type_detail_coverage_percent": 100.0,
+        "holdings_coverage_percent": 100.0,
+        "special_collection_coverage_percent": 0.0
+      },
+      {
+        "normalized_status": "SERVIZI_SOSPESI_CAUSA_SISMA",
+        "analytical_group": "INTERRUZIONE_DEL_SERVIZIO",
+        "libraries": 12,
+        "with_type_detail": 12,
+        "with_holdings": 12,
+        "with_special_collection": 0,
+        "type_detail_coverage_percent": 100.0,
+        "holdings_coverage_percent": 100.0,
+        "special_collection_coverage_percent": 0.0
+      },
+      {
+        "normalized_status": "TEMPORANEAMENTE_CHIUSA",
+        "analytical_group": "INTERRUZIONE_DEL_SERVIZIO",
+        "libraries": 619,
+        "with_type_detail": 609,
+        "with_holdings": 609,
+        "with_special_collection": 0,
+        "type_detail_coverage_percent": 98.38449111470113,
+        "holdings_coverage_percent": 98.38449111470113,
+        "special_collection_coverage_percent": 0.0
+      }
+    ]
   },
   "RQ6": {
     "interlinking_report": [
@@ -326,7 +527,7 @@
         "unmatched": 0,
         "invalid": 0,
         "coverage_percent": 100.0,
-        "linking_method": "Exact ISIL lookup; rdfs:seeAlso because the external target is the ICCU Anagrafe HTML record/search page, not an RDF entity",
+        "linking_method": "Official ICCU permalink generated from the exact ISIL; rdfs:seeAlso because the target is an external HTML resource",
         "external_dataset": "ICCU Anagrafe delle Biblioteche Italiane"
       },
       {

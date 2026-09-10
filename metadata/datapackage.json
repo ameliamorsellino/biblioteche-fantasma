@@ -212,7 +212,8 @@
             "type": "number",
             "description": "problematic libraries per 100k"
           }
-        ]
+        ],
+        "primaryKey": "istat_code"
       }
     },
     {
@@ -263,7 +264,7 @@
           },
           {
             "name": "updated_date",
-            "type": "string",
+            "type": "date",
             "description": "updated date"
           },
           {
@@ -381,7 +382,8 @@
             "type": "string",
             "description": "coordinate quality flag"
           }
-        ]
+        ],
+        "primaryKey": "isil"
       }
     },
     {
@@ -419,6 +421,19 @@
             "name": "source",
             "type": "string",
             "description": "source"
+          }
+        ],
+        "primaryKey": [
+          "isil",
+          "contact_index"
+        ],
+        "foreignKeys": [
+          {
+            "fields": "isil",
+            "reference": {
+              "resource": "library",
+              "fields": "isil"
+            }
           }
         ]
       }
@@ -469,6 +484,19 @@
             "type": "number",
             "description": "quantity"
           }
+        ],
+        "primaryKey": [
+          "isil",
+          "material_index"
+        ],
+        "foreignKeys": [
+          {
+            "fields": "isil",
+            "reference": {
+              "resource": "library",
+              "fields": "isil"
+            }
+          }
         ]
       }
     },
@@ -518,6 +546,16 @@
             "type": "boolean",
             "description": "in cycle"
           }
+        ],
+        "primaryKey": "source_isil",
+        "foreignKeys": [
+          {
+            "fields": "source_isil",
+            "reference": {
+              "resource": "library",
+              "fields": "isil"
+            }
+          }
         ]
       }
     },
@@ -546,6 +584,15 @@
             "name": "previous_name_normalized",
             "type": "string",
             "description": "previous name normalized"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "fields": "isil",
+            "reference": {
+              "resource": "library",
+              "fields": "isil"
+            }
           }
         ]
       }
@@ -596,6 +643,16 @@
             "type": "string",
             "description": "rationale"
           }
+        ],
+        "primaryKey": "isil",
+        "foreignKeys": [
+          {
+            "fields": "isil",
+            "reference": {
+              "resource": "library",
+              "fields": "isil"
+            }
+          }
         ]
       }
     },
@@ -634,6 +691,16 @@
             "name": "administrative_type",
             "type": "string",
             "description": "administrative type"
+          }
+        ],
+        "primaryKey": "isil",
+        "foreignKeys": [
+          {
+            "fields": "isil",
+            "reference": {
+              "resource": "library",
+              "fields": "isil"
+            }
           }
         ]
       }
@@ -724,7 +791,8 @@
             "type": "string",
             "description": "population comparability"
           }
-        ]
+        ],
+        "primaryKey": "istat_code"
       }
     },
     {
@@ -832,6 +900,19 @@
             "name": "fondi_collegati",
             "type": "string",
             "description": "fondi collegati"
+          }
+        ],
+        "primaryKey": [
+          "isil",
+          "collection_index"
+        ],
+        "foreignKeys": [
+          {
+            "fields": "isil",
+            "reference": {
+              "resource": "library",
+              "fields": "isil"
+            }
           }
         ]
       }

@@ -18,6 +18,13 @@ from urllib.parse import quote
 import pandas as pd
 from rdflib import Graph, Literal, Namespace, RDF, RDFS, URIRef, XSD
 from rdflib.namespace import DCTERMS, OWL, PROV, SKOS
+from project_config import (
+    ICCU_SNAPSHOT_DATE,
+    ICCU_SNAPSHOT_DATETIME,
+    POSAS_2019_DATE,
+    POSAS_2025_DATE,
+    PROJECT_RELEASE_DATE,
+)
 
 DEV_BASE = "https://biblioteche-fantasma.invalid/"
 ONTO = Namespace(DEV_BASE + "ontology/")
@@ -28,12 +35,6 @@ SCHEMA = Namespace("https://schema.org/")
 LOCN = Namespace("http://www.w3.org/ns/locn#")
 GEO = Namespace("http://www.opengis.net/ont/geosparql#")
 DCAT = Namespace("http://www.w3.org/ns/dcat#")
-
-ICCU_SNAPSHOT_DATE = "2026-09-08"
-ICCU_SNAPSHOT_DATETIME = "2026-09-08T14:11:15"
-PROJECT_RELEASE_DATE = "2026-09-10"
-POSAS_2019_DATE = "2019-01-01"
-POSAS_2025_DATE = "2025-01-01"
 
 
 class StreamGraph:
@@ -257,19 +258,40 @@ def generate(data_dir: Path, out_dir: Path):
 
     # --- Libraries, sites, addresses, geometry -------------------------------
     ldf = read_csv(data_dir / "library.csv")
-    # lookup type rows and status rows
-    type_df = read_csv(data_dir / "library_type.csv")
-    type_map = {r["isil"]: r for _, r in type_df.iterrows()}
-    stat_map = {r["isil"]: r for _, r in status_df.iterrows()}
+
+    # Status lookup. Functional and administrative types are taken directly
+    # from the ICCU master because library_type.csv has selective coverage.
+    stat_map = {
+        r["isil"]: r
+        for _, r in status_df.iterrows()
+    }
 
     func_concepts: dict[str, URIRef] = {}
     admin_concepts: dict[str, URIRef] = {}
-    for value in sorted(x for x in type_df["functional_type"].unique() if x):
-        u = concept_uri("functional-type", value); func_concepts[value] = u
-        add_concept(g, u, value, functional_scheme)
-    for value in sorted(x for x in type_df["administrative_type"].unique() if x):
-        u = concept_uri("administrative-type", value); admin_concepts[value] = u
-        add_concept(g, u, value, administrative_scheme)
+
+    for value in sorted(
+        x for x in ldf["functional_type"].unique() if x
+    ):
+        u = concept_uri("functional-type", value)
+        func_concepts[value] = u
+        add_concept(
+            g,
+            u,
+            value,
+            functional_scheme,
+        )
+
+    for value in sorted(
+        x for x in ldf["administrative_type"].unique() if x
+    ):
+        u = concept_uri("administrative-type", value)
+        admin_concepts[value] = u
+        add_concept(
+            g,
+            u,
+            value,
+            administrative_scheme,
+        )
 
     for _, row in ldf.iterrows():
         isil = row["isil"]
@@ -292,12 +314,24 @@ def generate(data_dir: Path, out_dir: Path):
         if row["disabled_access"]: g.add((lib, ONTO.accessibilityNote, Literal(row["disabled_access"], lang="it")))
         if row["owning_entity"]: g.add((lib, ONTO.owningEntityName, Literal(row["owning_entity"], lang="it")))
 
-        tr = type_map.get(isil)
-        if tr is not None:
-            if tr["functional_type"]:
-                g.add((lib, ONTO.functionalType, func_concepts[tr["functional_type"]]))
-            if tr["administrative_type"]:
-                g.add((lib, ONTO.administrativeType, admin_concepts[tr["administrative_type"]]))
+
+        if row["functional_type"]:
+            g.add(
+                (
+                    lib,
+                    ONTO.functionalType,
+                    func_concepts[row["functional_type"]],
+                )
+            )
+
+        if row["administrative_type"]:
+            g.add(
+                (
+                    lib,
+                    ONTO.administrativeType,
+                    admin_concepts[row["administrative_type"]],
+                )
+            )
 
         g.add((lib, CIS.hasSite, site))
         g.add((site, RDF.type, CIS.Site))
@@ -403,10 +437,20 @@ def generate(data_dir: Path, out_dir: Path):
 
     # --- Metadata graph ------------------------------------------------------
     dataset = RES["dataset/biblioteche-fantasma"]
+    tabular_dataset = URIRef(
+        DEV_BASE + "metadata/dataset"
+    )
     mg.add((dataset, RDF.type, DCAT.Dataset))
     mg.add((dataset, DCTERMS.title, Literal("Biblioteche Fantasma - knowledge graph", lang="it")))
     mg.add((dataset, DCTERMS.description, Literal("Knowledge graph derivato dai dataset processati ICCU e ISTAT: biblioteche, stati osservati, patrimonio, fondi speciali e demografia comunale 2019/2025.", lang="it")))
     mg.add((dataset, DCTERMS.license, URIRef("https://creativecommons.org/licenses/by/4.0/")))
+    mg.add(
+        (
+            dataset,
+            PROV.wasDerivedFrom,
+            tabular_dataset,
+        )
+    )
     mg.add(
         (
             dataset,

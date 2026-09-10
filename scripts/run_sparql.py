@@ -48,7 +48,7 @@ except ImportError:  # pragma: no cover - exercised only on an unprepared env
 
 
 STORE_SCHEMA_VERSION = 1
-EXPECTED_EXPLICIT_TRIPLES = 1_644_602
+EXPECTED_EXPLICIT_TRIPLES = 1_656_407
 
 
 @dataclass(frozen=True)

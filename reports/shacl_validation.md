@@ -5,7 +5,7 @@
 - engine: **pySHACL 0.40.1**
 - RDF backend: **PyOxigraph persistent store**
 - shapes graph: `shacl/shapes.ttl`
-- explicit triples validated: **1,644,602**
+- explicit triples validated: **1,656,407**
 - inference: **none**
 - Meta-SHACL validation of the shapes graph: **enabled**
 - abort on first violation: **no**

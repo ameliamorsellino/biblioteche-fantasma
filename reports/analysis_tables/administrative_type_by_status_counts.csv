@@ -1,33 +1,36 @@
-administrative_type,BIBLIOTECA_IN_VIA_DI_ALLESTIMENTO,INAGIBILE,NESSUNO_STATO_SPECIALE_REGISTRATO,RIAPERTURA_AGIBILITA_PARZIALE,SERVIZI_SOSPESI_CAUSA_SISMA,TEMPORANEAMENTE_CHIUSA
-"Accademie, associazioni, fondazioni, istituti (pubblici)",2,0,700,0,0,50
-"Accademie, associazioni, fondazioni, istituti, societa' (privati)",1,1,1170,0,0,59
-Aziende ed amministrazioni dello stato ad ordinamento autonomo,1,0,242,0,0,13
-Aziende ed enti del servizio sanitario nazionale,0,0,60,0,0,6
-"Camere di commercio, industria, artigianato",0,0,38,0,0,3
-Centrale,0,0,3,0,0,0
-Città metropolitana,0,0,46,0,0,0
-Comune,7,3,6419,1,9,353
-Comune - Istituzione comunale,0,0,13,0,0,0
-Comunita' montana,0,0,13,0,0,1
-"Consorzio e/o associazioni di regioni, province, comuni e comunità montane",0,0,42,0,0,1
-Direzione Generale Archivi,1,0,138,0,1,4
-Direzione generale Biblioteche e diritto d'autore,0,0,50,0,0,2
-Direzione generale Musei,0,0,38,0,0,3
-"Direzione generale archeologia, belle arti e paesaggio",0,0,48,0,0,3
-Direzione generale educazione e ricerca,0,0,3,0,0,0
-"Direzione generale per il Paesaggio, le Belle Arti, l'Architettura e l'Arte contemporanee",0,0,1,0,0,0
-"Direzione generale per il patrimonio storico, artistico e etnoantropologico",0,0,5,0,0,0
-Enti ecclesiastici,2,0,1186,0,1,31
-Enti territoriali,0,0,4,0,0,0
-Istituti centrali,0,0,6,0,0,0
-Istituzioni straniere,1,0,39,0,0,2
-Ministero della Cultura,0,0,17,0,0,2
-Organi costituzionali,0,0,12,0,0,0
-Organizzazioni internazionali,0,0,14,0,0,0
-Presidenza del consiglio dei ministri e ministeri,6,0,1274,0,1,26
-Privati - Famiglie,0,0,75,0,0,3
-Provincia,0,0,90,0,0,5
-Regione,0,0,158,0,0,14
-Unione di Comuni,0,0,15,0,0,0
-Universita' non statali,0,0,43,0,0,0
-Universita' statali,1,0,1104,1,0,28
+administrative_type,BIBLIOTECA_CONFLUITA,BIBLIOTECA_IN_VIA_DI_ALLESTIMENTO,BIBLIOTECA_NON_CENSITA,BIBLIOTECA_NON_PIU_ESISTENTE,DEPOSITO_SENZA_PUNTO_DI_SERVIZIO,INAGIBILE,NESSUNO_STATO_SPECIALE_REGISTRATO,RIAPERTURA_AGIBILITA_PARZIALE,SERVIZI_SOSPESI_CAUSA_SISMA,TEMPORANEAMENTE_CHIUSA
+"Accademie, associazioni, fondazioni, istituti (pubblici)",15,3,195,94,0,0,701,0,0,51
+"Accademie, associazioni, fondazioni, istituti, societa' (privati)",16,1,177,149,0,1,1189,0,0,59
+Aziende ed amministrazioni dello stato ad ordinamento autonomo,11,1,124,49,0,0,244,0,0,13
+Aziende ed enti del servizio sanitario nazionale,4,0,24,18,1,0,60,0,0,6
+"Camere di commercio, industria, artigianato",1,0,5,27,0,0,38,0,0,3
+Centrale,0,0,0,0,0,0,3,0,0,0
+Città metropolitana,0,0,0,1,0,0,46,0,0,0
+Comune,50,10,179,456,6,3,6459,1,9,353
+Comune - Istituzione comunale,0,0,0,0,0,0,13,0,0,0
+Comunita' montana,0,0,2,8,0,0,13,0,0,1
+"Consorzio e/o associazioni di regioni, province, comuni e comunità montane",0,0,4,9,0,0,43,0,0,1
+Direzione Generale Archivi,1,1,0,2,0,0,138,0,1,4
+Direzione generale Biblioteche e diritto d'autore,0,0,0,0,0,0,50,0,0,2
+Direzione generale Musei,3,0,0,1,0,0,38,0,0,3
+"Direzione generale archeologia, belle arti e paesaggio",3,0,1,3,0,0,48,0,0,3
+Direzione generale educazione e ricerca,1,0,0,0,0,0,3,0,0,0
+Direzione generale per i beni architettonici e paesaggistici,1,0,0,0,0,0,0,0,0,0
+"Direzione generale per il Paesaggio, le Belle Arti, l'Architettura e l'Arte contemporanee",0,0,0,0,0,0,1,0,0,0
+"Direzione generale per il patrimonio storico, artistico e etnoantropologico",0,0,0,0,0,0,5,0,0,0
+Enti ecclesiastici,53,2,220,153,3,0,1193,0,1,31
+Enti territoriali,0,0,0,1,0,0,4,0,0,0
+Istituti centrali,1,0,0,0,0,0,6,0,0,0
+Istituzioni extraterritoriali,0,0,1,0,0,0,0,0,0,0
+Istituzioni straniere,0,1,9,8,0,0,39,0,0,2
+Ministero della Cultura,2,0,0,1,1,0,17,0,0,2
+NON SPECIFICATA,96,6,578,396,2,0,26,0,0,8
+Organi costituzionali,0,0,1,0,0,0,12,0,0,0
+Organizzazioni internazionali,0,0,9,4,0,0,14,0,0,0
+Presidenza del consiglio dei ministri e ministeri,8,6,94,60,1,0,1299,0,1,27
+Privati - Famiglie,5,0,23,9,0,0,78,0,0,3
+Provincia,9,1,11,18,0,0,93,0,0,5
+Regione,9,0,47,21,0,0,158,0,0,14
+Unione di Comuni,0,0,0,0,0,0,15,0,0,0
+Universita' non statali,0,0,2,7,0,0,43,0,0,0
+Universita' statali,1213,2,17,332,19,0,1111,1,0,28

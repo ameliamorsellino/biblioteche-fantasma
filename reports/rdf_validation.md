@@ -8,12 +8,12 @@
 
 ## Parsing and graph size
 
-- `rdf/data.ttl`: **1,616,865** triples; strict N-Triples parse PASS; therefore valid Turtle subset
+- `rdf/data.ttl`: **1,628,669** triples; strict N-Triples parse PASS; therefore valid Turtle subset
 - `rdf/links.ttl`: **27,504** triples; strict N-Triples parse PASS; therefore valid Turtle subset
-- `rdf/metadata.ttl`: **38** triples; RDFLib Turtle parse PASS
+- `rdf/metadata.ttl`: **39** triples; RDFLib Turtle parse PASS
 - `ontology/ontology.ttl`: **195** triples; RDFLib Turtle parse PASS
 - `ontology/ontology.owl`: **195** triples; RDF/XML parse PASS
-- total import graph (ontology + data + metadata + links): **1,644,602** triples
+- total import graph (ontology + data + metadata + links): **1,656,407** triples
 - distinct predicates across ontology/data/metadata/links: **79**
 - distinct instance `rdf:type` objects in data: **13**
 
@@ -32,7 +32,7 @@
 | `https://biblioteche-fantasma.invalid/ontology/DemographicObservation` | 15,790 |
 | `https://biblioteche-fantasma.invalid/ontology/SpecialCollection` | 9,737 |
 | `https://biblioteche-fantasma.invalid/ontology/Municipality` | 7,896 |
-| `http://www.w3.org/2004/02/skos/core#Concept` | 358 |
+| `http://www.w3.org/2004/02/skos/core#Concept` | 362 |
 | `http://www.w3.org/2004/02/skos/core#ConceptScheme` | 7 |
 
 ## Integrity checks

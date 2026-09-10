@@ -13,7 +13,6 @@ dct:identifier "biblioteche-fantasma" ;
     dct:description "Dataset puliti e integrati ICCU + ISTAT 2019/2025 per lo studio delle biblioteche italiane non pienamente operative."@it ;
     dct:publisher bf:project-author ;
     dct:creator bf:project-author ;
-    dct:rightsHolder bf:project-author ;
     dct:license <https://creativecommons.org/licenses/by/4.0/> ;
     dct:issued "2026-09-11"^^xsd:date ;
     dct:modified "2026-09-11"^^xsd:date ;

@@ -9,7 +9,8 @@
   "population_2025_total": 58943464,
   "problematic_libraries_per_100k_national": 4.236262734745281,
   "coordinates_complete_clean": 19524,
-  "functional_type_coverage_libraries": 13715,
+  "functional_type_master_coverage_libraries": 19611,
+  "functional_type_secondary_dataset_coverage_libraries": 13715,
   "holding_rows": 93512,
   "special_collection_records": 9737
 }

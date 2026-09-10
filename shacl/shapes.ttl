@@ -5,94 +5,229 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
+
+# ---------------------------------------------------------------------------
+# Library
+# ---------------------------------------------------------------------------
+
 <https://biblioteche-fantasma.invalid/shapes/LibraryShape>
     a sh:NodeShape ;
     sh:targetClass cis:Library ;
+
     sh:property [
         sh:path cis:ISILIdentifier ;
-        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
         sh:datatype xsd:string ;
         sh:pattern "^IT-[A-Z]{2}[0-9]{4}$"
     ] ;
+
     sh:property [
         sh:path cis:hasSite ;
         sh:minCount 1 ;
         sh:nodeKind sh:IRI
     ] ;
+
     sh:property [
         sh:path bf:hasStatusObservation ;
-        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
         sh:nodeKind sh:IRI
+    ] ;
+
+    sh:property [
+        sh:path bf:functionalType ;
+        sh:maxCount 1 ;
+        sh:class skos:Concept
+    ] ;
+
+    sh:property [
+        sh:path bf:administrativeType ;
+        sh:maxCount 1 ;
+        sh:class skos:Concept
     ] .
+
+
+# ---------------------------------------------------------------------------
+# ISIL
+# ---------------------------------------------------------------------------
 
 <https://biblioteche-fantasma.invalid/shapes/ISILShape>
     a sh:NodeShape ;
     sh:targetSubjectsOf cis:ISILIdentifier ;
+
     sh:property [
         sh:path cis:ISILIdentifier ;
-        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
         sh:datatype xsd:string ;
         sh:pattern "^IT-[A-Z]{2}[0-9]{4}$"
     ] .
 
+
+# ---------------------------------------------------------------------------
+# Municipality
+# ---------------------------------------------------------------------------
+
 <https://biblioteche-fantasma.invalid/shapes/MunicipalityShape>
     a sh:NodeShape ;
     sh:targetClass bf:Municipality ;
+
     sh:property [
         sh:path cis:hasISTATCode ;
-        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
         sh:datatype xsd:string ;
         sh:pattern "^[0-9]{6}$"
     ] ;
+
     sh:property [
         sh:path bf:regionName ;
         sh:minCount 1
     ] .
 
+
+# ---------------------------------------------------------------------------
+# Library status observation
+# ---------------------------------------------------------------------------
+
 <https://biblioteche-fantasma.invalid/shapes/LibraryStatusObservationShape>
     a sh:NodeShape ;
     sh:targetClass bf:LibraryStatusObservation ;
+
     sh:property [
         sh:path bf:observedLibrary ;
-        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
         sh:nodeKind sh:IRI
     ] ;
+
     sh:property [
         sh:path bf:hasStatus ;
-        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
         sh:nodeKind sh:IRI ;
         sh:class skos:Concept
     ] ;
+
     sh:property [
         sh:path bf:observationDate ;
-        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
         sh:datatype xsd:date
     ] ;
+
     sh:property [
         sh:path prov:wasDerivedFrom ;
         sh:minCount 1 ;
         sh:nodeKind sh:IRI
     ] .
 
+
+# ---------------------------------------------------------------------------
+# Demographic observation
+# ---------------------------------------------------------------------------
+
 <https://biblioteche-fantasma.invalid/shapes/DemographicObservationShape>
     a sh:NodeShape ;
     sh:targetClass bf:DemographicObservation ;
+
     sh:property [
         sh:path bf:observedMunicipality ;
-        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
         sh:nodeKind sh:IRI
     ] ;
+
     sh:property [
         sh:path bf:referenceDate ;
-        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
         sh:datatype xsd:date
     ] ;
+
     sh:property [
         sh:path bf:population ;
-        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
         sh:datatype xsd:integer ;
         sh:minInclusive 0
     ] ;
+
+    sh:property [
+        sh:path prov:wasDerivedFrom ;
+        sh:minCount 1 ;
+        sh:nodeKind sh:IRI
+    ] .
+
+
+# ---------------------------------------------------------------------------
+# Holding observation
+# ---------------------------------------------------------------------------
+
+<https://biblioteche-fantasma.invalid/shapes/HoldingObservationShape>
+    a sh:NodeShape ;
+    sh:targetClass bf:HoldingObservation ;
+
+    sh:property [
+        sh:path bf:observedLibrary ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class cis:Library
+    ] ;
+
+    sh:property [
+        sh:path bf:materialType ;
+        sh:maxCount 1 ;
+        sh:class skos:Concept
+    ] ;
+
+    sh:property [
+        sh:path bf:holdingCategory ;
+        sh:maxCount 1 ;
+        sh:class skos:Concept
+    ] ;
+
+    sh:property [
+        sh:path bf:quantity ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:integer ;
+        sh:minInclusive 0
+    ] ;
+
+    sh:property [
+        sh:path prov:wasDerivedFrom ;
+        sh:minCount 1 ;
+        sh:nodeKind sh:IRI
+    ] .
+
+
+# ---------------------------------------------------------------------------
+# Special collection
+# ---------------------------------------------------------------------------
+
+<https://biblioteche-fantasma.invalid/shapes/SpecialCollectionShape>
+    a sh:NodeShape ;
+    sh:targetClass bf:SpecialCollection ;
+
+    sh:property [
+        sh:path bf:collectionType ;
+        sh:maxCount 1 ;
+        sh:class skos:Concept
+    ] ;
+
+    sh:property [
+        sh:path bf:depositedCollection ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:boolean
+    ] ;
+
+    sh:property [
+        sh:path bf:collectionCode ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string
+    ] ;
+
     sh:property [
         sh:path prov:wasDerivedFrom ;
         sh:minCount 1 ;

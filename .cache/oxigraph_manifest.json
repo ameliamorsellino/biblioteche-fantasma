@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "files": [
+    {
+      "path": "ontology/ontology.ttl",
+      "format": "TURTLE",
+      "bytes": 9226,
+      "sha256": "f3e9344a910075f313522249fa20484f452a43d404caa4453e32cdaf010a062e"
+    },
+    {
+      "path": "rdf/data.ttl",
+      "format": "N_TRIPLES",
+      "bytes": 314192120,
+      "sha256": "d4adaa65b9054db18961ed932a1863e91a90b1edb523ac2a1c9039b99b962744"
+    },
+    {
+      "path": "rdf/links.ttl",
+      "format": "N_TRIPLES",
+      "bytes": 4530753,
+      "sha256": "6ea2d9aee83947505785878c0eb5d9d0487b04ab8750cbcfeb6e17c6d03cf444"
+    },
+    {
+      "path": "rdf/metadata.ttl",
+      "format": "TURTLE",
+      "bytes": 2743,
+      "sha256": "d835ba4b267786df1aeeb9d552b0f7eced4c5d64248ce7204da9e2c7b0f6410e"
+    }
+  ],
+  "explicit_triples": 1656407
+}

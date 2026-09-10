@@ -21,7 +21,7 @@ Il progetto adotta inoltre un approccio conservativo nella gestione delle anomal
 * **RQ1** - Dove sono distribuite le biblioteche caratterizzate da stati di non piena operatività?
 * **RQ2** - Quali stati di registrazione sono più frequenti e come variano territorialmente?
 * **RQ3** - Quali tipologie funzionali/amministrative risultano associate ai diversi stati?
-* **RQ4** - Esiste un'associazione tra variazione demografica comunale 2019–2025 e quota di biblioteche problematiche?
+* **RQ4** - Esiste un'associazione tra variazione demografica comunale 2019–2025 e quota di record bibliotecari con stato ICCU incluso nel perimetro problematico?
 * **RQ5** - Quale patrimonio e quali fondi speciali risultano documentati presso biblioteche problematiche?
 * **RQ6** - Quale copertura raggiunge la generazione dei collegamenti verso risorse esterne?
 * **RQ7** - Quale struttura presenta la rete delle confluenze?
@@ -479,7 +479,7 @@ Gli stati più frequenti nello snapshot comprendono:
 
 A livello regionale, la quota problematica risulta particolarmente elevata in alcune regioni, ma ogni confronto viene interpretato insieme al relativo denominatore.
 
-Per RQ4, il confronto su **6.659 comuni comparabili con almeno una biblioteca** mostra una relazione debole tra variazione demografica 2019–2025 e quota di biblioteche problematiche:
+Per RQ4, il confronto su **6.659 comuni comparabili con almeno una biblioteca** mostra una relazione debole tra variazione demografica 2019–2025 e quota di record bibliotecari con stato ICCU incluso nel perimetro problematico:
 
 ```text
 Pearson r = -0,106
@@ -505,7 +505,7 @@ L'unico ciclo rilevato è il self-loop già documentato:
 IT-SS0267 -> IT-SS0267
 ```
 
-Per RQ8, la quota di popolazione over 65 mostra un'associazione positiva ma debole con la quota di biblioteche problematiche. L'analisi è documentata in:
+Per RQ8, la quota di popolazione over 65 mostra un'associazione positiva ma debole con la quota di record bibliotecari con stato ICCU incluso nel perimetro problematico. L'analisi è documentata in:
 
 ```text
 reports/analysis_tables/age65_problematic_correlation.csv
@@ -538,7 +538,7 @@ Tra le principali:
 * `special_collections.png` - copertura documentaria di patrimonio e fondi speciali;
 * `problematic_holdings.png` - materiali documentati presso le biblioteche problematiche;
 * `mergers_network.png` - componente maggiore della rete delle confluenze;
-* `age65_scatter.png` - quota 65+ vs quota di biblioteche problematiche.
+* `age65_scatter.png` - quota 65+ vs quota di record bibliotecari con stato ICCU incluso nel perimetro problematico.
 
 Le visualizzazioni sono progettate per rispondere alle Research Questions e non come dashboard esplorativa priva di una domanda analitica.
 
