@@ -21,17 +21,17 @@
 
 | Type | Count |
 |---|---:|
-| `https://biblioteche-fantasma.invalid/ontology/HoldingObservation` | 93,512 |
+| `https://ameliamorsellino.github.io/biblioteche-fantasma/ontology/HoldingObservation` | 93,512 |
 | `http://dati.beniculturali.it/cis/Library` | 19,611 |
 | `http://dati.beniculturali.it/cis/Site` | 19,611 |
-| `https://biblioteche-fantasma.invalid/ontology/LibraryStatusObservation` | 19,611 |
+| `https://ameliamorsellino.github.io/biblioteche-fantasma/ontology/LibraryStatusObservation` | 19,611 |
 | `http://www.opengis.net/ont/geosparql#Feature` | 19,524 |
 | `http://www.opengis.net/ont/geosparql#Geometry` | 19,524 |
 | `http://dati.beniculturali.it/cis/Address` | 18,660 |
 | `http://www.w3.org/ns/locn#Address` | 18,660 |
-| `https://biblioteche-fantasma.invalid/ontology/DemographicObservation` | 15,790 |
-| `https://biblioteche-fantasma.invalid/ontology/SpecialCollection` | 9,737 |
-| `https://biblioteche-fantasma.invalid/ontology/Municipality` | 7,896 |
+| `https://ameliamorsellino.github.io/biblioteche-fantasma/ontology/DemographicObservation` | 15,790 |
+| `https://ameliamorsellino.github.io/biblioteche-fantasma/ontology/SpecialCollection` | 9,737 |
+| `https://ameliamorsellino.github.io/biblioteche-fantasma/ontology/Municipality` | 7,896 |
 | `http://www.w3.org/2004/02/skos/core#Concept` | 362 |
 | `http://www.w3.org/2004/02/skos/core#ConceptScheme` | 7 |
 
@@ -41,7 +41,7 @@
 - duplicate serialized triples in `links.ttl`: **0**
 - undefined local predicates used: **0**
 - undefined local classes used: **0**
-- dangling local resource targets (excluding provisional download URLs): **0**
+- dangling local resource targets (excluding distribution document URLs): **0**
 - link subjects not present in data graph: **0**
 - datatype lexical errors detected: **0**
 - malformed URI errors detected: **0**
@@ -49,7 +49,7 @@
 
 ## Warnings / publication limits
 
-- Project resource/ontology IRIs intentionally use the reserved .invalid development domain and are not dereferenceable.
+- Project resource/ontology IRIs use the public GitHub Pages namespace; Web dereferenceability is verified separately after deployment.
 - External targets were generated from identifier-based, documented URI rules; the runtime did not individually dereference all targets.
 - N-Triples line serialization is used for data.ttl and links.ttl; N-Triples is a syntactic subset of Turtle.
 

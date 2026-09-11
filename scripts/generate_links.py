@@ -15,8 +15,9 @@ from pathlib import Path
 import pandas as pd
 from rdflib import URIRef
 from rdflib.namespace import OWL, RDFS
+from project_config import PUBLIC_BASE
 
-DEV = "https://biblioteche-fantasma.invalid/resource/"
+DEV = PUBLIC_BASE + "resource/"
 ICCU_PERMALINK = "https://anagrafe.iccu.sbn.it/isil/{}"
 ISPRA_MUNI = "https://w3id.org/italia/env/ld/place/municipality/00201_{}"
 RETIRED_2026 = {

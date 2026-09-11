@@ -1,4 +1,4 @@
-@prefix bf: <https://biblioteche-fantasma.invalid/metadata/> .
+@prefix bf: <https://ameliamorsellino.github.io/biblioteche-fantasma/metadata/> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
@@ -40,8 +40,8 @@ bf:dist-analysis-municipality a dcat:Distribution ;
     dct:license <https://creativecommons.org/licenses/by/4.0/> ;
     dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;
     dcat:mediaType "text/csv" ;
-    dcat:accessURL <file:./data/processed/analysis_municipality.csv> ;
-    dcat:downloadURL <file:./data/processed/analysis_municipality.csv> .
+    dcat:accessURL <https://github.com/ameliamorsellino/biblioteche-fantasma/blob/main/data/processed/analysis_municipality.csv> ;
+    dcat:downloadURL <https://raw.githubusercontent.com/ameliamorsellino/biblioteche-fantasma/main/data/processed/analysis_municipality.csv> .
 
 bf:dist-library a dcat:Distribution ;
     dct:title "library"@it ;
@@ -49,8 +49,8 @@ bf:dist-library a dcat:Distribution ;
     dct:license <https://creativecommons.org/licenses/by/4.0/> ;
     dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;
     dcat:mediaType "text/csv" ;
-    dcat:accessURL <file:./data/processed/library.csv> ;
-    dcat:downloadURL <file:./data/processed/library.csv> .
+    dcat:accessURL <https://github.com/ameliamorsellino/biblioteche-fantasma/blob/main/data/processed/library.csv> ;
+    dcat:downloadURL <https://raw.githubusercontent.com/ameliamorsellino/biblioteche-fantasma/main/data/processed/library.csv> .
 
 bf:dist-library-contact a dcat:Distribution ;
     dct:title "library_contact"@it ;
@@ -58,8 +58,8 @@ bf:dist-library-contact a dcat:Distribution ;
     dct:license <https://creativecommons.org/licenses/by/4.0/> ;
     dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;
     dcat:mediaType "text/csv" ;
-    dcat:accessURL <file:./data/processed/library_contact.csv> ;
-    dcat:downloadURL <file:./data/processed/library_contact.csv> .
+    dcat:accessURL <https://github.com/ameliamorsellino/biblioteche-fantasma/blob/main/data/processed/library_contact.csv> ;
+    dcat:downloadURL <https://raw.githubusercontent.com/ameliamorsellino/biblioteche-fantasma/main/data/processed/library_contact.csv> .
 
 bf:dist-library-holdings a dcat:Distribution ;
     dct:title "library_holdings"@it ;
@@ -67,8 +67,8 @@ bf:dist-library-holdings a dcat:Distribution ;
     dct:license <https://creativecommons.org/licenses/by/4.0/> ;
     dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;
     dcat:mediaType "text/csv" ;
-    dcat:accessURL <file:./data/processed/library_holdings.csv> ;
-    dcat:downloadURL <file:./data/processed/library_holdings.csv> .
+    dcat:accessURL <https://github.com/ameliamorsellino/biblioteche-fantasma/blob/main/data/processed/library_holdings.csv> ;
+    dcat:downloadURL <https://raw.githubusercontent.com/ameliamorsellino/biblioteche-fantasma/main/data/processed/library_holdings.csv> .
 
 bf:dist-library-mergers a dcat:Distribution ;
     dct:title "library_mergers"@it ;
@@ -76,8 +76,8 @@ bf:dist-library-mergers a dcat:Distribution ;
     dct:license <https://creativecommons.org/licenses/by/4.0/> ;
     dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;
     dcat:mediaType "text/csv" ;
-    dcat:accessURL <file:./data/processed/library_mergers.csv> ;
-    dcat:downloadURL <file:./data/processed/library_mergers.csv> .
+    dcat:accessURL <https://github.com/ameliamorsellino/biblioteche-fantasma/blob/main/data/processed/library_mergers.csv> ;
+    dcat:downloadURL <https://raw.githubusercontent.com/ameliamorsellino/biblioteche-fantasma/main/data/processed/library_mergers.csv> .
 
 bf:dist-library-previous-name a dcat:Distribution ;
     dct:title "library_previous_name"@it ;
@@ -85,8 +85,8 @@ bf:dist-library-previous-name a dcat:Distribution ;
     dct:license <https://creativecommons.org/licenses/by/4.0/> ;
     dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;
     dcat:mediaType "text/csv" ;
-    dcat:accessURL <file:./data/processed/library_previous_name.csv> ;
-    dcat:downloadURL <file:./data/processed/library_previous_name.csv> .
+    dcat:accessURL <https://github.com/ameliamorsellino/biblioteche-fantasma/blob/main/data/processed/library_previous_name.csv> ;
+    dcat:downloadURL <https://raw.githubusercontent.com/ameliamorsellino/biblioteche-fantasma/main/data/processed/library_previous_name.csv> .
 
 bf:dist-library-status a dcat:Distribution ;
     dct:title "library_status"@it ;
@@ -94,8 +94,8 @@ bf:dist-library-status a dcat:Distribution ;
     dct:license <https://creativecommons.org/licenses/by/4.0/> ;
     dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;
     dcat:mediaType "text/csv" ;
-    dcat:accessURL <file:./data/processed/library_status.csv> ;
-    dcat:downloadURL <file:./data/processed/library_status.csv> .
+    dcat:accessURL <https://github.com/ameliamorsellino/biblioteche-fantasma/blob/main/data/processed/library_status.csv> ;
+    dcat:downloadURL <https://raw.githubusercontent.com/ameliamorsellino/biblioteche-fantasma/main/data/processed/library_status.csv> .
 
 bf:dist-library-type a dcat:Distribution ;
     dct:title "library_type"@it ;
@@ -103,8 +103,8 @@ bf:dist-library-type a dcat:Distribution ;
     dct:license <https://creativecommons.org/licenses/by/4.0/> ;
     dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;
     dcat:mediaType "text/csv" ;
-    dcat:accessURL <file:./data/processed/library_type.csv> ;
-    dcat:downloadURL <file:./data/processed/library_type.csv> .
+    dcat:accessURL <https://github.com/ameliamorsellino/biblioteche-fantasma/blob/main/data/processed/library_type.csv> ;
+    dcat:downloadURL <https://raw.githubusercontent.com/ameliamorsellino/biblioteche-fantasma/main/data/processed/library_type.csv> .
 
 bf:dist-municipality-population a dcat:Distribution ;
     dct:title "municipality_population"@it ;
@@ -112,8 +112,8 @@ bf:dist-municipality-population a dcat:Distribution ;
     dct:license <https://creativecommons.org/licenses/by/4.0/> ;
     dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;
     dcat:mediaType "text/csv" ;
-    dcat:accessURL <file:./data/processed/municipality_population.csv> ;
-    dcat:downloadURL <file:./data/processed/municipality_population.csv> .
+    dcat:accessURL <https://github.com/ameliamorsellino/biblioteche-fantasma/blob/main/data/processed/municipality_population.csv> ;
+    dcat:downloadURL <https://raw.githubusercontent.com/ameliamorsellino/biblioteche-fantasma/main/data/processed/municipality_population.csv> .
 
 bf:dist-special-collection a dcat:Distribution ;
     dct:title "special_collection"@it ;
@@ -121,5 +121,5 @@ bf:dist-special-collection a dcat:Distribution ;
     dct:license <https://creativecommons.org/licenses/by/4.0/> ;
     dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;
     dcat:mediaType "text/csv" ;
-    dcat:accessURL <file:./data/processed/special_collection.csv> ;
-    dcat:downloadURL <file:./data/processed/special_collection.csv> .
+    dcat:accessURL <https://github.com/ameliamorsellino/biblioteche-fantasma/blob/main/data/processed/special_collection.csv> ;
+    dcat:downloadURL <https://raw.githubusercontent.com/ameliamorsellino/biblioteche-fantasma/main/data/processed/special_collection.csv> .

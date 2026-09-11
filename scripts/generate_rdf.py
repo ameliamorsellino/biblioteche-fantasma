@@ -24,12 +24,13 @@ from project_config import (
     POSAS_2019_DATE,
     POSAS_2025_DATE,
     PROJECT_RELEASE_DATE,
+    PUBLIC_BASE,
+    RDF_DATA_DOWNLOAD_URL,
 )
 
-DEV_BASE = "https://biblioteche-fantasma.invalid/"
-ONTO = Namespace(DEV_BASE + "ontology/")
-RES = Namespace(DEV_BASE + "resource/")
-GRAPH = Namespace(DEV_BASE + "graph/")
+ONTO = Namespace(PUBLIC_BASE + "ontology/")
+RES = Namespace(PUBLIC_BASE + "resource/")
+GRAPH = Namespace(PUBLIC_BASE + "graph/")
 CIS = Namespace("http://dati.beniculturali.it/cis/")
 SCHEMA = Namespace("https://schema.org/")
 LOCN = Namespace("http://www.w3.org/ns/locn#")
@@ -438,7 +439,7 @@ def generate(data_dir: Path, out_dir: Path):
     # --- Metadata graph ------------------------------------------------------
     dataset = RES["dataset/biblioteche-fantasma"]
     tabular_dataset = URIRef(
-        DEV_BASE + "metadata/dataset"
+        PUBLIC_BASE + "metadata/dataset"
     )
     mg.add((dataset, RDF.type, DCAT.Dataset))
     mg.add((dataset, DCTERMS.title, Literal("Biblioteche Fantasma - knowledge graph", lang="it")))
@@ -481,11 +482,18 @@ def generate(data_dir: Path, out_dir: Path):
         ("metadata.ttl", "RDF metadata", "text/turtle"),
     ]:
         dist = RES[f"distribution/{name}"]
-        mg.add((dist, RDF.type, DCAT.Distribution)); mg.add((dataset, DCAT.distribution, dist))
+        mg.add((dist, RDF.type, DCAT.Distribution))
+        mg.add((dataset, DCAT.distribution, dist))
         mg.add((dist, DCTERMS.title, Literal(title, lang="en")))
         mg.add((dist, DCAT.mediaType, Literal(media)))
-        mg.add((dist, DCAT.downloadURL, URIRef(DEV_BASE + f"distribution/{quote(name)}")))
 
+        if name == "data.ttl":
+            download_url = RDF_DATA_DOWNLOAD_URL
+        else:
+            download_url = PUBLIC_BASE + f"distribution/{quote(name)}"
+
+        mg.add((dist, DCAT.downloadURL, URIRef(download_url)))
+    
     g.close()
     mg.serialize(destination=out_dir / "metadata.ttl", format="turtle")
     return g, mg
