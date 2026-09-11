@@ -3,3 +3,18 @@ __pycache__/
 *.pyc
 .cache/
 rdf/data.ttl
+
+# Python generated files
+**/__pycache__/
+*.pyc
+
+# LaTeX build artifacts
+*.aux
+*.blg
+*.bcf
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*-SAVE-ERROR
