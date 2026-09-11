@@ -7,67 +7,67 @@
     {
       "query": "01_status_distribution.rq",
       "rows": 11,
-      "seconds": 0.274256,
+      "seconds": 0.284423,
       "result": "01_status_distribution.csv"
     },
     {
       "query": "02_status_by_region.rq",
       "rows": 154,
-      "seconds": 0.420927,
+      "seconds": 0.458883,
       "result": "02_status_by_region.csv"
     },
     {
       "query": "03_inaccessible_special_collections.rq",
       "rows": 0,
-      "seconds": 0.286595,
+      "seconds": 0.312641,
       "result": "03_inaccessible_special_collections.csv"
     },
     {
       "query": "04_demography_and_status.rq",
       "rows": 538,
-      "seconds": 0.961615,
+      "seconds": 1.017155,
       "result": "04_demography_and_status.csv"
     },
     {
       "query": "05_library_mergers.rq",
       "rows": 1412,
-      "seconds": 0.160958,
+      "seconds": 0.163294,
       "result": "05_library_mergers.csv"
     },
     {
       "query": "06_external_links.rq",
       "rows": 27504,
-      "seconds": 0.485095,
+      "seconds": 0.513781,
       "result": "06_external_links.csv"
     },
     {
       "query": "07_demographic_filter.rq",
       "rows": 98,
-      "seconds": 0.466488,
+      "seconds": 0.469268,
       "result": "07_demographic_filter.csv"
     },
     {
       "query": "08_region_aggregation.rq",
       "rows": 20,
-      "seconds": 0.342966,
+      "seconds": 0.357391,
       "result": "08_region_aggregation.csv"
     },
     {
       "query": "09_temporary_closed_by_region.rq",
       "rows": 44,
-      "seconds": 0.420991,
+      "seconds": 0.454767,
       "result": "09_temporary_closed_by_region.csv"
     },
     {
       "query": "10_material_type.rq",
       "rows": 2420,
-      "seconds": 0.118414,
+      "seconds": 0.128587,
       "result": "10_material_type.csv"
     },
     {
       "query": "11_library_municipality.rq",
       "rows": 1,
-      "seconds": 0.000439,
+      "seconds": 0.000476,
       "result": "11_library_municipality.csv"
     }
   ]
