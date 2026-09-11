@@ -18,3 +18,6 @@ rdf/data.ttl
 *.out
 *.synctex.gz
 *-SAVE-ERROR
+
+# Generated GitHub Pages site
+docs/
