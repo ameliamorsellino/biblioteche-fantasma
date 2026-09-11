@@ -201,20 +201,24 @@ ontology/vocabulary_reuse.csv
 
 ---
 
-## URI policy
+## Pubblicazione Web e URI policy
 
-Il progetto mantiene distinti il namespace ontologico e quello delle risorse.
+Il progetto utilizza un namespace HTTPS pubblico:
+
+```text
+https://ameliamorsellino.github.io/biblioteche-fantasma/
+```
 
 Namespace ontologico:
 
 ```text
-https://biblioteche-fantasma.invalid/ontology/
+https://ameliamorsellino.github.io/biblioteche-fantasma/ontology/
 ```
 
 Namespace delle risorse:
 
 ```text
-https://biblioteche-fantasma.invalid/resource/
+https://ameliamorsellino.github.io/biblioteche-fantasma/resource/
 ```
 
 Le URI vengono costruite deterministicamente utilizzando, quando disponibili, identificatori ufficiali quali:
@@ -223,7 +227,42 @@ Le URI vengono costruite deterministicamente utilizzando, quando disponibili, id
 * codice ISTAT per i comuni;
 * identificatori derivati e documentati per osservazioni e altre entità.
 
-Il dominio `.invalid` è utilizzato intenzionalmente come namespace di sviluppo e **non è dereferenziabile sul Web**.
+La pubblicazione Web è generata in modo riproducibile da:
+
+```text
+scripts/build_web_publication.py
+```
+
+e distribuita automaticamente tramite GitHub Pages e GitHub Actions.
+
+Il sito pubblico è disponibile a:
+
+```text
+https://ameliamorsellino.github.io/biblioteche-fantasma/
+```
+
+Per le entità principali vengono generate pagine HTML pubbliche per:
+
+* **19.611 biblioteche**;
+* **7.896 comuni**;
+* **27.507 entità core complessive**.
+
+Esempi di URI pubblicate:
+
+```text
+https://ameliamorsellino.github.io/biblioteche-fantasma/resource/library/IT-RM0267/
+https://ameliamorsellino.github.io/biblioteche-fantasma/resource/municipality/058091/
+```
+
+Sono inoltre disponibili sul Web l'ontologia, i metadati e le distribuzioni RDF di interlinking.
+
+Il knowledge graph completo `data.ttl`, troppo grande per il normale repository Git, è distribuito come asset della release GitHub `v1.0.0`:
+
+```text
+https://github.com/ameliamorsellino/biblioteche-fantasma/releases/latest/download/data.ttl
+```
+
+L'hosting tramite GitHub Pages è statico. Il progetto non implementa quindi un server Linked Data con content negotiation HTTP completa o redirect `303` basati sull'header `Accept`. Le rappresentazioni HTML delle entità core e le distribuzioni RDF sono comunque pubblicate tramite URL Web espliciti e stabili.
 
 ---
 
@@ -246,14 +285,14 @@ rdf/metadata.ttl
 
 Il knowledge graph contiene:
 
-* `rdf/data.ttl`: **1.616.865 triple**;
+* `rdf/data.ttl`: **1.628.669 triple**;
 * `rdf/links.ttl`: **27.504 triple**;
-* `rdf/metadata.ttl`: **38 triple**;
+* `rdf/metadata.ttl`: **39 triple**;
 * `ontology/ontology.ttl`: **195 triple**.
 
 Totale esplicito:
 
-**1.644.602 triple**
+**1.656.407 triple**
 
 La validazione strutturale controlla, tra le altre cose:
 
@@ -546,33 +585,38 @@ Le visualizzazioni sono progettate per rispondere alle Research Questions e non 
 
 ## Valutazione rispetto al modello 5-star Open Data
 
-Il progetto implementa tecnicamente:
+La versione Web del progetto soddisfa i cinque livelli del modello 5-star Open Data.
 
-* dati sotto licenza aperta;
-* dati strutturati;
-* formati aperti e machine-readable;
-* RDF;
-* URI per l'identificazione delle risorse;
-* collegamenti verso risorse esterne.
+1. **1★ — licenza aperta e pubblicazione sul Web**
+   Il dataset derivato è documentato con licenza CC BY 4.0 ed è pubblicato sul Web.
 
-Tuttavia il repository locale **non viene presentato come una pubblicazione Linked Open Data 5-star operativa sul Web**.
+2. **2★ — dati strutturati**
+   I dataset processati sono disponibili in formati strutturati e machine-readable.
 
-Il namespace:
+3. **3★ — formati aperti e non proprietari**
+   Il progetto utilizza CSV e RDF/Turtle/N-Triples.
+
+4. **4★ — URI Web per identificare le risorse**
+   Il knowledge graph utilizza URI HTTPS sotto il namespace pubblico GitHub Pages. Le biblioteche e i comuni dispongono di pagine Web generate automaticamente.
+
+5. **5★ — collegamenti verso dati esterni**
+   Le biblioteche sono collegate all'Anagrafe ICCU tramite `rdfs:seeAlso`; i comuni compatibili sono collegati a Linked ISPRA tramite `owl:sameAs`.
+
+La pubblicazione operativa è disponibile a:
 
 ```text
-https://biblioteche-fantasma.invalid/
+https://ameliamorsellino.github.io/biblioteche-fantasma/
 ```
 
-è deliberatamente non dereferenziabile e le distribuzioni DCAT fanno riferimento a file locali.
+Il knowledge graph completo è distribuito tramite GitHub Release:
 
-Il progetto dimostra quindi tecnicamente il passaggio verso Linked Open Data e l'interlinking, ma una pubblicazione operativa richiederebbe almeno:
+```text
+https://github.com/ameliamorsellino/biblioteche-fantasma/releases/latest/download/data.ttl
+```
 
-* namespace HTTPS pubblico e persistente;
-* URI locali dereferenziabili;
-* accesso Web alle distribuzioni;
-* content negotiation o rappresentazioni RDF accessibili;
-* mantenimento dei link esterni;
-* eventuale endpoint SPARQL pubblico o altro meccanismo di interrogazione.
+Le query SPARQL vengono invece eseguite localmente con PyOxigraph. Un endpoint SPARQL pubblico può essere utile in un'infrastruttura Linked Data più avanzata, ma non costituisce un requisito necessario del modello 5-star.
+
+La pubblicazione statica tramite GitHub Pages non offre content negotiation HTTP completa e non genera una pagina HTML dedicata per ogni risorsa interna del grafo, come osservazioni, indirizzi, geometrie o holdings. Tali risorse restano comunque identificate mediante URI HTTPS e descritte nel knowledge graph RDF.
 
 La valutazione completa è documentata in:
 
@@ -647,6 +691,7 @@ biblioteche-fantasma/
 │   ├── run_sparql.py
 │   ├── run_analysis.py
 │   ├── run_visualizations.py
+│   ├── build_web_publication.py
 │   ├── export_parquet.py
 │   └── rebuild_all.py
 │

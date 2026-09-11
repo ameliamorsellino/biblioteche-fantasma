@@ -29,7 +29,7 @@
 \newcommand{\pct}[1]{\num[round-mode=places,round-precision=2]{#1}\%}
 \title{\textbf{BIBLIOTECHE FANTASMA}\\[0.3em]\large Analisi, integrazione e modellazione semantica delle biblioteche italiane non pienamente operative}
 \author{Progetto universitario di Open Data Management}
-\date{Anno accademico 2025/2026 -- versione finale 10 settembre 2026}
+\date{Anno accademico 2025/2026 -- versione finale 11 settembre 2026}
 
 \begin{document}
 \maketitle
@@ -230,7 +230,31 @@ Gli 11 stati sono concetti SKOS anziché classi OWL: questa scelta evita di tras
 Lo stato è osservato alla data dello snapshot e non viene trattato come proprietà atemporale. Il pattern è \texttt{Library -> StatusObservation -> StatusConcept}. Non sono inventate date di inizio/fine.
 
 \section{URI Policy}
-Il namespace di sviluppo è \texttt{https://biblioteche-fantasma.invalid/}. I pattern includono \texttt{/resource/library/\{ISIL\}}, \texttt{/resource/municipality/\{ISTAT\_CODE\}} e risorse per osservazioni e fondi. L'uso di \texttt{.invalid} è deliberato: segnala che le URI non sono dereferenziabili e impedisce di simulare una pubblicazione Web inesistente.
+Il progetto utilizza il namespace HTTPS pubblico
+\url{https://ameliamorsellino.github.io/biblioteche-fantasma/}.
+Il namespace ontologico è
+\url{https://ameliamorsellino.github.io/biblioteche-fantasma/ontology/},
+mentre le risorse sono identificate sotto
+\url{https://ameliamorsellino.github.io/biblioteche-fantasma/resource/}.
+
+I pattern includono
+\texttt{/resource/library/\{ISIL\}},
+\texttt{/resource/municipality/\{ISTAT\_CODE\}} e URI deterministiche
+per osservazioni, sedi, indirizzi, geometrie, patrimonio e fondi.
+
+La pubblicazione Web è costruita in modo riproducibile da
+\texttt{scripts/build\_web\_publication.py} e distribuita con GitHub Pages
+tramite GitHub Actions. Sono generate 19.611 pagine per le biblioteche e
+7.896 pagine per i comuni, per un totale di 27.507 pagine relative alle
+entità core.
+
+Il knowledge graph completo è pubblicato come asset della release GitHub
+\texttt{v1.0.0} all'URL stabile
+\url{https://github.com/ameliamorsellino/biblioteche-fantasma/releases/latest/download/data.ttl}.
+
+L'hosting GitHub Pages è statico e non implementa content negotiation HTTP
+completa o redirect 303 dinamici; HTML e distribuzioni RDF sono esposti
+attraverso URL Web espliciti.
 
 \section{RDF}
 \subsection{Mapping}
@@ -297,8 +321,26 @@ Comuni verso Linked ISPRA & 7.896 & 7.893 & 99,9620\% \\
 I tre non-match comunali sono Lirio, Castegnero e Nanto, coerenti con variazioni amministrative intervenute nel 2026 rispetto alla geografia analitica 2025.
 La percentuale misura la copertura di generazione dei collegamenti secondo la URI policy documentata. Lo schema delle URI Linked ISPRA è stato verificato su risorse reali, ma la pipeline offline non dereferenzia individualmente tutti i 7.893 target esterni.
 
+\subsection{Pubblicazione Web}
+La pubblicazione Linked Data è disponibile tramite GitHub Pages.
+Le URI core di biblioteche e comuni dispongono di pagine HTML generate
+automaticamente; ontologia, metadati e interlinking RDF sono pubblicati
+come risorse Web. Il file \texttt{data.ttl}, pari a 380.296.920 byte,
+è distribuito come asset della release GitHub \texttt{v1.0.0}.
+
 \subsection{5-star assessment}
-Il progetto contiene RDF con URI e link esterni, ma non è pubblicato con URI dereferenziabili: per questo è corretto descriverlo come \emph{tecnicamente predisposto} al 5-star e non come una pubblicazione 5-star operativa sul Web.
+La versione pubblicata soddisfa i cinque livelli del modello 5-star Open
+Data: licenza aperta e disponibilità sul Web, dati strutturati, formati
+non proprietari, identificatori HTTP(S) e collegamenti verso dati esterni.
+Le biblioteche sono collegate a ICCU tramite \texttt{rdfs:seeAlso} e i
+comuni compatibili a Linked ISPRA tramite \texttt{owl:sameAs}.
+
+La valutazione non implica l'implementazione di tutte le funzionalità di un
+server Linked Data dinamico. GitHub Pages non fornisce content negotiation
+HTTP completa e non tutte le risorse interne del grafo dispongono di una
+pagina HTML dedicata. L'endpoint SPARQL resta intenzionalmente locale:
+un endpoint pubblico è utile in architetture più complesse, ma non è un
+requisito del modello 5-star.
 
 \section{SPARQL e triplestore embedded}
 \subsection{Triplestore}
@@ -409,7 +451,7 @@ Le visualizzazioni sono state selezionate in funzione della domanda: comparison 
 La versione interattiva della mappa è \texttt{visualizations/library\_map.html}, con clustering e layer per stato. Le figure statiche sono esportate ad alta risoluzione e includono fonte e note metodologiche.
 
 \section{Problemi e decisioni progettuali}
-Il \texttt{decisions\_log.md} registra le decisioni nel formato problema--evidenza--alternative--decisione--motivazione--conseguenza. Tra le scelte più rilevanti: preservare relazioni 1:N; distinguere stati ICCU; usare una geografia 2025; non imputare missing; riusare coordinate ICCU senza geocoding; separare analisi tabellare da SPARQL; usare URI \texttt{.invalid} finché non esiste un dominio; visualizzare solo la componente maggiore della rete.
+Il \texttt{decisions\_log.md} registra le decisioni nel formato problema--evidenza--alternative--decisione--motivazione--conseguenza. Tra le scelte più rilevanti: preservare relazioni 1:N; distinguere stati ICCU; usare una geografia 2025; non imputare missing; riusare coordinate ICCU senza geocoding; separare analisi tabellare da SPARQL; migrare il namespace di sviluppo verso URI HTTPS pubbliche e persistenti; visualizzare solo la componente maggiore della rete.
 
 Gli output tabellari del progetto sono distribuiti in CSV UTF-8, formato strutturato, machine-readable e non proprietario. La pipeline mantiene separati i RAW originali e i dataset processati e consente di rigenerare gli artefatti derivati mediante gli script documentati nel repository. La disponibilità di una serializzazione Parquet è opzionale e non costituisce un requisito per la riproducibilità del progetto.
 

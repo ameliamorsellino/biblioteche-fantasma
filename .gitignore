@@ -21,3 +21,4 @@ rdf/data.ttl
 
 # Generated GitHub Pages site
 docs/
+*.toc
