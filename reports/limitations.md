@@ -14,6 +14,7 @@
 12. Le percentuali comunali possono risultare instabili nei comuni con un numero molto ridotto di biblioteche.
 13. Le quantità patrimoniali non sono necessariamente complete o integralmente additive tra categorie.
 14. La rete delle confluenze rappresenta le relazioni disponibili nello snapshot e non una cronologia amministrativa esaustiva.
-15. Le URI locali utilizzano il namespace di sviluppo `.invalid` e non sono quindi pubbliche o dereferenziabili.
-16. Di conseguenza, pur essendo RDF e interlinking tecnicamente implementati, il progetto non costituisce ancora una pubblicazione Linked Open Data operativa a 5 stelle sul Web.
-17. I collegamenti verso Linked ISPRA sono generati deterministicamente dai codici ISTAT secondo la URI policy documentata; la pipeline offline non dereferenzia individualmente tutti i target esterni.
+15. La pubblicazione Web utilizza GitHub Pages, un hosting statico che non implementa content negotiation HTTP completa o redirect 303 dinamici basati sull'header `Accept`.
+16. Le biblioteche e i comuni dispongono di pagine HTML pubbliche; altre risorse interne del knowledge graph possiedono URI HTTPS ma non necessariamente una rappresentazione HTML dedicata.
+17. Il progetto non espone un endpoint SPARQL pubblico: le query vengono eseguite localmente con PyOxigraph. Questo non costituisce un requisito del modello 5-star Open Data.
+18. I collegamenti verso Linked ISPRA sono generati deterministicamente dai codici ISTAT secondo la URI policy documentata; la pipeline offline non dereferenzia individualmente tutti i target esterni.

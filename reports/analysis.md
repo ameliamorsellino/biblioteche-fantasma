@@ -10,7 +10,13 @@ Su 19.611 record: nessuno stato speciale registrato 13.200 (67,31%), non più es
 
 ## RQ3 - tipologie
 
-Nel sottoinsieme con tipologia (N=13.715), la quota problematica è 7,65% per biblioteche di conservazione, 5,28% per pubbliche, 4,70% per specializzate, 2,37% per istituti di insegnamento superiore e 1,66% per scolastiche. L'associazione funzionale è statisticamente significativa ma piccola: Cramér V=0,066. Per la tipologia amministrativa V=0,059 e molte celle hanno frequenze attese basse, quindi l'interpretazione è soprattutto descrittiva.
+L'analisi utilizza le tipologie funzionali e amministrative presenti nel master `library.csv`, evitando di definire il campione attraverso `library_type.csv`, la cui copertura è selettiva rispetto allo stato ICCU. Dopo l'esclusione dei 655 record classificati come “altro istituto collegato ICCU”, il campione comprende **18.956 biblioteche**.
+
+Tra le tipologie funzionali, `NON SPECIFICATA` presenta 452 biblioteche problematiche su 1.233 (36,66%). Tra le categorie informative: conservazione 78/554 (14,08%), specializzata 630/4.694 (13,42%), istituto di insegnamento superiore 367/2.774 (13,23%), pubblica 903/8.162 (11,06%) e scolastica 65/1.275 (5,10%).
+
+Considerando tutte le categorie, l'associazione tra tipologia funzionale e appartenenza al perimetro problematico ha **Cramér V corretto = 0,196**; per la tipologia amministrativa **V = 0,193**.
+
+Il risultato è tuttavia sensibile alla categoria `NON SPECIFICATA`. Escludendola, il Cramér V scende a **0,077** per la tipologia funzionale (`N=17.723`) e a **0,095** per quella amministrativa (`N=17.844`). L'associazione residua è quindi debole e i risultati inferenziali vanno interpretati insieme alle distribuzioni descrittive, anche perché alcune celle hanno frequenze attese inferiori a 5.
 
 ## RQ4 - demografia
 
