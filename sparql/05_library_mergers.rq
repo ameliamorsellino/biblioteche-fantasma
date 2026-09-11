@@ -1,5 +1,5 @@
 PREFIX cis: <http://dati.beniculturali.it/cis/>
-PREFIX bf: <https://biblioteche-fantasma.invalid/ontology/>
+PREFIX bf: <https://ameliamorsellino.github.io/biblioteche-fantasma/ontology/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 # CQ4: target library of each deterministic merger relation.

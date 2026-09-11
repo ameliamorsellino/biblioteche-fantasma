@@ -1,4 +1,4 @@
-@prefix bf: <https://biblioteche-fantasma.invalid/ontology/> .
+@prefix bf: <https://ameliamorsellino.github.io/biblioteche-fantasma/ontology/> .
 @prefix cis: <http://dati.beniculturali.it/cis/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
@@ -10,7 +10,7 @@
 # Library
 # ---------------------------------------------------------------------------
 
-<https://biblioteche-fantasma.invalid/shapes/LibraryShape>
+<https://ameliamorsellino.github.io/biblioteche-fantasma/shapes/LibraryShape>
     a sh:NodeShape ;
     sh:targetClass cis:Library ;
 
@@ -52,7 +52,7 @@
 # ISIL
 # ---------------------------------------------------------------------------
 
-<https://biblioteche-fantasma.invalid/shapes/ISILShape>
+<https://ameliamorsellino.github.io/biblioteche-fantasma/shapes/ISILShape>
     a sh:NodeShape ;
     sh:targetSubjectsOf cis:ISILIdentifier ;
 
@@ -69,7 +69,7 @@
 # Municipality
 # ---------------------------------------------------------------------------
 
-<https://biblioteche-fantasma.invalid/shapes/MunicipalityShape>
+<https://ameliamorsellino.github.io/biblioteche-fantasma/shapes/MunicipalityShape>
     a sh:NodeShape ;
     sh:targetClass bf:Municipality ;
 
@@ -91,7 +91,7 @@
 # Library status observation
 # ---------------------------------------------------------------------------
 
-<https://biblioteche-fantasma.invalid/shapes/LibraryStatusObservationShape>
+<https://ameliamorsellino.github.io/biblioteche-fantasma/shapes/LibraryStatusObservationShape>
     a sh:NodeShape ;
     sh:targetClass bf:LibraryStatusObservation ;
 
@@ -128,7 +128,7 @@
 # Demographic observation
 # ---------------------------------------------------------------------------
 
-<https://biblioteche-fantasma.invalid/shapes/DemographicObservationShape>
+<https://ameliamorsellino.github.io/biblioteche-fantasma/shapes/DemographicObservationShape>
     a sh:NodeShape ;
     sh:targetClass bf:DemographicObservation ;
 
@@ -165,7 +165,7 @@
 # Holding observation
 # ---------------------------------------------------------------------------
 
-<https://biblioteche-fantasma.invalid/shapes/HoldingObservationShape>
+<https://ameliamorsellino.github.io/biblioteche-fantasma/shapes/HoldingObservationShape>
     a sh:NodeShape ;
     sh:targetClass bf:HoldingObservation ;
 
@@ -206,7 +206,7 @@
 # Special collection
 # ---------------------------------------------------------------------------
 
-<https://biblioteche-fantasma.invalid/shapes/SpecialCollectionShape>
+<https://ameliamorsellino.github.io/biblioteche-fantasma/shapes/SpecialCollectionShape>
     a sh:NodeShape ;
     sh:targetClass bf:SpecialCollection ;
 

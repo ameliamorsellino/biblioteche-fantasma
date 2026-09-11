@@ -1,5 +1,5 @@
 PREFIX cis: <http://dati.beniculturali.it/cis/>
-PREFIX bf: <https://biblioteche-fantasma.invalid/ontology/>
+PREFIX bf: <https://ameliamorsellino.github.io/biblioteche-fantasma/ontology/>
 
 # CQ8 and preparation for RQ1–RQ5: regional library/problem-status aggregation.
 SELECT ?region
