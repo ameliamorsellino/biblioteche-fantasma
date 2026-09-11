@@ -6,10 +6,11 @@ from textwrap import dedent
 import pandas as pd
 from lxml import etree
 from project_config import (
+    GITHUB_REPO,
     PROJECT_RELEASE_DATE,
+    PUBLIC_BASE,
     SOURCE_DOWNLOAD_DATE,
 )
-
 
 ICCU_URL='https://anagrafe.iccu.sbn.it/it/open-data/'
 ICCU_LICENSE_URL='https://anagrafe.iccu.sbn.it/it/footer/norme-di-utilizzo-dei-dati/'
@@ -18,7 +19,12 @@ ISTAT_URL='https://demo.istat.it/app/?i=POS'
 ISTAT_LICENSE_URL='https://www.istat.it/dati/open-data/'
 CULTURAL_URL='https://dati.beniculturali.it/cultural-ON/ITA.html'
 ADMIN_URL='https://www.istat.it/storage/codici-unita-amministrative/Novita-2025-2017.pdf'
-
+GITHUB_BLOB_BASE = GITHUB_REPO + "/blob/main/"
+RAW_GITHUB_BASE = (
+    GITHUB_REPO
+    .replace("https://github.com/", "https://raw.githubusercontent.com/")
+    + "/main/"
+)
 
 def sha256(path: Path) -> str:
     h=hashlib.sha256()
@@ -550,15 +556,15 @@ Il file OWL locale `data/external/cultural-ON.owl` è conservato nel repository 
     datapackage={'profile':'data-package','name':'biblioteche-fantasma','title':'BIBLIOTECHE FANTASMA','description':'Dataset puliti e integrati ICCU + ISTAT 2019/2025 per lo studio delle biblioteche italiane non pienamente operative.','version':PROJECT_RELEASE_DATE,'keywords':['biblioteche','ICCU','ISTAT','open data','Italia','demografia'],'licenses':[{'name':'CC-BY-4.0','path':'https://creativecommons.org/licenses/by/4.0/','title':'Creative Commons Attribution 4.0 International'}],'sources':[{'title':'ICCU Anagrafe delle Biblioteche Italiane','path':ICCU_URL},{'title':'ISTAT POSAS 2019','path':ISTAT_URL},{'title':'ISTAT POSAS 2025','path':ISTAT_URL}],'geographic_coverage':'Italia','temporal_coverage':'2019-01-01; 2025-01-01; ICCU snapshot 2026-09-08T14:11:15','resources':resources}
     (meta/'datapackage.json').write_text(json.dumps(datapackage,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
 
-    # Local DCAT metadata.
-    # The repository uses non-dereferenceable development URIs and therefore
-    # does not claim operational DCAT-AP_IT conformance.
+    # Public DCAT metadata for the Web publication.
+    # HTTP(S) identifiers and public access/download URLs are used.
+    # Full DCAT-AP_IT conformance is not claimed without formal profile validation.
     dists=[]
     for p in sorted(proc.glob('*.csv')):
         ident=p.stem.replace('_','-')
-        dists.append(f'''bf:dist-{ident} a dcat:Distribution ;\n    dct:title "{p.stem}"@it ;\n    dct:description "{descriptions[p.name]}"@it ;\n    dct:license <https://creativecommons.org/licenses/by/4.0/> ;\n    dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;\n    dcat:mediaType "text/csv" ;\n    dcat:accessURL <file:./data/processed/{p.name}> ;\n    dcat:downloadURL <file:./data/processed/{p.name}> .''')
+        dists.append(f'''bf:dist-{ident} a dcat:Distribution ;\n    dct:title "{p.stem}"@it ;\n    dct:description "{descriptions[p.name]}"@it ;\n    dct:license <https://creativecommons.org/licenses/by/4.0/> ;\n    dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;\n    dcat:mediaType "text/csv" ;\n    dcat:accessURL <{GITHUB_BLOB_BASE}data/processed/{p.name}> ;\n    dcat:downloadURL <{RAW_GITHUB_BASE}data/processed/{p.name}> .''')
     distrefs=',\n        '.join('bf:dist-'+p.stem.replace('_','-') for p in sorted(proc.glob('*.csv')))
-    ttl=f'''@prefix bf: <https://biblioteche-fantasma.invalid/metadata/> .\n@prefix dcat: <http://www.w3.org/ns/dcat#> .\n@prefix dct: <http://purl.org/dc/terms/> .\n@prefix foaf: <http://xmlns.com/foaf/0.1/> .\n@prefix schema: <https://schema.org/> .\n@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n\nbf:project-author a foaf:Person ; foaf:name "Amelia Morsellino" .\n\nbf:dataset a dcat:Dataset ; \ndct:identifier "biblioteche-fantasma" ;\n    dct:title "Biblioteche Fantasma"@it ;\n    dct:description "Dataset puliti e integrati ICCU + ISTAT 2019/2025 per lo studio delle biblioteche italiane non pienamente operative."@it ;\n    dct:publisher bf:project-author ;\n    dct:creator bf:project-author ;\n    dct:license <https://creativecommons.org/licenses/by/4.0/> ;\n    dct:issued "{PROJECT_RELEASE_DATE}"^^xsd:date ;\n    dct:modified "{PROJECT_RELEASE_DATE}"^^xsd:date ;\n    dct:language <http://publications.europa.eu/resource/authority/language/ITA> ;\n    dct:spatial <http://publications.europa.eu/resource/authority/country/ITA> ;\n    dct:temporal [ a dct:PeriodOfTime ; schema:startDate "2019-01-01"^^xsd:date ; schema:endDate "2026-09-08"^^xsd:date ] ;\n    dct:accrualPeriodicity <http://publications.europa.eu/resource/authority/frequency/IRREG> ;\n    dcat:theme <http://publications.europa.eu/resource/authority/data-theme/EDUC> ;\n    dcat:keyword "biblioteche"@it, "ICCU"@it, "ISTAT"@it, "demografia"@it, "open data"@it ;\n    dct:source <{ICCU_URL}>, <{ISTAT_URL}> ;\n    dcat:distribution {distrefs} .\n\n'''+'\n\n'.join(dists)+'\n'
+    ttl=f'''@prefix bf: <{PUBLIC_BASE}metadata/> .\n@prefix dcat: <http://www.w3.org/ns/dcat#> .\n@prefix dct: <http://purl.org/dc/terms/> .\n@prefix foaf: <http://xmlns.com/foaf/0.1/> .\n@prefix schema: <https://schema.org/> .\n@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n\nbf:project-author a foaf:Person ; foaf:name "Amelia Morsellino" .\n\nbf:dataset a dcat:Dataset ; \ndct:identifier "biblioteche-fantasma" ;\n    dct:title "Biblioteche Fantasma"@it ;\n    dct:description "Dataset puliti e integrati ICCU + ISTAT 2019/2025 per lo studio delle biblioteche italiane non pienamente operative."@it ;\n    dct:publisher bf:project-author ;\n    dct:creator bf:project-author ;\n    dct:license <https://creativecommons.org/licenses/by/4.0/> ;\n    dct:issued "{PROJECT_RELEASE_DATE}"^^xsd:date ;\n    dct:modified "{PROJECT_RELEASE_DATE}"^^xsd:date ;\n    dct:language <http://publications.europa.eu/resource/authority/language/ITA> ;\n    dct:spatial <http://publications.europa.eu/resource/authority/country/ITA> ;\n    dct:temporal [ a dct:PeriodOfTime ; schema:startDate "2019-01-01"^^xsd:date ; schema:endDate "2026-09-08"^^xsd:date ] ;\n    dct:accrualPeriodicity <http://publications.europa.eu/resource/authority/frequency/IRREG> ;\n    dcat:theme <http://publications.europa.eu/resource/authority/data-theme/EDUC> ;\n    dcat:keyword "biblioteche"@it, "ICCU"@it, "ISTAT"@it, "demografia"@it, "open data"@it ;\n    dct:source <{ICCU_URL}>, <{ISTAT_URL}> ;\n    dcat:distribution {distrefs} .\n\n'''+'\n\n'.join(dists)+'\n'
     (meta/'dcat.ttl').write_text(ttl,encoding='utf-8')
     (meta / "dcat_validation_notes.md").write_text(
         dedent(

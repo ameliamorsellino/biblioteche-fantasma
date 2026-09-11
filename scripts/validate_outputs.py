@@ -10,6 +10,7 @@ from pathlib import Path
 import pandas as pd
 from rdflib import Graph, URIRef
 from rdflib.namespace import DCTERMS
+from project_config import PUBLIC_BASE
 
 
 def sha256(path: Path) -> str:
@@ -214,7 +215,7 @@ def main() -> None:
     )
 
     dataset_uri = URIRef(
-        "https://biblioteche-fantasma.invalid/metadata/dataset"
+        PUBLIC_BASE + "metadata/dataset"
     )
 
     assert (
