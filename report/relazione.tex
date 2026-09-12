@@ -20,7 +20,7 @@
 \usepackage{csquotes}
 \usepackage[backend=biber,style=numeric,sorting=nyt]{biblatex}
 \addbibresource{bibliography.bib}
-\hypersetup{colorlinks=true,linkcolor=blue!55!black,citecolor=blue!55!black,urlcolor=blue!55!black,pdftitle={Biblioteche Fantasma},pdfauthor={Progetto universitario di Open Data Management}}
+\hypersetup{colorlinks=true,linkcolor=blue!55!black,citecolor=blue!55!black,urlcolor=blue!55!black,pdftitle={Biblioteche Fantasma},pdfauthor={Progetto di Open Data Management}}
 \setlength{\parskip}{0.45em}
 \setlength{\parindent}{0pt}
 \setcounter{tocdepth}{2}
@@ -28,8 +28,8 @@
 \newcommand{\sourceNote}{Elaborazione su snapshot ICCU 08/09/2026 e ISTAT POSAS 2019--2025, salvo diversa indicazione.}
 \newcommand{\pct}[1]{\num[round-mode=places,round-precision=2]{#1}\%}
 \title{\textbf{BIBLIOTECHE FANTASMA}\\[0.3em]\large Analisi, integrazione e modellazione semantica delle biblioteche italiane non pienamente operative}
-\author{Progetto universitario di Open Data Management}
-\date{Anno accademico 2025/2026 -- versione finale 11 settembre 2026}
+\author{Maria Amelia Morsellino}
+\date{}
 
 \begin{document}
 \maketitle
@@ -196,7 +196,7 @@ Il master biblioteca--comune raggiunge il 100\%. I due comuni non comparabili so
 \texttt{metadata/datapackage.json} descrive le 10 risorse CSV, i campi, i tipi, le chiavi primarie e le relazioni di foreign key applicabili, oltre ai formati e agli hash SHA-256 delle distribuzioni finali.
 
 \subsection{DCAT}
-DCAT definisce Dataset e Distribution per l'interoperabilità dei cataloghi \cite{dcat3}; DCAT-AP ne specifica il profilo europeo \cite{dcatap}. Il progetto include \texttt{metadata/dcat.ttl}, una descrizione RDF/DCAT locale del dataset e delle relative distribuzioni. Il repository non dichiara una conformità operativa completa a DCAT-AP\_IT: le URL di accesso e download sono URI locali \texttt{file:} e il namespace di progetto utilizza il dominio di sviluppo \texttt{.invalid}. Una pubblicazione reale richiederebbe URI HTTP(S) pubbliche e una validazione rispetto al profilo applicabile.
+DCAT definisce Dataset e Distribution per l'interoperabilità dei cataloghi \cite{dcat3}; DCAT-AP ne specifica il profilo europeo \cite{dcatap}. Il progetto include \texttt{metadata/dcat.ttl}, una descrizione RDF/DCAT del dataset e delle relative distribuzioni. Il namespace del progetto utilizza URI HTTPS pubbliche sotto \url{https://ameliamorsellino.github.io/biblioteche-fantasma/}, mentre le distribuzioni tabellari espongono \texttt{dcat:accessURL} e \texttt{dcat:downloadURL} pubbliche verso il repository GitHub e i relativi file raw. Il progetto non dichiara tuttavia una conformità formale completa a DCAT-AP\_IT, poiché non è stata eseguita una validazione specifica rispetto a tale profilo applicativo.
 
 \subsection{Provenance}
 La provenance è modellata in PROV-O \cite{provo} e documenta la derivazione dalle fonti ICCU/ISTAT e le attività principali della pipeline.
@@ -475,7 +475,7 @@ I notebook \texttt{01}--\texttt{08} documentano le principali componenti della p
 \item La somma delle quantità patrimoniali note può includere livelli di aggregazione non omogenei (materiali specifici e ``totale posseduto'') e non è un inventario additivo complessivo.
 \item La rete delle confluenze deriva dallo stato osservato nello snapshot e non contiene necessariamente tutte le trasformazioni storiche.
 \item I collegamenti verso Linked ISPRA sono generati deterministicamente a partire dai codici ISTAT secondo la URI policy documentata; la pipeline offline non dereferenzia individualmente tutti i target esterni.
-\item Le URI locali non sono dereferenziabili e impediscono una dichiarazione operativa di 5-star Linked Open Data.
+\item La pubblicazione Web utilizza GitHub Pages, un hosting statico che non implementa content negotiation HTTP completa o redirect 303 dinamici basati sull'header \texttt{Accept}. Le biblioteche e i comuni dispongono di pagine HTML pubbliche, mentre altre risorse interne del knowledge graph possiedono URI HTTPS ma non necessariamente una rappresentazione HTML dedicata.
 \item Gli archivi RAW ICCU e ISTAT sono conservati nel repository e verificabili mediante gli hash SHA-256 registrati nel source manifest; la riproducibilità resta comunque dipendente dalla disponibilità di un ambiente Python compatibile con le dipendenze dichiarate.
 \end{enumerate}
 
@@ -486,7 +486,7 @@ RQ3 mostra inoltre l'importanza della qualità e della copertura delle classific
 
 RQ4 non supporta una narrazione forte secondo cui lo spopolamento ``spiega'' le biblioteche problematiche. Nel campione completo la relazione è negativa ma debole; inoltre, restringendo l'analisi ai comuni con almeno due o tre biblioteche, la correlazione si riduce quasi a zero e perde significatività statistica. Il risultato non è quindi robusto rispetto alla numerosità del denominatore bibliotecario. Questa evidenza è metodologicamente utile proprio perché impedisce una data story causale o strutturale non supportata.
 
-La rete delle confluenze mostra una struttura frammentata con numerosi piccoli componenti e alcuni hub di destinazione. Sul versante Linked Data, la copertura di generazione dei collegamenti è elevata grazie all'uso di identificatori ufficiali: 100\% per le biblioteche e 99,9620\% per i comuni. Queste percentuali descrivono i collegamenti prodotti dalla URI policy e non una verifica HTTP individuale di tutti i target esterni. Resta tuttavia un confine netto tra un grafo \emph{predisposto} al Web of Data e una pubblicazione 5-star effettiva: senza dominio pubblico e URI dereferenziabili, il livello massimo non può essere dichiarato operativo.
+La rete delle confluenze mostra una struttura frammentata con numerosi piccoli componenti e alcuni hub di destinazione. Sul versante Linked Data, la copertura di generazione dei collegamenti è elevata grazie all'uso di identificatori ufficiali: 100% per le biblioteche e 99,9620% per i comuni. Queste percentuali descrivono i collegamenti prodotti dalla URI policy e non una verifica HTTP individuale di tutti i target esterni. La versione finale del progetto completa inoltre il passaggio dal knowledge graph locale alla pubblicazione sul Web: utilizza URI HTTPS pubbliche sotto il namespace GitHub Pages, rende disponibili pagine Web per le entità core biblioteca e comune, pubblica ontologia, metadati e interlinking RDF e distribuisce il knowledge graph completo tramite GitHub Release. In questo perimetro il progetto soddisfa operativamente i cinque livelli del modello 5-star Open Data, pur senza implementare funzionalità ulteriori proprie di un server Linked Data dinamico, come content negotiation completa o un endpoint SPARQL pubblico.
 
 In termini didattici, il valore del progetto non è la dimensione del grafo ma la tracciabilità tra Research Question, dato, metodo, risultato, visualizzazione, interpretazione e limite. Le scelte conservative sui missing, sugli stati, sulle equivalenze esterne e sulla causalità sono parte integrante della qualità del risultato.
 
