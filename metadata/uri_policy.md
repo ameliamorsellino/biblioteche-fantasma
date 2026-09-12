@@ -1,83 +1,83 @@
 # URI Policy - Biblioteche Fantasma
 
-## Stato della policy
+## Policy status
 
-Il progetto utilizza un namespace HTTP(S) pubblico associato alla pubblicazione Web tramite GitHub Pages:
+The project uses a public HTTP(S) namespace associated with Web publication through GitHub Pages:
 
-- **base URI**: `https://ameliamorsellino.github.io/biblioteche-fantasma/`
-- **ontology namespace**: `https://ameliamorsellino.github.io/biblioteche-fantasma/ontology/`
-- **resource namespace**: `https://ameliamorsellino.github.io/biblioteche-fantasma/resource/`
-- **metadata namespace**: `https://ameliamorsellino.github.io/biblioteche-fantasma/metadata/`
+* **base URI**: `https://ameliamorsellino.github.io/biblioteche-fantasma/`
+* **ontology namespace**: `https://ameliamorsellino.github.io/biblioteche-fantasma/ontology/`
+* **resource namespace**: `https://ameliamorsellino.github.io/biblioteche-fantasma/resource/`
+* **metadata namespace**: `https://ameliamorsellino.github.io/biblioteche-fantasma/metadata/`
 
-Il precedente namespace di sviluppo
+The previous development namespace
 `https://biblioteche-fantasma.invalid/`
-era deliberatamente non dereferenziabile e non costituiva una pubblicazione Web.
-È stato sostituito dal namespace pubblico prima della pubblicazione del dataset.
+was deliberately non-dereferenceable and did not constitute a Web publication.
+It was replaced by the public namespace before publication of the dataset.
 
-Le URI pubbliche mantengono i path e le chiavi deterministiche definite durante lo sviluppo, cambiando soltanto l'autorità Web.
+The public URIs retain the paths and deterministic keys defined during development, changing only the Web authority.
 
-## Pattern deterministici
+## Deterministic patterns
 
-| Risorsa | Pattern |
-|---|---|
-| Biblioteca | `/resource/library/{ISIL}` |
-| Comune | `/resource/municipality/{ISTAT_CODE}` |
-| Stato | `/resource/status/{NORMALIZED_STATUS_SLUG}` |
-| Osservazione stato | `/resource/status-observation/{ISIL}/{YYYY-MM-DD}` |
-| Osservazione demografica | `/resource/demography/{ISTAT_CODE}/{YEAR}` |
-| Sede | `/resource/site/{ISIL}` |
-| Indirizzo | `/resource/address/{ISIL}` |
-| Geometria sede | `/resource/geometry/site/{ISIL}` |
-| Fondo speciale | `/resource/collection/{ISIL}-special-{COLLECTION_INDEX}` |
-| Osservazione patrimonio | `/resource/holding/{ISIL}/{MATERIAL_INDEX}` |
-| Concetto materiale/tipologia | `/resource/{scheme}/{slug}-{sha1_8}` quando il valore sorgente non possiede un identificatore ufficiale |
+| Resource                | Pattern                                                                                         |
+| ----------------------- | ----------------------------------------------------------------------------------------------- |
+| Library                 | `/resource/library/{ISIL}`                                                                      |
+| Municipality            | `/resource/municipality/{ISTAT_CODE}`                                                           |
+| Status                  | `/resource/status/{NORMALIZED_STATUS_SLUG}`                                                     |
+| Status observation      | `/resource/status-observation/{ISIL}/{YYYY-MM-DD}`                                              |
+| Demographic observation | `/resource/demography/{ISTAT_CODE}/{YEAR}`                                                      |
+| Site                    | `/resource/site/{ISIL}`                                                                         |
+| Address                 | `/resource/address/{ISIL}`                                                                      |
+| Site geometry           | `/resource/geometry/site/{ISIL}`                                                                |
+| Special collection      | `/resource/collection/{ISIL}-special-{COLLECTION_INDEX}`                                        |
+| Holdings observation    | `/resource/holding/{ISIL}/{MATERIAL_INDEX}`                                                     |
+| Material/type concept   | `/resource/{scheme}/{slug}-{sha1_8}` when the source value does not have an official identifier |
 
-## Regole
+## Rules
 
-1. ISIL e codici ISTAT sono stringhe; gli zeri iniziali non vengono rimossi.
-2. Nessuna URI locale è ottenuta da fuzzy matching.
-3. I nomi testuali non sono usati come chiavi quando esiste un identificatore (`ISIL`, codice ISTAT, indice di riga controllato).
-4. Per valori di vocabolario privi di codice ufficiale si usa slug leggibile + hash SHA-1 troncato a 8 caratteri del valore UTF-8 originale; l'hash serve alla stabilità e alla disambiguazione della URI, non come prova d'identità esterna.
-5. Non viene creata una risorsa `/library-merger/...`: la sorgente non fornisce una data/evento di fusione e il requisito interrogativo è soddisfatto dalla relazione diretta `bf:mergedInto`. I casi senza target parseabile non ricevono un target inventato.
-6. La data nella URI `status-observation` è la data dello snapshot ICCU (`2026-09-08`), non una data di inizio della chiusura o cessazione.
-7. I link esterni sono mantenuti in `rdf/links.ttl` e separati dai dati core.
-8. Le URI pubbliche vengono generate a partire dalla costante `PUBLIC_BASE` definita in `scripts/project_config.py`, evitando namespace duplicati hard-coded negli script.
+1. ISIL and ISTAT codes are strings; leading zeros are not removed.
+2. No local URI is derived from fuzzy matching.
+3. Textual names are not used as keys when an identifier exists (`ISIL`, ISTAT code, controlled row index).
+4. For vocabulary values without an official code, a readable slug + an 8-character truncated SHA-1 hash of the original UTF-8 value is used; the hash serves URI stability and disambiguation, not as proof of external identity.
+5. No `/library-merger/...` resource is created: the source does not provide a merger date/event and the query requirement is satisfied by the direct `bf:mergedInto` relation. Cases without a parseable target are not assigned an invented target.
+6. The date in the `status-observation` URI is the ICCU snapshot date (`2026-09-08`), not a start date of closure or cessation.
+7. External links are maintained in `rdf/links.ttl` and kept separate from the core data.
+8. Public URIs are generated from the `PUBLIC_BASE` constant defined in `scripts/project_config.py`, avoiding duplicated hard-coded namespaces in the scripts.
 
-## Strategia di pubblicazione Web
+## Web publication strategy
 
-La pubblicazione utilizza GitHub Pages come sito Web statico del progetto.
+Publication uses GitHub Pages as the project's static Web site.
 
-Le URI pubbliche sono costruite sotto:
+Public URIs are constructed under:
 
 `https://ameliamorsellino.github.io/biblioteche-fantasma/`
 
-Le pagine HTML delle risorse pubblicate forniscono una rappresentazione leggibile dall'utente e collegamenti alle relative rappresentazioni RDF quando disponibili.
+The HTML pages of published resources provide a human-readable representation and links to the corresponding RDF representations when available.
 
-Poiché GitHub Pages è un hosting statico, il deployment non implementa un endpoint SPARQL pubblico né una negoziazione HTTP completa basata sull'header `Accept`. La disponibilità di un endpoint SPARQL pubblico non è necessaria per l'interlinking Linked Data del progetto.
+Because GitHub Pages is static hosting, the deployment does not implement a public SPARQL endpoint or full HTTP content negotiation based on the `Accept` header. The availability of a public SPARQL endpoint is not necessary for the project's Linked Data interlinking.
 
-Il file RDF principale `data.ttl`, le cui dimensioni superano i limiti ordinari di un file GitHub, viene distribuito separatamente tramite GitHub Releases. Le distribuzioni più piccole e i metadati possono essere pubblicati direttamente attraverso GitHub Pages o il repository pubblico.
+The main RDF file `data.ttl`, whose size exceeds the ordinary limits of a GitHub file, is distributed separately through GitHub Releases. Smaller distributions and metadata can be published directly through GitHub Pages or the public repository.
 
-I metadati DCAT utilizzano URL HTTP(S) pubblici per l'accesso e il download delle distribuzioni.
+The DCAT metadata use public HTTP(S) URLs for access to and download of the distributions.
 
 ## Interlinking
 
-Le risorse locali sono collegate a risorse esterne mediante relazioni RDF esplicite.
+Local resources are linked to external resources through explicit RDF relations.
 
-Le biblioteche sono collegate alle rispettive pagine ufficiali ICCU tramite `rdfs:seeAlso`.
+Libraries are linked to their respective official ICCU pages through `rdfs:seeAlso`.
 
-I comuni per i quali è disponibile una corrispondenza verificata sono collegati alle risorse Linked ISPRA mediante `owl:sameAs`.
+Municipalities for which a verified match is available are linked to Linked ISPRA resources through `owl:sameAs`.
 
-Questi collegamenti sono mantenuti separatamente nel file `rdf/links.ttl`.
+These links are maintained separately in the `rdf/links.ttl` file.
 
-## Verifica della pubblicazione
+## Publication verification
 
-Dopo il deployment devono essere verificati:
+After deployment, the following must be verified:
 
-- raggiungibilità del sito GitHub Pages;
-- raggiungibilità delle URI di esempio;
-- disponibilità delle rappresentazioni HTML/RDF pubblicate;
-- disponibilità delle distribuzioni indicate nei metadati DCAT;
-- validità sintattica RDF;
-- conformità SHACL;
-- corretto funzionamento delle query SPARQL locali;
-- correttezza dei link esterni.
+* reachability of the GitHub Pages site;
+* reachability of example URIs;
+* availability of the published HTML/RDF representations;
+* availability of the distributions indicated in the DCAT metadata;
+* RDF syntactic validity;
+* SHACL compliance;
+* correct functioning of local SPARQL queries;
+* correctness of external links.

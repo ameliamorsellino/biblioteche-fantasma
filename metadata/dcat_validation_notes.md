@@ -1,21 +1,21 @@
-# Note di validazione e conformità DCAT
+# DCAT validation and compliance notes
 
-Il file `metadata/dcat.ttl` fornisce una descrizione RDF/DCAT del dataset
-e delle principali distribuzioni del progetto.
+The file `metadata/dcat.ttl` provides an RDF/DCAT description of the dataset
+and of the project's main distributions.
 
-La descrizione include identificatore, titolo, descrizione, publisher,
-creator, licenza, lingua, copertura geografica, frequenza, tema, keyword,
-distribuzioni, formato, media type, accessURL e downloadURL.
+The description includes identifier, title, description, publisher,
+creator, license, language, geographic coverage, frequency, theme, keyword,
+distributions, format, media type, accessURL and downloadURL.
 
 ## DCAT-AP_IT
 
-Il progetto utilizza URI HTTP(S) pubbliche sotto il namespace
+The project uses public HTTP(S) URIs under the namespace
 `https://ameliamorsellino.github.io/biblioteche-fantasma/`.
 
-Le distribuzioni tabellari sono descritte mediante URL Web pubblici
-del repository GitHub e URL di download diretto.
+The tabular distributions are described using public Web URLs
+of the GitHub repository and direct download URLs.
 
-La pubblicazione tramite GitHub Pages rende disponibile il namespace
-del progetto sul Web. La piena conformità a DCAT-AP_IT non viene tuttavia
-dichiarata senza una validazione formale rispetto alla versione applicabile
-del profilo.
+Publication through GitHub Pages makes the project's namespace available
+on the Web. Full compliance with DCAT-AP_IT is not, however,
+claimed without formal validation against the applicable version
+of the profile.

@@ -1,19 +1,19 @@
 # Data profiling
 
 ## ICCU master
-- Record: **19,611**.
-- ISIL unici: **19,611**; mancanti: **0**; duplicati: **0**.
-- Comuni distinti: **6,660**.
-- Province: **107**.
-- Regioni: **20**.
-- Coordinate pulite complete: **19,524/19,611**.
-- Coppie (0,0) trattate come mancanti: **63**.
-- Coordinate mancanti/incomplete: **24**.
-- Coordinate fuori bounding box Italia, da revisione: **3**.
-- Codice SBN presente: **7,397**.
-- Data aggiornamento valida/presente: **16,711**.
+- Records: **19,611**.
+- Unique ISILs: **19,611**; missing: **0**; duplicates: **0**.
+- Distinct municipalities: **6,660**.
+- Provinces: **107**.
+- Regions: **20**.
+- Complete cleaned coordinates: **19,524/19,611**.
+- (0,0) pairs treated as missing: **63**.
+- Missing/incomplete coordinates: **24**.
+- Coordinates outside the Italy bounding box, to be reviewed: **3**.
+- SBN code present: **7,397**.
+- Valid/present update date: **16,711**.
 
-## Stati normalizzati
+## Normalized statuses
 - `NESSUNO_STATO_SPECIALE_REGISTRATO`: 13,200
 - `BIBLIOTECA_NON_PIU_ESISTENTE`: 1,827
 - `BIBLIOTECA_NON_CENSITA`: 1,723
@@ -26,15 +26,16 @@
 - `INAGIBILE`: 4
 - `RIAPERTURA_AGIBILITA_PARZIALE`: 2
 
-`NULL` non è interpretato come biblioteca aperta: è mappato a `NESSUNO_STATO_SPECIALE_REGISTRATO`.
+`NULL` is not interpreted as an open library: it is mapped to `NESSUNO_STATO_SPECIALE_REGISTRATO`.
 
-## Dataset ICCU secondari
-- Tipologie: 13,715 record, 13,715 biblioteche (69.94% del master).
-- Patrimonio: 93,512 record, 13,715 biblioteche (69.94%).
-- Fondi speciali: 9,737 record, 2,449 biblioteche (12.49%).
-- Contatti: 62,804 record, 13,630 biblioteche (69.50%).
+## Secondary ICCU datasets
+- Types: 13,715 records, 13,715 libraries (69.94% of the master).
+- Holdings: 93,512 records, 13,715 libraries (69.94%).
+- Special collections: 9,737 records, 2,449 libraries (12.49%).
+- Contacts: 62,804 records, 13,630 libraries (69.50%).
 
 ## ISTAT
-- POSAS 2019 Comuni: 811.308 righe, 7.954 comuni.
-- POSAS 2025 Comuni: 805.392 righe, 7.896 comuni.
-- `Età=999`: verificata empiricamente contro la somma delle età 0–100 per tutti i comuni; mismatch = 0 in entrambi gli anni.
+- POSAS 2019 Municipalities: 811,308 rows, 7,954 municipalities.
+- POSAS 2025 Municipalities: 805,392 rows, 7,896 municipalities.
+- `Età=999`: empirically verified against the sum of ages 0–100 for all municipalities; mismatch = 0 in both years.
+

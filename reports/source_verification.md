@@ -1,15 +1,14 @@
-# Data verification - fonti
+# Data verification - sources
 
 ## ICCU
-Publisher istituzionale: ICCU. Pagina Open Data ufficiale: https://anagrafe.iccu.sbn.it/it/open-data/. La pagina dichiara aggiornamento quotidiano, formati CSV/XML/JSON, archivio `opendata.zip`, ISIL come chiave primaria per incrociare i dataset e documenta i valori di `stato-registrazione`. Licenza dati: CC0. Snapshot locale: `2026-09-08T14:11:15`.
+Institutional publisher: ICCU. Official Open Data page: https://anagrafe.iccu.sbn.it/it/open-data/. The page states daily updates, CSV/XML/JSON formats, the `opendata.zip` archive, ISIL as the primary key for cross-referencing datasets, and documents the values of `stato-registrazione`. Data license: CC0. Local snapshot: `2026-09-08T14:11:15`.
 
 ## ISTAT POSAS
-Publisher: Istat. Serie: popolazione residente per età, sesso e stato civile al 1° gennaio. Fonte: https://demo.istat.it/app/?i=POS. Anni utilizzati: 2019 e 2025. Licenza Istat: CC BY 4.0 (https://www.istat.it/dati/open-data/). I file comunali sono letti preservando stringhe come `None`.
+Publisher: Istat. Series: resident population by age, sex and marital status as of January 1. Source: https://demo.istat.it/app/?i=POS. Years used: 2019 and 2025. Istat license: CC BY 4.0 (https://www.istat.it/dati/open-data/). Municipal files are read while preserving strings such as `None`.
 
 ## Cultural-ON
-## Cultural-ON
-Il file OWL locale `data/external/cultural-ON.owl` è conservato nel repository come input semantico. La versione dichiarata è 2.0 (30 marzo 2016), con licenza CC BY 3.0 IT. Documentazione ufficiale: https://dati.beniculturali.it/cultural-ON/ITA.html. L'ontologia viene riutilizzata nella modellazione semantica del progetto.
+The local OWL file `data/external/cultural-ON.owl` is stored in the repository as a semantic input. The declared version is 2.0 (March 30, 2016), licensed under CC BY 3.0 IT. Official documentation: https://dati.beniculturali.it/cultural-ON/ITA.html. The ontology is reused in the semantic modeling of the project.
 
-## Limitazioni
-- Lo XSD 1.6 non è presente come file locale nel repository; sono presenti le quattro immagini delle note di rilascio 1.6 fornite dall’utente e il riferimento alla pagina ufficiale del formato.
-- Due comuni (Trapani, Misiliscemi) non consentono un confronto 2019 ricostruibile dai soli POSAS comunali.
+## Limitations
+- XSD 1.6 is not present as a local file in the repository; the four images of the 1.6 release notes provided by the user and the reference to the official format page are present.
+- Two municipalities (Trapani, Misiliscemi) do not allow a 2019 comparison to be reconstructed from municipal POSAS data alone.

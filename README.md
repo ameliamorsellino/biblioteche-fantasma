@@ -1,44 +1,54 @@
 # BIBLIOTECHE FANTASMA
 
-**Analisi, integrazione e modellazione semantica delle biblioteche italiane non pienamente operative**
+**Analysis, integration and semantic modelling of Italian libraries that are not fully operational**
 
 ## Abstract
 
-Il progetto sviluppa una pipeline completa di **Open Data Management** a partire da dati reali dell'**Anagrafe delle Biblioteche Italiane (ICCU)** e della popolazione residente **ISTAT POSAS 2019 e 2025**.
+The project develops a complete **Open Data Management** pipeline based on real data from the **Anagrafe delle Biblioteche Italiane (ICCU)** and **ISTAT POSAS 2019 and 2025 resident population** data.
 
-La pipeline comprende:
+The pipeline includes:
 
-**selezione e verifica delle fonti → conservazione dei RAW → profiling e controllo qualità → cleaning → armonizzazione territoriale → integrazione e arricchimento → dataset strutturati → metadati → modellazione ontologica → RDF → validazione SHACL → interlinking → SPARQL → analisi statistica → visualizzazione.**
+**source selection and verification → RAW preservation → profiling and quality control → cleaning → territorial harmonization → integration and enrichment → structured datasets → metadata → ontology modelling → RDF → SHACL validation → interlinking → SPARQL → statistical analysis → visualization.**
 
-“Biblioteche Fantasma” è un'etichetta narrativa del progetto, **non una categoria ufficiale ICCU**. L'assenza di uno stato speciale nel registro non viene interpretata come certificazione di piena operatività.
+“Biblioteche Fantasma” is a narrative label of the project, **not an official ICCU category**. The absence of a special status in the registry is not interpreted as certification of full operational status.
 
-Il progetto adotta inoltre un approccio conservativo nella gestione delle anomalie: i valori mancanti non vengono automaticamente trasformati in zero, le anomalie non vengono corrette senza evidenza documentale e le variazioni amministrative tra annualità ISTAT vengono trattate esplicitamente.
+The project also adopts a conservative approach to anomaly management: missing values are not automatically converted to zero, anomalies are not corrected without documentary evidence, and administrative changes between ISTAT years are handled explicitly.
 
 ---
 
 ## Research Questions
 
-* **RQ1** - Dove sono distribuite le biblioteche caratterizzate da stati di non piena operatività?
-* **RQ2** - Quali stati di registrazione sono più frequenti e come variano territorialmente?
-* **RQ3** - Quali tipologie funzionali/amministrative risultano associate ai diversi stati?
-* **RQ4** - Esiste un'associazione tra variazione demografica comunale 2019–2025 e quota di record bibliotecari con stato ICCU incluso nel perimetro problematico?
-* **RQ5** - Quale patrimonio e quali fondi speciali risultano documentati presso biblioteche problematiche?
-* **RQ6** - Quale copertura raggiunge la generazione dei collegamenti verso risorse esterne?
-* **RQ7** - Quale struttura presenta la rete delle confluenze?
-* **RQ8** - Quale relazione descrittiva emerge tra quota di popolazione 65+ e biblioteche problematiche?
+* **RQ1** - Where are libraries characterized by statuses of non-full operation distributed?
+
+* **RQ2** - Which registration statuses are most frequent and how do they vary territorially?
+
+* **RQ3** - Which functional/administrative types are associated with the different statuses?
+
+* **RQ4** - Is there an association between municipal demographic change from 2019 to 2025 and the share of library records with an ICCU status included in the problematic scope?
+
+* **RQ5** - Which holdings and special collections are documented at problematic libraries?
+
+* **RQ6** - What coverage is achieved by the generation of links to external resources?
+
+* **RQ7** - What structure does the merger network exhibit?
+
+* **RQ8** - What descriptive relationship emerges between the share of the population aged 65+ and problematic libraries?
 
 ---
 
-## Fonti Open Data
+## Open Data sources
 
-Le sorgenti principali sono:
+The main sources are:
 
-* **ICCU - Anagrafe delle Biblioteche Italiane**, snapshot del 2026-09-08;
-* **ISTAT POSAS 2019** - popolazione residente per sesso, età e stato civile;
-* **ISTAT POSAS 2025** - popolazione residente per sesso, età e stato civile;
-* **Cultural-ON 2.0** - ontologia utilizzata per il riuso semantico nel dominio culturale.
+* **ICCU - Anagrafe delle Biblioteche Italiane**, snapshot dated 2026-09-08;
 
-Gli archivi RAW originali sono conservati separatamente in:
+* **ISTAT POSAS 2019** - resident population by sex, age and marital status;
+
+* **ISTAT POSAS 2025** - resident population by sex, age and marital status;
+
+* **Cultural-ON 2.0** - ontology used for semantic reuse in the cultural domain.
+
+The original RAW archives are stored separately in:
 
 ```text
 data/raw/iccu/opendata.zip
@@ -46,55 +56,73 @@ data/raw/istat/POSAS_2019_it_Tutti_i_file.zip
 data/raw/istat/POSAS_2025_it_Tutti_i_file.zip
 ```
 
-La pipeline **non modifica mai i RAW**.
+The pipeline **never modifies the RAW files**.
 
-`metadata/source_manifest.csv` documenta per ciascuna sorgente:
+`metadata/source_manifest.csv` documents the following for each source:
 
 * publisher;
+
 * URL;
-* ruolo nel progetto;
-* data di acquisizione;
-* licenza;
-* percorso locale;
+
+* role in the project;
+
+* acquisition date;
+
+* license;
+
+* local path;
+
 * SHA-256.
 
-Questo consente di verificare l'identità delle sorgenti utilizzate e di ricostruire gli artefatti derivati a partire dai file originali inclusi nel repository.
+This makes it possible to verify the identity of the sources used and to reconstruct the derived artifacts from the original files included in the repository.
 
 ---
 
-## Licenze
+## Licenses
 
-Le condizioni di riuso sono documentate in `metadata/licenses.md`.
+Reuse conditions are documented in `metadata/licenses.md`.
 
 * **ICCU Open Data:** CC0 1.0.
+
 * **ISTAT POSAS 2019/2025:** CC BY 4.0.
+
 * **Cultural-ON 2.0:** CC BY 3.0 IT.
-* **Dataset tabellare derivato e documentazione originale del progetto:** CC BY 4.0, salvo dove diversamente indicato.
 
-La licenza del progetto è disponibile in `LICENSE`.
+* **Derived tabular dataset and original project documentation:** CC BY 4.0, unless otherwise stated.
 
-La licenza del progetto non sostituisce né modifica le condizioni applicabili ai materiali di terze parti inclusi o referenziati.
+The project license is available in `LICENSE`.
+
+The project license does not replace or modify the conditions applicable to third-party materials included or referenced.
 
 ---
 
-## Verifica, cleaning e integrazione
+## Verification, cleaning and integration
 
-La preparazione dei dati comprende controlli sulla struttura, sui tipi, sui valori mancanti, sugli identificatori, sulle coordinate e sulla coerenza territoriale.
+Data preparation includes checks on structure, types, missing values, identifiers, coordinates and territorial consistency.
 
-Tra le principali decisioni metodologiche:
+The main methodological decisions include:
 
-* conservazione separata dei RAW;
-* normalizzazione degli identificatori ISIL e ISTAT;
-* distinzione tra valore mancante e valore numerico zero;
-* coordinate `(0, 0)` trattate come mancanti;
-* esclusione dal perimetro analitico degli istituti ICCU classificati come altre tipologie di istituzione quando non pertinenti alla definizione operativa di biblioteca;
-* nessun fuzzy matching per i comuni;
-* armonizzazione esplicita delle variazioni amministrative tra la geografia ISTAT 2019 e quella 2025;
-* conservazione della struttura 1:N per patrimonio, fondi speciali e altre informazioni multivalore;
-* modellazione dello stato ICCU come osservazione riferita allo snapshot, non come proprietà atemporale;
-* utilizzo prudente di `owl:sameAs` e `rdfs:seeAlso` in funzione della reale equivalenza semantica delle risorse.
+* separate preservation of RAW files;
 
-Le principali scelte progettuali e i relativi trade-off sono documentati in:
+* normalization of ISIL and ISTAT identifiers;
+
+* distinction between a missing value and the numeric value zero;
+
+* `(0, 0)` coordinates treated as missing;
+
+* exclusion from the analytical scope of ICCU institutions classified as other types of institution when they are not relevant to the operational definition of a library;
+
+* no fuzzy matching for municipalities;
+
+* explicit harmonization of administrative changes between the 2019 and 2025 ISTAT geographies;
+
+* preservation of the 1:N structure for holdings, special collections and other multi-valued information;
+
+* modelling the ICCU status as an observation referring to the snapshot, rather than as an atemporal property;
+
+* cautious use of `owl:sameAs` and `rdfs:seeAlso` according to the actual semantic equivalence of the resources.
+
+The main design choices and their trade-offs are documented in:
 
 ```text
 reports/decisions_log.md
@@ -104,36 +132,36 @@ reports/limitations.md
 
 ---
 
-## Dataset processati
+## Processed datasets
 
-La pipeline produce **10 dataset tabellari canonici** in formato CSV UTF-8 direttamente in:
+The pipeline produces **10 canonical tabular datasets** in UTF-8 CSV format directly in:
 
 ```text
 data/processed/
 ```
 
-I CSV sono strutturati, machine-readable e in formato non proprietario.
+The CSV files are structured, machine-readable and in a non-proprietary format.
 
-Il formato Parquet è opzionale e può essere prodotto tramite:
+Parquet format is optional and can be produced using:
 
 ```bash
 pip install pyarrow
 python scripts/export_parquet.py --root .
 ```
 
-Gli eventuali file Parquet vengono salvati in:
+Any Parquet files are saved in:
 
 ```text
 data/processed/parquet/
 ```
 
-L'esportazione Parquet non è necessaria per la pipeline principale, per la generazione RDF, per SPARQL, per le analisi o per le visualizzazioni.
+Parquet export is not required for the main pipeline, RDF generation, SPARQL, analyses or visualizations.
 
 ---
 
-## Metadati
+## Metadata
 
-Il repository include metadati sia tabellari sia RDF.
+The repository includes both tabular and RDF metadata.
 
 ### Frictionless Data Package
 
@@ -141,7 +169,7 @@ Il repository include metadati sia tabellari sia RDF.
 metadata/datapackage.json
 ```
 
-descrive le risorse processate, i relativi percorsi e lo schema dei campi.
+describes the processed resources, their paths and the field schema.
 
 ### DCAT
 
@@ -149,13 +177,13 @@ descrive le risorse processate, i relativi percorsi e lo schema dei campi.
 metadata/dcat.ttl
 ```
 
-fornisce una descrizione RDF/DCAT locale del dataset e delle relative distribuzioni.
+provides a local RDF/DCAT description of the dataset and its distributions.
 
-Il progetto **non dichiara una conformità operativa completa a DCAT-AP_IT** nella distribuzione locale corrente.
+The project **does not claim full operational compliance with DCAT-AP_IT** in the current local distribution.
 
-Le distribuzioni utilizzano infatti URI `file:` e il namespace del progetto usa il dominio riservato `.invalid`. Una pubblicazione su un catalogo reale richiederebbe URL HTTP(S) pubblici e persistenti e una validazione rispetto al profilo DCAT-AP_IT applicabile.
+The distributions in fact use `file:` URIs and the project namespace uses the reserved `.invalid` domain. Publication in a real catalog would require public and persistent HTTP(S) URLs and validation against the applicable DCAT-AP_IT profile.
 
-Ulteriori dettagli sono disponibili in:
+Further details are available in:
 
 ```text
 metadata/dcat_validation_notes.md
@@ -165,34 +193,40 @@ metadata/uri_policy.md
 
 ---
 
-## Ontologia e modellazione semantica
+## Ontology and semantic modelling
 
-L'ontologia del progetto è disponibile in:
+The project ontology is available in:
 
 ```text
 ontology/ontology.ttl
 ontology/ontology.owl
 ```
 
-La progettazione segue il principio:
+The design follows the principle:
 
 **reuse → extend → create**
 
-e riutilizza, dove semanticamente appropriato:
+and reuses, where semantically appropriate:
 
 * Cultural-ON;
+
 * SKOS;
+
 * PROV-O;
+
 * DCAT / DCTERMS;
+
 * GeoSPARQL;
+
 * LOCN;
+
 * Schema.org.
 
-Gli stati ICCU sono modellati come `skos:Concept`.
+ICCU statuses are modelled as `skos:Concept`.
 
-Le osservazioni sullo stato delle biblioteche sono modellate separatamente dalle biblioteche stesse, così da esplicitare la natura temporale dello snapshot.
+Observations about library status are modelled separately from the libraries themselves, in order to make the temporal nature of the snapshot explicit.
 
-Le competency questions e le scelte di riuso sono documentate in:
+The competency questions and reuse choices are documented in:
 
 ```text
 ontology/competency_questions.md
@@ -201,81 +235,85 @@ ontology/vocabulary_reuse.csv
 
 ---
 
-## Pubblicazione Web e URI policy
+## Web publication and URI policy
 
-Il progetto utilizza un namespace HTTPS pubblico:
+The project uses a public HTTPS namespace:
 
 ```text
 https://ameliamorsellino.github.io/biblioteche-fantasma/
 ```
 
-Namespace ontologico:
+Ontology namespace:
 
 ```text
 https://ameliamorsellino.github.io/biblioteche-fantasma/ontology/
 ```
 
-Namespace delle risorse:
+Resource namespace:
 
 ```text
 https://ameliamorsellino.github.io/biblioteche-fantasma/resource/
 ```
 
-Le URI vengono costruite deterministicamente utilizzando, quando disponibili, identificatori ufficiali quali:
+URIs are constructed deterministically using, where available, official identifiers such as:
 
-* ISIL per le biblioteche;
-* codice ISTAT per i comuni;
-* identificatori derivati e documentati per osservazioni e altre entità.
+* ISIL for libraries;
 
-La pubblicazione Web è generata in modo riproducibile da:
+* ISTAT code for municipalities;
+
+* derived and documented identifiers for observations and other entities.
+
+The Web publication is generated reproducibly by:
 
 ```text
 scripts/build_web_publication.py
 ```
 
-e distribuita automaticamente tramite GitHub Pages e GitHub Actions.
+and automatically deployed through GitHub Pages and GitHub Actions.
 
-Il sito pubblico è disponibile a:
+The public site is available at:
 
 ```text
 https://ameliamorsellino.github.io/biblioteche-fantasma/
 ```
 
-Per le entità principali vengono generate pagine HTML pubbliche per:
+Public HTML pages are generated for the main entities:
 
-* **19.611 biblioteche**;
-* **7.896 comuni**;
-* **27.507 entità core complessive**.
+* **19,611 libraries**;
 
-Esempi di URI pubblicate:
+* **7,896 municipalities**;
+
+* **27,507 core entities overall**.
+
+Examples of published URIs:
 
 ```text
 https://ameliamorsellino.github.io/biblioteche-fantasma/resource/library/IT-RM0267/
 https://ameliamorsellino.github.io/biblioteche-fantasma/resource/municipality/058091/
 ```
 
-Sono inoltre disponibili sul Web l'ontologia, i metadati e le distribuzioni RDF di interlinking.
+The ontology, metadata and RDF interlinking distributions are also available on the Web.
 
-Il knowledge graph completo `data.ttl`, troppo grande per il normale repository Git, è distribuito come asset della release GitHub `v1.0.0`:
+The complete `data.ttl` knowledge graph, which is too large for the normal Git repository, is distributed as an asset of GitHub release `v1.0.0`:
 
 ```text
 https://github.com/ameliamorsellino/biblioteche-fantasma/releases/latest/download/data.ttl
 ```
 
-L'hosting tramite GitHub Pages è statico. Il progetto non implementa quindi un server Linked Data con content negotiation HTTP completa o redirect `303` basati sull'header `Accept`. Le rappresentazioni HTML delle entità core e le distribuzioni RDF sono comunque pubblicate tramite URL Web espliciti e stabili.
+Hosting through GitHub Pages is static. The project therefore does not implement a Linked Data server with full HTTP content negotiation or `303` redirects based on the `Accept` header. HTML representations of the core entities and RDF distributions are nevertheless published through explicit and stable Web URLs.
 
 ---
 
-## Knowledge graph RDF
+## RDF knowledge graph
 
-La generazione RDF è implementata in:
+RDF generation is implemented in:
 
 ```text
 scripts/generate_rdf.py
 scripts/generate_links.py
 ```
 
-Gli output principali sono:
+The main outputs are:
 
 ```text
 rdf/data.ttl
@@ -283,28 +321,37 @@ rdf/links.ttl
 rdf/metadata.ttl
 ```
 
-Il knowledge graph contiene:
+The knowledge graph contains:
 
-* `rdf/data.ttl`: **1.628.669 triple**;
-* `rdf/links.ttl`: **27.504 triple**;
-* `rdf/metadata.ttl`: **39 triple**;
-* `ontology/ontology.ttl`: **195 triple**.
+* `rdf/data.ttl`: **1,628,669 triples**;
 
-Totale esplicito:
+* `rdf/links.ttl`: **27,504 triples**;
 
-**1.656.407 triple**
+* `rdf/metadata.ttl`: **39 triples**;
 
-La validazione strutturale controlla, tra le altre cose:
+* `ontology/ontology.ttl`: **195 triples**.
 
-* parsing RDF;
-* URI malformate;
-* forme lessicali dei datatype;
-* classi e proprietà locali non dichiarate;
-* risorse locali pendenti;
-* soggetti dei link non presenti nel grafo;
-* duplicati serializzati.
+Explicit total:
 
-Il report è disponibile in:
+**1,656,407 triples**
+
+Structural validation checks, among other things:
+
+* RDF parsing;
+
+* malformed URIs;
+
+* lexical forms of datatypes;
+
+* undeclared local classes and properties;
+
+* dangling local resources;
+
+* link subjects not present in the graph;
+
+* serialized duplicates.
+
+The report is available in:
 
 ```text
 reports/rdf_validation.md
@@ -314,25 +361,29 @@ reports/rdf_validation.md
 
 ## SHACL
 
-Le shape sono definite in:
+The shapes are defined in:
 
 ```text
 shacl/shapes.ttl
 ```
 
-La validazione è eseguita con **pySHACL 0.40.1** sull'intero knowledge graph.
+Validation is performed with **pySHACL 0.40.1** on the entire knowledge graph.
 
-L'ultima esecuzione validata ha prodotto:
+The latest validated run produced:
 
 ```text
 Conforms: YES
+
 Validation results: 0
+
 Violations: 0
+
 Warnings: 0
+
 Infos: 0
 ```
 
-I report vengono salvati in:
+The reports are saved in:
 
 ```text
 reports/shacl_validation.md
@@ -340,7 +391,7 @@ reports/shacl_validation.txt
 reports/shacl_validation.ttl
 ```
 
-La validazione può essere rieseguita con:
+Validation can be rerun with:
 
 ```bash
 python scripts/validate_shacl.py --root .
@@ -350,49 +401,49 @@ python scripts/validate_shacl.py --root .
 
 ## Interlinking
 
-Il progetto genera collegamenti verso risorse esterne utilizzando identificatori ufficiali e senza fuzzy matching.
+The project generates links to external resources using official identifiers and without fuzzy matching.
 
-### Biblioteche → ICCU
+### Libraries → ICCU
 
-Per le **19.611 biblioteche ICCU** viene generato un collegamento verso l'Anagrafe delle Biblioteche Italiane utilizzando l'ISIL.
+For the **19,611 ICCU libraries**, a link to the Anagrafe delle Biblioteche Italiane is generated using the ISIL.
 
-Relazione:
+Relationship:
 
 ```text
 rdfs:seeAlso
 ```
 
-Copertura di generazione:
+Generation coverage:
 
 ```text
-19.611 / 19.611 = 100%
+19,611 / 19,611 = 100%
 ```
 
-`rdfs:seeAlso` viene utilizzato perché il target ICCU è una risorsa Web di consultazione e non viene assunto come individuo RDF semanticamente identico alla risorsa locale.
+`rdfs:seeAlso` is used because the ICCU target is a Web resource for consultation and is not assumed to be an RDF individual semantically identical to the local resource.
 
-### Comuni → Linked ISPRA
+### Municipalities → Linked ISPRA
 
-Per i comuni vengono generate URI Linked ISPRA a partire dal codice ISTAT a sei cifre.
+For municipalities, Linked ISPRA URIs are generated from the six-digit ISTAT code.
 
-Relazione:
+Relationship:
 
 ```text
 owl:sameAs
 ```
 
-Copertura di generazione:
+Generation coverage:
 
 ```text
-7.893 / 7.896 = 99,9620%
+7,893 / 7,896 = 99,9620%
 ```
 
-I tre casi senza collegamento sono mantenuti intenzionalmente non collegati a causa di variazioni amministrative intervenute nel 2026 rispetto alla geografia analitica 2025.
+The three cases without a link are intentionally left unlinked because of administrative changes that occurred in 2026 relative to the 2025 analytical geography.
 
-Le percentuali riportate descrivono la **copertura di generazione dei collegamenti secondo la URI policy documentata**.
+The reported percentages describe the **coverage of link generation according to the documented URI policy**.
 
-Lo schema delle URI esterne è stato verificato su risorse reali, ma la pipeline offline non dereferenzia individualmente tutti i target Linked ISPRA; la coverage non deve quindi essere interpretata come tasso di risposta HTTP verificato su ogni singola URI.
+The external URI pattern was verified on real resources, but the offline pipeline does not individually dereference all Linked ISPRA targets; coverage must therefore not be interpreted as an HTTP response rate verified for every individual URI.
 
-Il report machine-readable è:
+The machine-readable report is:
 
 ```text
 reports/interlinking_report.csv
@@ -402,41 +453,43 @@ reports/interlinking_report.csv
 
 ## SPARQL
 
-Le competency questions vengono tradotte in **11 query SPARQL** disponibili in:
+The competency questions are translated into **11 SPARQL queries** available in:
 
 ```text
 sparql/
 ```
 
-L'esecuzione locale utilizza **PyOxigraph** come store RDF embedded e persistente.
+Local execution uses **PyOxigraph** as an embedded and persistent RDF store.
 
-Non sono necessari:
+The following are not required:
 
 * GraphDB;
-* un server SPARQL locale;
-* un endpoint SPARQL esterno.
 
-Lo store viene creato in:
+* a local SPARQL server;
+
+* an external SPARQL endpoint.
+
+The store is created in:
 
 ```text
 .cache/oxigraph/
 ```
 
-ed è un artefatto locale rigenerabile, quindi non deve essere versionato né incluso nella distribuzione finale.
+and is a regenerable local artifact, so it must not be versioned or included in the final distribution.
 
-Per eseguire tutte le query:
+To run all queries:
 
 ```bash
 python scripts/run_sparql.py --root .
 ```
 
-Per ricostruire esplicitamente lo store:
+To explicitly rebuild the store:
 
 ```bash
 python scripts/run_sparql.py --root . --rebuild-store
 ```
 
-Per eseguire una singola query:
+To run a single query:
 
 ```bash
 python scripts/run_sparql.py \
@@ -444,49 +497,52 @@ python scripts/run_sparql.py \
   --query 01_status_distribution
 ```
 
-Per visualizzare l'elenco:
+To display the list:
 
 ```bash
 python scripts/run_sparql.py --root . --list
 ```
 
-I risultati vengono salvati in:
+Results are saved in:
 
 ```text
 sparql/results/
 ```
 
-e il report complessivo in:
+and the overall report in:
 
 ```text
 reports/sparql_execution_report.md
 reports/sparql_execution_report.json
 ```
 
-Le **11 query risultano eseguibili** sul knowledge graph locale. Una query può legittimamente restituire zero righe: ad esempio la query relativa alle biblioteche inagibili con fondi speciali documentati restituisce un insieme vuoto nello snapshot corrente senza che ciò costituisca un errore di esecuzione.
+The **11 queries are executable** on the local knowledge graph. A query may legitimately return zero rows: for example, the query concerning inaccessible libraries with documented special collections returns an empty result set in the current snapshot without this constituting an execution error.
 
 ---
 
-## Analisi quantitativa
+## Quantitative analysis
 
-Le analisi statistiche sono eseguite principalmente con:
+Statistical analyses are performed mainly with:
 
 * Pandas;
+
 * NumPy;
+
 * SciPy;
+
 * NetworkX.
 
-SPARQL viene utilizzato per interrogare il knowledge graph e rispondere alle competency questions; Pandas/SciPy vengono invece utilizzati per le elaborazioni tabellari e statistiche, mentre NetworkX viene utilizzato per la rete delle confluenze.
+SPARQL is used to query the knowledge graph and answer the competency questions; Pandas/SciPy are instead used for tabular and statistical processing, while NetworkX is used for the merger network.
 
-Questa separazione evita di utilizzare SPARQL per operazioni per cui una rappresentazione tabellare risulta più leggibile ed efficiente.
+This separation avoids using SPARQL for operations for which a tabular representation is more readable and efficient.
 
-Esecuzione:
+Execution:
 
 ```bash
 python scripts/run_analysis.py --root .
 ```
 
-Gli output vengono salvati principalmente in:
+Outputs are saved mainly in:
 
 ```text
 reports/analysis_tables/
@@ -496,55 +552,63 @@ reports/rq_results.json
 
 ---
 
-## Risultati principali
+## Main results
 
-Il master ICCU contiene **19.611 record**.
+The ICCU master contains **19,611 records**.
 
-Escludendo **655 record** classificati come altre istituzioni collegate all'ICCU, il denominatore utilizzato per il perimetro bibliotecario è pari a:
+Excluding **655 records** classified as other institutions linked to ICCU, the denominator used for the library scope is:
 
-**18.956 biblioteche**
+**18,956 libraries**
 
-Le biblioteche incluse nel perimetro analitico principale delle condizioni di non piena operatività sono:
+The libraries included in the main analytical scope of non-full-operation conditions are:
 
-**2.497**, pari al **13,17%** delle biblioteche considerate e al **12,73%** dei record complessivi del registro.
+**2,497**, equal to **13,17%** of the libraries considered and **12,73%** of the overall registry records.
 
-Gli stati più frequenti nello snapshot comprendono:
+The most frequent statuses in the snapshot include:
 
-* nessuno stato speciale registrato: 13.200;
-* biblioteca non più esistente: 1.827;
-* biblioteca non censita: 1.723;
-* biblioteca confluita: 1.502;
-* temporaneamente chiusa: 619.
+* no special status registered: 13,200;
 
-A livello regionale, la quota problematica risulta particolarmente elevata in alcune regioni, ma ogni confronto viene interpretato insieme al relativo denominatore.
+* library no longer existing: 1,827;
 
-Per RQ4, il confronto su **6.659 comuni comparabili con almeno una biblioteca** mostra una relazione debole tra variazione demografica 2019–2025 e quota di record bibliotecari con stato ICCU incluso nel perimetro problematico:
+* library not surveyed: 1,723;
+
+* merged library: 1,502;
+
+* temporarily closed: 619.
+
+At regional level, the problematic share is particularly high in some regions, but each comparison is interpreted together with its corresponding denominator.
+
+For RQ4, the comparison across **6,659 comparable municipalities with at least one library** shows a weak relationship between demographic change from 2019 to 2025 and the share of library records with an ICCU status included in the problematic scope:
 
 ```text
 Pearson r = -0,106
+
 Spearman ρ = -0,067
 ```
 
-Il risultato è **osservazionale** e non consente inferenze causali.
+The result is **observational** and does not allow causal inference.
 
-Per RQ5, **627 delle 2.497 biblioteche problematiche** presentano almeno una riga di patrimonio documentata, per un totale di **2.828 righe**. La mancata presenza di una biblioteca nel dataset dei fondi speciali viene interpretata come assenza di documentazione nel dataset, non come prova dell'assenza reale di fondi.
+For RQ5, **627 of the 2,497 problematic libraries** have at least one documented holdings row, for a total of **2,828 rows**. The absence of a library from the special collections dataset is interpreted as an absence of documentation in the dataset, not as evidence of the actual absence of collections.
 
-La rete delle confluenze comprende:
+The merger network includes:
 
 ```text
-1.412 archi validati
-1.821 nodi
-410 componenti debolmente connesse
-40 nodi nella componente maggiore
+1,412 validated edges
+
+1,821 nodes
+
+410 weakly connected components
+
+40 nodes in the largest component
 ```
 
-L'unico ciclo rilevato è il self-loop già documentato:
+The only detected cycle is the already documented self-loop:
 
 ```text
 IT-SS0267 -> IT-SS0267
 ```
 
-Per RQ8, la quota di popolazione over 65 mostra un'associazione positiva ma debole con la quota di record bibliotecari con stato ICCU incluso nel perimetro problematico. L'analisi è documentata in:
+For RQ8, the share of the population aged over 65 shows a positive but weak association with the share of library records with an ICCU status included in the problematic scope. The analysis is documented in:
 
 ```text
 reports/analysis_tables/age65_problematic_correlation.csv
@@ -553,72 +617,85 @@ visualizations/age65_scatter.png
 
 ---
 
-## Visualizzazioni
+## Visualizations
 
-Le visualizzazioni sono generate da:
+Visualizations are generated by:
 
 ```bash
 python scripts/run_visualizations.py --root .
 ```
 
-Gli output sono disponibili in:
+The outputs are available in:
 
 ```text
 visualizations/
 ```
 
-Tra le principali:
+The main ones include:
 
-* `library_map.html` - mappa interattiva clusterizzata;
-* `map_static.png` - distribuzione geografica delle biblioteche problematiche;
-* `status_by_region.png` - quote regionali;
-* `status_distribution.png` - distribuzione nazionale degli stati;
-* `demography_scatter.png` - variazione demografica vs quota problematica;
-* `special_collections.png` - copertura documentaria di patrimonio e fondi speciali;
-* `problematic_holdings.png` - materiali documentati presso le biblioteche problematiche;
-* `mergers_network.png` - componente maggiore della rete delle confluenze;
-* `age65_scatter.png` - quota 65+ vs quota di record bibliotecari con stato ICCU incluso nel perimetro problematico.
+* `library_map.html` - clustered interactive map;
 
-Le visualizzazioni sono progettate per rispondere alle Research Questions e non come dashboard esplorativa priva di una domanda analitica.
+* `map_static.png` - geographic distribution of problematic libraries;
+
+* `status_by_region.png` - regional shares;
+
+* `status_distribution.png` - national distribution of statuses;
+
+* `demography_scatter.png` - demographic change vs problematic share;
+
+* `special_collections.png` - documentation coverage of holdings and special collections;
+
+* `problematic_holdings.png` - materials documented at problematic libraries;
+
+* `mergers_network.png` - largest component of the merger network;
+
+* `age65_scatter.png` - 65+ share vs share of library records with an ICCU status included in the problematic scope.
+
+The visualizations are designed to answer the Research Questions and not as an exploratory dashboard without an analytical question.
 
 ---
 
-## Valutazione rispetto al modello 5-star Open Data
+## Assessment against the 5-star Open Data model
 
-La versione Web del progetto soddisfa i cinque livelli del modello 5-star Open Data.
+The Web version of the project satisfies all five levels of the 5-star Open Data model.
 
-1. **1★ — licenza aperta e pubblicazione sul Web**
-   Il dataset derivato è documentato con licenza CC BY 4.0 ed è pubblicato sul Web.
+1. **1★ — open license and publication on the Web**
 
-2. **2★ — dati strutturati**
-   I dataset processati sono disponibili in formati strutturati e machine-readable.
+   The derived dataset is documented under a CC BY 4.0 license and is published on the Web.
 
-3. **3★ — formati aperti e non proprietari**
-   Il progetto utilizza CSV e RDF/Turtle/N-Triples.
+2. **2★ — structured data**
 
-4. **4★ — URI Web per identificare le risorse**
-   Il knowledge graph utilizza URI HTTPS sotto il namespace pubblico GitHub Pages. Le biblioteche e i comuni dispongono di pagine Web generate automaticamente.
+   The processed datasets are available in structured and machine-readable formats.
 
-5. **5★ — collegamenti verso dati esterni**
-   Le biblioteche sono collegate all'Anagrafe ICCU tramite `rdfs:seeAlso`; i comuni compatibili sono collegati a Linked ISPRA tramite `owl:sameAs`.
+3. **3★ — open and non-proprietary formats**
 
-La pubblicazione operativa è disponibile a:
+   The project uses CSV and RDF/Turtle/N-Triples.
+
+4. **4★ — Web URIs to identify resources**
+
+   The knowledge graph uses HTTPS URIs under the public GitHub Pages namespace. Libraries and municipalities have automatically generated Web pages.
+
+5. **5★ — links to external data**
+
+   Libraries are linked to the ICCU Anagrafe through `rdfs:seeAlso`; compatible municipalities are linked to Linked ISPRA through `owl:sameAs`.
+
+The operational publication is available at:
 
 ```text
 https://ameliamorsellino.github.io/biblioteche-fantasma/
 ```
 
-Il knowledge graph completo è distribuito tramite GitHub Release:
+The complete knowledge graph is distributed through a GitHub Release:
 
 ```text
 https://github.com/ameliamorsellino/biblioteche-fantasma/releases/latest/download/data.ttl
 ```
 
-Le query SPARQL vengono invece eseguite localmente con PyOxigraph. Un endpoint SPARQL pubblico può essere utile in un'infrastruttura Linked Data più avanzata, ma non costituisce un requisito necessario del modello 5-star.
+SPARQL queries are instead executed locally with PyOxigraph. A public SPARQL endpoint may be useful in a more advanced Linked Data infrastructure, but it is not a necessary requirement of the 5-star model.
 
-La pubblicazione statica tramite GitHub Pages non offre content negotiation HTTP completa e non genera una pagina HTML dedicata per ogni risorsa interna del grafo, come osservazioni, indirizzi, geometrie o holdings. Tali risorse restano comunque identificate mediante URI HTTPS e descritte nel knowledge graph RDF.
+Static publication through GitHub Pages does not provide full HTTP content negotiation and does not generate a dedicated HTML page for every internal graph resource, such as observations, addresses, geometries or holdings. These resources nevertheless remain identified through HTTPS URIs and described in the RDF knowledge graph.
 
-La valutazione completa è documentata in:
+The complete assessment is documented in:
 
 ```text
 reports/five_star_assessment.md
@@ -626,196 +703,320 @@ reports/five_star_assessment.md
 
 ---
 
-## Struttura del repository
+## Repository structure
 
 ```text
 biblioteche-fantasma/
+
 ├── README.md
+
 ├── LICENSE
+
 ├── requirements.txt
+
 ├── .gitignore
+
 ├── SPARQL.md
+
 │
+
 ├── data/
+
 │   ├── raw/
+
 │   │   ├── iccu/
+
 │   │   │   └── opendata.zip
+
 │   │   └── istat/
+
 │   │       ├── POSAS_2019_it_Tutti_i_file.zip
+
 │   │       └── POSAS_2025_it_Tutti_i_file.zip
+
 │   │
+
 │   ├── external/
+
 │   │   ├── cultural-ON.owl
+
 │   │   ├── library_links.csv
+
 │   │   └── municipality_links.csv
+
 │   │
+
 │   └── processed/
+
 │       ├── *.csv
+
 │       └── parquet/
+
 │
+
 ├── metadata/
+
 │   ├── source_manifest.csv
+
 │   ├── licenses.md
+
 │   ├── datapackage.json
+
 │   ├── dcat.ttl
+
 │   ├── dcat_validation_notes.md
+
 │   ├── provenance.ttl
+
 │   └── uri_policy.md
+
 │
+
 ├── ontology/
+
 │   ├── ontology.ttl
+
 │   ├── ontology.owl
+
 │   ├── competency_questions.md
+
 │   └── vocabulary_reuse.csv
+
 │
+
 ├── shacl/
+
 │   └── shapes.ttl
+
 │
+
 ├── rdf/
+
 │   ├── data.ttl
+
 │   ├── links.ttl
+
 │   └── metadata.ttl
+
 │
+
 ├── sparql/
+
 │   ├── *.rq
+
 │   └── results/
+
 │
+
 ├── scripts/
+
 │   ├── build_processed_data.py
+
 │   ├── build_metadata.py
+
 │   ├── validate_outputs.py
+
 │   ├── generate_rdf.py
+
 │   ├── generate_links.py
+
 │   ├── validate_rdf.py
+
 │   ├── validate_shacl.py
+
 │   ├── run_sparql.py
+
 │   ├── run_analysis.py
+
 │   ├── run_visualizations.py
+
 │   ├── build_web_publication.py
+
 │   ├── export_parquet.py
+
 │   └── rebuild_all.py
+
 │
+
 ├── notebooks/
+
 │   ├── 01_*.ipynb
+
 │   ├── 02_*.ipynb
+
 │   ├── 03_*.ipynb
+
 │   ├── 04_*.ipynb
+
 │   ├── 05_*.ipynb
+
 │   ├── 06_*.ipynb
+
 │   ├── 07_*.ipynb
+
 │   └── 08_*.ipynb
+
 │
+
 ├── reports/
+
 │   ├── analysis_tables/
+
 │   ├── analysis.md
+
 │   ├── data_quality.md
+
 │   ├── decisions_log.md
+
 │   ├── five_star_assessment.md
+
 │   ├── interlinking_report.csv
+
 │   ├── limitations.md
+
 │   ├── rdf_validation.md
+
 │   ├── shacl_validation.md
+
 │   └── sparql_execution_report.md
+
 │
+
 ├── visualizations/
+
 │   ├── *.png
+
 │   └── library_map.html
+
 │
+
 └── report/
+
     ├── relazione.tex
+
     ├── bibliography.bib
+
     └── relazione.pdf
 ```
 
-Gli artefatti locali rigenerabili quali `.venv/`, `.cache/`, `__pycache__/` e i file temporanei LaTeX non fanno parte della distribuzione finale.
+Regenerable local artifacts such as `.venv/`, `.cache/`, `__pycache__/` and temporary LaTeX files are not part of the final distribution.
 
 ---
 
 ## Setup
 
-Il progetto è stato eseguito nell'ambiente di sviluppo corrente con **Python 3.14**.
+The project was executed in the current development environment with **Python 3.14**.
 
-Creare un ambiente virtuale:
+Create a virtual environment:
 
 ```bash
 python -m venv .venv
 ```
 
-Su Linux/macOS:
+On Linux/macOS:
 
 ```bash
 source .venv/bin/activate
 ```
 
-Su Windows, l'attivazione dipende dalla shell utilizzata.
+On Windows, activation depends on the shell being used.
 
-Installare quindi le dipendenze:
+Then install the dependencies:
 
 ```bash
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 ```
 
-Le principali dipendenze includono:
+The main dependencies include:
 
 * pandas;
+
 * numpy;
+
 * scipy;
+
 * networkx;
+
 * matplotlib;
+
 * folium;
+
 * RDFLib;
+
 * PyOxigraph;
+
 * pySHACL;
+
 * JupyterLab.
 
-`pyarrow` è opzionale e serve esclusivamente per l'esportazione Parquet.
+`pyarrow` is optional and is used exclusively for Parquet export.
 
 ---
 
-## Riproduzione completa dai RAW
+## Complete reproduction from RAW files
 
-La modalità raccomandata per ricostruire il progetto è:
+The recommended way to rebuild the project is:
 
 ```bash
 python scripts/rebuild_all.py
 ```
 
-Lo script esegue nell'ordine:
+The script executes, in order:
 
 ```text
 RAW
+
  ↓
+
 build_processed_data.py
+
  ↓
+
 build_metadata.py
+
  ↓
+
 validate_outputs.py
+
  ↓
+
 generate_rdf.py
+
  ↓
+
 generate_links.py
+
  ↓
+
 validate_rdf.py
+
  ↓
+
 run_sparql.py --rebuild-store
+
  ↓
+
 validate_shacl.py
+
  ↓
+
 run_analysis.py
+
  ↓
+
 run_visualizations.py
 ```
 
-Gli archivi RAW non vengono modificati.
+The RAW archives are not modified.
 
 ---
 
-## Riproduzione manuale della pipeline
+## Manual reproduction of the pipeline
 
-Gli stessi passaggi possono essere eseguiti singolarmente.
+The same steps can be executed individually.
 
-### 1. Dataset processati
+### 1. Processed datasets
 
 ```bash
 python scripts/build_processed_data.py \
@@ -825,7 +1026,7 @@ python scripts/build_processed_data.py \
   --out-root .
 ```
 
-### 2. Metadati e report di qualità
+### 2. Metadata and quality reports
 
 ```bash
 python scripts/build_metadata.py \
@@ -836,19 +1037,19 @@ python scripts/build_metadata.py \
   --cultural-on data/external/cultural-ON.owl
 ```
 
-Le eventuali note di rilascio ICCU possono essere aggiunte mediante opzioni ripetute:
+Any ICCU release notes can be added through repeated options:
 
 ```text
 --release-note FILE
 ```
 
-### 3. Validazione tabellare e metadatazione
+### 3. Tabular validation and metadata validation
 
 ```bash
 python scripts/validate_outputs.py --root .
 ```
 
-### 4. Generazione RDF
+### 4. RDF generation
 
 ```bash
 python scripts/generate_rdf.py --root .
@@ -860,7 +1061,7 @@ python scripts/generate_rdf.py --root .
 python scripts/generate_links.py
 ```
 
-### 6. Validazione RDF
+### 6. RDF validation
 
 ```bash
 python scripts/validate_rdf.py --root .
@@ -878,13 +1079,13 @@ python scripts/run_sparql.py --root . --rebuild-store
 python scripts/validate_shacl.py --root .
 ```
 
-### 9. Analisi
+### 9. Analysis
 
 ```bash
 python scripts/run_analysis.py --root .
 ```
 
-### 10. Visualizzazioni
+### 10. Visualizations
 
 ```bash
 python scripts/run_visualizations.py --root .
@@ -892,23 +1093,23 @@ python scripts/run_visualizations.py --root .
 
 ---
 
-## Analisi e validazione degli artefatti già generati
+## Analysis and validation of already generated artifacts
 
-Se non è necessario ricostruire i dataset dai RAW, gli artefatti esistenti possono essere controllati separatamente.
+If it is not necessary to rebuild the datasets from the RAW files, the existing artifacts can be checked separately.
 
-Validazione tabellare:
+Tabular validation:
 
 ```bash
 python scripts/validate_outputs.py --root .
 ```
 
-Validazione RDF:
+RDF validation:
 
 ```bash
 python scripts/validate_rdf.py --root .
 ```
 
-Validazione SHACL:
+SHACL validation:
 
 ```bash
 python scripts/validate_shacl.py --root .
@@ -920,13 +1121,13 @@ SPARQL:
 python scripts/run_sparql.py --root .
 ```
 
-Analisi:
+Analysis:
 
 ```bash
 python scripts/run_analysis.py --root .
 ```
 
-Visualizzazioni:
+Visualizations:
 
 ```bash
 python scripts/run_visualizations.py --root .
@@ -934,13 +1135,13 @@ python scripts/run_visualizations.py --root .
 
 ---
 
-## Notebook
+## Notebooks
 
-I notebook `01`–`08` documentano e rendono ispezionabili le principali componenti della pipeline, dal profiling delle sorgenti fino all'analisi e alla visualizzazione.
+Notebooks `01`–`08` document and make inspectable the main components of the pipeline, from source profiling through analysis and visualization.
 
-Le trasformazioni deterministiche e riproducibili sono implementate negli script della directory `scripts/`; i notebook non sostituiscono la pipeline automatica.
+Deterministic and reproducible transformations are implemented in the scripts in the `scripts/` directory; the notebooks do not replace the automated pipeline.
 
-Per aprirli:
+To open them:
 
 ```bash
 jupyter lab notebooks/
@@ -948,61 +1149,77 @@ jupyter lab notebooks/
 
 ---
 
-## Riproducibilità e integrità
+## Reproducibility and integrity
 
-Il repository mantiene separati:
+The repository keeps the following separate:
 
 ```text
 RAW
+
 processed
+
 metadata
+
 RDF
-report di validazione
-analisi
-visualizzazioni
+
+validation reports
+
+analysis
+
+visualizations
 ```
 
-Gli hash delle sorgenti sono registrati in:
+Source hashes are recorded in:
 
 ```text
 metadata/source_manifest.csv
 ```
 
-La distribuzione finale include inoltre:
+The final distribution also includes:
 
 ```text
 MANIFEST.sha256
 ```
 
-che consente di verificare l'integrità dei file della release.
+which allows the integrity of the release files to be verified.
 
-Verifica:
+Verification:
 
 ```bash
 sha256sum -c MANIFEST.sha256
 ```
 
-`MANIFEST.sha256` deve essere rigenerato soltanto dopo l'ultima modifica alla release.
+`MANIFEST.sha256` must be regenerated only after the final modification to the release.
 
 ---
 
-## Limiti principali
+## Main limitations
 
-I principali limiti del progetto sono:
+The main limitations of the project are:
 
-* lo snapshot ICCU rappresenta uno stato osservato e non una serie storica completa;
-* gli stati ICCU non forniscono necessariamente date di inizio e fine;
-* l'assenza di uno stato speciale non certifica la piena operatività;
-* la completezza informativa del registro non è uniforme;
-* l'assenza di patrimonio o fondi speciali nel dataset non equivale automaticamente a valore reale zero;
-* le variazioni amministrative territoriali complicano il confronto 2019–2025;
-* le analisi demografiche sono osservazionali e non permettono inferenze causali;
-* URI e dataset esterni possono cambiare nel tempo;
-* la pipeline offline non dereferenzia individualmente tutti i target Linked ISPRA;
-* il namespace locale `.invalid` non costituisce una pubblicazione Web dereferenziabile;
-* “Biblioteche Fantasma” è un'etichetta progettuale e non una classificazione ufficiale.
+* the ICCU snapshot represents an observed state and not a complete historical series;
 
-L'elenco dettagliato è disponibile in:
+* ICCU statuses do not necessarily provide start and end dates;
+
+* the absence of a special status does not certify full operational status;
+
+* the informational completeness of the registry is not uniform;
+
+* the absence of holdings or special collections in the dataset does not automatically correspond to an actual value of zero;
+
+* territorial administrative changes complicate the 2019–2025 comparison;
+
+* demographic analyses are observational and do not allow causal inference;
+
+* external URIs and datasets may change over time;
+
+* the offline pipeline does not individually dereference all Linked ISPRA targets;
+
+* the local `.invalid` namespace does not constitute a dereferenceable Web publication;
+
+* “Biblioteche Fantasma” is a project label and not an official classification.
+
+The detailed list is available in:
 
 ```text
 reports/limitations.md
@@ -1010,15 +1227,15 @@ reports/limitations.md
 
 ---
 
-## Relazione finale
+## Final report
 
-La relazione completa è disponibile in:
+The complete report is available in:
 
 ```text
 report/relazione.pdf
 ```
 
-Il sorgente LaTeX e la bibliografia sono conservati in:
+The LaTeX source and bibliography are stored in:
 
 ```text
 report/relazione.tex
@@ -1027,17 +1244,20 @@ report/bibliography.bib
 
 ---
 
-## Citazione
+## Citation
 
-Citare il progetto indicando:
+Cite the project by indicating:
 
 * **Biblioteche Fantasma**;
-* anno 2026;
+
+* year 2026;
+
 * ICCU - Anagrafe delle Biblioteche Italiane;
-* ISTAT POSAS 2019 e 2025.
 
-Per i dati ISTAT deve essere mantenuta l'attribuzione richiesta dalla licenza CC BY 4.0.
+* ISTAT POSAS 2019 and 2025.
 
-Cultural-ON mantiene la propria licenza CC BY 3.0 IT.
+For ISTAT data, the attribution required by the CC BY 4.0 license must be retained.
 
-Il dataset tabellare derivato e la documentazione originale del progetto sono distribuiti, salvo dove diversamente indicato, secondo **CC BY 4.0**.
+Cultural-ON retains its own CC BY 3.0 IT license.
+
+The derived tabular dataset and the original project documentation are distributed, unless otherwise stated, under **CC BY 4.0**.

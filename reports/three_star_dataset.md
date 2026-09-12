@@ -1,22 +1,23 @@
-# Dataset strutturato in formato aperto
+# Structured dataset in an open format
 
-Gli output analitici sono distribuiti in **CSV UTF-8**, formato strutturato,
-machine-readable e non proprietario.
+The analytical outputs are distributed in **UTF-8 CSV**, a structured,
+machine-readable and non-proprietary format.
 
-I RAW originali sono conservati separatamente in `data/raw/` e non vengono
-modificati dalla pipeline.
+The original RAW files are stored separately in `data/raw/` and are not
+modified by the pipeline.
 
-La catena implementata è:
+The implemented chain is:
 
 RAW → cleaning → harmonization → integration → CSV processed
 
-I dataset processati canonici sono disponibili direttamente in
+The canonical processed datasets are available directly in
 `data/processed/`.
 
-Dal punto di vista tecnico i dataset soddisfano i requisiti di struttura
-e formato aperto associati al livello 3-star. La classificazione completa
-del modello 5-star richiede tuttavia anche la pubblicazione sul Web, che
-viene valutata separatamente nel progetto.
+From a technical perspective, the datasets satisfy the structure
+and open-format requirements associated with the 3-star level. The complete
+classification under the 5-star model, however, also requires publication
+on the Web, which is assessed separately in the project.
 
-L'esportazione Parquet è opzionale e non è necessaria per la pipeline
-principale.
+Parquet export is optional and is not required for the main
+pipeline.
+

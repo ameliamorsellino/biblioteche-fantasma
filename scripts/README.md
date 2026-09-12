@@ -1,10 +1,10 @@
 # Scripts
 
-Gli script della directory `scripts/` implementano la pipeline riproducibile del progetto Biblioteche Fantasma.
+The scripts in the `scripts/` directory implement the reproducible pipeline of the Biblioteche Fantasma project.
 
-## 1. Generazione dei dataset processati
+## 1. Processed dataset generation
 
-Dalla root del repository:
+From the repository root:
 
 ```bash
 python scripts/build_processed_data.py \
@@ -14,9 +14,9 @@ python scripts/build_processed_data.py \
   --out-root .
 ```
 
-Lo script non modifica gli archivi RAW e genera deterministicamente i dataset processati in `data/processed/`.
+The script does not modify the RAW archives and deterministically generates the processed datasets in `data/processed/`.
 
-## 2. Generazione di metadati e report di qualità
+## 2. Metadata and quality report generation
 
 ```bash
 python scripts/build_metadata.py \
@@ -27,81 +27,81 @@ python scripts/build_metadata.py \
   --cultural-on data/external/cultural-ON.owl
 ```
 
-## 3. Validazione degli output tabellari
+## 3. Tabular output validation
 
 ```bash
 python scripts/validate_outputs.py --root .
 ```
 
-Il controllo verifica struttura degli output, metadati, file sorgente e SHA-256 dichiarati nel source manifest.
+The validation checks the output structure, metadata, source files, and the SHA-256 hashes declared in the source manifest.
 
-## 4. Generazione RDF
+## 4. RDF generation
 
 ```bash
 python scripts/generate_rdf.py --root .
 python scripts/generate_links.py
 ```
 
-Gli script producono il knowledge graph locale e i collegamenti verso risorse esterne.
+The scripts generate the local knowledge graph and the links to external resources.
 
-## 5. Validazione RDF e SHACL
+## 5. RDF and SHACL validation
 
 ```bash
 python scripts/validate_rdf.py --root .
 python scripts/validate_shacl.py --root .
 ```
 
-La validazione SHACL utilizza pySHACL sullo store persistente PyOxigraph.
+SHACL validation uses pySHACL on the persistent PyOxigraph store.
 
-## 6. SPARQL locale
+## 6. Local SPARQL
 
-Per eseguire tutte le query:
+To run all queries:
 
 ```bash
 python scripts/run_sparql.py --root .
 ```
 
-Il primo avvio costruisce automaticamente uno store RDF persistente in `.cache/oxigraph/` a partire da:
+On the first run, the script automatically builds a persistent RDF store in `.cache/oxigraph/` from:
 
 * `ontology/ontology.ttl`
 * `rdf/data.ttl`
 * `rdf/links.ttl`
 * `rdf/metadata.ttl`
 
-Lo store viene riutilizzato finché gli RDF sorgente non cambiano.
+The store is reused as long as the source RDF files do not change.
 
-Per eseguire una singola query:
+To run a single query:
 
 ```bash
 python scripts/run_sparql.py --root . --query 09_temporary_closed_by_region
 ```
 
-Per ricostruire lo store:
+To rebuild the store:
 
 ```bash
 python scripts/run_sparql.py --root . --rebuild-store
 ```
 
-Per elencare le query:
+To list the queries:
 
 ```bash
 python scripts/run_sparql.py --root . --list
 ```
 
-I risultati vengono salvati in `sparql/results/` e il report di esecuzione in `reports/sparql_execution_report.md`.
+Results are saved in `sparql/results/`, and the execution report is saved in `reports/sparql_execution_report.md`.
 
-## 7. Analisi e visualizzazioni
+## 7. Analysis and visualizations
 
 ```bash
 python scripts/run_analysis.py --root .
 python scripts/run_visualizations.py --root .
 ```
 
-Le tabelle analitiche sono salvate in `reports/analysis_tables/` e le visualizzazioni in `visualizations/`.
+The analytical tables are saved in `reports/analysis_tables/`, and the visualizations are saved in `visualizations/`.
 
-## Ambiente
+## Environment
 
-Installazione delle dipendenze:
+Install the dependencies:
 
 ```bash
 python -m venv .venv
@@ -109,4 +109,4 @@ source .venv/bin/activate
 python -m pip install -r requirements.txt
 ```
 
-Su Windows l'attivazione dell'ambiente virtuale varia in base alla shell utilizzata.
+On Windows, virtual environment activation varies depending on the shell being used.

@@ -1,14 +1,15 @@
-# dalla root biblioteche-fantasma
+# from biblioteche-fantasma root
 
 cd report
 
-# modifica relazione.tex
+# update relazione.tex
 
 pdflatex relazione.tex
 biber relazione
 pdflatex relazione.tex
 pdflatex relazione.tex
 
+# github commit
 cd ..
 
 git status

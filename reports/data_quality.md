@@ -2,27 +2,27 @@
 
 ## Completeness
 - ISIL: 100%.
-- Codice ISTAT comunale nel master ICCU: 100%.
-- Coordinate pulite complete: 99.56%.
-- Copertura tipologie/patrimonio: 69.94%.
-- Copertura contatti: 69.50%.
-- Copertura fondi speciali: 12.49%.
+- Municipal ISTAT code in the ICCU master: 100%.
+- Complete cleaned coordinates: 99.56%.
+- Type/holdings coverage: 69.94%.
+- Contact coverage: 69.50%.
+- Special collections coverage: 12.49%.
 
 ## Uniqueness
-- ISIL: 19.611 unici su 19.611.
-- Comuni 2025 nel dataset demografico: 7.896 codici unici su 7.896 righe.
+- ISIL: 19,611 unique out of 19,611.
+- 2025 municipalities in the demographic dataset: 7,896 unique codes across 7,896 rows.
 
 ## Validity
-- Pattern ISIL: 100%.
-- Coordinate `(0,0)` (63) non sono accettate come coordinate pulite.
-- Tre coordinate fuori bounding box Italia restano marcate per revisione; due sono compatibili con sedi a Buenos Aires/Atene, una (`IT-ME0024`) è sospetta.
+- ISIL pattern: 100%.
+- `(0,0)` coordinates (63) are not accepted as cleaned coordinates.
+- Three coordinates outside the Italy bounding box remain flagged for review; two are compatible with locations in Buenos Aires/Athens, one (`IT-ME0024`) is suspicious.
 
 ## Consistency
-- Stato `NULL` separato da qualsiasi affermazione di apertura.
-- Relazioni 1:N non appiattite.
-- `Età=999` POSAS verificata: 0 mismatch su tutti i comuni 2019 e 2025 rispetto alla somma 0–100.
-- Trapani e Misiliscemi sono marcati non comparabili per la variazione territoriale 2021.
+- `NULL` status kept separate from any claim of being open.
+- 1:N relationships not flattened.
+- POSAS `Età=999` verified: 0 mismatches across all 2019 and 2025 municipalities compared with the sum of ages 0–100.
+- Trapani and Misiliscemi are marked as non-comparable because of the 2021 territorial change.
 
 ## Joinability
-- ICCU→ISTAT 2025 via codice comune: 19.611/19.611 = 100%.
-- Le coperture ICCU secondarie sono riportate in `reports/join_quality.csv`.
+- ICCU→ISTAT 2025 via municipality code: 19,611/19,611 = 100%.
+- Secondary ICCU coverage is reported in `reports/join_quality.csv`.

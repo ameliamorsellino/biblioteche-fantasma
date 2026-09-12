@@ -1,321 +1,321 @@
 # Decisions log
 
-# Decisione D01
+# Decision D01
 
-## Problema
-NULL dello stato ICCU
+## Problem
+NULL ICCU status
 
-## Evidenza
-13200 record hanno `source_status` vuoto. La documentazione ICCU usa il campo per segnalare stati speciali quando valorizzato.
+## Evidence
+13200 records have an empty `source_status`. ICCU documentation uses the field to indicate special statuses when populated.
 
-## Alternative considerate
-Interpretare NULL come aperta; escludere; categoria neutra.
+## Alternatives considered
+Interpret NULL as open; exclude; neutral category.
 
-## Decisione
-Usare `NESSUNO_STATO_SPECIALE_REGISTRATO`.
+## Decision
+Use `NESSUNO_STATO_SPECIALE_REGISTRATO`.
 
-## Motivazione
-L’assenza di un valore non dimostra apertura.
+## Rationale
+The absence of a value does not prove that the library is open.
 
-## Conseguenza
-I NULL non entrano automaticamente nelle categorie problematiche.
+## Consequence
+NULL values do not automatically fall into the problematic categories.
 
-# Decisione D02
+# Decision D02
 
-## Problema
-Definizione di main_problematic_libraries
+## Problem
+Definition of main_problematic_libraries
 
-## Evidenza
-Il mapping canonico include solo stati con `include_in_main_analysis=True`: cessazione, chiusura temporanea, inagibilità/sospensione sisma, riapertura parziale, deposito senza punto di servizio.
+## Evidence
+The canonical mapping includes only statuses with `include_in_main_analysis=True`: cessation, temporary closure, inaccessibility/earthquake-related suspension, partial reopening, repository without a service point.
 
-## Alternative considerate
-Includere anche confluenze/non censite/allestimento; includere tutti gli stati non null.
+## Alternatives considered
+Also include mergers/not surveyed/under setup; include all non-null statuses.
 
-## Decisione
-Somma solo gli stati marcati True in `metadata/status_mapping.csv`.
+## Decision
+Sum only the statuses marked True in `metadata/status_mapping.csv`.
 
-## Motivazione
-Mantiene separate cessazione, interruzione, parzialità, trasformazione organizzativa e incompletezza anagrafica.
+## Rationale
+Keeps cessation, interruption, partial operation, organizational transformation and registry incompleteness separate.
 
-## Conseguenza
-Conteggio nazionale = 2.497.
+## Consequence
+National count = 2,497.
 
-# Decisione D03
+# Decision D03
 
-## Problema
-Relazioni XML 1:N
+## Problem
+1:N XML relationships
 
-## Evidenza
-Patrimonio 93,512 righe, fondi 9,737, contatti 62,804; più righe per ISIL.
+## Evidence
+Holdings 93,512 rows, special collections 9,737, contacts 62,804; multiple rows per ISIL.
 
-## Alternative considerate
-Mega-CSV con duplicazione delle biblioteche; tabelle separate.
+## Alternatives considered
+Mega-CSV with duplicated libraries; separate tables.
 
-## Decisione
-Conservare tabelle normalizzate per relazione.
+## Decision
+Keep normalized tables for each relationship.
 
-## Motivazione
-Evita moltiplicazioni spurie e perdita di cardinalità.
+## Rationale
+Avoids spurious multiplication and loss of cardinality.
 
-## Conseguenza
-Join successivi devono rispettare 1:N.
+## Consequence
+Subsequent joins must preserve 1:N relationships.
 
-# Decisione D04
+# Decision D04
 
-## Problema
-Coordinate (0,0)
+## Problem
+Coordinates (0,0)
 
-## Evidenza
-63 biblioteche hanno coppia originale (0,0).
+## Evidence
+63 libraries have the original pair (0,0).
 
-## Alternative considerate
-Trattare come coordinata reale; geocodificare; marcare missing.
+## Alternatives considered
+Treat as a real coordinate; geocode; mark as missing.
 
-## Decisione
-Coordinate pulite impostate a missing; originali preservate.
+## Decision
+Set cleaned coordinates to missing; preserve originals.
 
-## Motivazione
-(0,0) è uno pseudo-valore non utile per localizzare una biblioteca italiana.
+## Rationale
+(0,0) is a pseudo-value that is not useful for locating an Italian library.
 
-## Conseguenza
-Nessuna imputazione geografica automatica.
+## Consequence
+No automatic geographic imputation.
 
-# Decisione D05
+# Decision D05
 
-## Problema
-Coordinate fuori bounding box
+## Problem
+Coordinates outside the bounding box
 
-## Evidenza
-3 record sono fuori dal bounding box indicativo Italia ma nel range mondiale.
+## Evidence
+3 records fall outside the indicative Italy bounding box but within the global range.
 
-## Alternative considerate
-Cancellare; correggere/geocodificare; preservare con flag.
+## Alternatives considered
+Delete; correct/geocode; preserve with a flag.
 
-## Decisione
-Preservare e marcare `outside_italy_bbox_review`.
+## Decision
+Preserve and flag as `outside_italy_bbox_review`.
 
-## Motivazione
-Una sede italiana può trovarsi all’estero; il bounding box è controllo, non prova di errore.
+## Rationale
+An Italian institution may be located abroad; the bounding box is a check, not proof of an error.
 
-## Conseguenza
-Tre record richiedono interpretazione.
+## Consequence
+Three records require interpretation.
 
-# Decisione D06
+# Decision D06
 
-## Problema
+## Problem
 IT-ME0024
 
-## Evidenza
-Tra i tre outlier geografici, `IT-ME0024` ha coordinate compatibili con l’India, non con la localizzazione territoriale attesa.
+## Evidence
+Among the three geographic outliers, `IT-ME0024` has coordinates compatible with India, not with the expected territorial location.
 
-## Alternative considerate
-Correggere da indirizzo; eliminare; segnalare.
+## Alternatives considered
+Correct from address; remove; flag.
 
-## Decisione
-Segnalare senza correzione automatica.
+## Decision
+Flag without automatic correction.
 
-## Motivazione
-Manca una fonte certa per sostituire le coordinate.
+## Rationale
+There is no reliable source for replacing the coordinates.
 
-## Conseguenza
-Anomalia aperta per revisione manuale.
+## Consequence
+Open anomaly for manual review.
 
-# Decisione D07
+# Decision D07
 
-## Problema
-Parsing delle confluenze
+## Problem
+Parsing of mergers
 
-## Evidenza
-1,502 record di confluenza; 1,412 target ISIL estratti; 90 senza target parseabile.
+## Evidence
+1,502 merger records; 1,412 target ISILs extracted; 90 without a parseable target.
 
-## Alternative considerate
-Parsing libero/fuzzy; regex controllata; nessun parsing.
+## Alternatives considered
+Free/fuzzy parsing; controlled regex; no parsing.
 
-## Decisione
-Regex esatta `Biblioteca confluita in IT-XXdddd`; target validato contro snapshot.
+## Decision
+Exact regex `Biblioteca confluita in IT-XXdddd`; target validated against the snapshot.
 
-## Motivazione
-L’ISIL ha formato ufficiale e consente validazione deterministica.
+## Rationale
+ISIL has an official format and allows deterministic validation.
 
-## Conseguenza
-1.412 target esistono nello snapshot; 90 restano senza target.
+## Consequence
+1,412 targets exist in the snapshot; 90 remain without a target.
 
-# Decisione D08
+# Decision D08
 
-## Problema
+## Problem
 Self-loop IT-SS0267
 
-## Evidenza
-`IT-SS0267 → IT-SS0267` è presente nella sorgente dopo parsing e target validation.
+## Evidence
+`IT-SS0267 → IT-SS0267` is present in the source after parsing and target validation.
 
-## Alternative considerate
-Rimuovere/correggere; preservare e segnalare.
+## Alternatives considered
+Remove/correct; preserve and flag.
 
-## Decisione
-Preservare con `self_loop=True` e `in_cycle=True`.
+## Decision
+Preserve with `self_loop=True` and `in_cycle=True`.
 
-## Motivazione
-Nessuna evidenza autorizza una correzione.
+## Rationale
+No evidence justifies a correction.
 
-## Conseguenza
-Unico ciclo rilevato nel grafo delle confluenze.
+## Consequence
+Only cycle detected in the merger graph.
 
-# Decisione D09
+# Decision D09
 
-## Problema
-Età=999 ISTAT
+## Problem
+ISTAT Età=999
 
-## Evidenza
-Per 7.954 comuni 2019 e 7.896 comuni 2025 la riga `Età=999` coincide esattamente con la somma delle età 0–100; mismatch 0.
+## Evidence
+For 7,954 municipalities in 2019 and 7,896 municipalities in 2025, the `Età=999` row exactly matches the sum of ages 0–100; mismatch 0.
 
-## Alternative considerate
-Assumerla senza verifica; ricalcolare sempre; validarla e usarla.
+## Alternatives considered
+Assume it without verification; always recalculate; validate and use it.
 
-## Decisione
-Usare 999 come totale dopo verifica empirica completa.
+## Decision
+Use 999 as the total after complete empirical verification.
 
-## Motivazione
-Evita interpretazioni non documentate o assunte.
+## Rationale
+Avoids undocumented or assumed interpretations.
 
-## Conseguenza
-Totali comunali impiegati per popolazione 2019/2025.
+## Consequence
+Municipal totals used for 2019/2025 population.
 
-# Decisione D10
+# Decision D10
 
-## Problema
-Comune “None” e keep_default_na=False
+## Problem
+Municipality “None” and keep_default_na=False
 
-## Evidenza
-Esiste un comune ufficiale denominato `None`; i parser pandas standard possono trattare la stringa come NA.
+## Evidence
+There is an official municipality named `None`; standard pandas parsers may treat the string as NA.
 
-## Alternative considerate
-Parsing NA predefinito; eccezione a posteriori; preservazione stringhe.
+## Alternatives considered
+Default NA parsing; ex-post exception; preserve strings.
 
-## Decisione
-Leggere POSAS con `keep_default_na=False`.
+## Decision
+Read POSAS with `keep_default_na=False`.
 
-## Motivazione
-Conserva il nome ufficiale senza perdita informativa.
+## Rationale
+Preserves the official name without information loss.
 
-## Conseguenza
-Il comune None resta una stringa valida.
+## Consequence
+The municipality None remains a valid string.
 
-# Decisione D11
+# Decision D11
 
-## Problema
-Variazioni amministrative 2019–2025
+## Problem
+2019–2025 administrative changes
 
-## Evidenza
-Geografia 2019: 7.954 comuni; 2025: 7.896; crosswalk: 7,955 relazioni verso 7.896 comuni correnti.
+## Evidence
+2019 geography: 7,954 municipalities; 2025: 7,896; crosswalk: 7,955 relationships toward 7,896 current municipalities.
 
-## Alternative considerate
-Join per nome/fuzzy; eliminare non-match; crosswalk ufficiale per codici e predecessori.
+## Alternatives considered
+Join by name/fuzzy matching; remove non-matches; official crosswalk by codes and predecessors.
 
-## Decisione
-Geografia analitica 2025 e crosswalk esplicito per codice/predecessori.
+## Decision
+Use 2025 analytical geography and an explicit crosswalk by code/predecessors.
 
-## Motivazione
-I codici ufficiali e le trasformazioni amministrative sono più affidabili del fuzzy matching.
+## Rationale
+Official codes and administrative transformations are more reliable than fuzzy matching.
 
-## Conseguenza
-Fusioni/incorporazioni aggregano predecessori quando ricostruibili.
+## Consequence
+Mergers/incorporations aggregate predecessors when reconstructible.
 
-# Decisione D12
+# Decision D12
 
-## Problema
+## Problem
 Trapani/Misiliscemi
 
-## Evidenza
-Misiliscemi nasce da scorporo territoriale di Trapani nel 2021; il POSAS comunale 2019 non consente di sottrarre correttamente il territorio.
+## Evidence
+Misiliscemi was created through a territorial split from Trapani in 2021; municipal POSAS 2019 does not allow the territory to be correctly subtracted.
 
-## Alternative considerate
-Attribuire tutto Trapani 2019 a uno dei due; stimare; segnare non comparabile.
+## Alternatives considered
+Assign all of Trapani 2019 to one of the two; estimate; mark as non-comparable.
 
-## Decisione
-Entrambi marcati `not_comparable_due_to_2021_territorial_split` per il confronto 2019.
+## Decision
+Both marked `not_comparable_due_to_2021_territorial_split` for the 2019 comparison.
 
-## Motivazione
-Qualsiasi ripartizione sarebbe inventata.
+## Rationale
+Any allocation would be invented.
 
-## Conseguenza
-Population 2019 e variazioni restano NA per i due comuni.
+## Consequence
+Population 2019 and changes remain NA for the two municipalities.
 
-# Decisione D13
+# Decision D13
 
-## Problema
-Denominazione Reggio Calabria / Reggio di Calabria
+## Problem
+Name Reggio Calabria / Reggio di Calabria
 
-## Evidenza
-Nel POSAS 2025 Province, codice provincia 080, la denominazione ufficiale è `Reggio di Calabria`; 97 comuni appartengono alla provincia 080.
+## Evidence
+In POSAS 2025 Provinces, province code 080, the official name is `Reggio di Calabria`; 97 municipalities belong to province 080.
 
-## Alternative considerate
-Usare etichetta ICCU `Reggio Calabria`; usare POSAS 2025.
+## Alternatives considered
+Use ICCU label `Reggio Calabria`; use POSAS 2025.
 
-## Decisione
-Nel dataset analitico la provincia è canonizzata dal POSAS 2025 e vale `Reggio di Calabria`.
+## Decision
+In the analytical dataset the province is canonicalized from POSAS 2025 and is `Reggio di Calabria`.
 
-## Motivazione
-Il dataset analitico usa la geografia territoriale ISTAT 2025 come fonte canonica.
+## Rationale
+The analytical dataset uses ISTAT 2025 territorial geography as the canonical source.
 
-## Conseguenza
-Il rebuild produce deterministicamente 97 righe con `Reggio di Calabria`.
+## Consequence
+The rebuild deterministically produces 97 rows with `Reggio di Calabria`.
 
-# Decisione D14
+# Decision D14
 
-## Problema
-Differenza testuale di rationale
+## Problem
+Textual difference in rationale
 
-## Evidenza
-`library_status.csv` e `metadata/status_mapping.csv` ora usano la stessa funzione `classify_status`; confronto canonico: 0 differenze.
+## Evidence
+`library_status.csv` and `metadata/status_mapping.csv` now use the same `classify_status` function; canonical comparison: 0 differences.
 
-## Alternative considerate
-Mantenere testi indipendenti; sincronizzazione manuale; funzione unica.
+## Alternatives considered
+Keep independent texts; manual synchronization; single function.
 
-## Decisione
-Usare la stessa funzione canonica per entrambi gli output.
+## Decision
+Use the same canonical function for both outputs.
 
-## Motivazione
-Elimina drift puramente testuale mantenendo identica semantica.
+## Rationale
+Eliminates purely textual drift while preserving identical semantics.
 
-## Conseguenza
-Il validator verifica uguaglianza del rationale per ogni source_status.
+## Consequence
+The validator checks rationale equality for every source_status.
 
-# Decisione D15
+# Decision D15
 
-## Problema
-Anomalia data-export di patrimonio.xml
+## Problem
+patrimonio.xml export-date anomaly
 
-## Evidenza
-La radice di `patrimonio.xml` dichiara `data-export="2026-09-08T14:00:"`, timestamp sintatticamente incompleto.
+## Evidence
+The root of `patrimonio.xml` declares `data-export="2026-09-08T14:00:"`, a syntactically incomplete timestamp.
 
-## Alternative considerate
-Correggere il timestamp; ignorarlo; registrare anomalia.
+## Alternatives considered
+Correct the timestamp; ignore it; record the anomaly.
 
-## Decisione
-Non modificare la sorgente; registrare l’anomalia.
+## Decision
+Do not modify the source; record the anomaly.
 
-## Motivazione
-Non esiste evidenza per inferire i secondi mancanti.
+## Rationale
+There is no evidence from which to infer the missing seconds.
 
-## Conseguenza
-Snapshot principale resta determinato da biblioteche.json; il timestamp XML rimane nota di qualità.
+## Consequence
+The main snapshot remains determined by biblioteche.json; the XML timestamp remains a quality note.
 
-# Decisione D16
+# Decision D16
 
-## Problema
-Licenza del dataset derivato
+## Problem
+License of the derived dataset
 
-## Evidenza
-ICCU Open Data = CC0; POSAS Istat = CC BY 4.0; Cultural-ON è separata e non contribuisce ai valori tabellari in questa fase.
+## Evidence
+ICCU Open Data = CC0; Istat POSAS = CC BY 4.0; Cultural-ON is separate and does not contribute to tabular values at this stage.
 
-## Alternative considerate
-CC0; CC BY 4.0; altra licenza senza analisi.
+## Alternatives considered
+CC0; CC BY 4.0; another license without analysis.
 
-## Decisione
-Licenza prevista per il dataset tabellare derivato: CC BY 4.0.
+## Decision
+Planned license for the derived tabular dataset: CC BY 4.0.
 
-## Motivazione
-Rispetta l’obbligo di attribuzione derivante dalla componente Istat e consente riuso/modifica/commerciale.
+## Rationale
+Complies with the attribution requirement arising from the Istat component and allows reuse/modification/commercial use.
 
-## Conseguenza
-Attribuire Istat; citare ICCU; non relicenziare automaticamente Cultural-ON o documentazione ICCU.
+## Consequence
+Attribute Istat; cite ICCU; do not automatically relicense Cultural-ON or ICCU documentation.

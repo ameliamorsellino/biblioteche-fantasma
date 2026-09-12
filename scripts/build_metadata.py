@@ -148,11 +148,11 @@ def main():
             license='CC0 1.0',
             download_date=SOURCE_DOWNLOAD_DATE,
             temporal_coverage=f'snapshot {snap}',
-            spatial_coverage='Italia; include alcune sedi italiane all’estero',
-            update_frequency='quotidiana',
-            role_in_project='master biblioteche e dataset ICCU secondari',
+            spatial_coverage='Italy; includes some Italian institutions located abroad',
+            update_frequency='daily',
+            role_in_project='library master and secondary ICCU datasets',
             sha256=sha256(a.iccu),
-            notes='Archivio RAW originale incluso nel repository; integrità verificabile tramite SHA-256.'
+            notes='Original RAW archive included in the repository; integrity can be verified through SHA-256.'
         ),
 
         dict(
@@ -166,11 +166,11 @@ def main():
             license='CC BY 4.0',
             download_date=SOURCE_DOWNLOAD_DATE,
             temporal_coverage='2019-01-01',
-            spatial_coverage='Italia, comuni/province/regioni/ripartizioni',
-            update_frequency='annuale',
-            role_in_project='baseline demografica 2019',
+            spatial_coverage='Italy, municipalities/provinces/regions/geographical divisions',
+            update_frequency='annual',
+            role_in_project='2019 demographic baseline',
             sha256=sha256(a.posas2019),
-            notes='Archivio RAW originale incluso nel repository; integrità verificabile tramite SHA-256.'
+            notes='Original RAW archive included in the repository; integrity can be verified through SHA-256.'
         ),
 
         dict(
@@ -184,11 +184,11 @@ def main():
             license='CC BY 4.0',
             download_date=SOURCE_DOWNLOAD_DATE,
             temporal_coverage='2025-01-01',
-            spatial_coverage='Italia, comuni/province/regioni/ripartizioni',
-            update_frequency='annuale',
-            role_in_project='popolazione corrente e geografia canonica 2025',
+            spatial_coverage='Italy, municipalities/provinces/regions/geographical divisions',
+            update_frequency='annual',
+            role_in_project='current population and canonical 2025 geography',
             sha256=sha256(a.posas2025),
-            notes='Archivio RAW originale incluso nel repository; integrità verificabile tramite SHA-256.'
+            notes='Original RAW archive included in the repository; integrity can be verified through SHA-256.'
         ),
 
         dict(
@@ -201,12 +201,12 @@ def main():
             encoding='UTF-8',
             license='CC BY 3.0 IT',
             download_date=SOURCE_DOWNLOAD_DATE,
-            temporal_coverage='versione 2.0 – 2016-03-30',
-            spatial_coverage='vocabolario/ontologia di dominio',
+            temporal_coverage='version 2.0 – 2016-03-30',
+            spatial_coverage='domain vocabulary/ontology',
             update_frequency='',
-            role_in_project='ontologia esterna riutilizzata nella modellazione semantica',
+            role_in_project='external ontology reused in semantic modelling',
             sha256=sha256(ext/'cultural-ON.owl'),
-            notes='Utilizzata per il riuso e l’allineamento dei concetti dell’ontologia di progetto.'
+            notes='Used for the reuse and alignment of concepts in the project ontology.'
         ),
     ]
     for i, p in enumerate(
@@ -219,7 +219,7 @@ def main():
                 publisher='ICCU',
                 dataset_name=(
                     'Anagrafe delle biblioteche italiane – '
-                    'Note di rilascio formato di scambio 1.6'
+                    'Exchange format 1.6 release notes'
                 ),
                 source_url=ICCU_FORMAT_URL,
                 local_file=f'data/external/{p.name}',
@@ -227,21 +227,21 @@ def main():
                 encoding='binary',
                 license=(
                     'CC BY-NC-SA 3.0 IT '
-                    '(licenza predefinita dei contenuti editoriali '
-                    'del sito ICCU, salvo diversa indicazione)'
+                    '(default license for ICCU website editorial content, '
+                    'unless otherwise stated)'
                 ),
                 download_date=SOURCE_DOWNLOAD_DATE,
-                temporal_coverage='versione formato 1.6',
+                temporal_coverage='format version 1.6',
                 spatial_coverage='',
                 update_frequency='',
                 role_in_project=(
-                    'documentazione struttura/formato '
-                    'e contesto evolutivo'
+                    'structure/format documentation '
+                    'and evolution context'
                 ),
                 sha256=sha256(p),
                 notes=(
-                    'Documentazione ufficiale ICCU conservata '
-                    'localmente a fini di provenance.'
+                    'Official ICCU documentation stored '
+                    'locally for provenance purposes.'
                 ),
             )
         )
@@ -249,7 +249,7 @@ def main():
     wcsv(pd.DataFrame(manifest),meta/'source_manifest.csv')
 
     # License report.
-    (meta/'licenses.md').write_text(f'''# Licenze e compatibilità\n\nVerifica effettuata il {SOURCE_DOWNLOAD_DATE}.\n\n## ICCU – Anagrafe delle Biblioteche Italiane\n- Licenza dati: **CC0 1.0 / pubblico dominio**.\n- Fonte ufficiale: {ICCU_LICENSE_URL}\n- Attribuzione: non richiesta dalla licenza CC0; resta buona pratica citare ICCU come fonte.\n- Modifica: consentita.\n- Redistribuzione: consentita.\n- Uso commerciale: consentito.\n- Share-alike: nessuno.\n- Nota distinta: i contenuti editoriali del sito ICCU sono in generale CC BY-NC-SA 3.0 IT; questa condizione non sostituisce la CC0 dichiarata specificamente per gli Open Data dell’Anagrafe.\n\n## ISTAT POSAS 2019 e 2025\n- Licenza: **Creative Commons Attribution 4.0 (CC BY 4.0)**.\n- Fonte ufficiale: {ISTAT_LICENSE_URL}\n- Attribuzione: obbligatoria; citare Istat come fonte.\n- Modifica/adattamento: consentiti.\n- Redistribuzione: consentita.\n- Uso commerciale: consentito.\n- Share-alike: nessuno.\n\n## Cultural-ON\n- Licenza dichiarata nel file OWL: **CC BY 3.0 IT**, URI `http://creativecommons.org/licenses/by/3.0/it/`.\n- Fonte ufficiale di documentazione: {CULTURAL_URL}\n- Attribuzione: obbligatoria.\n- Modifica: consentita nei termini della licenza.\n- Redistribuzione: consentita.\n- Uso commerciale: consentito.\n- Share-alike: nessuno.\n\n## Dataset tabellare derivato\nLa pipeline integra valori ICCU in CC0 con dati demografici Istat in CC BY 4.0. Per il **dataset tabellare derivato** la scelta documentata è **CC BY 4.0**, con attribuzione a Istat e citazione di ICCU come fonte. Questa scelta non relicenzia automaticamente la documentazione editoriale ICCU né l’ontologia Cultural-ON inclusa separatamente nel repository.\n''',encoding='utf-8')
+    (meta/'licenses.md').write_text(f'''# Licenses and compatibility\n\nVerification performed on {SOURCE_DOWNLOAD_DATE}.\n\n## ICCU – Anagrafe delle Biblioteche Italiane\n- Data license: **CC0 1.0 / public domain**.\n- Official source: {ICCU_LICENSE_URL}\n- Attribution: not required by the CC0 license; citing ICCU as the source remains good practice.\n- Modification: permitted.\n- Redistribution: permitted.\n- Commercial use: permitted.\n- Share-alike: none.\n- Separate note: the editorial content of the ICCU website is generally licensed under CC BY-NC-SA 3.0 IT; this condition does not replace the CC0 license specifically declared for the Anagrafe Open Data.\n\n## ISTAT POSAS 2019 and 2025\n- License: **Creative Commons Attribution 4.0 (CC BY 4.0)**.\n- Official source: {ISTAT_LICENSE_URL}\n- Attribution: required; cite Istat as the source.\n- Modification/adaptation: permitted.\n- Redistribution: permitted.\n- Commercial use: permitted.\n- Share-alike: none.\n\n## Cultural-ON\n- License declared in the OWL file: **CC BY 3.0 IT**, URI `http://creativecommons.org/licenses/by/3.0/it/`.\n- Official documentation source: {CULTURAL_URL}\n- Attribution: required.\n- Modification: permitted under the terms of the license.\n- Redistribution: permitted.\n- Commercial use: permitted.\n- Share-alike: none.\n\n## Derived tabular dataset\nThe pipeline integrates ICCU values under CC0 with Istat demographic data under CC BY 4.0. For the **derived tabular dataset**, the documented choice is **CC BY 4.0**, with attribution to Istat and citation of ICCU as a source. This choice does not automatically relicense ICCU editorial documentation or the Cultural-ON ontology included separately in the repository.\n''',encoding='utf-8')
 
     # Profile tables and raw profile summary.
     coord = (
@@ -292,103 +292,102 @@ def main():
     ]); wcsv(posas_profile,tables/'posas_profile.csv')
 
     status_counts=status.normalized_status.value_counts().to_dict()
-    (reports/'data_profile_raw.md').write_text(f'''# Data profiling\n\n## ICCU master\n- Record: **{len(lib):,}**.\n- ISIL unici: **{lib.isil.nunique():,}**; mancanti: **{(lib.isil=='').sum()}**; duplicati: **{len(lib)-lib.isil.nunique()}**.\n- Comuni distinti: **{lib.istat_code.nunique():,}**.\n- Province: **{lib.province_istat_code.nunique()}**.\n- Regioni: **{lib.region.nunique()}**.\n- Coordinate pulite complete: **{((lib.latitude!='') & (lib.longitude!='')).sum():,}/{len(lib):,}**.\n- Coppie (0,0) trattate come mancanti: **{(lib.coordinate_quality_flag=='zero_pair_treated_as_missing').sum()}**.\n- Coordinate mancanti/incomplete: **{(lib.coordinate_quality_flag=='missing').sum()}**.\n- Coordinate fuori bounding box Italia, da revisione: **{(lib.coordinate_quality_flag=='outside_italy_bbox_review').sum()}**.\n- Codice SBN presente: **{(lib.sbn_code!='').sum():,}**.\n- Data aggiornamento valida/presente: **{(lib.updated_date!='').sum():,}**.\n\n## Stati normalizzati\n''' + '\n'.join([f'- `{k}`: {v:,}' for k,v in status_counts.items()]) + f'''\n\n`NULL` non è interpretato come biblioteca aperta: è mappato a `NESSUNO_STATO_SPECIALE_REGISTRATO`.\n\n## Dataset ICCU secondari\n- Tipologie: {len(types):,} record, {types.isil.nunique():,} biblioteche ({types.isil.nunique()/len(lib)*100:.2f}% del master).\n- Patrimonio: {len(hold):,} record, {hold.isil.nunique():,} biblioteche ({hold.isil.nunique()/len(lib)*100:.2f}%).\n- Fondi speciali: {len(fund):,} record, {fund.isil.nunique():,} biblioteche ({fund.isil.nunique()/len(lib)*100:.2f}%).\n- Contatti: {len(cont):,} record, {cont.isil.nunique():,} biblioteche ({cont.isil.nunique()/len(lib)*100:.2f}%).\n\n## ISTAT\n- POSAS 2019 Comuni: 811.308 righe, 7.954 comuni.\n- POSAS 2025 Comuni: 805.392 righe, 7.896 comuni.\n- `Età=999`: verificata empiricamente contro la somma delle età 0–100 per tutti i comuni; mismatch = 0 in entrambi gli anni.\n''',encoding='utf-8')
+    (reports/'data_profile_raw.md').write_text(f'''# Data profiling\n\n## ICCU master\n- Records: **{len(lib):,}**.\n- Unique ISILs: **{lib.isil.nunique():,}**; missing: **{(lib.isil=='').sum()}**; duplicates: **{len(lib)-lib.isil.nunique()}**.\n- Distinct municipalities: **{lib.istat_code.nunique():,}**.\n- Provinces: **{lib.province_istat_code.nunique()}**.\n- Regions: **{lib.region.nunique()}**.\n- Complete cleaned coordinates: **{((lib.latitude!='') & (lib.longitude!='')).sum():,}/{len(lib):,}**.\n- (0,0) pairs treated as missing: **{(lib.coordinate_quality_flag=='zero_pair_treated_as_missing').sum()}**.\n- Missing/incomplete coordinates: **{(lib.coordinate_quality_flag=='missing').sum()}**.\n- Coordinates outside the Italy bounding box, to be reviewed: **{(lib.coordinate_quality_flag=='outside_italy_bbox_review').sum()}**.\n- SBN code present: **{(lib.sbn_code!='').sum():,}**.\n- Valid/present update date: **{(lib.updated_date!='').sum():,}**.\n\n## Normalized statuses\n''' + '\n'.join([f'- `{k}`: {v:,}' for k,v in status_counts.items()]) + f'''\n\n`NULL` is not interpreted as an open library: it is mapped to `NESSUNO_STATO_SPECIALE_REGISTRATO`.\n\n## Secondary ICCU datasets\n- Types: {len(types):,} records, {types.isil.nunique():,} libraries ({types.isil.nunique()/len(lib)*100:.2f}% of the master).\n- Holdings: {len(hold):,} records, {hold.isil.nunique():,} libraries ({hold.isil.nunique()/len(lib)*100:.2f}%).\n- Special collections: {len(fund):,} records, {fund.isil.nunique():,} libraries ({fund.isil.nunique()/len(lib)*100:.2f}%).\n- Contacts: {len(cont):,} records, {cont.isil.nunique():,} libraries ({cont.isil.nunique()/len(lib)*100:.2f}%).\n\n## ISTAT\n- POSAS 2019 Municipalities: 811,308 rows, 7,954 municipalities.\n- POSAS 2025 Municipalities: 805,392 rows, 7,896 municipalities.\n- `Età=999`: empirically verified against the sum of ages 0–100 for all municipalities; mismatch = 0 in both years.\n''',encoding='utf-8')
 
     # Cleaning log: only actions actually represented in the canonical pipeline.
     clog=[
-      ('C01','ICCU library','name_original/name_normalized','whitespace/Unicode normalization','Preservato originale e creato normalized con collapse deterministico','ridurre varianti puramente formali',int((lib.name_original!=lib.name_normalized).sum()),'valore originale conservato'),
-      ('C02','ICCU library','address_original/address_normalized','whitespace/Unicode normalization','Preservato originale e creato normalized con collapse deterministico','ridurre varianti puramente formali',int((lib.address_original!=lib.address_normalized).sum()),'valore originale conservato'),
-      ('C03','ICCU library','latitude/longitude','coppia coordinate (0,0)','Coordinate pulite impostate a missing; originali conservate','(0,0) non è una posizione bibliotecaria utile e costituisce pseudo-valore',int((lib.coordinate_quality_flag=='zero_pair_treated_as_missing').sum()),'nessun geocoding automatico'),
-      ('C04','ICCU library','latitude/longitude','coordinate fuori bounding box indicativo Italia','Conservate e marcate outside_italy_bbox_review','possibili sedi all’estero o anomalie; non correggere automaticamente',int((lib.coordinate_quality_flag=='outside_italy_bbox_review').sum()),'richiede interpretazione caso per caso'),
-      ('C05','ICCU library','latitude/longitude','coppia mancante/incompleta','Conservata come missing','assenza non equivale a zero',int((lib.coordinate_quality_flag=='missing').sum()),'nessuna imputazione'),
-      ('C06','ICCU library','source_status','NULL stato ICCU','Mappato a NESSUNO_STATO_SPECIALE_REGISTRATO','assenza dello stato non prova apertura',int((status.normalized_status=='NESSUNO_STATO_SPECIALE_REGISTRATO').sum()),'escluso dal perimetro problematico principale'),
-      ('C07','ICCU mergers','source_status','stato confluenza con possibile ISIL target','Parsing regex controllato del target ISIL','evitare inferenze da testo libero',int((merg.parse_success=='True').sum()),'90 confluenze restano senza target estratto'),
-      ('C08','ISTAT POSAS','lettura CSV','stringa Comune = None rischia parsing NA','keep_default_na=False','preservare il nome ufficiale None',1,'nessuna perdita del comune'),
-      ('C09','ISTAT POSAS','Età','codice 999 interpretato come totale','Usato dopo verifica empirica completa','mismatch 0 rispetto a somma età 0–100',7954+7896,'totali comunali coerenti'),
-      ('C10','ISTAT 2019→2025','codici comune','variazioni amministrative','crosswalk esplicito per codice/predecessori; no fuzzy matching','armonizzazione sulla geografia 2025',len(cw),'Trapani/Misiliscemi non ricostruibili nel 2019'),
+      ('C01','ICCU library','name_original/name_normalized','whitespace/Unicode normalization','Original preserved and normalized value created with deterministic collapse','reduce purely formal variants',int((lib.name_original!=lib.name_normalized).sum()),'original value preserved'),
+      ('C02','ICCU library','address_original/address_normalized','whitespace/Unicode normalization','Original preserved and normalized value created with deterministic collapse','reduce purely formal variants',int((lib.address_original!=lib.address_normalized).sum()),'original value preserved'),
+      ('C03','ICCU library','latitude/longitude','coordinate pair (0,0)','Cleaned coordinates set to missing; originals preserved','(0,0) is not a useful library location and is a pseudo-value',int((lib.coordinate_quality_flag=='zero_pair_treated_as_missing').sum()),'no automatic geocoding'),
+      ('C04','ICCU library','latitude/longitude','coordinates outside the indicative Italy bounding box','Preserved and flagged as outside_italy_bbox_review','possible locations abroad or anomalies; do not correct automatically',int((lib.coordinate_quality_flag=='outside_italy_bbox_review').sum()),'requires case-by-case interpretation'),
+      ('C05','ICCU library','latitude/longitude','missing/incomplete coordinate pair','Preserved as missing','absence does not equal zero',int((lib.coordinate_quality_flag=='missing').sum()),'no imputation'),
+      ('C06','ICCU library','source_status','NULL ICCU status','Mapped to NESSUNO_STATO_SPECIALE_REGISTRATO','absence of a status does not prove that the library is open',int((status.normalized_status=='NESSUNO_STATO_SPECIALE_REGISTRATO').sum()),'excluded from the main problematic scope'),
+      ('C07','ICCU mergers','source_status','merger status with possible target ISIL','Controlled regex parsing of the target ISIL','avoid inferences from free text',int((merg.parse_success=='True').sum()),'90 mergers remain without an extracted target'),
+      ('C08','ISTAT POSAS','CSV reading','Municipality string = None risks NA parsing','keep_default_na=False','preserve the official name None',1,'no loss of the municipality'),
+      ('C09','ISTAT POSAS','Età','code 999 interpreted as total','Used after complete empirical verification','0 mismatches against the sum of ages 0–100',7954+7896,'consistent municipal totals'),
+      ('C10','ISTAT 2019→2025','municipality codes','administrative changes','explicit crosswalk by code/predecessors; no fuzzy matching','harmonization on 2025 geography',len(cw),'Trapani/Misiliscemi cannot be reconstructed for 2019'),
     ]
     wcsv(pd.DataFrame(clog,columns=['rule_id','dataset','field','problem','action','rationale','affected_records','consequence']),reports/'cleaning_log.csv')
 
     # Join quality.
     jq=[]
     for name,df,key in [('library_type',types,'isil'),('library_holdings',hold,'isil'),('special_collection',fund,'isil'),('library_contact',cont,'isil'),('library_previous_name',prev,'isil')]:
-        d=df[key].nunique(); jq.append(dict(join=f'library→{name}',master_records=len(lib),matched_master_records=d,unmatched_master_records=len(lib)-d,duplicate_relation_rows=len(df)-d,coverage_percent=d/len(lib)*100,key=key,notes='1:N preservata' if len(df)>d else '1:1 sulla copertura presente'))
+        d=df[key].nunique(); jq.append(dict(join=f'library→{name}',master_records=len(lib),matched_master_records=d,unmatched_master_records=len(lib)-d,duplicate_relation_rows=len(df)-d,coverage_percent=d/len(lib)*100,key=key,notes='1:N preserved' if len(df)>d else '1:1 on available coverage'))
     istat_codes=set(pop.istat_code)
-    matched=lib.istat_code.isin(istat_codes).sum(); jq.append(dict(join='ICCU library→ISTAT 2025 comune',master_records=len(lib),matched_master_records=int(matched),unmatched_master_records=int(len(lib)-matched),duplicate_relation_rows=0,coverage_percent=matched/len(lib)*100,key='istat_code',notes='join su codice ufficiale; no fuzzy matching'))
-    jq.append(dict(join='ISTAT 2025 comuni→crosswalk 2019/2025',master_records=len(pop),matched_master_records=cw.current_istat_code.nunique(),unmatched_master_records=len(pop)-cw.current_istat_code.nunique(),duplicate_relation_rows=len(cw)-cw.current_istat_code.nunique(),coverage_percent=cw.current_istat_code.nunique()/len(pop)*100,key='current_istat_code',notes='righe multiple per predecessori in fusioni/incorporazioni'))
+    matched=lib.istat_code.isin(istat_codes).sum(); jq.append(dict(join='ICCU library→ISTAT 2025 municipality',master_records=len(lib),matched_master_records=int(matched),unmatched_master_records=int(len(lib)-matched),duplicate_relation_rows=0,coverage_percent=matched/len(lib)*100,key='istat_code',notes='join on official code; no fuzzy matching'))
+    jq.append(dict(join='ISTAT 2025 municipalities→crosswalk 2019/2025',master_records=len(pop),matched_master_records=cw.current_istat_code.nunique(),unmatched_master_records=len(pop)-cw.current_istat_code.nunique(),duplicate_relation_rows=len(cw)-cw.current_istat_code.nunique(),coverage_percent=cw.current_istat_code.nunique()/len(pop)*100,key='current_istat_code',notes='multiple rows for predecessors in mergers/incorporations'))
     wcsv(pd.DataFrame(jq),reports/'join_quality.csv')
     wcsv(pd.DataFrame(jq),tables/'join_coverage_summary.csv')
 
     # Data quality metrics.
     dq=[]
     def add(dataset,dimension,field,value,unit,interpretation): dq.append(dict(dataset=dataset,dimension=dimension,field=field,value=value,unit=unit,interpretation=interpretation))
-    add('library','COMPLETENESS','isil',100.0,'percent','nessun ISIL mancante')
-    add('library','UNIQUENESS','isil',100.0,'percent','19.611/19.611 ISIL unici')
-    add('library','VALIDITY','isil_pattern',100.0,'percent','tutti gli ISIL rispettano ^IT-[A-Z]{2}\\d{4}$')
-    add('library','COMPLETENESS','coordinates_clean',((lib.latitude!='')&(lib.longitude!='')).sum()/len(lib)*100,'percent','coordinate pulite complete')
-    add('library','COMPLETENESS','istat_code',(lib.istat_code!='').sum()/len(lib)*100,'percent','codice comune presente')
-    add('library_type','JOINABILITY','isil_coverage',types.isil.nunique()/len(lib)*100,'percent','biblioteche del master coperte')
-    add('library_holdings','JOINABILITY','isil_coverage',hold.isil.nunique()/len(lib)*100,'percent','biblioteche del master coperte')
-    add('special_collection','JOINABILITY','isil_coverage',fund.isil.nunique()/len(lib)*100,'percent','biblioteche del master coperte')
-    add('library_contact','JOINABILITY','isil_coverage',cont.isil.nunique()/len(lib)*100,'percent','biblioteche del master coperte')
-    add('municipality_population','UNIQUENESS','istat_code',pop.istat_code.nunique()/len(pop)*100,'percent','un codice per comune 2025')
-    add('ICCU→ISTAT','JOINABILITY','istat_code',matched/len(lib)*100,'percent','record ICCU agganciati a comune ISTAT 2025')
-    add('municipality_population','CONSISTENCY','population_comparability',(pop.population_comparability=='comparable_on_2025_geography').sum()/len(pop)*100,'percent','Trapani e Misiliscemi esclusi dal confronto 2019')
+    add('library','COMPLETENESS','isil',100.0,'percent','no missing ISIL')
+    add('library','UNIQUENESS','isil',100.0,'percent','19,611/19,611 unique ISILs')
+    add('library','VALIDITY','isil_pattern',100.0,'percent','all ISILs match ^IT-[A-Z]{2}\\d{4}$')
+    add('library','COMPLETENESS','coordinates_clean',((lib.latitude!='')&(lib.longitude!='')).sum()/len(lib)*100,'percent','complete cleaned coordinates')
+    add('library','COMPLETENESS','istat_code',(lib.istat_code!='').sum()/len(lib)*100,'percent','municipality code present')
+    add('library_type','JOINABILITY','isil_coverage',types.isil.nunique()/len(lib)*100,'percent','master libraries covered')
+    add('library_holdings','JOINABILITY','isil_coverage',hold.isil.nunique()/len(lib)*100,'percent','master libraries covered')
+    add('special_collection','JOINABILITY','isil_coverage',fund.isil.nunique()/len(lib)*100,'percent','master libraries covered')
+    add('library_contact','JOINABILITY','isil_coverage',cont.isil.nunique()/len(lib)*100,'percent','master libraries covered')
+    add('municipality_population','UNIQUENESS','istat_code',pop.istat_code.nunique()/len(pop)*100,'percent','one code per 2025 municipality')
+    add('ICCU→ISTAT','JOINABILITY','istat_code',matched/len(lib)*100,'percent','ICCU records linked to an ISTAT 2025 municipality')
+    add('municipality_population','CONSISTENCY','population_comparability',(pop.population_comparability=='comparable_on_2025_geography').sum()/len(pop)*100,'percent','Trapani and Misiliscemi excluded from the 2019 comparison')
     dqdf=pd.DataFrame(dq); wcsv(dqdf,reports/'data_quality_metrics.csv')
-    (reports/'data_quality.md').write_text(f'''# Data Quality\n\n## Completeness\n- ISIL: 100%.\n- Codice ISTAT comunale nel master ICCU: 100%.\n- Coordinate pulite complete: {((lib.latitude!='')&(lib.longitude!='')).sum()/len(lib)*100:.2f}%.\n- Copertura tipologie/patrimonio: {types.isil.nunique()/len(lib)*100:.2f}%.\n- Copertura contatti: {cont.isil.nunique()/len(lib)*100:.2f}%.\n- Copertura fondi speciali: {fund.isil.nunique()/len(lib)*100:.2f}%.\n\n## Uniqueness\n- ISIL: 19.611 unici su 19.611.\n- Comuni 2025 nel dataset demografico: 7.896 codici unici su 7.896 righe.\n\n## Validity\n- Pattern ISIL: 100%.\n- Coordinate `(0,0)` ({(lib.coordinate_quality_flag=='zero_pair_treated_as_missing').sum()}) non sono accettate come coordinate pulite.\n- Tre coordinate fuori bounding box Italia restano marcate per revisione; due sono compatibili con sedi a Buenos Aires/Atene, una (`IT-ME0024`) è sospetta.\n\n## Consistency\n- Stato `NULL` separato da qualsiasi affermazione di apertura.\n- Relazioni 1:N non appiattite.\n- `Età=999` POSAS verificata: 0 mismatch su tutti i comuni 2019 e 2025 rispetto alla somma 0–100.\n- Trapani e Misiliscemi sono marcati non comparabili per la variazione territoriale 2021.\n\n## Joinability\n- ICCU→ISTAT 2025 via codice comune: 19.611/19.611 = 100%.\n- Le coperture ICCU secondarie sono riportate in `reports/join_quality.csv`.\n''',encoding='utf-8')
+    (reports/'data_quality.md').write_text(f'''# Data Quality\n\n## Completeness\n- ISIL: 100%.\n- Municipal ISTAT code in the ICCU master: 100%.\n- Complete cleaned coordinates: {((lib.latitude!='')&(lib.longitude!='')).sum()/len(lib)*100:.2f}%.\n- Type/holdings coverage: {types.isil.nunique()/len(lib)*100:.2f}%.\n- Contact coverage: {cont.isil.nunique()/len(lib)*100:.2f}%.\n- Special collections coverage: {fund.isil.nunique()/len(lib)*100:.2f}%.\n\n## Uniqueness\n- ISIL: 19,611 unique out of 19,611.\n- 2025 municipalities in the demographic dataset: 7,896 unique codes across 7,896 rows.\n\n## Validity\n- ISIL pattern: 100%.\n- `(0,0)` coordinates ({(lib.coordinate_quality_flag=='zero_pair_treated_as_missing').sum()}) are not accepted as cleaned coordinates.\n- Three coordinates outside the Italy bounding box remain flagged for review; two are compatible with locations in Buenos Aires/Athens, one (`IT-ME0024`) is suspicious.\n\n## Consistency\n- `NULL` status kept separate from any claim of being open.\n- 1:N relationships not flattened.\n- POSAS `Età=999` verified: 0 mismatches across all 2019 and 2025 municipalities compared with the sum of ages 0–100.\n- Trapani and Misiliscemi are marked as non-comparable because of the 2021 territorial change.\n\n## Joinability\n- ICCU→ISTAT 2025 via municipality code: 19,611/19,611 = 100%.\n- Secondary ICCU coverage is reported in `reports/join_quality.csv`.\n''',encoding='utf-8')
 
-    (reports/'source_verification.md').write_text(f'''# Data verification - fonti\n\n## ICCU\nPublisher istituzionale: ICCU. Pagina Open Data ufficiale: {ICCU_URL}. La pagina dichiara aggiornamento quotidiano, formati CSV/XML/JSON, archivio `opendata.zip`, ISIL come chiave primaria per incrociare i dataset e documenta i valori di `stato-registrazione`. Licenza dati: CC0. Snapshot locale: `{snap}`.\n\n## ISTAT POSAS\nPublisher: Istat. Serie: popolazione residente per età, sesso e stato civile al 1° gennaio. Fonte: {ISTAT_URL}. Anni utilizzati: 2019 e 2025. Licenza Istat: CC BY 4.0 ({ISTAT_LICENSE_URL}). I file comunali sono letti preservando stringhe come `None`.\n\n## Cultural-ON\n## Cultural-ON
-Il file OWL locale `data/external/cultural-ON.owl` è conservato nel repository come input semantico. La versione dichiarata è 2.0 (30 marzo 2016), con licenza CC BY 3.0 IT. Documentazione ufficiale: {CULTURAL_URL}. L'ontologia viene riutilizzata nella modellazione semantica del progetto.\n\n## Limitazioni\n- Lo XSD 1.6 non è presente come file locale nel repository; sono presenti le quattro immagini delle note di rilascio 1.6 fornite dall’utente e il riferimento alla pagina ufficiale del formato.\n- Due comuni (Trapani, Misiliscemi) non consentono un confronto 2019 ricostruibile dai soli POSAS comunali.\n''',encoding='utf-8')
+    (reports/'source_verification.md').write_text(f'''# Data verification - sources\n\n## ICCU\nInstitutional publisher: ICCU. Official Open Data page: {ICCU_URL}. The page states daily updates, CSV/XML/JSON formats, the `opendata.zip` archive, ISIL as the primary key for cross-referencing datasets, and documents the values of `stato-registrazione`. Data license: CC0. Local snapshot: `{snap}`.\n\n## ISTAT POSAS\nPublisher: Istat. Series: resident population by age, sex and marital status as of January 1. Source: {ISTAT_URL}. Years used: 2019 and 2025. Istat license: CC BY 4.0 ({ISTAT_LICENSE_URL}). Municipal files are read while preserving strings such as `None`.\n\n## Cultural-ON\nThe local OWL file `data/external/cultural-ON.owl` is stored in the repository as a semantic input. The declared version is 2.0 (March 30, 2016), licensed under CC BY 3.0 IT. Official documentation: {CULTURAL_URL}. The ontology is reused in the semantic modelling of the project.\n\n## Limitations\n- XSD 1.6 is not present as a local file in the repository; the four images of the 1.6 release notes provided by the user and the reference to the official format page are present.\n- Two municipalities (Trapani, Misiliscemi) do not allow a 2019 comparison to be reconstructed from municipal POSAS data alone.\n''',encoding='utf-8')
 
     # Decisions log in the requested repeated structure.
     decisions=[
-      ('NULL dello stato ICCU',f'{(status.normalized_status=="NESSUNO_STATO_SPECIALE_REGISTRATO").sum()} record hanno `source_status` vuoto. La documentazione ICCU usa il campo per segnalare stati speciali quando valorizzato.','Interpretare NULL come aperta; escludere; categoria neutra.','Usare `NESSUNO_STATO_SPECIALE_REGISTRATO`.','L’assenza di un valore non dimostra apertura.','I NULL non entrano automaticamente nelle categorie problematiche.'),
-      ('Definizione di main_problematic_libraries','Il mapping canonico include solo stati con `include_in_main_analysis=True`: cessazione, chiusura temporanea, inagibilità/sospensione sisma, riapertura parziale, deposito senza punto di servizio.','Includere anche confluenze/non censite/allestimento; includere tutti gli stati non null.','Somma solo gli stati marcati True in `metadata/status_mapping.csv`.','Mantiene separate cessazione, interruzione, parzialità, trasformazione organizzativa e incompletezza anagrafica.','Conteggio nazionale = 2.497.'),
-      ('Relazioni XML 1:N',f'Patrimonio {len(hold):,} righe, fondi {len(fund):,}, contatti {len(cont):,}; più righe per ISIL.','Mega-CSV con duplicazione delle biblioteche; tabelle separate.','Conservare tabelle normalizzate per relazione.','Evita moltiplicazioni spurie e perdita di cardinalità.','Join successivi devono rispettare 1:N.'),
-      ('Coordinate (0,0)',f'{(lib.coordinate_quality_flag=="zero_pair_treated_as_missing").sum()} biblioteche hanno coppia originale (0,0).','Trattare come coordinata reale; geocodificare; marcare missing.','Coordinate pulite impostate a missing; originali preservate.','(0,0) è uno pseudo-valore non utile per localizzare una biblioteca italiana.','Nessuna imputazione geografica automatica.'),
-      ('Coordinate fuori bounding box',f'{(lib.coordinate_quality_flag=="outside_italy_bbox_review").sum()} record sono fuori dal bounding box indicativo Italia ma nel range mondiale.','Cancellare; correggere/geocodificare; preservare con flag.','Preservare e marcare `outside_italy_bbox_review`.','Una sede italiana può trovarsi all’estero; il bounding box è controllo, non prova di errore.','Tre record richiedono interpretazione.'),
-      ('IT-ME0024','Tra i tre outlier geografici, `IT-ME0024` ha coordinate compatibili con l’India, non con la localizzazione territoriale attesa.','Correggere da indirizzo; eliminare; segnalare.','Segnalare senza correzione automatica.','Manca una fonte certa per sostituire le coordinate.','Anomalia aperta per revisione manuale.'),
-      ('Parsing delle confluenze',f'{len(merg):,} record di confluenza; {(merg.parse_success=="True").sum():,} target ISIL estratti; {(merg.parse_success!="True").sum()} senza target parseabile.','Parsing libero/fuzzy; regex controllata; nessun parsing.','Regex esatta `Biblioteca confluita in IT-XXdddd`; target validato contro snapshot.','L’ISIL ha formato ufficiale e consente validazione deterministica.','1.412 target esistono nello snapshot; 90 restano senza target.'),
-      ('Self-loop IT-SS0267','`IT-SS0267 → IT-SS0267` è presente nella sorgente dopo parsing e target validation.','Rimuovere/correggere; preservare e segnalare.','Preservare con `self_loop=True` e `in_cycle=True`.','Nessuna evidenza autorizza una correzione.','Unico ciclo rilevato nel grafo delle confluenze.'),
-      ('Età=999 ISTAT','Per 7.954 comuni 2019 e 7.896 comuni 2025 la riga `Età=999` coincide esattamente con la somma delle età 0–100; mismatch 0.','Assumerla senza verifica; ricalcolare sempre; validarla e usarla.','Usare 999 come totale dopo verifica empirica completa.','Evita interpretazioni non documentate o assunte.','Totali comunali impiegati per popolazione 2019/2025.'),
-      ('Comune “None” e keep_default_na=False','Esiste un comune ufficiale denominato `None`; i parser pandas standard possono trattare la stringa come NA.','Parsing NA predefinito; eccezione a posteriori; preservazione stringhe.','Leggere POSAS con `keep_default_na=False`.','Conserva il nome ufficiale senza perdita informativa.','Il comune None resta una stringa valida.'),
-      ('Variazioni amministrative 2019–2025',f'Geografia 2019: 7.954 comuni; 2025: 7.896; crosswalk: {len(cw):,} relazioni verso 7.896 comuni correnti.','Join per nome/fuzzy; eliminare non-match; crosswalk ufficiale per codici e predecessori.','Geografia analitica 2025 e crosswalk esplicito per codice/predecessori.','I codici ufficiali e le trasformazioni amministrative sono più affidabili del fuzzy matching.','Fusioni/incorporazioni aggregano predecessori quando ricostruibili.'),
-      ('Trapani/Misiliscemi','Misiliscemi nasce da scorporo territoriale di Trapani nel 2021; il POSAS comunale 2019 non consente di sottrarre correttamente il territorio.','Attribuire tutto Trapani 2019 a uno dei due; stimare; segnare non comparabile.','Entrambi marcati `not_comparable_due_to_2021_territorial_split` per il confronto 2019.','Qualsiasi ripartizione sarebbe inventata.','Population 2019 e variazioni restano NA per i due comuni.'),
-      ('Denominazione Reggio Calabria / Reggio di Calabria','Nel POSAS 2025 Province, codice provincia 080, la denominazione ufficiale è `Reggio di Calabria`; 97 comuni appartengono alla provincia 080.','Usare etichetta ICCU `Reggio Calabria`; usare POSAS 2025.','Nel dataset analitico la provincia è canonizzata dal POSAS 2025 e vale `Reggio di Calabria`.','Il dataset analitico usa la geografia territoriale ISTAT 2025 come fonte canonica.','Il rebuild produce deterministicamente 97 righe con `Reggio di Calabria`.'),
-      ('Differenza testuale di rationale','`library_status.csv` e `metadata/status_mapping.csv` ora usano la stessa funzione `classify_status`; confronto canonico: 0 differenze.','Mantenere testi indipendenti; sincronizzazione manuale; funzione unica.','Usare la stessa funzione canonica per entrambi gli output.','Elimina drift puramente testuale mantenendo identica semantica.','Il validator verifica uguaglianza del rationale per ogni source_status.'),
-      ('Anomalia data-export di patrimonio.xml','La radice di `patrimonio.xml` dichiara `data-export="2026-09-08T14:00:"`, timestamp sintatticamente incompleto.','Correggere il timestamp; ignorarlo; registrare anomalia.','Non modificare la sorgente; registrare l’anomalia.','Non esiste evidenza per inferire i secondi mancanti.','Snapshot principale resta determinato da biblioteche.json; il timestamp XML rimane nota di qualità.'),
-      ('Licenza del dataset derivato','ICCU Open Data = CC0; POSAS Istat = CC BY 4.0; Cultural-ON è separata e non contribuisce ai valori tabellari in questa fase.','CC0; CC BY 4.0; altra licenza senza analisi.','Licenza prevista per il dataset tabellare derivato: CC BY 4.0.','Rispetta l’obbligo di attribuzione derivante dalla componente Istat e consente riuso/modifica/commerciale.','Attribuire Istat; citare ICCU; non relicenziare automaticamente Cultural-ON o documentazione ICCU.'),
+      ('NULL ICCU status',f'{(status.normalized_status=="NESSUNO_STATO_SPECIALE_REGISTRATO").sum()} records have an empty `source_status`. ICCU documentation uses the field to indicate special statuses when populated.','Interpret NULL as open; exclude; neutral category.','Use `NESSUNO_STATO_SPECIALE_REGISTRATO`.','The absence of a value does not prove that the library is open.','NULL values do not automatically fall into the problematic categories.'),
+      ('Definition of main_problematic_libraries','The canonical mapping includes only statuses with `include_in_main_analysis=True`: cessation, temporary closure, inaccessibility/earthquake-related suspension, partial reopening, repository without a service point.','Also include mergers/not surveyed/under setup; include all non-null statuses.','Sum only the statuses marked True in `metadata/status_mapping.csv`.','Keeps cessation, interruption, partial operation, organizational transformation and registry incompleteness separate.','National count = 2,497.'),
+      ('1:N XML relationships',f'Holdings {len(hold):,} rows, special collections {len(fund):,}, contacts {len(cont):,}; multiple rows per ISIL.','Mega-CSV with duplicated libraries; separate tables.','Keep normalized tables for each relationship.','Avoids spurious multiplication and loss of cardinality.','Subsequent joins must preserve 1:N relationships.'),
+      ('Coordinates (0,0)',f'{(lib.coordinate_quality_flag=="zero_pair_treated_as_missing").sum()} libraries have the original pair (0,0).','Treat as a real coordinate; geocode; mark as missing.','Set cleaned coordinates to missing; preserve originals.','(0,0) is a pseudo-value that is not useful for locating an Italian library.','No automatic geographic imputation.'),
+      ('Coordinates outside the bounding box',f'{(lib.coordinate_quality_flag=="outside_italy_bbox_review").sum()} records fall outside the indicative Italy bounding box but within the global range.','Delete; correct/geocode; preserve with a flag.','Preserve and flag as `outside_italy_bbox_review`.','An Italian institution may be located abroad; the bounding box is a check, not proof of an error.','Three records require interpretation.'),
+      ('IT-ME0024','Among the three geographic outliers, `IT-ME0024` has coordinates compatible with India, not with the expected territorial location.','Correct from address; remove; flag.','Flag without automatic correction.','There is no reliable source for replacing the coordinates.','Open anomaly for manual review.'),
+      ('Parsing of mergers',f'{len(merg):,} merger records; {(merg.parse_success=="True").sum():,} target ISILs extracted; {(merg.parse_success!="True").sum()} without a parseable target.','Free/fuzzy parsing; controlled regex; no parsing.','Exact regex `Biblioteca confluita in IT-XXdddd`; target validated against the snapshot.','ISIL has an official format and allows deterministic validation.','1,412 targets exist in the snapshot; 90 remain without a target.'),
+      ('Self-loop IT-SS0267','`IT-SS0267 → IT-SS0267` is present in the source after parsing and target validation.','Remove/correct; preserve and flag.','Preserve with `self_loop=True` and `in_cycle=True`.','No evidence justifies a correction.','Only cycle detected in the merger graph.'),
+      ('ISTAT Età=999','For 7,954 municipalities in 2019 and 7,896 municipalities in 2025, the `Età=999` row exactly matches the sum of ages 0–100; mismatch 0.','Assume it without verification; always recalculate; validate and use it.','Use 999 as the total after complete empirical verification.','Avoids undocumented or assumed interpretations.','Municipal totals used for 2019/2025 population.'),
+      ('Municipality “None” and keep_default_na=False','There is an official municipality named `None`; standard pandas parsers may treat the string as NA.','Default NA parsing; ex-post exception; preserve strings.','Read POSAS with `keep_default_na=False`.','Preserves the official name without information loss.','The municipality None remains a valid string.'),
+      ('2019–2025 administrative changes',f'2019 geography: 7,954 municipalities; 2025: 7,896; crosswalk: {len(cw):,} relationships toward 7,896 current municipalities.','Join by name/fuzzy matching; remove non-matches; official crosswalk by codes and predecessors.','Use 2025 analytical geography and an explicit crosswalk by code/predecessors.','Official codes and administrative transformations are more reliable than fuzzy matching.','Mergers/incorporations aggregate predecessors when reconstructible.'),
+      ('Trapani/Misiliscemi','Misiliscemi was created through a territorial split from Trapani in 2021; municipal POSAS 2019 does not allow the territory to be correctly subtracted.','Assign all of Trapani 2019 to one of the two; estimate; mark as non-comparable.','Both marked `not_comparable_due_to_2021_territorial_split` for the 2019 comparison.','Any allocation would be invented.','Population 2019 and changes remain NA for the two municipalities.'),
+      ('Name Reggio Calabria / Reggio di Calabria','In POSAS 2025 Provinces, province code 080, the official name is `Reggio di Calabria`; 97 municipalities belong to province 080.','Use ICCU label `Reggio Calabria`; use POSAS 2025.','In the analytical dataset the province is canonicalized from POSAS 2025 and is `Reggio di Calabria`.','The analytical dataset uses ISTAT 2025 territorial geography as the canonical source.','The rebuild deterministically produces 97 rows with `Reggio di Calabria`.'),
+      ('Textual difference in rationale','`library_status.csv` and `metadata/status_mapping.csv` now use the same `classify_status` function; canonical comparison: 0 differences.','Keep independent texts; manual synchronization; single function.','Use the same canonical function for both outputs.','Eliminates purely textual drift while preserving identical semantics.','The validator checks rationale equality for every source_status.'),
+      ('patrimonio.xml export-date anomaly','The root of `patrimonio.xml` declares `data-export="2026-09-08T14:00:"`, a syntactically incomplete timestamp.','Correct the timestamp; ignore it; record the anomaly.','Do not modify the source; record the anomaly.','There is no evidence from which to infer the missing seconds.','The main snapshot remains determined by biblioteche.json; the XML timestamp remains a quality note.'),
+      ('License of the derived dataset','ICCU Open Data = CC0; Istat POSAS = CC BY 4.0; Cultural-ON is separate and does not contribute to tabular values at this stage.','CC0; CC BY 4.0; another license without analysis.','Planned license for the derived tabular dataset: CC BY 4.0.','Complies with the attribution requirement arising from the Istat component and allows reuse/modification/commercial use.','Attribute Istat; cite ICCU; do not automatically relicense Cultural-ON or ICCU documentation.'),
     ]
     out=['# Decisions log','']
     for i,(problem,evidence,alts,decision,mot,cons) in enumerate(decisions,1):
-        out += [f'# Decisione D{i:02d}','', '## Problema',problem,'','## Evidenza',evidence,'','## Alternative considerate',alts,'','## Decisione',decision,'','## Motivazione',mot,'','## Conseguenza',cons,'']
+        out += [f'# Decision D{i:02d}','', '## Problem',problem,'','## Evidence',evidence,'','## Alternatives considered',alts,'','## Decision',decision,'','## Rationale',mot,'','## Consequence',cons,'']
     (reports/'decisions_log.md').write_text('\n'.join(out),encoding='utf-8')
 
     (reports / "three_star_dataset.md").write_text(
         dedent(
             """\
-    # Dataset strutturato in formato aperto
+    # Structured dataset in an open format
 
-    Gli output analitici sono distribuiti in **CSV UTF-8**, formato strutturato,
-    machine-readable e non proprietario.
+    The analytical outputs are distributed in **UTF-8 CSV**, a structured,
+    machine-readable and non-proprietary format.
 
-    I RAW originali sono conservati separatamente in `data/raw/` e non vengono
-    modificati dalla pipeline.
+    The original RAW files are stored separately in `data/raw/` and are not
+    modified by the pipeline.
 
-    La catena implementata è:
+    The implemented chain is:
 
     RAW → cleaning → harmonization → integration → CSV processed
 
-    I dataset processati canonici sono disponibili direttamente in
+    The canonical processed datasets are available directly in
     `data/processed/`.
 
-    Dal punto di vista tecnico i dataset soddisfano i requisiti di struttura
-    e formato aperto associati al livello 3-star. La classificazione completa
-    del modello 5-star richiede tuttavia anche la pubblicazione sul Web, che
-    viene valutata separatamente nel progetto.
+    From a technical perspective, the datasets satisfy the structure
+    and open-format requirements associated with the 3-star level. The complete
+    classification under the 5-star model, however, also requires publication
+    on the Web, which is assessed separately in the project.
 
-    L'esportazione Parquet è opzionale e non è necessaria per la pipeline
-    principale.
+    Parquet export is optional and is not required for the main
+    pipeline.
     """
         ),
         encoding="utf-8",
@@ -396,11 +395,11 @@ Il file OWL locale `data/external/cultural-ON.owl` è conservato nel repository 
 
     # Data Package metadata.
     descriptions={
-      'library.csv':'Master ICCU pulito a granularità biblioteca.', 'library_status.csv':'Stato ICCU normalizzato per biblioteca.',
-      'library_type.csv':'Tipologie ICCU per biblioteca sulla copertura disponibile.', 'library_holdings.csv':'Patrimonio ICCU, relazione 1:N biblioteca-materiale.',
-      'special_collection.csv':'Fondi speciali ICCU, relazione 1:N.', 'library_contact.csv':'Contatti ICCU, relazione 1:N.',
-      'library_previous_name.csv':'Denominazioni precedenti, relazione 1:N.', 'library_mergers.csv':'Confluenze organizzative parseate e validate.',
-      'municipality_population.csv':'Popolazione comunale armonizzata 2019/2025 sulla geografia 2025.', 'analysis_municipality.csv':'Dataset analitico comunale integrato ICCU+ISTAT.'}
+      'library.csv':'Cleaned ICCU master at library granularity.', 'library_status.csv':'Normalized ICCU status for each library.',
+      'library_type.csv':'ICCU library types for the available coverage.', 'library_holdings.csv':'ICCU holdings, 1:N library-material relationship.',
+      'special_collection.csv':'ICCU special collections, 1:N relationship.', 'library_contact.csv':'ICCU contacts, 1:N relationship.',
+      'library_previous_name.csv':'Previous names, 1:N relationship.', 'library_mergers.csv':'Parsed and validated organizational mergers.',
+      'municipality_population.csv':'Harmonized 2019/2025 municipal population on 2025 geography.', 'analysis_municipality.csv':'Integrated ICCU+ISTAT municipal analytical dataset.'}
     resources=[]
     for p in sorted(proc.glob('*.csv')):
         df=read_csv(p)
@@ -553,7 +552,7 @@ Il file OWL locale `data/external/cultural-ON.owl` è conservato nel repository 
             'description': descriptions[p.name],
             'schema': schema,
         })
-    datapackage={'profile':'data-package','name':'biblioteche-fantasma','title':'BIBLIOTECHE FANTASMA','description':'Dataset puliti e integrati ICCU + ISTAT 2019/2025 per lo studio delle biblioteche italiane non pienamente operative.','version':PROJECT_RELEASE_DATE,'keywords':['biblioteche','ICCU','ISTAT','open data','Italia','demografia'],'licenses':[{'name':'CC-BY-4.0','path':'https://creativecommons.org/licenses/by/4.0/','title':'Creative Commons Attribution 4.0 International'}],'sources':[{'title':'ICCU Anagrafe delle Biblioteche Italiane','path':ICCU_URL},{'title':'ISTAT POSAS 2019','path':ISTAT_URL},{'title':'ISTAT POSAS 2025','path':ISTAT_URL}],'geographic_coverage':'Italia','temporal_coverage':'2019-01-01; 2025-01-01; ICCU snapshot 2026-09-08T14:11:15','resources':resources}
+    datapackage={'profile':'data-package','name':'biblioteche-fantasma','title':'BIBLIOTECHE FANTASMA','description':'Cleaned and integrated ICCU + ISTAT 2019/2025 datasets for the study of Italian libraries that are not fully operational.','version':PROJECT_RELEASE_DATE,'keywords':['libraries','ICCU','ISTAT','open data','Italy','demography'],'licenses':[{'name':'CC-BY-4.0','path':'https://creativecommons.org/licenses/by/4.0/','title':'Creative Commons Attribution 4.0 International'}],'sources':[{'title':'ICCU Anagrafe delle Biblioteche Italiane','path':ICCU_URL},{'title':'ISTAT POSAS 2019','path':ISTAT_URL},{'title':'ISTAT POSAS 2025','path':ISTAT_URL}],'geographic_coverage':'Italy','temporal_coverage':'2019-01-01; 2025-01-01; ICCU snapshot 2026-09-08T14:11:15','resources':resources}
     (meta/'datapackage.json').write_text(json.dumps(datapackage,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
 
     # Public DCAT metadata for the Web publication.
@@ -562,39 +561,38 @@ Il file OWL locale `data/external/cultural-ON.owl` è conservato nel repository 
     dists=[]
     for p in sorted(proc.glob('*.csv')):
         ident=p.stem.replace('_','-')
-        dists.append(f'''bf:dist-{ident} a dcat:Distribution ;\n    dct:title "{p.stem}"@it ;\n    dct:description "{descriptions[p.name]}"@it ;\n    dct:license <https://creativecommons.org/licenses/by/4.0/> ;\n    dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;\n    dcat:mediaType "text/csv" ;\n    dcat:accessURL <{GITHUB_BLOB_BASE}data/processed/{p.name}> ;\n    dcat:downloadURL <{RAW_GITHUB_BASE}data/processed/{p.name}> .''')
+        dists.append(f'''bf:dist-{ident} a dcat:Distribution ;\n    dct:title "{p.stem}"@en ;\n    dct:description "{descriptions[p.name]}"@en ;\n    dct:license <https://creativecommons.org/licenses/by/4.0/> ;\n    dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;\n    dcat:mediaType "text/csv" ;\n    dcat:accessURL <{GITHUB_BLOB_BASE}data/processed/{p.name}> ;\n    dcat:downloadURL <{RAW_GITHUB_BASE}data/processed/{p.name}> .''')
     distrefs=',\n        '.join('bf:dist-'+p.stem.replace('_','-') for p in sorted(proc.glob('*.csv')))
-    ttl=f'''@prefix bf: <{PUBLIC_BASE}metadata/> .\n@prefix dcat: <http://www.w3.org/ns/dcat#> .\n@prefix dct: <http://purl.org/dc/terms/> .\n@prefix foaf: <http://xmlns.com/foaf/0.1/> .\n@prefix schema: <https://schema.org/> .\n@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n\nbf:project-author a foaf:Person ; foaf:name "Amelia Morsellino" .\n\nbf:dataset a dcat:Dataset ; \ndct:identifier "biblioteche-fantasma" ;\n    dct:title "Biblioteche Fantasma"@it ;\n    dct:description "Dataset puliti e integrati ICCU + ISTAT 2019/2025 per lo studio delle biblioteche italiane non pienamente operative."@it ;\n    dct:publisher bf:project-author ;\n    dct:creator bf:project-author ;\n    dct:license <https://creativecommons.org/licenses/by/4.0/> ;\n    dct:issued "{PROJECT_RELEASE_DATE}"^^xsd:date ;\n    dct:modified "{PROJECT_RELEASE_DATE}"^^xsd:date ;\n    dct:language <http://publications.europa.eu/resource/authority/language/ITA> ;\n    dct:spatial <http://publications.europa.eu/resource/authority/country/ITA> ;\n    dct:temporal [ a dct:PeriodOfTime ; schema:startDate "2019-01-01"^^xsd:date ; schema:endDate "2026-09-08"^^xsd:date ] ;\n    dct:accrualPeriodicity <http://publications.europa.eu/resource/authority/frequency/IRREG> ;\n    dcat:theme <http://publications.europa.eu/resource/authority/data-theme/EDUC> ;\n    dcat:keyword "biblioteche"@it, "ICCU"@it, "ISTAT"@it, "demografia"@it, "open data"@it ;\n    dct:source <{ICCU_URL}>, <{ISTAT_URL}> ;\n    dcat:distribution {distrefs} .\n\n'''+'\n\n'.join(dists)+'\n'
+    ttl=f'''@prefix bf: <{PUBLIC_BASE}metadata/> .\n@prefix dcat: <http://www.w3.org/ns/dcat#> .\n@prefix dct: <http://purl.org/dc/terms/> .\n@prefix foaf: <http://xmlns.com/foaf/0.1/> .\n@prefix schema: <https://schema.org/> .\n@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n\nbf:project-author a foaf:Person ; foaf:name "Amelia Morsellino" .\n\nbf:dataset a dcat:Dataset ; \ndct:identifier "biblioteche-fantasma" ;\n    dct:title "Biblioteche Fantasma"@en ;\n    dct:description "Cleaned and integrated ICCU + ISTAT 2019/2025 datasets for the study of Italian libraries that are not fully operational."@en ;\n    dct:publisher bf:project-author ;\n    dct:creator bf:project-author ;\n    dct:license <https://creativecommons.org/licenses/by/4.0/> ;\n    dct:issued "{PROJECT_RELEASE_DATE}"^^xsd:date ;\n    dct:modified "{PROJECT_RELEASE_DATE}"^^xsd:date ;\n    dct:language <http://publications.europa.eu/resource/authority/language/ITA> ;\n    dct:spatial <http://publications.europa.eu/resource/authority/country/ITA> ;\n    dct:temporal [ a dct:PeriodOfTime ; schema:startDate "2019-01-01"^^xsd:date ; schema:endDate "2026-09-08"^^xsd:date ] ;\n    dct:accrualPeriodicity <http://publications.europa.eu/resource/authority/frequency/IRREG> ;\n    dcat:theme <http://publications.europa.eu/resource/authority/data-theme/EDUC> ;\n    dcat:keyword "libraries"@en, "ICCU"@en, "ISTAT"@en, "demography"@en, "open data"@en ;\n    dct:source <{ICCU_URL}>, <{ISTAT_URL}> ;\n    dcat:distribution {distrefs} .\n\n'''+'\n\n'.join(dists)+'\n'
     (meta/'dcat.ttl').write_text(ttl,encoding='utf-8')
     (meta / "dcat_validation_notes.md").write_text(
         dedent(
             """\
-    # Note di validazione e conformità DCAT
+    # DCAT validation and conformance notes
 
-    Il file `metadata/dcat.ttl` fornisce una descrizione RDF/DCAT del dataset
-    e delle principali distribuzioni del progetto.
+    The `metadata/dcat.ttl` file provides an RDF/DCAT description of the dataset
+    and of the project's main distributions.
 
-    La descrizione include identificatore, titolo, descrizione, publisher,
-    creator, licenza, lingua, copertura geografica, frequenza, tema, keyword,
-    distribuzioni, formato, media type, accessURL e downloadURL.
+    The description includes identifier, title, description, publisher,
+    creator, license, language, geographic coverage, frequency, theme, keywords,
+    distributions, format, media type, accessURL and downloadURL.
 
     ## DCAT-AP_IT
 
-    Il progetto utilizza URI HTTP(S) pubbliche sotto il namespace
+    The project uses public HTTP(S) URIs under the namespace
     `https://ameliamorsellino.github.io/biblioteche-fantasma/`.
 
-    Le distribuzioni tabellari sono descritte mediante URL Web pubblici
-    del repository GitHub e URL di download diretto.
+    The tabular distributions are described through public Web URLs
+    from the GitHub repository and direct download URLs.
 
-    La pubblicazione tramite GitHub Pages rende disponibile il namespace
-    del progetto sul Web. La piena conformità a DCAT-AP_IT non viene tuttavia
-    dichiarata senza una validazione formale rispetto alla versione applicabile
-    del profilo.
+    Publication through GitHub Pages makes the project namespace available
+    on the Web. Full DCAT-AP_IT conformance is not, however, claimed without
+    formal validation against the applicable version of the profile.
     """
         ),
         encoding="utf-8",
     )
-    prov=f'''@prefix bf: <urn:biblioteche-fantasma:provenance:> .\n@prefix prov: <http://www.w3.org/ns/prov#> .\n@prefix dct: <http://purl.org/dc/terms/> .\n@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n\nbf:src-iccu a prov:Entity ; dct:title "ICCU Anagrafe snapshot 2026-09-08"@it .\nbf:src-istat-2019 a prov:Entity ; dct:title "ISTAT POSAS 2019"@it .\nbf:src-istat-2025 a prov:Entity ; dct:title "ISTAT POSAS 2025"@it .\nbf:cleaning a prov:Activity ; prov:used bf:src-iccu ; dct:description "Pulizia deterministica ICCU senza sovrascrittura dei RAW"@it .\nbf:harmonization a prov:Activity ; prov:used bf:src-istat-2019, bf:src-istat-2025 ; dct:description "Armonizzazione comunale 2019→2025"@it .\nbf:integration a prov:Activity ; prov:used bf:cleaned-iccu, bf:harmonized-population ; dct:description "Integrazione ICCU→ISTAT via codice comune"@it .\nbf:cleaned-iccu a prov:Entity ; prov:wasGeneratedBy bf:cleaning ; prov:wasDerivedFrom bf:src-iccu .\nbf:harmonized-population a prov:Entity ; prov:wasGeneratedBy bf:harmonization ; prov:wasDerivedFrom bf:src-istat-2019, bf:src-istat-2025 .\nbf:derived-dataset a prov:Entity ; prov:wasGeneratedBy bf:integration ; prov:wasDerivedFrom bf:src-iccu, bf:src-istat-2019, bf:src-istat-2025 ; dct:issued "{PROJECT_RELEASE_DATE}"^^xsd:date .\n'''
+    prov=f'''@prefix bf: <urn:biblioteche-fantasma:provenance:> .\n@prefix prov: <http://www.w3.org/ns/prov#> .\n@prefix dct: <http://purl.org/dc/terms/> .\n@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n\nbf:src-iccu a prov:Entity ; dct:title "ICCU Anagrafe snapshot 2026-09-08"@en .\nbf:src-istat-2019 a prov:Entity ; dct:title "ISTAT POSAS 2019"@en .\nbf:src-istat-2025 a prov:Entity ; dct:title "ISTAT POSAS 2025"@en .\nbf:cleaning a prov:Activity ; prov:used bf:src-iccu ; dct:description "Deterministic ICCU cleaning without overwriting RAW files"@en .\nbf:harmonization a prov:Activity ; prov:used bf:src-istat-2019, bf:src-istat-2025 ; dct:description "Municipal harmonization 2019→2025"@en .\nbf:integration a prov:Activity ; prov:used bf:cleaned-iccu, bf:harmonized-population ; dct:description "ICCU→ISTAT integration via municipality code"@en .\nbf:cleaned-iccu a prov:Entity ; prov:wasGeneratedBy bf:cleaning ; prov:wasDerivedFrom bf:src-iccu .\nbf:harmonized-population a prov:Entity ; prov:wasGeneratedBy bf:harmonization ; prov:wasDerivedFrom bf:src-istat-2019, bf:src-istat-2025 .\nbf:derived-dataset a prov:Entity ; prov:wasGeneratedBy bf:integration ; prov:wasDerivedFrom bf:src-iccu, bf:src-istat-2019, bf:src-istat-2025 ; dct:issued "{PROJECT_RELEASE_DATE}"^^xsd:date .\n'''
     (meta/'provenance.ttl').write_text(prov,encoding='utf-8')
 
     print('Metadata and quality reports generated in',root)

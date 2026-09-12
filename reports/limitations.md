@@ -1,20 +1,20 @@
-# Limiti del progetto
+# Project limitations
 
-1. Lo snapshot ICCU rappresenta lo stato della sorgente alla data di acquisizione e non costituisce una serie storica completa.
-2. Lo stato registrato per una biblioteca non fornisce automaticamente la data di inizio o di fine della relativa condizione.
-3. L'assenza di uno stato speciale registrato non certifica la piena operatività della biblioteca.
-4. La completezza informativa varia tra il master ICCU e i dataset bibliotecari secondari.
-5. L'assenza di una quantità patrimoniale non equivale a patrimonio inesistente.
-6. L'assenza di un fondo speciale nel dataset non dimostra l'assenza reale del fondo.
-7. Le associazioni tra caratteristiche demografiche e biblioteche problematiche sono osservazionali e non implicano causalità.
-8. Le variazioni amministrative territoriali complicano il confronto tra POSAS 2019 e POSAS 2025.
-9. Le risorse Linked Data esterne possono modificarsi o diventare temporaneamente indisponibili.
-10. “Biblioteche Fantasma” è un'etichetta narrativa del progetto e non una categoria ufficiale ICCU.
-11. Le analisi per tipologia sono limitate alle biblioteche per cui tale informazione è disponibile.
-12. Le percentuali comunali possono risultare instabili nei comuni con un numero molto ridotto di biblioteche.
-13. Le quantità patrimoniali non sono necessariamente complete o integralmente additive tra categorie.
-14. La rete delle confluenze rappresenta le relazioni disponibili nello snapshot e non una cronologia amministrativa esaustiva.
-15. La pubblicazione Web utilizza GitHub Pages, un hosting statico che non implementa content negotiation HTTP completa o redirect 303 dinamici basati sull'header `Accept`.
-16. Le biblioteche e i comuni dispongono di pagine HTML pubbliche; altre risorse interne del knowledge graph possiedono URI HTTPS ma non necessariamente una rappresentazione HTML dedicata.
-17. Il progetto non espone un endpoint SPARQL pubblico: le query vengono eseguite localmente con PyOxigraph. Questo non costituisce un requisito del modello 5-star Open Data.
-18. I collegamenti verso Linked ISPRA sono generati deterministicamente dai codici ISTAT secondo la URI policy documentata; la pipeline offline non dereferenzia individualmente tutti i target esterni.
+1. The ICCU snapshot represents the state of the source at the acquisition date and does not constitute a complete historical series.
+2. The status recorded for a library does not automatically provide the start or end date of the corresponding condition.
+3. The absence of a registered special status does not certify the full operation of the library.
+4. Information completeness varies between the ICCU master and the secondary library datasets.
+5. The absence of a holdings quantity does not mean that holdings do not exist.
+6. The absence of a special collection in the dataset does not demonstrate the actual absence of the collection.
+7. Associations between demographic characteristics and problematic libraries are observational and do not imply causality.
+8. Territorial administrative changes complicate the comparison between POSAS 2019 and POSAS 2025.
+9. External Linked Data resources may change or become temporarily unavailable.
+10. “Biblioteche Fantasma” is a narrative label of the project and not an official ICCU category.
+11. Type analyses are limited to libraries for which such information is available.
+12. Municipal percentages may be unstable in municipalities with a very small number of libraries.
+13. Holdings quantities are not necessarily complete or fully additive across categories.
+14. The merger network represents the relationships available in the snapshot and not an exhaustive administrative chronology.
+15. The Web publication uses GitHub Pages, a static hosting service that does not implement full HTTP content negotiation or dynamic 303 redirects based on the `Accept` header.
+16. Libraries and municipalities have public HTML pages; other internal knowledge graph resources have HTTPS URIs but do not necessarily have a dedicated HTML representation.
+17. The project does not expose a public SPARQL endpoint: queries are executed locally with PyOxigraph. This is not a requirement of the 5-star Open Data model.
+18. Links toward Linked ISPRA are generated deterministically from ISTAT codes according to the documented URI policy; the offline pipeline does not individually dereference all external targets.

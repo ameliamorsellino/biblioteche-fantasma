@@ -1,15 +1,15 @@
-# Notebook
+# Notebooks
 
-I notebook documentano le principali fasi della pipeline di Open Data Management.
+The notebooks document the main phases of the Open Data Management pipeline.
 
-1. `01_inventory_and_profiling.ipynb` - inventory, manifest e profiling.
-2. `02_iccu_cleaning.ipynb` - cleaning ICCU e normalizzazione degli stati.
-3. `03_iccu_integration.ipynb` - integrazione delle relazioni ICCU.
-4. `04_istat_processing.ipynb` - elaborazione POSAS 2019/2025.
-5. `05_municipality_harmonization.ipynb` - armonizzazione amministrativa.
-6. `06_enrichment.ipynb` - integrazione ICCU–ISTAT.
-7. `07_analysis.ipynb` - analisi quantitativa.
-8. `08_visualization.ipynb` - visualizzazioni.
+1. `01_inventory_and_profiling.ipynb` - inventory, manifest, and profiling.
+2. `02_iccu_cleaning.ipynb` - ICCU cleaning and status normalization.
+3. `03_iccu_integration.ipynb` - integration of ICCU relationships.
+4. `04_istat_processing.ipynb` - POSAS 2019/2025 processing.
+5. `05_municipality_harmonization.ipynb` - administrative harmonization.
+6. `06_enrichment.ipynb` - ICCU–ISTAT integration.
+7. `07_analysis.ipynb` - quantitative analysis.
+8. `08_visualization.ipynb` - visualizations.
 
-La pipeline completa può essere rigenerata dagli archivi RAW presenti in
-`data/raw/` tramite gli script della directory `scripts/`.
+The complete pipeline can be regenerated from the RAW archives available in
+`data/raw/` through the scripts in the `scripts/` directory.
