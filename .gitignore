@@ -22,3 +22,5 @@ rdf/data.ttl
 # Generated GitHub Pages site
 docs/
 *.toc
+
+report/report_instructions.md
