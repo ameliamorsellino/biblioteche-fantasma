@@ -25,7 +25,7 @@
 \setlength{\parindent}{0pt}
 \setcounter{tocdepth}{2}
 \newcommand{\bfproj}{\textit{Biblioteche Fantasma}}
-\newcommand{\sourceNote}{Elaborazione su snapshot ICCU 08/09/2026 e ISTAT POSAS 2019--2025, salvo diversa indicazione.}
+\newcommand{\sourceNote}{Elaborazione su snapshot ICCU 08/09/2026 e ISTAT POSAS 2019-2025, salvo diversa indicazione.}
 \newcommand{\pct}[1]{\num[round-mode=places,round-precision=2]{#1}\%}
 \title{\textbf{BIBLIOTECHE FANTASMA}\\[0.3em]\large Analisi, integrazione e modellazione semantica delle biblioteche italiane non pienamente operative}
 \author{Maria Amelia Morsellino}
@@ -34,7 +34,7 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-Il progetto sviluppa una pipeline completa di Open Data Management a partire da dati reali dell'Anagrafe delle Biblioteche Italiane (ICCU) e della popolazione residente ISTAT POSAS 2019/2025. La pipeline comprende selezione e verifica delle fonti, cleaning, armonizzazione territoriale, integrazione, metadati, modellazione ontologica con riuso di Cultural-ON, generazione RDF, validazione SHACL, interlinking, interrogazione SPARQL, analisi statistica e data visualization. Il master ICCU contiene 19.611 record; il perimetro analitico delle biblioteche problematiche comprende 2.497 casi su 18.956 biblioteche, pari al 13,17\%. La relazione tra variazione demografica comunale 2019--2025 e quota di biblioteche problematiche è debole nel campione completo (Pearson $r=-0{,}106$, Spearman $\rho=-0{,}067$, $N=6.659$) e non risulta robusta restringendo l'analisi ai comuni con più di una biblioteca. La rete delle confluenze comprende 1.412 archi validati. La pipeline genera collegamenti verso ICCU per 19.611 biblioteche e verso Linked ISPRA per 7.893 dei 7.896 comuni della geografia analitica. I risultati vengono interpretati in modo conservativo: i missing non sono trattati come zeri, la correlazione non è causalità, la copertura dei collegamenti esterni è distinta dalla loro dereferenziazione individuale e ``Biblioteche Fantasma'' è un'etichetta narrativa, non una categoria ufficiale ICCU.
+Il progetto sviluppa una pipeline completa di Open Data Management a partire da dati reali dell'Anagrafe delle Biblioteche Italiane (ICCU) e della popolazione residente ISTAT POSAS 2019/2025. La pipeline comprende selezione e verifica delle fonti, cleaning, armonizzazione territoriale, integrazione, metadati, modellazione ontologica con riuso di Cultural-ON, generazione RDF, validazione SHACL, interlinking, interrogazione SPARQL, analisi statistica e data visualization. Il master ICCU contiene 19.611 record; il perimetro analitico delle biblioteche problematiche comprende 2.497 casi su 18.956 biblioteche, pari al 13,17\%. La relazione tra variazione demografica comunale 2019-2025 e quota di biblioteche problematiche è debole nel campione completo (Pearson $r=-0{,}106$, Spearman $\rho=-0{,}067$, $N=6.659$) e non risulta robusta restringendo l'analisi ai comuni con più di una biblioteca. La rete delle confluenze comprende 1.412 archi validati. La pipeline genera collegamenti verso ICCU per 19.611 biblioteche e verso Linked ISPRA per 7.893 dei 7.896 comuni della geografia analitica. I risultati vengono interpretati in modo conservativo: i missing non sono trattati come zeri, la correlazione non è causalità, la copertura dei collegamenti esterni è distinta dalla loro dereferenziazione individuale e ``Biblioteche Fantasma'' è un'etichetta narrativa, non una categoria ufficiale ICCU.
 \end{abstract}
 \tableofcontents
 \clearpage
@@ -56,7 +56,7 @@ Gli obiettivi sono: (i) documentare una pipeline riproducibile di selezione, cle
 \item Dove sono distribuite le biblioteche caratterizzate da stati di non piena operatività?
 \item Quali stati sono più frequenti e come variano tra regioni, province e comuni?
 \item Quali tipologie funzionali/amministrative sono maggiormente associate ai diversi stati?
-\item Esiste un'associazione tra variazione demografica comunale 2019--2025 e quota di biblioteche con cessazione o interruzione del servizio?
+\item Esiste un'associazione tra variazione demografica comunale 2019-2025 e quota di biblioteche con cessazione o interruzione del servizio?
 \item Quale patrimonio e quali fondi speciali risultano documentati presso biblioteche non pienamente operative?
 \item Quale copertura ha raggiunto l'interlinking verso risorse Linked Open Data esterne?
 \item Quale struttura presenta la rete delle biblioteche confluite?
@@ -71,7 +71,7 @@ Il workflow complessivo segue la sequenza: selezione e verifica giuridica delle 
 La fonte primaria è l'Anagrafe delle Biblioteche Italiane dell'ICCU \cite{iccu_opendata}. Lo snapshot usato dal progetto è datato 8 settembre 2026 alle 14:11:15 e contiene 19.611 record nel master. Gli ISIL sono completi e unici. Il pacchetto originale comprendeva dati di territorio, tipologie, patrimonio, fondi speciali e contatti; il formato di scambio è documentato da ICCU \cite{iccu_format}.
 
 \subsection{ISTAT 2019}
-POSAS 2019 fornisce la popolazione residente al 1 gennaio 2019 articolata per età, sesso e stato civile \cite{istat_posas}. Il dataset utilizzato comprende 7.954 comuni. Il valore di età 999 è stato usato come totale solo dopo un controllo empirico di coerenza con la somma delle età 0--100.
+POSAS 2019 fornisce la popolazione residente al 1 gennaio 2019 articolata per età, sesso e stato civile \cite{istat_posas}. Il dataset utilizzato comprende 7.954 comuni. Il valore di età 999 è stato usato come totale solo dopo un controllo empirico di coerenza con la somma delle età 0-100.
 
 \subsection{ISTAT 2025}
 POSAS 2025 è la geografia canonica dell'analisi e contiene 7.896 comuni. Le popolazioni 2025 permettono inoltre di calcolare indicatori per 100.000 abitanti e le quote 65+.
@@ -169,7 +169,7 @@ Patrimonio, fondi speciali e contatti derivano da strutture 1:N. La pipeline non
 Il join del master ICCU verso la geografia ISTAT 2025 tramite codice ISTAT ha copertura 100\%. Il master \texttt{library.csv} contiene la tipologia funzionale e amministrativa per tutti i 19.611 record; la tabella secondaria \texttt{library\_type.csv} copre invece 13.715 biblioteche. Poiché la mancata copertura di quest'ultima è fortemente associata allo stato della biblioteca, RQ3 e il knowledge graph utilizzano le tipologie presenti nel master, mentre la tabella secondaria viene mantenuta come fonte di dettaglio e controllo. Le altre coperture secondarie sono: patrimonio 13.715 biblioteche, contatti 13.630 e fondi speciali 2.449.
 
 \subsection{ISTAT}
-Il dataset comunale integra popolazione 2019/2025, variazione assoluta e percentuale, fasce 0--14, 15--64 e 65+, e quote over 65.
+Il dataset comunale integra popolazione 2019/2025, variazione assoluta e percentuale, fasce 0-14, 15-64 e 65+, e quote over 65.
 
 \subsection{Variazioni amministrative}
 La geografia canonica è il 2025. Il crosswalk contiene 7.955 relazioni da predecessori verso 7.896 comuni correnti. Trapani e Misiliscemi sono marcati non comparabili perché lo split territoriale del 2021 non è ricostruibile con i soli dati POSAS comunali.
@@ -189,7 +189,7 @@ definita solo quando $B^{totali}_i>0$. Gli indicatori per 100.000 abitanti usano
 I 10 dataset processati sono disponibili in CSV UTF-8, formato strutturato, machine-readable e non proprietario, con licenza e metadati. Dal punto di vista tecnico soddisfano quindi i requisiti di struttura e formato aperto associati al livello 3-star. La classificazione completa del modello a cinque stelle richiede tuttavia anche la pubblicazione sul Web, trattata separatamente nella valutazione del progetto. È presente un Data Package Frictionless in \texttt{metadata/datapackage.json}.
 
 \subsection{Qualità dei join}
-Il master biblioteca--comune raggiunge il 100\%. I due comuni non comparabili sono esclusi dalle correlazioni temporali primarie. Nessun fuzzy matching è usato come metodo principale di integrazione.
+Il master biblioteca-comune raggiunge il 100\%. I due comuni non comparabili sono esclusi dalle correlazioni temporali primarie. Nessun fuzzy matching è usato come metodo principale di integrazione.
 
 \section{Metadati}
 \subsection{Frictionless}
@@ -365,15 +365,15 @@ Tutte le 11 query SPARQL sono state eseguite con successo sullo store PyOxigraph
 \subsection{Statistiche descrittive}
 Il master ha 19.611 record. Il denominatore \texttt{total\_libraries} esclude i 655 record ``altro istituto collegato ICCU'' e vale 18.956. Le biblioteche problematiche sono 2.497, pari al 13,17\% delle biblioteche e al 12,73\% di tutti i record ICCU. Il tasso nazionale è 4,24 biblioteche problematiche per 100.000 abitanti.
 
-\subsection{Territorio -- RQ1}
+\subsection{Territorio - RQ1}
 La distribuzione geografica è diffusa. In quota regionale, il Molise registra 80 biblioteche problematiche su 183 (43,72\%), la Liguria 209 su 657 (31,81\%), l'Abruzzo 93 su 419 (22,20\%) e l'Umbria 73 su 407 (17,94\%). In valore assoluto la Lombardia ha 366 casi, seguita da Emilia-Romagna (221), Liguria e Campania (209 ciascuna), Toscana (184).
 
 A livello comunale, i maggiori conteggi assoluti sono Milano (139 su 624), Roma (117 su 1.165), Genova (90 su 307), Napoli (78 su 461), Torino (63 su 369), Pisa (61 su 166) e Bologna (59 su 329). I conteggi assoluti non devono essere letti come tassi: le città con molti istituti hanno più opportunità di osservare stati particolari.
 
-\subsection{Stati -- RQ2}
+\subsection{Stati - RQ2}
 La cessazione è lo stato principale nel perimetro problematico: 1.827 casi. Seguono 619 chiusure temporanee, 33 depositi senza punto di servizio, 12 sospensioni per sisma, 4 inagibilità e 2 riaperture/agibilità parziali. Le confluenze (1.502) sono numerose ma non sono conteggiate come cessazioni: rappresentano trasformazioni organizzative.
 
-\subsection{Tipologie -- RQ3}
+\subsection{Tipologie - RQ3}
 RQ3 utilizza le tipologie funzionali e amministrative presenti nel master \texttt{library.csv}. Dopo l'esclusione dei 655 record classificati come ``altro istituto collegato ICCU'', il campione comprende 18.956 biblioteche. La scelta evita il bias di copertura della tabella secondaria \texttt{library\_type.csv}, che contiene 13.715 biblioteche e omette sistematicamente numerosi record appartenenti ad alcuni stati.
 
 Tra le tipologie funzionali, la categoria \texttt{NON SPECIFICATA} presenta 452 biblioteche problematiche su 1.233 (36,66\%). Tra le tipologie informative, i tassi più elevati sono: conservazione 78/554 (14,08\%), specializzata 630/4.694 (13,42\%), istituto di insegnamento superiore 367/2.774 (13,23\%), pubblica 903/8.162 (11,06\%) e scolastica 65/1.275 (5,10\%). La categoria ``importante non specializzata'' presenta 2 casi su 256 (0,78\%), mentre le categorie itinerante e nazionale non presentano casi problematici nel perimetro analizzato.
@@ -382,31 +382,31 @@ Considerando tutte le categorie, l'associazione tra tipologia funzionale e appar
 
 Il risultato è tuttavia sensibile alla categoria \texttt{NON SPECIFICATA}. Escludendola, per la tipologia funzionale si ottiene $N=17.723$ e Cramér $V=0{,}077$; per la tipologia amministrativa $N=17.844$ e $V=0{,}095$. L'associazione residua è quindi debole. Inoltre alcune celle, soprattutto nella classificazione amministrativa, hanno frequenze attese inferiori a 5; i test inferenziali vanno pertanto letti con cautela e insieme alle distribuzioni descrittive. Nel complesso, RQ3 mostra che parte dell'associazione osservata è legata alla non specificazione della tipologia, mentre tra le categorie informative le differenze sono più contenute.
 
-\subsection{Demografia -- RQ4}
+\subsection{Demografia - RQ4}
 L'analisi primaria usa i comuni comparabili con almeno una biblioteca e valori non mancanti: $N=6.659$. Prima dell'interpretazione sono stati controllati missing e outlier; la regola IQR identifica 115 outlier della variazione demografica, con limiti circa $[-14{,}55\%, 9{,}28\%]$.
 
 Sull'intero campione, Pearson $r=-0{,}1064$ ($p\approx3{,}0\times10^{-18}$) e Spearman $\rho=-0{,}0670$ ($p\approx4{,}4\times10^{-8}$). Escludendo gli outlier IQR, i coefficienti restano dello stesso ordine di grandezza ($r=-0{,}0956$ e $\rho=-0{,}0584$).
 
 Una seconda analisi di sensibilità considera il numero di biblioteche presenti nel comune, poiché con denominatori molto piccoli la quota problematica assume valori fortemente discreti. Limitando il campione ai comuni con almeno due biblioteche, Pearson scende a $r=-0{,}0318$ ($N=1.712$, $p=0{,}188$) e Spearman a $\rho=0{,}0094$ ($p=0{,}698$). Con almeno tre biblioteche si ottengono $r=-0{,}0282$ e $\rho=0{,}0331$ ($N=771$); con almeno cinque, $r=0{,}0832$ e $\rho=0{,}1062$ ($N=345$); con almeno dieci, $r=0{,}0285$ e $\rho=0{,}0145$ ($N=155$). Il segno e l'ampiezza dell'associazione non sono quindi stabili al crescere del denominatore bibliotecario. La correlazione negativa osservata nel campione completo è debole e non è robusta rispetto a questa seconda analisi di sensibilità.
 
-Il confronto tra gruppi mostra che 4.790 comuni hanno perso popolazione, con quota problematica media 12,42\%; 1.869 comuni sono stabili/in crescita, con media 8,48\%. La mediana è 0 in entrambi i gruppi, riflettendo la forte presenza di comuni senza biblioteche problematiche. Un Mann--Whitney test individua una differenza nelle distribuzioni ($p\approx1{,}17\times10^{-5}$), ma l'effetto osservato non dimostra causalità e può riflettere dimensione comunale, densità istituzionale, storia amministrativa o altri confondenti.
+Il confronto tra gruppi mostra che 4.790 comuni hanno perso popolazione, con quota problematica media 12,42\%; 1.869 comuni sono stabili/in crescita, con media 8,48\%. La mediana è 0 in entrambi i gruppi, riflettendo la forte presenza di comuni senza biblioteche problematiche. Un Mann-Whitney test individua una differenza nelle distribuzioni ($p\approx1{,}17\times10^{-5}$), ma l'effetto osservato non dimostra causalità e può riflettere dimensione comunale, densità istituzionale, storia amministrativa o altri confondenti.
 
-\subsection{Patrimonio -- RQ5}
+\subsection{Patrimonio - RQ5}
 La copertura del dataset patrimoniale non è casuale rispetto allo stato ICCU. È nulla per le 1.827 biblioteche non più esistenti, per i 33 depositi senza punto di servizio e, al di fuori del perimetro principale, per le biblioteche confluite e non censite. È invece pari al 98,38\% per le biblioteche temporaneamente chiuse e al 100\% per inagibilità, sospensione per sisma e riapertura/agibilità parziale. Le 627 biblioteche problematiche con patrimonio documentato appartengono pertanto quasi esclusivamente agli stati di interruzione o parziale operatività. I dati patrimoniali disponibili non costituiscono un campione casuale dell'intero perimetro problematico.
 
 Tra 2.497 biblioteche problematiche, 627 hanno almeno una riga di patrimonio documentata (25,11\%), per 2.828 righe. Le quantità sono mancanti in 461 righe; nessuna riga ha zero esplicito; 2.367 hanno quantità positiva. La somma delle sole quantità positive note è 7.500.259 unità, valore che non può essere interpretato come patrimonio complessivo perché la copertura è parziale e alcune categorie sono aggregati come ``totale posseduto''.
 
 I materiali più frequentemente documentati per numero di biblioteche sono volumi e opuscoli (627 biblioteche), periodici (292), totale posseduto (261), periodici correnti (145), periodici spenti (97), audiovisivi (89) e manoscritti (73). La tabella analitica separa righe con quantità mancante e positiva.
 
-\subsection{Fondi speciali -- RQ5}
+\subsection{Fondi speciali - RQ5}
 Nel sottoinsieme problematico non compare alcun record in \texttt{special\_collection.csv}. Tutti i 9.737 record di fondi speciali del dataset appartengono, nello snapshot, a biblioteche classificate come ``nessuno stato speciale registrato''. Questo non significa che le biblioteche problematiche non possiedano fondi speciali: indica che il relativo dataset secondario non li documenta nel sottoinsieme. È quindi un risultato di \emph{coverage}, non di assenza reale.
 
-\subsection{Confluenze -- RQ7}
+\subsection{Confluenze - RQ7}
 La rete validata ha 1.412 archi, 1.821 nodi, 410 componenti debolmente connesse e una componente maggiore di 40 nodi. Gli archi sono fortemente concentrati su alcuni target: \texttt{IT-CT0337} ha grado entrante 39, \texttt{IT-SS0166} 34, \texttt{IT-CA0298} e \texttt{IT-PV0265} 33, \texttt{IT-FI0215} 32. L'unico ciclo è il self-loop già noto.
 
 Geograficamente, le maggiori numerosità di archi in uscita sono in Emilia-Romagna (210), Sicilia (197), Toscana (150), Sardegna (144) e Lombardia (133). La visualizzazione mostra soltanto la componente maggiore per evitare un grafo illeggibile.
 
-\subsection{Quota 65+ -- RQ8}
+\subsection{Quota 65+ - RQ8}
 Come analisi secondaria, la quota over 65 nel 2025 è correlata con \texttt{problematic\_share} su $N=6.659$ comuni: Pearson $r=0{,}1454$ e Spearman $\rho=0{,}1054$. L'associazione è positiva ma debole; è mantenuta come risultato descrittivo e non viene interpretata come spiegazione causale.
 
 \section{Data Visualization}
@@ -421,7 +421,7 @@ Le visualizzazioni sono state selezionate in funzione della domanda: comparison 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.98\textwidth]{../visualizations/status_by_region.png}
-\caption{RQ1--RQ2: quota regionale con conteggi assoluti annotati.}
+\caption{RQ1-RQ2: quota regionale con conteggi assoluti annotati.}
 \end{figure}
 
 \begin{figure}[H]
@@ -433,7 +433,7 @@ Le visualizzazioni sono state selezionate in funzione della domanda: comparison 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.88\textwidth]{../visualizations/demography_scatter.png}
-\caption{RQ4: variazione demografica 2019--2025 e quota problematica.}
+\caption{RQ4: variazione demografica 2019-2025 e quota problematica.}
 \end{figure}
 
 \begin{figure}[H]
@@ -451,11 +451,11 @@ Le visualizzazioni sono state selezionate in funzione della domanda: comparison 
 La versione interattiva della mappa è \texttt{visualizations/library\_map.html}, con clustering e layer per stato. Le figure statiche sono esportate ad alta risoluzione e includono fonte e note metodologiche.
 
 \section{Problemi e decisioni progettuali}
-Il \texttt{decisions\_log.md} registra le decisioni nel formato problema--evidenza--alternative--decisione--motivazione--conseguenza. Tra le scelte più rilevanti: preservare relazioni 1:N; distinguere stati ICCU; usare una geografia 2025; non imputare missing; riusare coordinate ICCU senza geocoding; separare analisi tabellare da SPARQL; migrare il namespace di sviluppo verso URI HTTPS pubbliche e persistenti; visualizzare solo la componente maggiore della rete.
+Il \texttt{decisions\_log.md} registra le decisioni nel formato problema-evidenza-alternative-decisione-motivazione-conseguenza. Tra le scelte più rilevanti: preservare relazioni 1:N; distinguere stati ICCU; usare una geografia 2025; non imputare missing; riusare coordinate ICCU senza geocoding; separare analisi tabellare da SPARQL; migrare il namespace di sviluppo verso URI HTTPS pubbliche e persistenti; visualizzare solo la componente maggiore della rete.
 
 Gli output tabellari del progetto sono distribuiti in CSV UTF-8, formato strutturato, machine-readable e non proprietario. La pipeline mantiene separati i RAW originali e i dataset processati e consente di rigenerare gli artefatti derivati mediante gli script documentati nel repository. La disponibilità di una serializzazione Parquet è opzionale e non costituisce un requisito per la riproducibilità del progetto.
 
-I notebook \texttt{01}--\texttt{08} documentano le principali componenti della pipeline, dall'inventory e profiling delle sorgenti fino all'analisi quantitativa e alla visualizzazione. Le trasformazioni deterministiche sono implementate negli script della directory \texttt{scripts/}; i notebook consentono di ispezionare dati, controlli intermedi e risultati senza sostituire gli script utilizzati per la riproduzione automatica.
+I notebook \texttt{01}-\texttt{08} documentano le principali componenti della pipeline, dall'inventory e profiling delle sorgenti fino all'analisi quantitativa e alla visualizzazione. Le trasformazioni deterministiche sono implementate negli script della directory \texttt{scripts/}; i notebook consentono di ispezionare dati, controlli intermedi e risultati senza sostituire gli script utilizzati per la riproduzione automatica.
 
 \section{Limiti}
 \begin{enumerate}
@@ -466,7 +466,7 @@ I notebook \texttt{01}--\texttt{08} documentano le principali componenti della p
 \item Patrimonio mancante non equivale a patrimonio inesistente.
 \item Fondo speciale non documentato non equivale ad assenza del fondo.
 \item La correlazione demografica non dimostra causalità.
-\item Fusioni, incorporazioni e scorpori comunali complicano i confronti 2019--2025.
+\item Fusioni, incorporazioni e scorpori comunali complicano i confronti 2019-2025.
 \item URI ed endpoint esterni possono cambiare o diventare indisponibili.
 \item ``Biblioteche Fantasma'' è un'etichetta narrativa e non una categoria ufficiale ICCU.
 \item Il denominatore delle quote regionali esclude i 655 record classificati come altri istituti collegati ICCU; usare il totale del registro produrrebbe un indicatore diverso.
